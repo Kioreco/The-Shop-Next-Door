@@ -1,0 +1,34 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "94953254-9ae8-4c57-9eca-38f2e402d9d1",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "9fbfeac1-f92d-4226-ac48-8f10c3226d6e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "be2564fd-d26b-44c8-8cdf-1fe00a69cebf",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
