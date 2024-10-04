@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         }
 
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
         joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         NetworkManager.Singleton.StartHost();
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         }
 
         var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode: joinCode);
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
         NetworkManager.Singleton.StartClient();
     }
