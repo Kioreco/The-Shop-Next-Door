@@ -25,6 +25,12 @@ public class Controler : NetworkBehaviour
     bool isDrag = false;
     Vector3 moveDir;
 
+    [Header("Camera Movement Limits")]
+    public float minX = -10f;  
+    public float maxX = 10f;
+    public float minZ = -10f;
+    public float maxZ = 10f;
+
 
     void Start()
     {
@@ -78,9 +84,23 @@ public class Controler : NetworkBehaviour
             moveDir.z = movement.y * speed;
 
             lastPosition = Input.mousePosition;
-            Vector3 aux = camController.transform.right * -moveDir.x;
+
+            //mov horizontal
+            Vector3 auxH = camController.transform.right * -moveDir.x;
             //Vector3 aux = camController.transform.forward*moveDir.z + camController.transform.right *-1f * moveDir.y + camController.transform.right * -moveDir.x;
-            camController.transform.position += aux * 2f * Time.deltaTime;
+            camController.transform.position += auxH * 2f * Time.deltaTime;
+
+            //mov vertical
+            Vector3 auxV = new Vector3(0, 0, -moveDir.z); 
+            camController.transform.position += auxV * 2f * Time.deltaTime; 
+
+            Vector3 newPosition = camController.transform.position;
+
+            //El clamp para limitar el mov camara
+            newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+            newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+
+            camController.transform.position = newPosition;
         }
 
     }
