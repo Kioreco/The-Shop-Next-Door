@@ -5,20 +5,26 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UIElements;
 
 public class Controler : NetworkBehaviour
 {
     Vector2 _movement;
     Transform _playerTransform;
+    private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
 
-    float _speed = 10f;
-    float _rotSpeed = 270;
+
     public NavMeshAgent _agent;
 
-    Vector3 cameraMovement;
-    Vector3 origin;
+    [Header("CameraMovement")]
+    GameObject camController;
+    float moveSpeed;
+    float moveTime;
+    Vector3 lastPosition;
+    bool isDrag = false;
+    Vector3 moveDir;
 
-    private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
 
     void Start()
     {
@@ -28,6 +34,8 @@ public class Controler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
+            camController = GameObject.FindWithTag("CameraController");
+            //newPosition = camController.transform.position;
         }
 
         _rotation.OnValueChanged += OnRotationChanged;
@@ -46,23 +54,45 @@ public class Controler : NetworkBehaviour
         }
 
 
-        if (IsOwner && Input.GetMouseButton(1))
+        if (IsOwner && Input.GetMouseButtonDown(1))
         {
-            cameraMovement = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
-            
-            Camera.main.transform.position = origin - cameraMovement;
+            isDrag = true;
+            lastPosition = Input.mousePosition;
         }
-        //print(Input.GetMouseButtonDown(1));
+
+        if (IsOwner && Input.GetMouseButtonUp(1))
+        {
+            isDrag = false;
+        }
+
+        //print(isDrag);
+
+        if(isDrag)
+        {
+            Vector3 movement = Input.mousePosition - lastPosition;
+            print(movement);
+
+            float speed = 2f;
+
+            moveDir.x = movement.x * speed;
+            moveDir.z = movement.y * speed;
+
+            lastPosition = Input.mousePosition;
+            Vector3 aux = camController.transform.right * -moveDir.x;
+            //Vector3 aux = camController.transform.forward*moveDir.z + camController.transform.right *-1f * moveDir.y + camController.transform.right * -moveDir.x;
+            camController.transform.position += aux * 2f * Time.deltaTime;
+        }
+
     }
 
     void FixedUpdate()
     {
-        if (IsServer && Input.GetMouseButtonDown(0))
-        {
-            _playerTransform.Rotate(Vector3.up * (_movement.x * _rotSpeed * Time.fixedDeltaTime));
-            _playerTransform.Translate(Vector3.forward * (_movement.y * _speed * Time.fixedDeltaTime));
-            _rotation.Value = _playerTransform.rotation;
-        }
+        //if (IsServer && Input.GetMouseButtonDown(0))
+        //{
+        //    _playerTransform.Rotate(Vector3.up * (_movement.x * _rotSpeed * Time.fixedDeltaTime));
+        //    _playerTransform.Translate(Vector3.forward * (_movement.y * _speed * Time.fixedDeltaTime));
+        //    _rotation.Value = _playerTransform.rotation;
+        //}
         //if (IsOwner && Input.GetMouseButtonDown(0))
         
     }
@@ -88,7 +118,11 @@ public class Controler : NetworkBehaviour
     {
         print("¡PIUM, PIUM , CHIUUUUUUUUM!");
     }
-
+    [ServerRpc]
+    public void OnMoveServerRpc(Vector2 input)
+    {
+        _movement = input;
+    }
     #endregion
 
     //Rpc igual que para el mov que hacíamos con la teclas pero para el ratón
@@ -96,11 +130,13 @@ public class Controler : NetworkBehaviour
     public void SetDestinationServerRpc(Vector3 destination)
     {
         _agent.SetDestination(destination);
+        //float angle = Mathf.Atan2(destination.y - _playerTransform.position.y, destination.x - _playerTransform.position.x) * Mathf.Rad2Deg;
+        //_playerTransform.rotation = Quaternion.Euler(0, 0, angle);
+        _playerTransform.LookAt(destination);
+
+        _rotation.Value = _playerTransform.rotation;
+
     }
 
-    [ServerRpc]
-    public void OnMoveServerRpc(Vector2 input)
-    {
-        _movement = input;
-    }
+
 }
