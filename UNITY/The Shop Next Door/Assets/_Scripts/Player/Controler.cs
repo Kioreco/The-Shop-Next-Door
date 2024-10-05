@@ -25,7 +25,9 @@ public class Controler : NetworkBehaviour
 
     [Header("Camera Zoom")]
     int fovSinZoom = 60;
-    int fovZoom = 30;
+    int fovZoom = 25;
+    float amountZoom;
+    float zoomSpeed = 5f;
 
 
     void Start()
@@ -37,6 +39,7 @@ public class Controler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             camController = GameObject.FindWithTag("CameraController");
+            amountZoom = fovSinZoom;
         }
 
         _rotation.OnValueChanged += OnRotationChanged;
@@ -64,8 +67,6 @@ public class Controler : NetworkBehaviour
         {
             isDrag = false;
         }
-
-        //print(isDrag);
 
         if(isDrag)
         {
@@ -98,13 +99,19 @@ public class Controler : NetworkBehaviour
 
         if (IsOwner && Input.mouseScrollDelta.y > 0)
         {
-            Camera.main.fieldOfView = fovZoom;
+            //Camera.main.fieldOfView = fovZoom;
+            amountZoom -= 5;
+            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
         }
 
         if (IsOwner && Input.mouseScrollDelta.y < 0)
         {
-            Camera.main.fieldOfView = fovSinZoom;
+            //Camera.main.fieldOfView = fovSinZoom;
+            amountZoom += 5;
+            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
         }
+
+        if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
 
     }
 
