@@ -1,26 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.UIElements;
 
 public class Controler : NetworkBehaviour
 {
     Vector2 _movement;
     Transform _playerTransform;
     private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
-
-
     public NavMeshAgent _agent;
 
-    [Header("CameraMovement")]
+    [Header("Camera Movement")]
     GameObject camController;
-    float moveSpeed;
-    float moveTime;
+    float moveSpeed = 2f;
     Vector3 lastPosition;
     bool isDrag = false;
     Vector3 moveDir;
@@ -30,6 +22,10 @@ public class Controler : NetworkBehaviour
     public float maxX = 10f;
     public float minZ = -10f;
     public float maxZ = 10f;
+
+    [Header("Camera Zoom")]
+    int fovSinZoom = 60;
+    int fovZoom = 30;
 
 
     void Start()
@@ -41,7 +37,6 @@ public class Controler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             camController = GameObject.FindWithTag("CameraController");
-            //newPosition = camController.transform.position;
         }
 
         _rotation.OnValueChanged += OnRotationChanged;
@@ -58,7 +53,6 @@ public class Controler : NetworkBehaviour
                 SetDestinationServerRpc(hit.point);
             }
         }
-
 
         if (IsOwner && Input.GetMouseButtonDown(1))
         {
@@ -87,12 +81,11 @@ public class Controler : NetworkBehaviour
 
             //mov horizontal
             Vector3 auxH = camController.transform.right * -moveDir.x;
-            //Vector3 aux = camController.transform.forward*moveDir.z + camController.transform.right *-1f * moveDir.y + camController.transform.right * -moveDir.x;
-            camController.transform.position += auxH * 2f * Time.deltaTime;
+            camController.transform.position += auxH * moveSpeed * Time.deltaTime;
 
             //mov vertical
             Vector3 auxV = new Vector3(0, 0, -moveDir.z); 
-            camController.transform.position += auxV * 2f * Time.deltaTime; 
+            camController.transform.position += auxV * moveSpeed * Time.deltaTime; 
 
             Vector3 newPosition = camController.transform.position;
 
@@ -101,6 +94,16 @@ public class Controler : NetworkBehaviour
             newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
 
             camController.transform.position = newPosition;
+        }
+
+        if (IsOwner && Input.mouseScrollDelta.y > 0)
+        {
+            Camera.main.fieldOfView = fovZoom;
+        }
+
+        if (IsOwner && Input.mouseScrollDelta.y < 0)
+        {
+            Camera.main.fieldOfView = fovSinZoom;
         }
 
     }
