@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void OnClientConnected(ulong obj)
     {
+
         var player = Instantiate(_playerPrefab);
         player.GetComponent<NetworkObject>().SpawnAsPlayerObject(obj);
     }

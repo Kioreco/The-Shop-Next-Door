@@ -38,11 +38,15 @@ public class Controler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
-            camController = GameObject.FindWithTag("CameraController");
+            camController = GameObject.FindWithTag("P1");
+
             amountZoom = fovSinZoom;
         }
 
-        _rotation.OnValueChanged += OnRotationChanged;
+        //if(IsServer) camController = GameObject.FindWithTag("P1");
+        //if (!IsServer && IsOwner) { camController = GameObject.FindWithTag("P2");}
+
+        //_rotation.OnValueChanged += OnRotationChanged;
     }
 
     private void Update()
@@ -52,8 +56,8 @@ public class Controler : NetworkBehaviour
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouse, out var hit))
             {
-                //Llamada a la función rpc pero la nueva creada para el click del ratón
-                SetDestinationServerRpc(hit.point);
+                _agent.SetDestination(hit.point);
+                _playerTransform.LookAt(hit.point);
             }
         }
 
@@ -127,10 +131,7 @@ public class Controler : NetworkBehaviour
         
     }
 
-    private void OnRotationChanged(Quaternion previousValue, Quaternion newValue)
-    {
-        _playerTransform.rotation = newValue;
-    }
+
 
     private void OnDestroy()
     {
@@ -148,12 +149,17 @@ public class Controler : NetworkBehaviour
     {
         print("¡PIUM, PIUM , CHIUUUUUUUUM!");
     }
+    #endregion
+
+
+    #region ONLINE
     [ServerRpc]
+
     public void OnMoveServerRpc(Vector2 input)
     {
         _movement = input;
     }
-    #endregion
+
 
     //Rpc igual que para el mov que hacíamos con la teclas pero para el ratón
     [ServerRpc]
@@ -167,6 +173,10 @@ public class Controler : NetworkBehaviour
         _rotation.Value = _playerTransform.rotation;
 
     }
-
-
+    private void OnRotationChanged(Quaternion previousValue, Quaternion newValue)
+    {
+        _playerTransform.rotation = newValue;
+    }
+    #endregion
+    
 }
