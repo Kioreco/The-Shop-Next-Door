@@ -5,23 +5,26 @@ using UnityEngine.InputSystem;
 
 public class Controler : NetworkBehaviour
 {
+    #region variables
     Vector2 _movement;
     Transform _playerTransform;
     private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
     public NavMeshAgent _agent;
+    int ID;
+    bool isInitialized = false;
 
     [Header("Camera Movement")]
-    GameObject camController;
+    //public GameObject camController;
     float moveSpeed = 2f;
     Vector3 lastPosition;
     bool isDrag = false;
     Vector3 moveDir;
 
     [Header("Camera Movement Limits")]
-    public float minX = -10f;  
-    public float maxX = 10f;
-    public float minZ = -10f;
-    public float maxZ = 10f;
+    public float minX; /* = -10f;*/  
+    public float maxX; /* = 10f;*/
+    public float minZ; /* = -10f;*/
+    public float maxZ; /* = 10f;*/
 
     [Header("Camera Zoom")]
     int fovSinZoom = 60;
@@ -29,6 +32,7 @@ public class Controler : NetworkBehaviour
     float amountZoom;
     float zoomSpeed = 5f;
 
+    #endregion
 
     void Start()
     {
@@ -38,44 +42,38 @@ public class Controler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
-            camController = GameObject.FindWithTag("P1");
-
             amountZoom = fovSinZoom;
+            
         }
+    }
 
-        //if(IsServer) camController = GameObject.FindWithTag("P1");
-        //if (!IsServer && IsOwner) { camController = GameObject.FindWithTag("P2");}
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            ID = (int)OwnerClientId;
+            //print(ID);
 
-        //_rotation.OnValueChanged += OnRotationChanged;
+            if (ID == 1)
+            {
+                GameManager.Instance.cameraP1.SetActive(false);
+                GameManager.Instance.cameraP2.SetActive(true);
+            }
+            isInitialized = true;
+            minX = Camera.main.transform.position.x - 10f;
+            maxX = Camera.main.transform.position.x + 10f;
+            minZ = Camera.main.transform.position.z - 10f;
+            maxZ = Camera.main.transform.position.z + 10f;
+        }
     }
 
     private void Update()
     {
-        if (IsOwner && Input.GetMouseButtonDown(0))
-        {
-            Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(mouse, out var hit))
-            {
-                _agent.SetDestination(hit.point);
-                _playerTransform.LookAt(hit.point);
-            }
-        }
-
-        if (IsOwner && Input.GetMouseButtonDown(1))
-        {
-            isDrag = true;
-            lastPosition = Input.mousePosition;
-        }
-
-        if (IsOwner && Input.GetMouseButtonUp(1))
-        {
-            isDrag = false;
-        }
-
-        if(isDrag)
+        //print(camController.name);
+        if (isDrag && IsOwner && isInitialized)
         {
             Vector3 movement = Input.mousePosition - lastPosition;
-            print(movement);
+            //print(movement);
 
             float speed = 2f;
 
@@ -84,99 +82,67 @@ public class Controler : NetworkBehaviour
 
             lastPosition = Input.mousePosition;
 
-            //mov horizontal
-            Vector3 auxH = camController.transform.right * -moveDir.x;
-            camController.transform.position += auxH * moveSpeed * Time.deltaTime;
+            //movimiento de la camara
+            Vector3 auxH = Camera.main.transform.right * -moveDir.x;
+            Camera.main.transform.position += auxH * moveSpeed * Time.deltaTime;
+            Vector3 auxV = new Vector3(0, 0, -moveDir.z);
+            Camera.main.transform.position += auxV * moveSpeed * Time.deltaTime;
 
-            //mov vertical
-            Vector3 auxV = new Vector3(0, 0, -moveDir.z); 
-            camController.transform.position += auxV * moveSpeed * Time.deltaTime; 
+            Vector3 newPosition = Camera.main.transform.position;
 
-            Vector3 newPosition = camController.transform.position;
-
-            //El clamp para limitar el mov camara
+            //limitar movimiento cámara
             newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
             newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
 
-            camController.transform.position = newPosition;
-        }
-
-        if (IsOwner && Input.mouseScrollDelta.y > 0)
-        {
-            //Camera.main.fieldOfView = fovZoom;
-            amountZoom -= 5;
-            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
-        }
-
-        if (IsOwner && Input.mouseScrollDelta.y < 0)
-        {
-            //Camera.main.fieldOfView = fovSinZoom;
-            amountZoom += 5;
-            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
+            Camera.main.transform.position = newPosition;
         }
 
         if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
 
     }
 
-    void FixedUpdate()
-    {
-        //if (IsServer && Input.GetMouseButtonDown(0))
-        //{
-        //    _playerTransform.Rotate(Vector3.up * (_movement.x * _rotSpeed * Time.fixedDeltaTime));
-        //    _playerTransform.Translate(Vector3.forward * (_movement.y * _speed * Time.fixedDeltaTime));
-        //    _rotation.Value = _playerTransform.rotation;
-        //}
-        //if (IsOwner && Input.GetMouseButtonDown(0))
-        
-    }
-
-
-
-    private void OnDestroy()
-    {
-        _rotation.OnValueChanged -= OnRotationChanged;
-    }
-
     #region Input
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void MovePlayer(InputAction.CallbackContext context)
     {
-        OnMoveServerRpc(context.ReadValue<Vector2>());
+        if (context.performed && IsOwner)
+        {
+            //print("hola");
+            Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(mouse, out var hit))
+            {
+                _agent.SetDestination(hit.point);
+                _playerTransform.LookAt(hit.point);
+            }
+        }
     }
 
-    public void OnShoot(InputAction.CallbackContext context)
+    public void MoveCamera(InputAction.CallbackContext context)
     {
-        print("¡PIUM, PIUM , CHIUUUUUUUUM!");
+        //print(context.ReadValue<float>());
+        if (context.ReadValue<float>() > 0 && IsOwner) 
+        {
+            isDrag = true;
+            lastPosition = Input.mousePosition;
+            //moveCamera?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (context.ReadValue<float>() == 0 && IsOwner) { isDrag = false; }
+    }
+
+    public void Zoom(InputAction.CallbackContext context)
+    {
+        print(context.ReadValue<float>());
+        if (context.ReadValue<float>() > 0 && IsOwner)
+        {
+            amountZoom -= 5;
+            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
+        }        
+        if (context.ReadValue<float>() < 0 && IsOwner)
+        {
+            amountZoom += 5;
+            amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
+        }
     }
     #endregion
-
-
-    #region ONLINE
-    [ServerRpc]
-
-    public void OnMoveServerRpc(Vector2 input)
-    {
-        _movement = input;
-    }
-
-
-    //Rpc igual que para el mov que hacíamos con la teclas pero para el ratón
-    [ServerRpc]
-    public void SetDestinationServerRpc(Vector3 destination)
-    {
-        _agent.SetDestination(destination);
-        //float angle = Mathf.Atan2(destination.y - _playerTransform.position.y, destination.x - _playerTransform.position.x) * Mathf.Rad2Deg;
-        //_playerTransform.rotation = Quaternion.Euler(0, 0, angle);
-        _playerTransform.LookAt(destination);
-
-        _rotation.Value = _playerTransform.rotation;
-
-    }
-    private void OnRotationChanged(Quaternion previousValue, Quaternion newValue)
-    {
-        _playerTransform.rotation = newValue;
-    }
-    #endregion
-    
 }

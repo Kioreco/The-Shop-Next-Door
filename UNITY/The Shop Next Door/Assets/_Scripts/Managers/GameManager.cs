@@ -8,16 +8,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private NetworkManager _networkManager;
-
     private GameObject _playerPrefab;
-
-    private List<Vector3> _spawnPositions = new List<Vector3>()
-    {
-        new Vector3(1, 0, 3),
-        new Vector3(-15, 0, -20),
-    };
-
     private int _spawnIndex = 0;
+    public List<Transform> _spawnPositions = new List<Transform>();
+    //{
+    //    new Vector3(1, 0, 3),
+    //    new Vector3(-15, 0, -20),
+    //};
+    public GameObject cameraP1;
+    public GameObject cameraP2;
+
+    public static GameManager Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -32,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         if (NetworkManager.Singleton.IsServer) 
         {
-            var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex], _playerPrefab.transform.rotation); 
+            var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
             player.GetComponent<NetworkObject>().SpawnAsPlayerObject(obj); 
 
             _spawnIndex++;

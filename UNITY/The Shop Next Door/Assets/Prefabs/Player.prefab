@@ -297,9 +297,53 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9fbfeac1-f92d-4226-ac48-8f10c3226d6e
-    m_ActionName: Player/New action
+      m_Calls:
+      - m_Target: {fileID: 8358571095438540659}
+        m_TargetAssemblyTypeName: Controler, Assembly-CSharp
+        m_MethodName: MovePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0aa528bf-af81-4450-915e-5996bfe49fd3
+    m_ActionName: Player/Move[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8358571095438540659}
+        m_TargetAssemblyTypeName: Controler, Assembly-CSharp
+        m_MethodName: MoveCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 957ebc54-5c3e-4466-bf0f-9422147c1bdb
+    m_ActionName: Player/MoveCamera
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8358571095438540659}
+        m_TargetAssemblyTypeName: Controler, Assembly-CSharp
+        m_MethodName: Zoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4e509d62-658a-4610-bb59-d562801b2dea
+    m_ActionName: Player/Zoom[/Mouse/scroll/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
