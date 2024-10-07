@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     //};
     public GameObject cameraP1;
     public GameObject cameraP2;
+    public GameObject separaodr;
 
     public static GameManager Instance { get; private set; }
     void Awake()

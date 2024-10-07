@@ -1233,6 +1233,7 @@ GameObject:
   - component: {fileID: 1006306848}
   - component: {fileID: 1006306847}
   - component: {fileID: 1006306846}
+  - component: {fileID: 1006306850}
   m_Layer: 0
   m_Name: separador
   m_TagString: Untagged
@@ -1326,6 +1327,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1006306850
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006306845}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1048757763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1471,7 @@ MonoBehaviour:
   - {fileID: 418252152}
   cameraP1: {fileID: 1048757763}
   cameraP2: {fileID: 557485725}
+  separaodr: {fileID: 1006306845}
 --- !u!4 &1682136469
 Transform:
   m_ObjectHideFlags: 0
