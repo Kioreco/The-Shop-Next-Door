@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class Controler : NetworkBehaviour
+public class PlayerControler : NetworkBehaviour
 {
     #region variables
     Vector2 _movement;
@@ -108,7 +108,6 @@ public class Controler : NetworkBehaviour
     {
         if (context.performed && IsOwner)
         {
-            //print("hola");
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouse, out var hit))
             {
@@ -125,7 +124,6 @@ public class Controler : NetworkBehaviour
         {
             isDrag = true;
             lastPosition = Input.mousePosition;
-            //moveCamera?.Invoke(this, EventArgs.Empty);
         }
 
         if (context.ReadValue<float>() == 0 && IsOwner) { isDrag = false; }
