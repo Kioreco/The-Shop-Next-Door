@@ -11,13 +11,11 @@ public class GameManager : MonoBehaviour
     private GameObject _playerPrefab;
     private int _spawnIndex = 0;
     public List<Transform> _spawnPositions = new List<Transform>();
-    //{
-    //    new Vector3(1, 0, 3),
-    //    new Vector3(-15, 0, -20),
-    //};
+
     public GameObject cameraP1;
     public GameObject cameraP2;
     public GameObject separaodr;
+
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -62,4 +60,7 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
+    
 }

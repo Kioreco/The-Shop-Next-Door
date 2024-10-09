@@ -1,18 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ListaCompra : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Dictionary<string, int> lista = new Dictionary<string, int>();
+    public void CrearLista()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
