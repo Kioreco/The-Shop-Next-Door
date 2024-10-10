@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ObjetoEstanteria : MonoBehaviour
 {
-    public string nombre { get; private set; }
-    public int cantidad { get; set; }
+    Producto prod { get; set; }
+    int cantidad { get; set; }
 
-    public ObjetoEstanteria(string n, int c)
+    public ObjetoEstanteria(Producto n, int c)
     {
-        nombre = n;
+        prod = n;
         cantidad = c;
     }
 

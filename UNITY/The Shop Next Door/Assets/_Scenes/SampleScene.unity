@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 258250182}
   - component: {fileID: 258250186}
   m_Layer: 0
-  m_Name: separador (3)
+  m_Name: Estanteria 2
   m_TagString: Estanteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -669,9 +669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b3bbd11caff94491ea0fe4de65aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: libro1
-  e2: libro2
-  e3: libro3
+  tipoObj: 112
+  obj1: pinturas
+  obj2: rotuladores
+  obj3: lienzos
   maxElem: 20
 --- !u!1 &330585543
 GameObject:
@@ -959,6 +960,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &519834019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519834021}
+  - component: {fileID: 519834020}
+  m_Layer: 0
+  m_Name: lista compra
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &519834020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519834019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cee98fb0908ac4aaa6aa096ade8353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  create: 1
+--- !u!4 &519834021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519834019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.698311, y: 1.5310303, z: -0.2682384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521426535
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +1016,7 @@ GameObject:
   - component: {fileID: 521426536}
   - component: {fileID: 521426537}
   m_Layer: 0
-  m_Name: ObjetosTienda
+  m_Name: TiendaManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,10 +1049,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c4d637e0eb2df40b8889fc92631596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vendeRopa: 0
-  vendePapeleria: 0
-  vendeComida: 0
-  vendeOcio: 0
+  estanterias:
+  - {fileID: 660419323}
+  - {fileID: 258250181}
+  - {fileID: 1796585863}
+  - {fileID: 574453987}
+  vendeRopa: 1
+  vendePapeleria: 1
+  vendeComida: 1
+  vendeOcio: 1
 --- !u!1 &523355277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1148,7 @@ GameObject:
   - component: {fileID: 574453988}
   - component: {fileID: 574453992}
   m_Layer: 0
-  m_Name: separador (4)
+  m_Name: Estanteria 4
   m_TagString: Estanteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1201,9 +1252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b3bbd11caff94491ea0fe4de65aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: ps
-  e2: switch
-  e3: wii
+  tipoObj: 111
+  obj1: Shrek 1
+  obj2: Shrek 2
+  obj3: Shrek 3
   maxElem: 20
 --- !u!1 &613149819
 GameObject:
@@ -1294,7 +1346,7 @@ GameObject:
   - component: {fileID: 660419324}
   - component: {fileID: 660419328}
   m_Layer: 0
-  m_Name: separador (1)
+  m_Name: Estanteria 1
   m_TagString: Estanteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1398,9 +1450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b3bbd11caff94491ea0fe4de65aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: manzana
-  e2: pera
-  e3: limon
+  tipoObj: 114
+  obj1: camisa
+  obj2: jerseis
+  obj3: pijamas
   maxElem: 20
 --- !u!1 &832575517
 GameObject:
@@ -1637,7 +1690,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &1006306846
 BoxCollider:
@@ -1998,7 +2051,7 @@ GameObject:
   - component: {fileID: 1796585864}
   - component: {fileID: 1796585868}
   m_Layer: 0
-  m_Name: separador (2)
+  m_Name: Estanteria 3
   m_TagString: Estanteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2102,9 +2155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b3bbd11caff94491ea0fe4de65aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: camisa1
-  e2: camisa2
-  e3: camisa3
+  tipoObj: 99
+  obj1: manzana
+  obj2: sandia
+  obj3: melon
   maxElem: 20
 --- !u!1 &1873339189
 GameObject:
@@ -2335,6 +2389,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcGeneral
       objectReference: {fileID: 0}
+    - target: {fileID: 3376042821000026859, guid: 569eed854db2be44f8ef01a1a109c2f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2346,9 +2405,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 37347055}
   - {fileID: 1106348067}
-  - {fileID: 1083035138}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1083035138}
   - {fileID: 28876967}
   - {fileID: 523355278}
   - {fileID: 1682136469}
@@ -2367,3 +2426,4 @@ SceneRoots:
   - {fileID: 418252152}
   - {fileID: 557485726}
   - {fileID: 4678074572048678046}
+  - {fileID: 519834021}

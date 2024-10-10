@@ -4,43 +4,46 @@ using UnityEngine;
 
 public class Estanteria : MonoBehaviour
 {
-    public string e1;
-    public string e2;
-    public string e3;
-    ObjetoEstanteria[] elementos = new ObjetoEstanteria[3];
+    public char tipoObj;
+    public string obj1;
+    public string obj2;
+    public string obj3;
+    Dictionary<string, Producto> elementos = new Dictionary<string, Producto>();
 
     public int maxElem = 20;
 
     private void Awake()
     {
-        elementos[0] = new ObjetoEstanteria(e1, maxElem);
-        elementos[1] = new ObjetoEstanteria(e2, maxElem);
-        elementos[2] = new ObjetoEstanteria(e3, maxElem);
+        //print(elementos);
+        //print(TiendaManager.Instance.getProducto(obj1, tipoObj, maxElem));
+        elementos.Add(obj1, TiendaManager.Instance.getProducto(obj1, tipoObj, maxElem));
+        elementos.Add(obj2, TiendaManager.Instance.getProducto(obj2, tipoObj, maxElem));
+        elementos.Add(obj3, TiendaManager.Instance.getProducto(obj3, tipoObj, maxElem));
+        //elementos[0] = new ObjetoEstanteria(e1, maxElem);
+        //elementos[1] = new ObjetoEstanteria(e2, maxElem);
+        //elementos[2] = new ObjetoEstanteria(e3, maxElem);
     }
 
     public void Reponer(string s)
     {
-        foreach (var item in elementos) 
-        {
-            if (item.nombre == s) item.cantidad = maxElem;
-        }
+        //foreach (var item in elementos) 
+        //{
+        //    //if (item. == s) item.cantidad = maxElem;
+        //}
     }
 
     public void CogerElemento(string s, int c)
     {
-        foreach (var item in elementos)
-        {
-            if (item.nombre == s) item.Coger(c);
-            //aqui habria que actualizar la ui
-        }
+        //foreach (var item in elementos)
+        //{
+        //    //if (item.prod.nombre == s) item.Coger(c);
+        //    //aqui habria que actualizar la ui
+        //}
     }
 
     public bool TieneElemento(string s)
     {
-        foreach (var item in elementos)
-        {
-            if (item.nombre == s) return true;
-        }
+        if (elementos.TryGetValue(s, out var o)) return true;
         return false;
     }
 
