@@ -26,6 +26,10 @@ public class TiendaManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            InicializarComida();
+            InicializarOcio();
+            InicializarPapeleria();
+            InicializarRopa();
         }
         else
         {
@@ -76,6 +80,27 @@ public class TiendaManager : MonoBehaviour
         JuegosPeliculasMusica.Add("CD-DAMN", new Producto(12.00f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("CD-NombreDireccion", new Producto(12.00f, 50, 0, 'o', false));
     }
+
+    public Dictionary<string,Producto> getDictionaryAccType(char tipo)
+    {
+        if (tipo == 'r')
+        {
+            return RopaYCalzado;
+        }
+        else if (tipo == 'p')
+        {
+            return PapeleriaYArte;
+        }
+        else if (tipo == 'c')
+        {
+            return Comida;
+        }
+        else if (tipo == 'o')
+        {
+            return JuegosPeliculasMusica;
+        }
+        return new Dictionary<string, Producto>();
+    }
     #endregion
 
     public Vector3 buscarEstanteria(string producto)
@@ -88,66 +113,27 @@ public class TiendaManager : MonoBehaviour
         return new Vector3(0, 0, 0);
     }
 
-    public Producto getProducto(string producto, char tipo, int stockEstanteria)
-    {
-        if(tipo == 'r')
-        {
-            RopaYCalzado.TryGetValue(producto, out var result);
-            if (result != null)
-            {
-                result.gestionarStockEstanteriaYAlmacen(stockEstanteria);
-                return result;
-            }
-        }
-        else if(tipo == 'p')
-        {
-            PapeleriaYArte.TryGetValue(producto, out var result);
-            if (result != null)
-            {
-                result.gestionarStockEstanteriaYAlmacen(stockEstanteria);
-                return result;
-            }
-        }
-        else if(tipo == 'c')
-        {
-            Comida.TryGetValue(producto, out var result);
-            if (result != null)
-            {
-                result.gestionarStockEstanteriaYAlmacen(stockEstanteria);
-                return result;
-            }
-        }
-        else if(tipo == 'o')
-        {
-            JuegosPeliculasMusica.TryGetValue(producto, out var result);
-            if (result != null)
-            {
-                result.gestionarStockEstanteriaYAlmacen(stockEstanteria);
-                return result;
-            }
-        }
-        return new Producto(0, 0, 0, 'c', true);
-    }
-
     public string getRandomProduct(char tipo)
     {
-        if (tipo == 'r')
-        {
-            return RopaYCalzado.Keys.ElementAt(Random.Range(0, RopaYCalzado.Count));
-        }
-        else if (tipo == 'p')
-        {
-            return PapeleriaYArte.Keys.ElementAt(Random.Range(0, PapeleriaYArte.Count));
-        }
-        else if (tipo == 'c')
-        {
-            return Comida.Keys.ElementAt(Random.Range(0, Comida.Count));
-        }
-        else if (tipo == 'o')
-        {
-            return JuegosPeliculasMusica.Keys.ElementAt(Random.Range(0, JuegosPeliculasMusica.Count));
-        }
-        return "";
+        Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+        return aux.Keys.ElementAt(Random.Range(0, aux.Count)); 
     }
 
+    public void reponerEstanteria(string s, char tipo, int cantidad)
+    {
+        getDictionaryAccType(tipo).TryGetValue(s, out var result);
+        if (result != null)
+        {
+            result.gestionarStockEstanteriaYAlmacen(cantidad);
+        }
+    }
+
+    public void cogerDeEstanteria(string s, char tipo, int cantidad)
+    {
+        getDictionaryAccType(tipo).TryGetValue(s, out var result);
+        if (result != null)
+        {
+            result.cogerProducto(cantidad);
+        }
+    }
 }

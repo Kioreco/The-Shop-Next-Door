@@ -4,33 +4,33 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
 
-
 namespace Assets.Scripts.MachineStates.Classes
 {
     public class Context : MonoBehaviour, IContext
     {
-        public List<GameObject> estanteriaList;
         private IState currentState;
         [SerializeField] float speed;
-        ListaCompra lista;
+        ListaCompra lista = new ListaCompra();
+        [SerializeField] TiendaManager tiendaManager;
+        Vector3 currentEstanteria;
 
         #region MetodosGenerales
-        private void Awake()
+        private void Start()
         {
-            estanteriaList = GameObject.FindGameObjectsWithTag("Estanteria").ToList();
-            lista.CrearLista();
+            tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
 
-            Assert.IsTrue(estanteriaList.Count > 0, "Estanterias no encontradas");
-
+            //lista.CrearLista();
+            lista.listaPrueba();
             SetState(new SearchShelf(this));
         }
 
-        public void FixedUpdate()
+        private void Update()
         {
+            currentState.Update();
         }
-
-        public void Update()
+        private void FixedUpdate()
         {
+            currentState.FixedUpdate();
         }
 
         public void SetState(IState cntx)
@@ -41,10 +41,6 @@ namespace Assets.Scripts.MachineStates.Classes
         #endregion
 
         #region metodosEspecificos
-        public List<GameObject> getEstanterias()
-        {
-            return estanteriaList;
-        }
         public float getSpeed()
         {
             return speed;
@@ -61,6 +57,19 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             return lista;
         }
+        public TiendaManager getTiendaManager()
+        {
+            return tiendaManager;
+        }
+        public Vector3 getCurrentEstanteria()
+        {
+            return currentEstanteria;
+        }
+        public void setCurrentEstanteria(Vector3 e)
+        {
+            currentEstanteria = e;
+        }
+
         #endregion
     }
 }

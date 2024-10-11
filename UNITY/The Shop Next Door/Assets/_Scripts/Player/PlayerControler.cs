@@ -42,8 +42,7 @@ public class PlayerControler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
-            amountZoom = fovSinZoom;
-            
+            amountZoom = fovSinZoom; 
         }
     }
 

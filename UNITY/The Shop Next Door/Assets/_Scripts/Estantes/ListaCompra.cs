@@ -4,19 +4,13 @@ using UnityEngine;
 public class ListaCompra : MonoBehaviour
 {
     List<char> tipo = new List<char>();
-    Dictionary<string, int> lista = new Dictionary<string, int>();
+    public Dictionary<string, int> lista = new Dictionary<string, int>();
     int cont = 0;
-    public bool create = true;
 
-    private void Update()
+    private void Start()
     {
-        if (create)
-        {
-            create = false;
-            CrearLista();
-        }
+        //CrearLista();
     }
-
 
     public void CrearLista()
     {
@@ -25,23 +19,43 @@ public class ListaCompra : MonoBehaviour
         if (TiendaManager.Instance.vendePapeleria == true) tipo.Add('p');
         if (TiendaManager.Instance.vendeComida == true) tipo.Add('c');
 
-        char tipoObjeto = tipo[Random.Range(0,tipo.Count)];
+        int tipoObjeto = tipo.Count - 1;
+        int contTipo = 0;
         int randCantidadProductos = Random.Range(1, 5);
 
         while(cont <= randCantidadProductos)
         {
             int randUnidades = Random.Range(1, 4);
-            lista.Add(TiendaManager.Instance.getRandomProduct(tipoObjeto), randUnidades);
+            string producto = TiendaManager.Instance.getRandomProduct(tipo[contTipo]);
+            if (!lista.ContainsKey(producto))
+            {
+                lista.Add(producto, randUnidades); //FALTA AÑADIR QUE SOLO PUEDA COGER ELEMENTOS QUE ESTÁN EN LA TIENDA
+                cont++;
+                if (contTipo < tipoObjeto) contTipo++;
+                else if (contTipo == tipoObjeto) contTipo = 0;
+            }
         }
-
-        imprimirLista();
+        //imprimirLista();
     }
 
     public void imprimirLista()
     {
+        print("\t\tINICIO LISTA");
+
         foreach (var par in lista)
         {
             print($"Clave: {par.Key}, Valor: {par.Value}");
         }
+        print("\t\tFIN LISTA");
+    }
+
+
+    public void listaPrueba()
+    {
+        lista.Add("camisa", 1);
+        lista.Add("manzana", 1);
+        lista.Add("faldas", 1);
+        lista.Add("carne", 1);
+        lista.Add("edgy", 1);
     }
 }
