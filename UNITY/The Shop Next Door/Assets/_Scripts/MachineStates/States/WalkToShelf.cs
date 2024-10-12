@@ -8,36 +8,34 @@ public class WalkToShelf : AStateNPC
 {
     public WalkToShelf(IContext cntx) : base(cntx) { }
 
-    float secondsToSeek = 0.10f; //tiempo de la animación
+    float secondsToSeek = 0.5f; //tiempo de la animación
     float lastSeek = 0f;
     bool enDestino = false;
     #region metodos
     public override void Enter() 
     {
         Debug.Log("walking to shelf and taking product");
-        //_agent.SetDestination(hit.point);
+
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
-        Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");
-        if (contexto.getLista().lista.Count > 0)
-        {
-            contexto.getLista().lista.Remove(contexto.getLista().lista.Keys.First());
-            //contexto.getLista().imprimirLista();
-        }
-        //contexto.SetState(new WalkToShelf(contexto));
+        //Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");
     }
 
     public override void Update()
     {
         //contador animación de coger elemento
         //cuanbdo acabe cambia estado
-        //Debug.Log(contexto.getNavMesh().velocity.sqrMagnitude);
+        //Debug.Log(contexto.getNavMesh().remainingDistance);
 
-        if (contexto.getNavMesh().velocity.sqrMagnitude == 0f) { enDestino = true; }
+        if (contexto.getNavMesh().remainingDistance == 0f) { enDestino = true; }
         if (enDestino) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
             lastSeek = 0f;
+            if (contexto.getLista().lista.Count > 0)
+            {
+                contexto.getLista().lista.Remove(contexto.getLista().lista.Keys.First());
+            }
             contexto.SetState(new SearchShelf(contexto));
         }
     }

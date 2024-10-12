@@ -6,6 +6,7 @@ public class TiendaManager : MonoBehaviour
 {
     [Header("Estanterias")]
     [SerializeField] List<GameObject> estanterias = new List<GameObject>();
+    public GameObject cajaPago;
 
     [Header("Tipo Tienda")]
     public bool vendeRopa;

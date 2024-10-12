@@ -130,7 +130,7 @@ public class PlayerControler : NetworkBehaviour
 
     public void Zoom(InputAction.CallbackContext context)
     {
-        print(context.ReadValue<float>());
+        //print(context.ReadValue<float>());
         if (context.ReadValue<float>() > 0 && IsOwner)
         {
             amountZoom -= 5;

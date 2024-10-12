@@ -8,6 +8,7 @@ public class Pay : AStateNPC
     public override void Enter()
     {
         Debug.Log("paying...");
+        contexto.getNavMesh().SetDestination(contexto.getCajaPagar());
     }
     public override void FixedUpdate()
     {

@@ -69,7 +69,14 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             currentEstanteria = e;
         }
-
+        public Vector3 getCajaPagar()
+        {
+            return tiendaManager.cajaPago.transform.position;
+        }
+        public IState GetState()
+        {
+            return currentState;
+        }
         #endregion
     }
 }

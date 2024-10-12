@@ -1,5 +1,7 @@
+using Assets.Scripts.MachineStates.Classes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Estanteria : MonoBehaviour
@@ -7,6 +9,8 @@ public class Estanteria : MonoBehaviour
     public char tipoObj;
     public List<string> objetosEstanteria = new List<string>();
     public int maxElem = 20;
+
+    string stateNPCBuying = "WalkToShelf";
 
 
     private void Start()
@@ -35,6 +39,16 @@ public class Estanteria : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //print($"collision: {other.gameObject.name}");
+
+        if (other.CompareTag("NPC"))
+        {
+            //print($"npc estado: {other.gameObject.GetComponent<Context>().GetState().ToString()}");
+            if (other.gameObject.GetComponent<Context>().GetState().ToString() == stateNPCBuying)
+            {
+                //contexto.getLista().lista.Keys.First()
+                //TiendaManager.Instance.cogerDeEstanteria(other.gameObject.GetComponent<Context>().getLista().lista.Keys.First());
+            }
+        }
 
         if (other.CompareTag("Player"))
         {

@@ -9,6 +9,8 @@ TagManager:
   - P2
   - Estanteria
   - TiendaManager
+  - TelephoneMini
+  - NPC
   layers:
   - Default
   - TransparentFX
