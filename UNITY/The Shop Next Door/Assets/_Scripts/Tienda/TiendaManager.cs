@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class TiendaManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class TiendaManager : MonoBehaviour
     [Header("Estanterias")]
     [SerializeField] List<GameObject> estanterias = new List<GameObject>();
     public GameObject cajaPago;
+    public Vector3 primeraPosicionCaja;
+    public Transform salidaTienda;
 
     [Header("Tipo Tienda")]
     public bool vendeRopa;
@@ -31,6 +34,7 @@ public class TiendaManager : MonoBehaviour
             InicializarOcio();
             InicializarPapeleria();
             InicializarRopa();
+            primeraPosicionCaja = cajaPago.transform.position;
         }
         else
         {
@@ -136,5 +140,17 @@ public class TiendaManager : MonoBehaviour
         {
             result.cogerProducto(cantidad);
         }
+    }
+
+    public Vector3 cogerSitioCola()
+    {
+        cajaPago.transform.position += new Vector3 (0, 0, 1.2f);
+        return cajaPago.transform.position;
+    }
+
+    public Vector3 avanzarLaCola()
+    {
+        cajaPago.transform.position -= new Vector3(0, 0, 1.2f);
+        return cajaPago.transform.position;
     }
 }

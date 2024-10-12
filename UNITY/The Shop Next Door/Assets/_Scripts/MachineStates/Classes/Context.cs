@@ -19,8 +19,8 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
 
-            //lista.CrearLista();
-            lista.listaPrueba();
+            lista.CrearLista();
+            //lista.listaPrueba();
             SetState(new SearchShelf(this));
         }
 
