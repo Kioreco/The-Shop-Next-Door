@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject cameraP1;
     public GameObject cameraP2;
-    public GameObject separaodr;
+    public GameObject separador;
 
+    public float dineroJugador;
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         _networkManager.OnServerStarted += OnServerStarted;
         _networkManager.OnClientConnectedCallback += OnClientConnected;
+
+        dineroJugador = 500.0f;
     }
 
     private void OnClientConnected(ulong obj)
@@ -55,12 +58,6 @@ public class GameManager : MonoBehaviour
     {
         print("Funciona el server");
     }
-
-    void Update()
-    {
-        
-    }
-
 
     
 }

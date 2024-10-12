@@ -57,7 +57,7 @@ public class PlayerControler : NetworkBehaviour
             {
                 GameManager.Instance.cameraP1.SetActive(false);
                 GameManager.Instance.cameraP2.SetActive(true);
-                GameManager.Instance.separaodr.GetComponent<NavMeshObstacle>().carving = true;
+                GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             }
             isInitialized = true;
             minX = Camera.main.transform.position.x - 10f;

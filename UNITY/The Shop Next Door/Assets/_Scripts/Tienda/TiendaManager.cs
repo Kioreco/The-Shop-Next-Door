@@ -23,6 +23,12 @@ public class TiendaManager : MonoBehaviour
     Dictionary<string, Producto> Comida = new Dictionary<string, Producto>();
     Dictionary<string, Producto> JuegosPeliculasMusica = new Dictionary<string, Producto>();
 
+    public int maxProductosRopa;
+    public int maxProductosComida;
+    public int maxProductosPapeleria;
+    public int maxProductosEntretenimiento;
+
+
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -52,6 +58,7 @@ public class TiendaManager : MonoBehaviour
         RopaYCalzado.Add("pijamas", new Producto(7.50f, 50, 0, 'r', false));
         RopaYCalzado.Add("deportivas", new Producto(55.00f, 50, 0, 'r', false));
         RopaYCalzado.Add("edgy", new Producto(69.00f, 50, 0, 'r', false));
+        maxProductosRopa = 50;
     }
     void InicializarPapeleria()
     {
@@ -61,6 +68,7 @@ public class TiendaManager : MonoBehaviour
         PapeleriaYArte.Add("pinturas", new Producto(14.99f, 50, 0, 'p', false));
         PapeleriaYArte.Add("rotuladores", new Producto(20.99f, 50, 0, 'p', false));
         PapeleriaYArte.Add("lienzos", new Producto(12.50f, 50, 0, 'p', false));
+        maxProductosPapeleria = 60;
     }
     void InicializarComida()
     {
@@ -72,6 +80,7 @@ public class TiendaManager : MonoBehaviour
         Comida.Add("calabaza", new Producto(5.00f, 50, 0, 'c', false));
         Comida.Add("carne", new Producto(12.50f, 50, 0, 'c', false));
         Comida.Add("pescado", new Producto(12.50f, 50, 0, 'c', false));
+        maxProductosComida = 70;
     }
     void InicializarOcio()
     {
@@ -84,6 +93,7 @@ public class TiendaManager : MonoBehaviour
         JuegosPeliculasMusica.Add("CD-TaylorSwift", new Producto(12.00f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("CD-DAMN", new Producto(12.00f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("CD-NombreDireccion", new Producto(12.00f, 50, 0, 'o', false));
+        maxProductosEntretenimiento = 30;
     }
 
     public Dictionary<string,Producto> getDictionaryAccType(char tipo)

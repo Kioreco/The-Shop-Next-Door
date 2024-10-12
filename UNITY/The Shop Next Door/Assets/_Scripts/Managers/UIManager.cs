@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,9 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private GameObject
 
     //[SerializeField] private bool telephoneMini;
+    [Header("INGAME SCENE")]
+    [SerializeField] private TextMeshProUGUI dineroJugador_text;
+    [SerializeField] private TextMeshProUGUI nombreTienda_text;
 
 
     public static UIManager Instance { get; private set; }
@@ -43,4 +47,9 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
+    public void UpdateDineroJugador()
+    {
+        dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
+        if(GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
+    }
 }
