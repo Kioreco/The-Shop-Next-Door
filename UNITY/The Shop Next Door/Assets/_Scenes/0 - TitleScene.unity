@@ -3866,6 +3866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1557370208}
   - component: {fileID: 1557370207}
+  - component: {fileID: 1557370209}
   m_Layer: 0
   m_Name: '@UIManager'
   m_TagString: Untagged
@@ -3885,7 +3886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313c016e93f0544b25ff31ca8af6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputField_JoinCode: {fileID: 0}
 --- !u!4 &1557370208
 Transform:
   m_ObjectHideFlags: 0
@@ -3901,6 +3901,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557370209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557370206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664c77b53315be648b69d4954d544c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _userNameInput: {fileID: 705322866}
+  _emailInput: {fileID: 1921143942}
+  _password: {fileID: 1871698836}
+  _rePassword: {fileID: 781878479}
+  _resultReq: {fileID: 210647355}
 --- !u!1 &1647218175
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,7 +5313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENTER THE SHOP NAME...
+  m_text: ENTER EMAIL...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9cb916229ca0ab40a3eb2444d4125bb, type: 2}
   m_sharedMaterial: {fileID: 5385299463779098284, guid: f9cb916229ca0ab40a3eb2444d4125bb,
@@ -5508,16 +5525,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1557370207}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 1557370209}
+        m_TargetAssemblyTypeName: SceneManagerLogin, Assembly-CSharp
+        m_MethodName: SubmitRegister
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1 - MenuInicio
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2074654140
@@ -5558,6 +5575,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074654137}
   m_CullTransparentMesh: 1
+--- !u!1 &2134026876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2134026878}
+  - component: {fileID: 2134026877}
+  m_Layer: 0
+  m_Name: '@NetworkManagerLogin'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2134026877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134026876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3531e53d706aaca4994095fcc769be3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2134026878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134026876}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 699.09515, y: 440.45004, z: -264.48474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5568,3 +5629,4 @@ SceneRoots:
   - {fileID: 1139555920}
   - {fileID: 125385524}
   - {fileID: 1557370208}
+  - {fileID: 2134026878}

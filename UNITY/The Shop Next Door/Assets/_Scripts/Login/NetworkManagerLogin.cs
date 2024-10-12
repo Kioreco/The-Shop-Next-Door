@@ -6,17 +6,17 @@ using UnityEngine.Networking;
 
 public class NetworkManagerLogin : MonoBehaviour
 {
-    public void CreateUser(string user, string email, string pass, Action<Response> response)
+    public void CreateUser(string userName, string email, string pass, Action<Response> response)
     {
-        StartCoroutine(CO_CreateUser(user, email, pass, response));
+        StartCoroutine(CO_CreateUser(userName, email, pass, response));
     }
 
-    private IEnumerator CO_CreateUser(string user, string email, string pass, Action<Response> response)
+    private IEnumerator CO_CreateUser(string userName, string email, string pass, Action<Response> response)
     {
         WWWForm form = new WWWForm();
-        form.AddField("userName", user);
-        form.AddField("emailAdress", email);
-        form.AddField("password", pass);
+        form.AddField("userName", userName);
+        form.AddField("email", email);
+        form.AddField("pass", pass);
 
         //WWW w = new WWW("http://localhost/TheShopNextDoor/createUser.php", form);
 
@@ -31,7 +31,7 @@ public class NetworkManagerLogin : MonoBehaviour
             if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.LogError("Error en la solicitud: " + www.error);
-                response(new Response { aprove = false, msg = www.error });
+                response(new Response { done = false, msg = www.error });
             }
             else
             {
@@ -47,7 +47,7 @@ public class NetworkManagerLogin : MonoBehaviour
 [Serializable]
 public class Response
 {
-    public bool aprove = false;
+    public bool done = false;
     public string msg = "";
 }
 

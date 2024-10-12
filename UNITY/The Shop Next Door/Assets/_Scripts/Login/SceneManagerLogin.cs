@@ -1,33 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SceneManagerLogin : MonoBehaviour
 {
-    [SerializeField] private InputField _userNameInput = null;
-    [SerializeField] private InputField _emailInput = null;
-    [SerializeField] private InputField _password = null;
-    [SerializeField] private InputField _rePassword = null;
-    [SerializeField] private Text _resultReq = null;
+    [SerializeField] private TMP_InputField _userNameInput = null;
+    [SerializeField] private TMP_InputField _emailInput = null;
+    [SerializeField] private TMP_InputField _password = null;
+    [SerializeField] private TMP_InputField _rePassword = null;
+    [SerializeField] private TextMeshProUGUI _resultReq = null;
 
     private NetworkManagerLogin _networkManager = null;
 
     private void Awake()
     {
-        _networkManager = GameObject.FindObjectOfType<NetworkManagerLogin>();
+        _networkManager = GameObject.FindObjectOfType<@NetworkManagerLogin>();
     }
 
-    public void SubmitLogin()
+    public void SubmitRegister()
     {
         if (_userNameInput.text == "" || _emailInput.text == "" || _password.text == "" || _rePassword.text == "")
         {
-            _resultReq.text = "Algún/os campos vacíos, rellene todos";
+            _resultReq.text = "Some fields are empty, fill in all";
             return;
         }
         if (_password.text == _rePassword.text)
         {
-            _resultReq.text = "Procesando...";
+            _resultReq.text = "Processing...";
 
             _networkManager.CreateUser(_userNameInput.text, _emailInput.text, _password.text,
                 delegate(Response response)
@@ -37,7 +38,7 @@ public class SceneManagerLogin : MonoBehaviour
         }
         else
         {
-            _resultReq.text = "Contraseñas distintas, introduzca la misma";
+            _resultReq.text = "Different passwords, enter the same one";
         }
     }
 }
