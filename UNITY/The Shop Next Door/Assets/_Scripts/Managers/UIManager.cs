@@ -5,16 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("TITLE SCENE")]
-    [SerializeField] private GameObject TSND_Logo;
-
-    [SerializeField] private GameObject LoginCreateButtons;
-
-    [SerializeField] private GameObject LoginCreatePanel;
+    //[Header("TITLE SCENE")]
 
     //[Header("MENU SCENE")]
-    [Header("MATCHMAKING SCENE")]
-    [SerializeField] private GameObject InputField_JoinCode;
+    //[Header("MATCHMAKING SCENE")]
+    //[Header("MATCHMAKING SCENE")]
+    //[SerializeField] private GameObject
+
+    //[SerializeField] private bool telephoneMini;
 
 
     public static UIManager Instance { get; private set; }
@@ -35,21 +33,14 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void CloseTitleScreen()
+    public void OpenMenu(GameObject menu)
     {
-        TSND_Logo.SetActive(false);
-        LoginCreateButtons.SetActive(true);
+        menu.SetActive(true);
     }
 
-    public void OpenLoginCampus()
+    public void CloseMenu(GameObject menu)
     {
-        LoginCreateButtons.SetActive(false);
-        LoginCreatePanel.SetActive(true);
-    }
-
-    public void ShowInputJoinCode()
-    {
-        InputField_JoinCode.SetActive(true);
+        menu.SetActive(false);
     }
 
 }
