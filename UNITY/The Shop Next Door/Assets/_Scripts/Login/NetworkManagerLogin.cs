@@ -42,6 +42,41 @@ public class NetworkManagerLogin : MonoBehaviour
         }
     }
 
+    public void CheckUser(string userName,  string pass, Action<Response> response)
+    {
+        StartCoroutine(CO_CheckUser(userName, pass, response));
+    }
+
+    private IEnumerator CO_CheckUser(string userName, string pass, Action<Response> response)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userName", userName);
+        form.AddField("pass", pass);
+
+        //WWW w = new WWW("http://localhost/TheShopNextDoor/checkUser.php", form);
+
+        //yield return w;
+
+        //response(JsonUtility.FromJson<Response>(w.text));
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/TheShopNextDoor/checkUser.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error en la solicitud: " + www.error);
+                response(new Response { done = false, msg = www.error });
+            }
+            else
+            {
+                Debug.Log("Respuesta recibida: " + www.downloadHandler.text);
+                Response jsonResponse = JsonUtility.FromJson<Response>(www.downloadHandler.text);
+                response(jsonResponse);
+            }
+        }
+    }
+
 }
 
 [Serializable]

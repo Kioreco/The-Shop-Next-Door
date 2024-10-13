@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class SceneManagerLogin : MonoBehaviour
 {
+    [Header("Login")] 
+    [SerializeField] private TMP_InputField _logPasswordInput = null;
+    [SerializeField] private TMP_InputField _logUserInput = null;
+    [SerializeField] private TextMeshProUGUI _logResultReq = null;
+
+    [Header("Register")]
     [SerializeField] private TMP_InputField _userNameInput = null;
     [SerializeField] private TMP_InputField _emailInput = null;
     [SerializeField] private TMP_InputField _password = null;
@@ -13,10 +19,30 @@ public class SceneManagerLogin : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _resultReq = null;
 
     private NetworkManagerLogin _networkManager = null;
+    private UIManager _UIM;
 
     private void Awake()
     {
         _networkManager = GameObject.FindObjectOfType<@NetworkManagerLogin>();
+        _UIM = UIManager.Instance;
+    }
+
+    public void SubmitLogin()
+    {
+        if (_logUserInput.text == "" || _logPasswordInput.text == "")
+        {
+            _logResultReq.text = "Some fields are empty, fill in all";
+            return;
+        }
+
+        _logResultReq.text = "Processing...";
+
+        _networkManager.CheckUser(_logUserInput.text, _logPasswordInput.text,
+            delegate (Response response)
+            {
+                _logResultReq.text = response.msg;
+                ////////_UIM.ChangeScene("2 - Matchmaking");
+            });
     }
 
     public void SubmitRegister()
