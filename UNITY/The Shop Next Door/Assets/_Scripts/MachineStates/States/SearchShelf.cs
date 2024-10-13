@@ -16,6 +16,7 @@ public class SearchShelf : AStateNPC
         elementosRestantes = contexto.getLista().lista.Count;
         if(elementosRestantes > 0)
         {
+            //Debug.Log($"Estanteria: {contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First())}");
             contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First()));
             //contexto.getLista().imprimirLista();
             contexto.SetState(new WalkToShelf(contexto));

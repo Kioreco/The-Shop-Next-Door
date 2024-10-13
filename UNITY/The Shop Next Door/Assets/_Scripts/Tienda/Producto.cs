@@ -22,10 +22,10 @@ public class Producto : MonoBehaviour
     //{
     //    if (obj is Producto aux)
     //    {
-    //        return 
+    //        return
     //            aux.precio == precio &&
-    //            aux.stockAlmacen == stockAlmacen && 
-    //            aux.stockEstanteria == stockEstanteria && 
+    //            aux.stockAlmacen == stockAlmacen &&
+    //            aux.stockEstanteria == stockEstanteria &&
     //            aux.tipo == tipo &&
     //            aux.disponible == disponible;
     //    }
@@ -45,6 +45,11 @@ public class Producto : MonoBehaviour
 
     //    return hashCode;
     //}
+
+    public override string ToString()
+    {
+        return $"precio: {precio}\nstockAlmacen: {stockAlmacen}\nstockEstanteria: {stockEstanteria}\ntipo: {tipo}\ndiposnible: {disponible}";
+    }
 
     public void gestionarStockEstanteriaYAlmacen(int a)
     {

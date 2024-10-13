@@ -14,4 +14,11 @@ public interface IContext
     public void setCurrentEstanteria(Vector3 e);
     public Vector3 getCajaPagar();
     public IState GetState();
+    public float getDineroCompra();
+    public void sumDineroCompra(float d);
+    public UIManager getUIManager();
+    public GameManager getGameManager();
+    public void Destuir();
+    public Vector3 getPosition();
+
 }

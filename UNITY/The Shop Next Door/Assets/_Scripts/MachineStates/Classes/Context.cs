@@ -12,12 +12,17 @@ namespace Assets.Scripts.MachineStates.Classes
         [SerializeField] float speed;
         ListaCompra lista = new ListaCompra();
         [SerializeField] TiendaManager tiendaManager;
+        [SerializeField] UIManager UIManager;
+        [SerializeField] GameManager GameManager;
         Vector3 currentEstanteria;
+        public float dineroCompra = 0;
 
         #region MetodosGenerales
         private void Start()
         {
             tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
+            UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+            GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
             lista.CrearLista();
             //lista.listaPrueba();
@@ -76,6 +81,30 @@ namespace Assets.Scripts.MachineStates.Classes
         public IState GetState()
         {
             return currentState;
+        }
+        public float getDineroCompra()
+        {
+            return dineroCompra;
+        }
+        public void sumDineroCompra(float d)
+        {
+            dineroCompra += d;
+        }
+        public UIManager getUIManager()
+        {
+            return UIManager; 
+        }
+        public GameManager getGameManager()
+        {
+            return GameManager;
+        }
+        public void Destuir()
+        {
+            Destroy(gameObject);
+        }
+        public Vector3 getPosition()
+        {
+            return transform.position;
         }
         #endregion
     }

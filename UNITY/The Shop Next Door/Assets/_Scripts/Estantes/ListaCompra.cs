@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ListaCompra : MonoBehaviour
 {
     List<char> tipo = new List<char>();
-    public Dictionary<string, int> lista = new Dictionary<string, int>();
+    public Dictionary<string,(char tipo, int cantidad)> lista = new Dictionary<string, (char, int)>();
     int cont = 0;
 
     private void Start()
@@ -27,9 +28,10 @@ public class ListaCompra : MonoBehaviour
         {
             int randUnidades = Random.Range(1, 4);
             string producto = TiendaManager.Instance.getRandomProduct(tipo[contTipo]);
-            if (!lista.ContainsKey(producto))
+            //print(producto);
+            if (producto != "" && !lista.ContainsKey(producto))
             {
-                lista.Add(producto, randUnidades); //FALTA AÑADIR QUE SOLO PUEDA COGER ELEMENTOS QUE ESTÁN EN LA TIENDA
+                Agregar(producto, tipo[contTipo], randUnidades); //FALTA AÑADIR QUE SOLO PUEDA COGER ELEMENTOS QUE ESTÁN EN LA TIENDA
                 cont++;
                 if (contTipo < tipoObjeto) contTipo++;
                 else if (contTipo == tipoObjeto) contTipo = 0;
@@ -52,10 +54,15 @@ public class ListaCompra : MonoBehaviour
 
     public void listaPrueba()
     {
-        lista.Add("camisa", 1);
-        lista.Add("manzana", 1);
-        lista.Add("faldas", 1);
-        lista.Add("carne", 1);
-        lista.Add("edgy", 1);
+        Agregar("camisa", 'r', 1);
+        Agregar("manzana", 'c', 5);
+        Agregar("faldas", 'r', 3);
+        Agregar("carne", 'c', 4);
+        Agregar("edgy", 'r', 2);
+    }
+
+    public void Agregar(string s, char c,int n)
+    {
+        lista[s] = (c, n);
     }
 }

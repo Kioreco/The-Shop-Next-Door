@@ -11,6 +11,8 @@ TagManager:
   - TiendaManager
   - TelephoneMini
   - NPC
+  - UIManager
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
@@ -11,12 +12,14 @@ public class WalkToShelf : AStateNPC
     float secondsToSeek = 0.5f; //tiempo de la animación
     float lastSeek = 0f;
     bool enDestino = false;
+    string nombreProducto;
     #region metodos
     public override void Enter() 
     {
         Debug.Log("walking to shelf and taking product");
-
+        contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
+        nombreProducto = contexto.getLista().lista.Keys.First();
         //Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");
     }
 
@@ -34,7 +37,8 @@ public class WalkToShelf : AStateNPC
             lastSeek = 0f;
             if (contexto.getLista().lista.Count > 0)
             {
-                contexto.getLista().lista.Remove(contexto.getLista().lista.Keys.First());
+                contexto.sumDineroCompra(contexto.getTiendaManager().getPrecioProducto(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad));
+                contexto.getLista().lista.Remove(nombreProducto);
             }
             contexto.SetState(new SearchShelf(contexto));
         }
