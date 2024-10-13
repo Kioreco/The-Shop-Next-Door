@@ -1747,7 +1747,6 @@ MonoBehaviour:
   precio: 120
   cuantityToBuy: 10
   cuantityOwned: 0
-  category: 0
   buyButton: {fileID: 541529487}
   cuantityAlmacen_text: {fileID: 1401530042}
 --- !u!1 &198701056
@@ -2591,7 +2590,6 @@ MonoBehaviour:
   precio: 130
   cuantityToBuy: 5
   cuantityOwned: 0
-  category: 
   buyButton: {fileID: 448092967}
   cuantityAlmacen_text: {fileID: 647649782}
 --- !u!1 &330585543
@@ -4491,10 +4489,6 @@ MonoBehaviour:
   vendePapeleria: 0
   vendeComida: 1
   vendeOcio: 0
-  maxProductosRopa: 0
-  maxProductosComida: 0
-  maxProductosPapeleria: 0
-  maxProductosEntretenimiento: 0
 --- !u!1 &523355277
 GameObject:
   m_ObjectHideFlags: 0
@@ -13770,6 +13764,8 @@ MonoBehaviour:
   cameraP2: {fileID: 557485725}
   separador: {fileID: 0}
   dineroJugador: 500
+  espacioAlmacen: 0
+  maxEspacioAlmacen: 0
 --- !u!4 &1682136469
 Transform:
   m_ObjectHideFlags: 0
@@ -13956,7 +13952,6 @@ MonoBehaviour:
   precio: 200
   cuantityToBuy: 10
   cuantityOwned: 20
-  category: 
   buyButton: {fileID: 498096008}
   cuantityAlmacen_text: {fileID: 736101187}
 --- !u!1 &1725152535

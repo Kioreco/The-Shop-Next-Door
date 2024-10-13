@@ -10,17 +10,17 @@ public class Supply : MonoBehaviour
     public float precio;
     public int cuantityToBuy;
     public int cuantityOwned;
-    public string category;
     public Button buyButton;
 
     public TextMeshProUGUI cuantityAlmacen_text;
 
     public bool CanBuySuply()
     {
-        if(cuantityOwned <= 50)
+        if ((GameManager.Instance.espacioAlmacen + cuantityToBuy) < GameManager.Instance.maxEspacioAlmacen)
         {
             cuantityAlmacen_text.SetText((cuantityOwned + cuantityToBuy).ToString());
             cuantityOwned += cuantityToBuy;
+            GameManager.Instance.espacioAlmacen += cuantityToBuy;
             return true;
         }
         else

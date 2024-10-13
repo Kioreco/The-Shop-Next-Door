@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject separador;
 
     public float dineroJugador;
+    public float espacioAlmacen;
+    public float maxEspacioAlmacen;
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
         _networkManager.OnClientConnectedCallback += OnClientConnected;
 
         dineroJugador = 500.0f;
+        espacioAlmacen = 0;
+        maxEspacioAlmacen = 50;
     }
 
     private void OnClientConnected(ulong obj)
