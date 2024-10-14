@@ -55,10 +55,12 @@ public class ListaCompra : MonoBehaviour
     public void listaPrueba()
     {
         Agregar("camisa", 'r', 1);
-        Agregar("manzana", 'c', 5);
-        Agregar("faldas", 'r', 3);
-        Agregar("carne", 'c', 4);
-        Agregar("edgy", 'r', 2);
+        Agregar("manzana", 'c', 2);
+        Agregar("camisa", 'r', 5);
+        //Agregar("faldas", 'r', 3);
+        //Agregar("carne", 'c', 4);
+        //Agregar("edgy", 'r', 2);
+        //Agregar("camisa", 'r', 2);
     }
 
     public void Agregar(string s, char c,int n)

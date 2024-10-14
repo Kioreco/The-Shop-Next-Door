@@ -29,12 +29,17 @@ public class WalkToShelf : AStateNPC
         //cuanbdo acabe cambia estado
         //Debug.Log(contexto.getNavMesh().remainingDistance);
 
-        if (contexto.getNavMesh().remainingDistance == 0f) { enDestino = true; }
+        if (contexto.getNavMesh().remainingDistance == 0f) { enDestino = true; contexto.setIsInColliderShelf(true); }
         if (enDestino) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
             lastSeek = 0f;
+            if (contexto.getIsInColliderShelf())
+            {
+                //Debug.Log("cogiendo elemnto...");
+                contexto.getTiendaManager().cogerDeEstanteria(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad);
+            }
             if (contexto.getLista().lista.Count > 0)
             {
                 contexto.sumDineroCompra(contexto.getTiendaManager().getPrecioProducto(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad));

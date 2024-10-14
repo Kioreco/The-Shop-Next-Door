@@ -16,6 +16,8 @@ namespace Assets.Scripts.MachineStates.Classes
         [SerializeField] GameManager GameManager;
         Vector3 currentEstanteria;
         public float dineroCompra = 0;
+        bool stopedInShelf = false;
+        bool stopedInCajaPago = false;
 
         #region MetodosGenerales
         private void Start()
@@ -74,9 +76,9 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             currentEstanteria = e;
         }
-        public Vector3 getCajaPagar()
+        public Vector3 getPosicionEnLaCola()
         {
-            return tiendaManager.cajaPago.transform.position;
+            return tiendaManager.posicionEnLaCola.transform.position;
         }
         public IState GetState()
         {
@@ -105,6 +107,22 @@ namespace Assets.Scripts.MachineStates.Classes
         public Vector3 getPosition()
         {
             return transform.position;
+        }
+        public bool getIsInColliderShelf()
+        {
+            return stopedInShelf;
+        }
+        public void setIsInColliderShelf(bool b)
+        {
+            stopedInShelf = b;
+        }
+        public bool getIsInColliderCajaPago()
+        {
+            return stopedInCajaPago;
+        }
+        public void setIsInColliderCajaPago(bool b)
+        {
+            stopedInCajaPago = b;
         }
         #endregion
     }

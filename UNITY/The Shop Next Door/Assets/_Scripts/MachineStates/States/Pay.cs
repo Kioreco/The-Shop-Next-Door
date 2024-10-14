@@ -20,9 +20,9 @@ public class Pay : AStateNPC
     {
         Debug.Log("paying...");
         Debug.Log($"dinero: {contexto.getDineroCompra()}");
-        antiguaPos = contexto.getCajaPagar();
-        contexto.getNavMesh().SetDestination(contexto.getCajaPagar());
-        contexto.getTiendaManager().cogerSitioCola();
+        antiguaPos = contexto.getPosicionEnLaCola();
+        contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
+        //contexto.getTiendaManager().cogerSitioCola();
     }
     public override void FixedUpdate()
     {
@@ -31,15 +31,16 @@ public class Pay : AStateNPC
     }
     public override void Update()
     {
-        if (contexto.getCajaPagar() == antiguaPos && contexto.getNavMesh().remainingDistance == 0f)
+        if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago())
         {
-            isPaying = true;
+            antiguaPos = contexto.getPosicionEnLaCola();
+            contexto.getTiendaManager().cogerSitioCola();
         }
 
-        if (contexto.getCajaPagar().z > antiguaPos.z && !isPaying)
+        if (contexto.getPosicionEnLaCola().z > antiguaPos.z)
         {
-            contexto.getNavMesh().SetDestination(contexto.getCajaPagar());
-            antiguaPos = contexto.getCajaPagar();
+            contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
+            antiguaPos = contexto.getPosicionEnLaCola();
         }
 
         if (isPaying) lastSeek += Time.deltaTime;

@@ -1,7 +1,5 @@
 using Assets.Scripts.MachineStates.Classes;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Estanteria : MonoBehaviour
@@ -38,21 +36,27 @@ public class Estanteria : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //print($"collision: {other.gameObject.name}");
-
         if (other.CompareTag("NPC"))
         {
-            //print($"npc estado: {other.gameObject.GetComponent<Context>().GetState().ToString()}");
-            if (other.gameObject.GetComponent<Context>().GetState().ToString() == stateNPCBuying)
-            {
-                //contexto.getLista().lista.Keys.First()
-                //TiendaManager.Instance.cogerDeEstanteria(other.gameObject.GetComponent<Context>().getLista().lista.Keys.First());
-            }
+            other.gameObject.GetComponent<Context>().setIsInColliderShelf(true);
         }
 
         if (other.CompareTag("Player"))
         {
             //activar interfaz de acciones en la estantería
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+        {
+            other.gameObject.GetComponent<Context>().setIsInColliderShelf(false);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            //desactivar interfaz de acciones en la estantería
         }
     }
 }

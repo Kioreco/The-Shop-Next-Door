@@ -7,8 +7,9 @@ public class TiendaManager : MonoBehaviour
 {
     [Header("Estanterias")]
     [SerializeField] List<GameObject> estanterias = new List<GameObject>();
-    public GameObject cajaPago;
-    public Vector3 primeraPosicionCaja;
+    public Transform posicionColliderCaja;
+    public Transform posicionEnLaCola;
+    public Vector3 primeraPosCola;
     public Transform salidaTienda;
 
     [Header("Tipo Tienda")]
@@ -23,8 +24,6 @@ public class TiendaManager : MonoBehaviour
     Dictionary<string, Producto> Comida = new Dictionary<string, Producto>();
     Dictionary<string, Producto> JuegosPeliculasMusica = new Dictionary<string, Producto>();
 
-
-
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -36,7 +35,7 @@ public class TiendaManager : MonoBehaviour
             InicializarOcio();
             InicializarPapeleria();
             InicializarRopa();
-            primeraPosicionCaja = cajaPago.transform.position;
+            posicionEnLaCola.position = primeraPosCola;
         }
         else
         {
@@ -143,26 +142,28 @@ public class TiendaManager : MonoBehaviour
     {
         if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
         {
+            //print($"antes: {result}");
             result.cogerProducto(cantidad);
+            //print($"despues: {result}");
         }
     }
 
     public Vector3 cogerSitioCola()
     {
-        print($"cojo sitio antes: {cajaPago.transform.position}");
-        cajaPago.transform.position += new Vector3 (0, 0, 1.2f);
-        print($"cojo sitio despues: {cajaPago.transform.position}");
+        //print($"cojo sitio antes: {cajaPago.transform.position}");
+        posicionEnLaCola.transform.position += new Vector3 (0, 0, 1.2f);
+        //print($"cojo sitio despues: {cajaPago.transform.position}");
 
-        return cajaPago.transform.position;
+        return posicionEnLaCola.transform.position;
     }
 
     public Vector3 avanzarLaCola()
     {
-        print($"dejo sitio antes: {cajaPago.transform.position}");
-        cajaPago.transform.position -= new Vector3(0, 0, 1.2f);
-        print($"dejo sitio despues: {cajaPago.transform.position}");
+        //print($"dejo sitio antes: {cajaPago.transform.position}");
+        if(posicionEnLaCola.position.z <= primeraPosCola.z) posicionEnLaCola.transform.position -= new Vector3(0, 0, 1.2f);
+        //print($"dejo sitio despues: {cajaPago.transform.position}");
 
-        return cajaPago.transform.position;
+        return posicionEnLaCola.transform.position;
     }
 
     public float getPrecioProducto(string s, char tipo, int cantidad)
