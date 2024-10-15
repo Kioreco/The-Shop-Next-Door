@@ -21,7 +21,10 @@ public class Pay : AStateNPC
         Debug.Log("paying...");
         Debug.Log($"dinero: {contexto.getDineroCompra()}");
         antiguaPos = contexto.getPosicionEnLaCola();
-        contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
+        //contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
+        contexto.getNavMesh().SetDestination(contexto.getTiendaManager().salidaTienda.position);
+        contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
+        contexto.getUIManager().UpdateDineroJugador();
         //contexto.getTiendaManager().cogerSitioCola();
     }
     public override void FixedUpdate()
@@ -31,40 +34,45 @@ public class Pay : AStateNPC
     }
     public override void Update()
     {
-        if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago())
-        {
-            antiguaPos = contexto.getPosicionEnLaCola();
-            contexto.getTiendaManager().cogerSitioCola();
-        }
+        //if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago())
+        //{
+        //    antiguaPos = contexto.getPosicionEnLaCola();
+        //    contexto.getTiendaManager().cogerSitioCola();
+        //}
 
-        if (contexto.getPosicionEnLaCola().z > antiguaPos.z)
-        {
-            contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
-            antiguaPos = contexto.getPosicionEnLaCola();
-        }
+        //if (contexto.getPosicionEnLaCola().z > antiguaPos.z)
+        //{
+        //    contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
+        //    antiguaPos = contexto.getPosicionEnLaCola();
+        //}
 
-        if (isPaying) lastSeek += Time.deltaTime;
+        //if (isPaying) lastSeek += Time.deltaTime;
 
-        if (lastSeek >= secondsToSeek)
-        {
-            lastSeek = 0f;
-            isPaying = false;
-            contexto.getTiendaManager().avanzarLaCola();
-            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().salidaTienda.position);
-            contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
-            contexto.getUIManager().UpdateDineroJugador();
-            isFinish = true;
-        }
+        //if (lastSeek >= secondsToSeek)
+        //{
+        //    lastSeek = 0f;
+        //    isPaying = false;
+        //    contexto.getTiendaManager().avanzarLaCola();
+        //    contexto.getNavMesh().SetDestination(contexto.getTiendaManager().salidaTienda.position);
+        //    contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
+        //    contexto.getUIManager().UpdateDineroJugador();
+        //    isFinish = true;
+        //}
 
-        if (isFinish) lastSeekGoOutShop += Time.deltaTime;
+        //if (isFinish) lastSeekGoOutShop += Time.deltaTime;
 
-        if (lastSeekGoOutShop >= secondsToSeekGoOutShop)
-        {
-            lastSeekGoOutShop = 0f;
-            isFinish = false;
-            lastMovement = true;
-        }
-        if (contexto.getNavMesh().remainingDistance == 0 && lastMovement)
+        //if (lastSeekGoOutShop >= secondsToSeekGoOutShop)
+        //{
+        //    lastSeekGoOutShop = 0f;
+        //    isFinish = false;
+        //    lastMovement = true;
+        //}
+        //if (contexto.getNavMesh().remainingDistance == 0 && lastMovement)
+        //{
+        //    contexto.Destuir();
+        //}
+
+        if (contexto.getNavMesh().remainingDistance == 0)
         {
             contexto.Destuir();
         }

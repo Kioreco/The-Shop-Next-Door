@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Assertions;
 
 namespace Assets.Scripts.MachineStates.Classes
 {
@@ -102,6 +99,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Destuir()
         {
+            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
             Destroy(gameObject);
         }
         public Vector3 getPosition()
