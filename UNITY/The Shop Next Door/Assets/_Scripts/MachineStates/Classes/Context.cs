@@ -26,6 +26,8 @@ namespace Assets.Scripts.MachineStates.Classes
             lista.CrearLista();
             //lista.listaPrueba();
             SetState(new SearchShelf(this));
+            GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+
         }
 
         private void Update()
@@ -100,6 +102,8 @@ namespace Assets.Scripts.MachineStates.Classes
         public void Destuir()
         {
             GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
+            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
+            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
             Destroy(gameObject);
         }
         public Vector3 getPosition()

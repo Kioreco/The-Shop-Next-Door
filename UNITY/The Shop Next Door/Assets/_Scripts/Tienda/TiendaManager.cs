@@ -35,7 +35,7 @@ public class TiendaManager : MonoBehaviour
             InicializarOcio();
             InicializarPapeleria();
             InicializarRopa();
-            posicionEnLaCola.position = primeraPosCola;
+            primeraPosCola = posicionEnLaCola.position;
         }
         else
         {
@@ -46,12 +46,12 @@ public class TiendaManager : MonoBehaviour
     void InicializarRopa()
     {
         RopaYCalzado.Add("camisa", new Producto(19.99f, 50, 0, 'r', true));
-        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 50, 0, 'r', false));
+        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 50, 0, 'r', true));
         RopaYCalzado.Add("vestidos", new Producto( 30.00f, 50, 0, 'r', false));
-        RopaYCalzado.Add("pantalones", new Producto(25.99f, 50, 0, 'r', false));
+        RopaYCalzado.Add("pantalones", new Producto(25.99f, 50, 0, 'r', true));
         RopaYCalzado.Add("faldas", new Producto(20.00f, 50, 0, 'r', true));
         RopaYCalzado.Add("pijamas", new Producto(7.50f, 50, 0, 'r', false));
-        RopaYCalzado.Add("deportivas", new Producto(55.00f, 50, 0, 'r', false));
+        RopaYCalzado.Add("deportivas", new Producto(55.00f, 50, 0, 'r', true));
         RopaYCalzado.Add("edgy", new Producto(69.00f, 50, 0, 'r', true));
     }
     void InicializarPapeleria()
@@ -66,11 +66,11 @@ public class TiendaManager : MonoBehaviour
     void InicializarComida()
     {
         Comida.Add("manzana", new Producto(0.85f, 50, 0, 'c', true));
-        Comida.Add("sandia", new Producto(2.75f, 50, 0, 'c', false));
+        Comida.Add("sandia", new Producto(2.75f, 50, 0, 'c', true));
         Comida.Add("melon", new Producto(2.15f, 50, 0, 'c', false));
-        Comida.Add("pizza", new Producto(3.45f, 50, 0, 'c', false));
+        Comida.Add("pizza", new Producto(3.45f, 50, 0, 'c', true));
         Comida.Add("croquetas", new Producto(4.60f, 50, 0, 'c', false));
-        Comida.Add("calabaza", new Producto(5.00f, 50, 0, 'c', false));
+        Comida.Add("calabaza", new Producto(5.00f, 50, 0, 'c', true));
         Comida.Add("carne", new Producto(12.50f, 50, 0, 'c', true));
         Comida.Add("pescado", new Producto(12.50f, 50, 0, 'c', true));
     }

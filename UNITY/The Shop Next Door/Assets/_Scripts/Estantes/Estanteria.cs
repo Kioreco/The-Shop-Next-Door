@@ -30,6 +30,7 @@ public class Estanteria : MonoBehaviour
 
     public bool TieneElemento(string s)
     {
+        print($"producto: {s}\n{objetosEstanteria.Contains(s)}");
         if (objetosEstanteria.Contains(s)) return true;
         return false;
     }
