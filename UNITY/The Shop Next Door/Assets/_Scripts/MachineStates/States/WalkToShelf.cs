@@ -16,7 +16,7 @@ public class WalkToShelf : AStateNPC
         contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
         nombreProducto = contexto.getLista().lista.Keys.First();
-        Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");
+        //Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");
     }
 
     public override void Update()

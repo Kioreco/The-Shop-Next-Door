@@ -15,10 +15,10 @@ public class ListaCompra : MonoBehaviour
 
     public void CrearLista()
     {
-        if (TiendaManager.Instance.vendeRopa == true) tipo.Add('r');
-        if (TiendaManager.Instance.vendeOcio == true) tipo.Add('o');
-        if (TiendaManager.Instance.vendePapeleria == true) tipo.Add('p');
-        if (TiendaManager.Instance.vendeComida == true) tipo.Add('c');
+        if (TiendaManager.Instance.sellClothes == true) tipo.Add('r');
+        if (TiendaManager.Instance.sellLeisure == true) tipo.Add('o');
+        if (TiendaManager.Instance.sellStationery == true) tipo.Add('p');
+        if (TiendaManager.Instance.sellFood == true) tipo.Add('c');
 
         int tipoObjeto = tipo.Count - 1;
         int contTipo = 0;

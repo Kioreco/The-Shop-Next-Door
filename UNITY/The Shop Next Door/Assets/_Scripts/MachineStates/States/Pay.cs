@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Pay : AStateNPC
 {
-    Vector3 posicionActual;
     bool isPaying = false;
     float secondsToSeek = 3f; //tiempo de la animación
     float lastSeek = 0f;    
@@ -15,14 +14,16 @@ public class Pay : AStateNPC
     bool isFinish = false;
     bool lastMovement = false;
     bool isInQueue = false;
+    int actualPosQueue = 0;
+    bool hasSpace = true;
 
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
         //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         Debug.Log("paying...");
-        Debug.Log($"dinero: {contexto.getDineroCompra()}");
-        contexto.getNavMesh().SetDestination(contexto.getTiendaManager().posicionColliderCaja.position);
+        //Debug.Log($"dinero: {contexto.getDineroCompra()}");
+        contexto.getNavMesh().SetDestination(contexto.getTiendaManager().positionColliderPayBox.position);
     }
     public override void FixedUpdate()
     {
@@ -30,38 +31,45 @@ public class Pay : AStateNPC
     }
     public override void Update()
     {
-        if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago() && !isPaying && !isInQueue)
+        if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago() && !isPaying && !isInQueue && hasSpace)
         {
-            Debug.Log("está en el collider pidiendo la vez");
-            posicionActual = contexto.getPosicionEnLaCola();
-            contexto.getNavMesh().SetDestination(posicionActual);
-            contexto.getTiendaManager().cogerSitioCola();
-            isInQueue = true;
+            //Debug.Log("está en el collider pidiendo la vez");
+            actualPosQueue = contexto.getTiendaManager().cogerSitioCola(contexto);
+            if (actualPosQueue == -1)
+            {
+                contexto.getNavMesh().SetDestination(contexto.getTiendaManager().outDoorShop.position);
+                isFinish = true;
+                hasSpace = false;
+                isPaying = true;
+                isInQueue = true;
+                return;
+            }
+            else
+            {
+                contexto.getNavMesh().SetDestination(contexto.getTiendaManager().posPayCheckpoints[actualPosQueue].position);
+                isInQueue = true;
+            }
         }
 
-        //Debug.Log($"primera posicion: {contexto.getTiendaManager().primeraPosCola} \tposicionactual: {posicionActual}");
-        if(contexto.getNavMesh().remainingDistance == 0f && isInQueue && contexto.getTiendaManager().primeraPosCola == posicionActual && !isPaying)
+        if(contexto.getPositionPay() != -1 && actualPosQueue > contexto.getPositionPay() && isInQueue && !isPaying && hasSpace)
+        {
+            actualPosQueue = contexto.getPositionPay();
+            //Debug.Log($"actual pos: {actualPosQueue}");
+            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().posPayCheckpoints[actualPosQueue].position);
+        }
+        if(contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0 && hasSpace)// contexto.getTiendaManager().npcPayQueue.Count == 1)
         {
             //Debug.Log("está en la primera posicion");
             isPaying = true;
         }
 
-        if (contexto.getPosicionEnLaCola().z < posicionActual.z && !isPaying)
-        {
-            Debug.Log("avanza en la cola");
-            contexto.getNavMesh().SetDestination(contexto.getPosicionEnLaCola());
-            posicionActual = contexto.getPosicionEnLaCola();
-        }
-
-        if (isPaying) lastSeek += Time.deltaTime;
+        if (isPaying && hasSpace) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
             lastSeek = 0f;
-            Debug.Log("está en el temporizador");
-            //isPaying = false;
-            contexto.getTiendaManager().posicionEnLaCola.position = posicionActual;
-            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().salidaTienda.position);
+            contexto.getTiendaManager().avanzarLaCola();
+            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().outDoorShop.position);
             contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
             contexto.getUIManager().UpdateDineroJugador();
             isFinish = true;
@@ -75,6 +83,7 @@ public class Pay : AStateNPC
             isFinish = false;
             lastMovement = true;
         }
+
         if (contexto.getNavMesh().remainingDistance == 0 && lastMovement)
         {
             contexto.Destuir();

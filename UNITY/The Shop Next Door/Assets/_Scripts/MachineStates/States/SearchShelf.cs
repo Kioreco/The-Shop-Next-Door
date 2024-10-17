@@ -17,7 +17,7 @@ public class SearchShelf : AStateNPC
         {
             //Debug.Log($"Estanteria: {contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First())}");
             contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First()));
-            contexto.getLista().imprimirLista();
+            //contexto.getLista().imprimirLista();
             contexto.SetState(new WalkToShelf(contexto));
         }
         else

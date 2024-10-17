@@ -1,22 +1,24 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class TiendaManager : MonoBehaviour
 {
     [Header("Estanterias")]
-    [SerializeField] List<GameObject> estanterias = new List<GameObject>();
-    public Transform posicionColliderCaja;
-    public Transform posicionEnLaCola;
-    public Vector3 primeraPosCola;
-    public Transform salidaTienda;
+    [SerializeField] List<GameObject> shelfs = new List<GameObject>();
+    public Transform positionColliderPayBox;
+    public List<Transform> posPayCheckpoints;
+    public Transform outDoorShop;
+
+    public Queue<IContext> npcPayQueue = new Queue<IContext>();
+    public event EventHandler payQueueChange;
 
     [Header("Tipo Tienda")]
-    public bool vendeRopa;
-    public bool vendePapeleria;
-    public bool vendeComida;
-    public bool vendeOcio;
+    public bool sellClothes;
+    public bool sellStationery;
+    public bool sellFood;
+    public bool sellLeisure;
 
     [Header("Objetos Tienda")]
     Dictionary<string, Producto> RopaYCalzado = new Dictionary<string, Producto>();
@@ -35,7 +37,6 @@ public class TiendaManager : MonoBehaviour
             InicializarOcio();
             InicializarPapeleria();
             InicializarRopa();
-            primeraPosCola = posicionEnLaCola.position;
         }
         else
         {
@@ -111,7 +112,7 @@ public class TiendaManager : MonoBehaviour
 
     public Vector3 buscarEstanteria(string producto)
     {
-        foreach (var item in estanterias)
+        foreach (var item in shelfs)
         {
             if(item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
         }
@@ -122,7 +123,7 @@ public class TiendaManager : MonoBehaviour
     public string getRandomProduct(char tipo)
     {
         Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-        int rand = Random.Range(0, aux.Count);
+        int rand = UnityEngine.Random.Range(0, aux.Count);
         if (aux[aux.Keys.ElementAt(rand)].disponible == true)
         {
             return aux.Keys.ElementAt(rand);
@@ -148,22 +149,42 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
-    public Vector3 cogerSitioCola()
+    public int cogerSitioCola(IContext npc)
     {
         //print($"cojo sitio antes: {cajaPago.transform.position}");
-        posicionEnLaCola.transform.position += new Vector3 (0, 0, 1.2f);
+        //posicionEnLaCola.transform.position += new Vector3 (0, 0, 1.2f);
         //print($"cojo sitio despues: {cajaPago.transform.position}");
+        //print($"npc añadido en la cola, pos: {npcPayQueue.Count}, max checkpoints: {posPayCheckpoints.Count}");
+        if (npcPayQueue.Count == 5) return -1;
 
-        return posicionEnLaCola.transform.position;
+        npcPayQueue.Enqueue(npc);
+        payQueueChange?.Invoke(this, EventArgs.Empty);
+        return npcPayQueue.Count;
     }
 
-    public Vector3 avanzarLaCola()
+    public void avanzarLaCola()
     {
         //print($"dejo sitio antes: {cajaPago.transform.position}");
-        if(posicionEnLaCola.position.z <= primeraPosCola.z) posicionEnLaCola.transform.position -= new Vector3(0, 0, 1.2f);
+        //if(posicionEnLaCola.position.z <= primeraPosCola.z) posicionEnLaCola.transform.position -= new Vector3(0, 0, 1.2f);
         //print($"dejo sitio despues: {cajaPago.transform.position}");
+        if(npcPayQueue.Count == 0) return;
+        npcPayQueue.Dequeue();
+        //print($"npc quitado de la cola: {npcPayQueue.Count}");
+        payQueueChange?.Invoke(this, EventArgs.Empty);
 
-        return posicionEnLaCola.transform.position;
+        //return getPositionPayQueue(npc);
+    }
+
+    public int getPositionPayQueue(IContext npc)
+    {
+        int pos = 0;
+        foreach (IContext queuedNpc in npcPayQueue)
+        {
+            //print($"elemento cola: {queuedNpc} npc: {npc}");
+            if (queuedNpc == npc) { return pos; }
+            pos++;
+        }
+        return -1;
     }
 
     public float getPrecioProducto(string s, char tipo, int cantidad)

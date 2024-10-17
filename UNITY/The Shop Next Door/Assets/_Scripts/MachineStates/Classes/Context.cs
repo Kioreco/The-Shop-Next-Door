@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.MachineStates.Classes
@@ -15,6 +16,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public float dineroCompra = 0;
         bool stopedInShelf = false;
         bool stopedInCajaPago = false;
+        public int positionPayQueue;
 
         #region MetodosGenerales
         private void Start()
@@ -27,7 +29,7 @@ namespace Assets.Scripts.MachineStates.Classes
             //lista.listaPrueba();
             SetState(new SearchShelf(this));
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-
+            tiendaManager.payQueueChange += MoveInQueue;
         }
 
         private void Update()
@@ -75,10 +77,6 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             currentEstanteria = e;
         }
-        public Vector3 getPosicionEnLaCola()
-        {
-            return tiendaManager.posicionEnLaCola.transform.position;
-        }
         public IState GetState()
         {
             return currentState;
@@ -125,6 +123,14 @@ namespace Assets.Scripts.MachineStates.Classes
         public void setIsInColliderCajaPago(bool b)
         {
             stopedInCajaPago = b;
+        }
+        public void MoveInQueue(object s, EventArgs e)
+        {
+            positionPayQueue = tiendaManager.getPositionPayQueue(this);
+        }
+        public int getPositionPay()
+        {
+            return positionPayQueue;
         }
         #endregion
     }

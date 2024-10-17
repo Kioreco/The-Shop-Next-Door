@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +13,6 @@ public interface IContext
     public TiendaManager getTiendaManager();
     public Vector3 getCurrentEstanteria();
     public void setCurrentEstanteria(Vector3 e);
-    public Vector3 getPosicionEnLaCola();
     public IState GetState();
     public float getDineroCompra();
     public void sumDineroCompra(float d);
@@ -24,5 +24,7 @@ public interface IContext
     public void setIsInColliderShelf(bool b);    
     public bool getIsInColliderCajaPago();
     public void setIsInColliderCajaPago(bool b);
+    public void MoveInQueue(object s, EventArgs e);
+    public int getPositionPay();
 
 }

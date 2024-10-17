@@ -68,7 +68,8 @@ public class PlayerControler : NetworkBehaviour
             minZ = Camera.main.transform.position.z - 10f;
             maxZ = Camera.main.transform.position.z + 10f;
             client = GameObject.FindWithTag("ClientNPC").GetComponent<Temporal>();
-            //client.instanciarNPC();
+            client.instanciarNPC();
+            client.instanciarNPC();
             client.instanciarNPC();
         }
     }
