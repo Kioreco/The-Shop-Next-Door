@@ -33,7 +33,7 @@ public class PlayerControler : NetworkBehaviour
     float zoomSpeed = 5f;
 
 
-    public Temporal client;
+    public ClientPrototype client;
     #endregion
 
     void Start()
@@ -45,7 +45,7 @@ public class PlayerControler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom; 
-            client = GameObject.FindWithTag("ClientNPC").GetComponent<Temporal>();
+            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
         }
     }
 
@@ -67,10 +67,10 @@ public class PlayerControler : NetworkBehaviour
             maxX = Camera.main.transform.position.x + 10f;
             minZ = Camera.main.transform.position.z - 10f;
             maxZ = Camera.main.transform.position.z + 10f;
-            client = GameObject.FindWithTag("ClientNPC").GetComponent<Temporal>();
-            client.instanciarNPC();
-            client.instanciarNPC();
-            client.instanciarNPC();
+            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
+            //client.instanciarNPC();
+            //client.instanciarNPC();
+            //client.instanciarNPC();
         }
     }
 

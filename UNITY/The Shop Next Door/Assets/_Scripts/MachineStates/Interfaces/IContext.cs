@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public interface IContext
+public interface IContext : IPooleableObject, IPrototype
 {
     public void SetState(IState cntx);
     public float getSpeed();
@@ -27,4 +27,5 @@ public interface IContext
     public void MoveInQueue(object s, EventArgs e);
     public int getPositionPay();
 
+    public IObjectPool getObjectPool();
 }

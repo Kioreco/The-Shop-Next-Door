@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPrototype
 {
-    IContext Clone(string n, Vector3 pos, Quaternion rot);
+    IContext Clone(Vector3 pos, Quaternion rot);
 }

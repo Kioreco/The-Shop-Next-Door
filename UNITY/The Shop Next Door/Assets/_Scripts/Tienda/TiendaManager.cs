@@ -11,8 +11,12 @@ public class TiendaManager : MonoBehaviour
     public List<Transform> posPayCheckpoints;
     public Transform outDoorShop;
 
+    [Header("Pay Queue")]
     public Queue<IContext> npcPayQueue = new Queue<IContext>();
     public event EventHandler payQueueChange;
+
+    [Header("NPC Instanciate")]
+    public Transform npcPositionInitial;
 
     [Header("Tipo Tienda")]
     public bool sellClothes;

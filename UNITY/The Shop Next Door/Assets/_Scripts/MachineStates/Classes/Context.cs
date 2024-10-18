@@ -18,6 +18,8 @@ namespace Assets.Scripts.MachineStates.Classes
         bool stopedInCajaPago = false;
         public int positionPayQueue;
 
+        public IObjectPool objectPool;
+
         #region MetodosGenerales
         private void Start()
         {
@@ -25,11 +27,14 @@ namespace Assets.Scripts.MachineStates.Classes
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-            lista.CrearLista();
-            //lista.listaPrueba();
-            SetState(new SearchShelf(this));
+            inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
             tiendaManager.payQueueChange += MoveInQueue;
+        }
+        public void inicializar()
+        {
+            lista.CrearLista();
+            SetState(new SearchShelf(this));
         }
 
         private void Update()
@@ -99,10 +104,11 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Destuir()
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
-            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
             //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
-            Destroy(gameObject);
+            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
+            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
+            //Destroy(gameObject);
+            objectPool?.Release(this);
         }
         public Vector3 getPosition()
         {
@@ -131,6 +137,37 @@ namespace Assets.Scripts.MachineStates.Classes
         public int getPositionPay()
         {
             return positionPayQueue;
+        }
+        #endregion
+
+        #region objectpool and prototype
+        public bool isActive
+        {
+            get
+            {
+                return gameObject.activeSelf;
+            }
+
+            set
+            {
+                gameObject.SetActive(value);
+            }
+        }
+        public void Reset()
+        {
+            transform.position = TiendaManager.Instance.npcPositionInitial.position;
+            inicializar();
+        }
+        public IObjectPool getObjectPool()
+        {
+            return objectPool;
+        }
+
+        public IContext Clone(Vector3 p, Quaternion r)
+        {
+            GameObject obj = Instantiate(gameObject, p, r);
+            IContext stc = obj.GetComponent<Context>();
+            return stc;
         }
         #endregion
     }
