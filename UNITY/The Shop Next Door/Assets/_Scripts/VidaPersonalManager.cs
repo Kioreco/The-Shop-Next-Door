@@ -5,16 +5,31 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class VidaPersonalManager : MonoBehaviour
 {
-    public float romanticProgress;
-    public float friendshipProgress;
-    public float developmentProgress;
-    public float happinessProgress;
-    public float restProgress;
+    [Header("Life Progress")]
+    [HideInInspector] public float romanticProgress;
+    [HideInInspector] public float friendshipProgress;
+    [HideInInspector] public float developmentProgress;
+    [HideInInspector] public float happinessProgress;
+    [HideInInspector] public float restProgress;
 
-    private void Awake()
+    [Header("Life Posibilities")]
+    [HideInInspector] public bool hasPartner;
+
+    #region Singleton & Awake
+    public static VidaPersonalManager Instance { get; private set; }
+    void Awake()
     {
-        InitializeProgress();
+        if (Instance == null)
+        {
+            Instance = this;
+            InitializeProgress();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+    #endregion
 
     private void InitializeProgress()
     {

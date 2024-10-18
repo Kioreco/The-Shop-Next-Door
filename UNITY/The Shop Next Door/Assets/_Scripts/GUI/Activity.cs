@@ -29,5 +29,17 @@ public class Activity : MonoBehaviour
         restingProbability = restProb;
     }
 
+    public void CopyActivity(Activity act)
+    {
+        activityName = act.activityName;
+        outcomes = act.outcomes;
+        occurrenceProbability = act.occurrenceProbability;
+        statesLuck = act.statesLuck;
+        romanticProbability = act.romanticProbability;
+        friendshipProbability = act.friendshipProbability;
+        personalDevelopmentProbability = act.personalDevelopmentProbability;
+        happinessProbability = act.happinessProbability;
+        restingProbability = act.restingProbability;
+    }
 
 }
