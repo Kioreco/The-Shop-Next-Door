@@ -1,58 +1,36 @@
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IDragAndDropHandler
+public class DragDrop : MonoBehaviour
 {
-    [SerializeField] private InputAction objectClicked;
-    [SerializeField] private Camera mainCamera;
-    private float dragSpeed = .1f;
-    private Vector2 velocity = Vector2.zero;
+    [SerializeField] private Canvas canvas;
+    private Vector2 initialPosition;
 
-
-    private void OnEnable()
+    private void Awake()
     {
-        objectClicked.Enable();
-        objectClicked.performed += ObjectSelected;
-    }
-    private void OnDisable()
-    {
-        objectClicked.performed -= ObjectSelected;
-        objectClicked.Disable();
+        initialPosition = transform.position;
     }
 
-    private void ObjectSelected(InputAction.CallbackContext context)
+    public void DragHandler(BaseEventData data)
     {
-        PerformDragAndDrop();
+        PointerEventData pointerEventData = data as PointerEventData;
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            pointerEventData.position,
+            canvas.worldCamera,
+            out Vector2 selectedPosition
+            ))
+        {
+            transform.position = canvas.transform.TransformPoint(selectedPosition);
+        }
     }
 
-    public DragAndDropVisualMode dragAndDropVisualMode => throw new System.NotImplementedException();
-
-    public bool AcceptsDragAndDrop()
+    public void EndDragHandler(BaseEventData data)
     {
-        throw new System.NotImplementedException();
-    }
+        PointerEventData pointerEventData = data as PointerEventData;
 
-    public void PerformDragAndDrop()
-    {
-        throw new System.NotImplementedException();
-    }
+        transform.position = initialPosition;
 
-    public void UpdateDragAndDrop()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DrawDragAndDropPreview()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void ExitDragAndDrop()
-    {
-        throw new System.NotImplementedException();
     }
 }
