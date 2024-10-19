@@ -1439,7 +1439,7 @@ GameObject:
   - component: {fileID: 104353859}
   - component: {fileID: 104353861}
   - component: {fileID: 104353860}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: VigorBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   - {fileID: 1293671573}
   - {fileID: 1148031642}
   outDoorShop: {fileID: 2136931314}
-  npcPositionInitial: {fileID: 0}
+  npcPositionInitial: {fileID: 546125126}
   sellClothes: 1
   sellStationery: 0
   sellFood: 1
@@ -12955,7 +12955,7 @@ GameObject:
   - component: {fileID: 1318248216}
   - component: {fileID: 1318248218}
   - component: {fileID: 1318248217}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15101,7 +15101,7 @@ GameObject:
   - component: {fileID: 1577733622}
   - component: {fileID: 1577733624}
   - component: {fileID: 1577733623}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PlayerFaceCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15871,7 +15871,7 @@ GameObject:
   - component: {fileID: 1634855136}
   - component: {fileID: 1634855138}
   - component: {fileID: 1634855137}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ShopName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17363,7 +17363,7 @@ GameObject:
   - component: {fileID: 1834107486}
   - component: {fileID: 1834107488}
   - component: {fileID: 1834107487}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ClientsHappiness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17910,7 +17910,7 @@ GameObject:
   - component: {fileID: 1873339190}
   - component: {fileID: 1873339192}
   - component: {fileID: 1873339191}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text_MatchCode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19968,7 +19968,7 @@ GameObject:
   - component: {fileID: 2038936966}
   - component: {fileID: 2038936968}
   - component: {fileID: 2038936967}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyClient_Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20327,7 +20327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2147462450
 Transform:
   m_ObjectHideFlags: 0

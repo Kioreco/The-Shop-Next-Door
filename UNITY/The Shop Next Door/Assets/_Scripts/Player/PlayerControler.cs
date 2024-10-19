@@ -45,7 +45,7 @@ public class PlayerControler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom; 
-            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
+            //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerControler : NetworkBehaviour
             maxX = Camera.main.transform.position.x + 10f;
             minZ = Camera.main.transform.position.z - 10f;
             maxZ = Camera.main.transform.position.z + 10f;
-            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
+            //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
             //client.instanciarNPC();
             //client.instanciarNPC();
             //client.instanciarNPC();
@@ -112,10 +112,12 @@ public class PlayerControler : NetworkBehaviour
 
     public void MovePlayer(InputAction.CallbackContext context)
     {
+        int layerMask = ~LayerMask.GetMask("UI");
         if (context.performed && IsOwner)
         {
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(mouse, out var hit))
+            if (Physics.Raycast(mouse, out var hit, Mathf.Infinity, layerMask))
+            //if (Physics.Raycast(mouse, out var hit))
             {
                 _agent.SetDestination(hit.point);
                 _playerTransform.LookAt(hit.point);
