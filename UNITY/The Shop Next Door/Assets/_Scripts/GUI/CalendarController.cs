@@ -14,7 +14,7 @@ public class CalendarController : MonoBehaviour
 
     [Header("Activities Objects")]
     [SerializeField] private Activity[] activities_daily = new Activity[10];
-    [SerializeField] private Activity[] activities_selected = new Activity[3];
+    [SerializeField] public Activity[] activities_selected = new Activity[3];
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
     [Header("Activities Options")]
@@ -73,9 +73,8 @@ public class CalendarController : MonoBehaviour
 
         total_activities_num = activities_mixed.Count + activities_romantic_NotPartner.Count + activities_romantic_Partner.Count ;
     }
-    
-    #endregion
 
+    #endregion
 
     private void Awake()
     {
