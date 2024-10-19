@@ -8,16 +8,17 @@ public class DraggingItems : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [SerializeField] private Canvas canvas;
     private Vector2 initialPosition;
+    private Vector3 initialScale;
 
     [SerializeField] public TextMeshProUGUI activity_text;
     [SerializeField] private CanvasGroup canvas_group;
     [SerializeField] private Image activity_image;
     [SerializeField] public Activity activity;
-    public bool activity_on_calendar = false;
 
     private void Awake()
     {
         initialPosition = transform.position;
+        initialScale = transform.localScale;
     }
 
 
@@ -44,20 +45,23 @@ public class DraggingItems : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         canvas_group.blocksRaycasts = true;
 
-        gameObject.transform.localScale = gameObject.transform.localScale * 1.25f;
+        gameObject.transform.localScale = initialScale;
         transform.position = initialPosition;
     }
 
-    public void ActivitySelected()
+
+    public void ActivateActivity()
     {
-        
-        if(activity_on_calendar)
-        {
-            activity_image.color = new Color(166, 209, 209);
-        }
-        else
-        {
-            activity_image.color = new Color(255, 255, 255);
-        }
+        activity_image.color = new Color(1.0f, 1.0f, 1.0f);
+        enabled = true;
+    }
+
+    public void DesactiveActivity()
+    {
+        activity_image.color = new Color(0.65f, 0.82f, 0.82f);
+        transform.position = initialPosition;
+        gameObject.transform.localScale = gameObject.transform.localScale = initialScale;
+        canvas_group.blocksRaycasts = true;
+        enabled = false;
     }
 }

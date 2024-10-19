@@ -8,17 +8,29 @@ public class DropItem : MonoBehaviour, IDropHandler
     [SerializeField] private int dropZoneNumber;
     [SerializeField] private CalendarController calendarController;
 
+    private DraggingItems[] draggingItems = new DraggingItems[3];
+
     public void OnDrop(PointerEventData eventData)
     {
         DraggingItems objectDropped = eventData.pointerDrag.GetComponent<DraggingItems>();
 
+        //Si esa casilla estaba vacía, se guarda la actividad
+        if (draggingItems[dropZoneNumber] != null)
+        {
+            draggingItems[dropZoneNumber].ActivateActivity();
+        }
+
+        draggingItems[dropZoneNumber] = objectDropped;
+
+        //Se cambia el texto
         TextMeshProUGUI draggingItemText = objectDropped.activity_text;
         text_zone.SetText(draggingItemText.text);
 
-        objectDropped.activity_on_calendar = true;
-        objectDropped.ActivitySelected();
+        //Se marca el objeto como cogido
+        objectDropped.DesactiveActivity();
 
+        //Se guarda la actividad en la lista del calendario
         calendarController.activities_selected[dropZoneNumber].CopyActivity(objectDropped.activity);
-        print(calendarController.activities_selected[dropZoneNumber].activityName);
+        
     }
 }

@@ -5784,7 +5784,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 593255881}
   activity: {fileID: 593255880}
-  activity_on_calendar: 0
 --- !u!1 &605131016
 GameObject:
   m_ObjectHideFlags: 0
@@ -8002,7 +8001,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 738564135}
   activity: {fileID: 738564134}
-  activity_on_calendar: 0
 --- !u!1 &770954193
 GameObject:
   m_ObjectHideFlags: 0
@@ -11414,7 +11412,7 @@ MonoBehaviour:
   MiniTelephone: {fileID: 533784523}
   LockedScreen: {fileID: 1856083568}
   ShopApp: {fileID: 736475674}
-  CalendarApp: {fileID: 0}
+  CalendarApp: {fileID: 1542379633}
   contenedorTienda: {fileID: 28330441}
   theresClothes: 1
   theresFood: 1
@@ -13743,7 +13741,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 1416613407}
   activity: {fileID: 1416613406}
-  activity_on_calendar: 0
 --- !u!1 &1420220051
 GameObject:
   m_ObjectHideFlags: 0
@@ -13999,7 +13996,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 1439410479}
   activity: {fileID: 1439410478}
-  activity_on_calendar: 0
 --- !u!1 &1441506772
 GameObject:
   m_ObjectHideFlags: 0
@@ -15473,7 +15469,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 1586628472}
   activity: {fileID: 1586628471}
-  activity_on_calendar: 0
 --- !u!1 &1590928353
 GameObject:
   m_ObjectHideFlags: 0
@@ -18146,7 +18141,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 1880595711}
   activity: {fileID: 1880595710}
-  activity_on_calendar: 0
 --- !u!1 &1895096252
 GameObject:
   m_ObjectHideFlags: 0
@@ -19319,7 +19313,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 1996130558}
   activity: {fileID: 1996130557}
-  activity_on_calendar: 0
 --- !u!1 &2001965408
 GameObject:
   m_ObjectHideFlags: 0
@@ -19656,7 +19649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19697,7 +19690,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 2008551834}
   activity: {fileID: 2008551833}
-  activity_on_calendar: 0
 --- !u!1 &2012542558
 GameObject:
   m_ObjectHideFlags: 0
@@ -20181,7 +20173,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 2103929788}
   activity: {fileID: 2103929787}
-  activity_on_calendar: 0
 --- !u!1 &2116855221
 GameObject:
   m_ObjectHideFlags: 0
@@ -20289,7 +20280,6 @@ MonoBehaviour:
   canvas_group: {fileID: 877162596}
   activity_image: {fileID: 2116855224}
   activity: {fileID: 2116855223}
-  activity_on_calendar: 0
 --- !u!1 &2136931313
 GameObject:
   m_ObjectHideFlags: 0
