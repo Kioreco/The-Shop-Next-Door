@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviour
         dineroJugador = 500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 50;
+
+        //_playerPrefab = RelayManager.Instance._playerPrefab;
+        //if (NetworkManager.Singleton.IsServer)
+        //{
+        //    var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
+        //    player.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj);
+
+        //    _spawnIndex++;
+        //}
     }
 
     private void OnClientConnected(ulong obj)

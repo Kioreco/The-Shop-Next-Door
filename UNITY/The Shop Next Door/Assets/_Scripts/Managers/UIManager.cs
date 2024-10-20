@@ -10,8 +10,10 @@ public class UIManager : MonoBehaviour
 
     //[Header("MENU SCENE")]
     //[Header("MATCHMAKING SCENE")]
-    //[Header("MATCHMAKING SCENE")]
-    //[SerializeField] private GameObject
+    [Header("MATCHMAKING SCENE")]
+    [SerializeField] public TextMeshProUGUI matchCodeMatchMaking_Text;
+    [SerializeField] public GameObject messageMatch_waiting;
+    [SerializeField] public GameObject messageMatch_wrong;
 
     //[SerializeField] private bool telephoneMini;
     [Header("INGAME SCENE")]
@@ -20,6 +22,7 @@ public class UIManager : MonoBehaviour
 
 
     public static UIManager Instance { get; private set; }
+
     void Awake()
     {
         if (Instance == null)
@@ -30,6 +33,12 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        ChangeScene("0 - TitleScene");
     }
 
     public void ChangeScene(string sceneName)
@@ -52,4 +61,18 @@ public class UIManager : MonoBehaviour
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
         if(GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
     }
+
+    public void StartHost_Button()
+    {
+        RelayManager.Instance.StartHost();
+        messageMatch_waiting.SetActive(true);
+    }
+
+    public void StartClient_Button()
+    {
+        RelayManager.Instance.StartClient();
+    }
+
+
+
 }

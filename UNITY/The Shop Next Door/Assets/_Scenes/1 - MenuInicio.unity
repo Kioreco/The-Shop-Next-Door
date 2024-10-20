@@ -540,7 +540,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 773101389}
   m_OnClick:
     m_PersistentCalls:
@@ -917,9 +917,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313c016e93f0544b25ff31ca8af6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TSND_Logo: {fileID: 0}
-  LoginCreateButtons: {fileID: 0}
-  LoginCreatePanel: {fileID: 0}
+  matchCodeMatchMaking_Text: {fileID: 0}
+  messageMatch_waiting: {fileID: 0}
+  messageMatch_wrong: {fileID: 0}
+  dineroJugador_text: {fileID: 0}
+  nombreTienda_text: {fileID: 0}
 --- !u!4 &1113313945
 Transform:
   m_ObjectHideFlags: 0
@@ -1013,7 +1015,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1152412723}
   m_OnClick:
     m_PersistentCalls:
@@ -1209,7 +1211,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1174350070}
   m_OnClick:
     m_PersistentCalls:
@@ -1602,7 +1604,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373670241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1373670241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,7 +2003,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1684916031}
   m_OnClick:
     m_PersistentCalls:
