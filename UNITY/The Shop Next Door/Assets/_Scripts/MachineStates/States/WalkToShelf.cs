@@ -13,7 +13,8 @@ public class WalkToShelf : AStateNPC
     public override void Enter() 
     {
         Debug.Log("walking to shelf and taking product");
-        contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
+        contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);
+        //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
         nombreProducto = contexto.getLista().lista.Keys.First();
         //Debug.Log($"current estanteria: {contexto.getCurrentEstanteria()}");

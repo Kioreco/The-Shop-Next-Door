@@ -131,6 +131,7 @@ public class PlayerControler : NetworkBehaviour
         int layerMask = ~LayerMask.GetMask("UI");
         if (context.performed && IsOwner)
         {
+            //print(_agent.isOnNavMesh);
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouse, out var hit, Mathf.Infinity, layerMask))
             //if (Physics.Raycast(mouse, out var hit))
