@@ -28,13 +28,14 @@ public class Pay : AStateNPC
         //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         Debug.Log("paying...");
         //Debug.Log($"dinero: {contexto.getDineroCompra()}");
-        if(contexto.getPlayer().GetComponent<PlayerControler>().ID == 0 && contexto.getPlayer().GetComponent<PlayerControler>().IsOwner)
+        if(contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().player.IsOwner)
         {
             posSalida = contexto.getTiendaManager().outDoorShopP1;
             poscollider = contexto.getTiendaManager().positionColliderPayBoxP1;
             posCheckpoints = contexto.getTiendaManager().posPayCheckpointsP1;
-        }        
-        else if(contexto.getPlayer().GetComponent<PlayerControler>().ID == 1 && contexto.getPlayer().GetComponent<PlayerControler>().IsOwner)
+        }
+        else if (contexto.getTiendaManager().ID == 1 && contexto.getTiendaManager().player.IsOwner)
+        //else if(contexto.getPlayer().GetComponent<PlayerControler>().ID == 1 && contexto.getPlayer().GetComponent<PlayerControler>().IsOwner)
         {
             posSalida = contexto.getTiendaManager().outDoorShopP2;
             poscollider = contexto.getTiendaManager().positionColliderPayBoxP2;

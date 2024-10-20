@@ -25,7 +25,7 @@ namespace Assets.Scripts.MachineStates.Classes
         #region MetodosGenerales
         private void Start()
         {
-            print("start");
+            //print("start");
             tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -178,7 +178,8 @@ namespace Assets.Scripts.MachineStates.Classes
             //print("reseting");
             isReset = true;
             //GetComponent<NavMeshAgent>().Warp(TiendaManager.Instance.npcPositionInitial.position);
-            transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
+            if(TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
+            else if(TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP2.position;
         }
         public void setObjectPool(IObjectPool o)
         {

@@ -9,7 +9,7 @@ public class ObjectPool : IObjectPool
     private readonly bool canAdd;
 
     private List<IContext> npcs;
-
+    Transform instancePos;
     private int countNpcsActive;
 
     public ObjectPool(IContext ctx, int countNpcMax, bool ca)
@@ -63,7 +63,9 @@ public class ObjectPool : IObjectPool
 
     private IContext CreateObject()
     {
-        IContext newObj = objectPrototype.Clone(GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitialP1.position, GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitialP1.rotation);
+        if (TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) instancePos = TiendaManager.Instance.npcPositionInitialP1;
+        else if (TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) instancePos = TiendaManager.Instance.npcPositionInitialP2;
+        IContext newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
         return newObj;
     }
 

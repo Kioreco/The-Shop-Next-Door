@@ -33,7 +33,7 @@ public class PlayerControler : NetworkBehaviour
     float zoomSpeed = 5f;
 
 
-    public ClientPrototype client;
+    public GameObject client;
     #endregion
 
     void Start()
@@ -53,14 +53,28 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsOwner)
         {
+            client = GameObject.FindWithTag("ClientNPC");
+
             ID = (int)OwnerClientId;
             //print(ID);
+
+            if (ID == 0) 
+            {
+                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().player = this;
+                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().ID = 0;
+                client.GetComponent<ClientPrototype>().enabled = true;
+                client.GetComponent<ClientPrototype>().isCreated = true; 
+            }
 
             if (ID == 1)
             {
                 GameManager.Instance.cameraP1.SetActive(false);
                 GameManager.Instance.cameraP2.SetActive(true);
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
+                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().player = this;
+                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().ID = 1;
+                client.GetComponent<ClientPrototype>().enabled = true;
+                client.GetComponent<ClientPrototype>().isCreated = true;
             }
             isInitialized = true;
             minX = Camera.main.transform.position.x - 10f;
@@ -68,8 +82,7 @@ public class PlayerControler : NetworkBehaviour
             minZ = Camera.main.transform.position.z - 10f;
             maxZ = Camera.main.transform.position.z + 10f;
 
-            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
-            client.isCreated = true;
+            
 
             //client.instanciarNPC();
             //client.instanciarNPC();

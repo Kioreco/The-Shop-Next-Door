@@ -4972,6 +4972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c4d637e0eb2df40b8889fc92631596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ID: 0
   shelfsP1:
   - {fileID: 660419323}
   - {fileID: 1796585863}
@@ -21047,7 +21049,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147462449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2cc143480d8d774fb44e28cc7125f61, type: 3}
   m_Name: 
