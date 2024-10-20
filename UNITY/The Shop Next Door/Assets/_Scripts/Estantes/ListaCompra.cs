@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ListaCompra : MonoBehaviour
@@ -10,11 +9,11 @@ public class ListaCompra : MonoBehaviour
 
     private void Start()
     {
-        //CrearLista();
     }
 
     public void CrearLista()
     {
+        cont = 0;
         if (TiendaManager.Instance.sellClothes == true) tipo.Add('r');
         if (TiendaManager.Instance.sellLeisure == true) tipo.Add('o');
         if (TiendaManager.Instance.sellStationery == true) tipo.Add('p');
@@ -23,21 +22,20 @@ public class ListaCompra : MonoBehaviour
         int tipoObjeto = tipo.Count - 1;
         int contTipo = 0;
         int randCantidadProductos = Random.Range(1, 5);
-
+        //print($"randCantidadProductos: {randCantidadProductos} \t cont: {cont}");
         while(cont <= randCantidadProductos)
         {
+            //print($"contaodr: {cont}");
             int randUnidades = Random.Range(1, 4);
             string producto = TiendaManager.Instance.getRandomProduct(tipo[contTipo]);
-            //print(producto);
             if (producto != "" && !lista.ContainsKey(producto))
             {
-                Agregar(producto, tipo[contTipo], randUnidades); //FALTA AÑADIR QUE SOLO PUEDA COGER ELEMENTOS QUE ESTÁN EN LA TIENDA
+                Agregar(producto, tipo[contTipo], randUnidades); 
                 cont++;
                 if (contTipo < tipoObjeto) contTipo++;
                 else if (contTipo == tipoObjeto) contTipo = 0;
             }
         }
-        //imprimirLista();
     }
 
     public void imprimirLista()
@@ -55,12 +53,6 @@ public class ListaCompra : MonoBehaviour
     public void listaPrueba()
     {
         Agregar("camisa", 'r', 1);
-        //Agregar("manzana", 'c', 2);
-        //Agregar("camisa", 'r', 5);
-        //Agregar("faldas", 'r', 3);
-        //Agregar("carne", 'c', 4);
-        //Agregar("edgy", 'r', 2);
-        //Agregar("camisa", 'r', 2);
     }
 
     public void Agregar(string s, char c,int n)

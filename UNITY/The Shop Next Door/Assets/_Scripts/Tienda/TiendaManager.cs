@@ -1,22 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
 
 public class TiendaManager : MonoBehaviour
 {
-    [Header("Estanterias")]
-    [SerializeField] List<GameObject> shelfs = new List<GameObject>();
-    public Transform positionColliderPayBox;
-    public List<Transform> posPayCheckpoints;
-    public Transform outDoorShop;
+    [Header("Estanterias P1")]
+    [SerializeField] List<GameObject> shelfsP1 = new List<GameObject>();
+    public Transform positionColliderPayBoxP1;
+    public List<Transform> posPayCheckpointsP1;
+    public Transform outDoorShopP1;
 
-    [Header("Pay Queue")]
-    public Queue<IContext> npcPayQueue = new Queue<IContext>();
-    public event EventHandler payQueueChange;
+    [Header("Pay Queue P1")]
+    public Queue<IContext> npcPayQueueP1 = new Queue<IContext>();
+    public event EventHandler payQueueChangeP1;
 
-    [Header("NPC Instanciate")]
-    public Transform npcPositionInitial;
+    [Header("NPC Instanciate P1")]
+    public Transform npcPositionInitialP1;
+
+    [Header("Estanterias P2")]
+    [SerializeField] List<GameObject> shelfsP2 = new List<GameObject>();
+    public Transform positionColliderPayBoxP2;
+    public List<Transform> posPayCheckpointsP2;
+    public Transform outDoorShopP2;
+
+    [Header("Pay Queue P2")]
+    public Queue<IContext> npcPayQueueP2 = new Queue<IContext>();
+    public event EventHandler payQueueChangeP2;
+
+    [Header("NPC Instanciate P2")]
+    public Transform npcPositionInitialP2;
 
     [Header("Tipo Tienda")]
     public bool sellClothes;
@@ -116,9 +130,22 @@ public class TiendaManager : MonoBehaviour
 
     public Vector3 buscarEstanteria(string producto)
     {
-        foreach (var item in shelfs)
+        //print(GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID);
+        if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            if(item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
+            print("host");
+            foreach (var item in shelfsP1)
+            {
+                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
+            }
+        }
+        else if(GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            print("cliente");
+            foreach (var item in shelfsP2)
+            {
+                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
+            }
         }
 
         return new Vector3(0, 0, 0);
@@ -159,35 +186,66 @@ public class TiendaManager : MonoBehaviour
         //posicionEnLaCola.transform.position += new Vector3 (0, 0, 1.2f);
         //print($"cojo sitio despues: {cajaPago.transform.position}");
         //print($"npc añadido en la cola, pos: {npcPayQueue.Count}, max checkpoints: {posPayCheckpoints.Count}");
-        if (npcPayQueue.Count == 5) return -1;
+        if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            if (npcPayQueueP1.Count == 5) return -1;
 
-        npcPayQueue.Enqueue(npc);
-        payQueueChange?.Invoke(this, EventArgs.Empty);
-        return npcPayQueue.Count;
+            npcPayQueueP1.Enqueue(npc);
+            payQueueChangeP1?.Invoke(this, EventArgs.Empty);
+            return npcPayQueueP1.Count;
+        }
+        else if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            if (npcPayQueueP2.Count == 5) return -1;
+
+            npcPayQueueP2.Enqueue(npc);
+            payQueueChangeP2?.Invoke(this, EventArgs.Empty);
+            return npcPayQueueP2.Count;
+        }
+        return -1;
     }
 
     public void avanzarLaCola()
     {
         //print($"dejo sitio antes: {cajaPago.transform.position}");
-        //if(posicionEnLaCola.position.z <= primeraPosCola.z) posicionEnLaCola.transform.position -= new Vector3(0, 0, 1.2f);
         //print($"dejo sitio despues: {cajaPago.transform.position}");
-        if(npcPayQueue.Count == 0) return;
-        npcPayQueue.Dequeue();
         //print($"npc quitado de la cola: {npcPayQueue.Count}");
-        payQueueChange?.Invoke(this, EventArgs.Empty);
-
-        //return getPositionPayQueue(npc);
+        if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            if (npcPayQueueP1.Count == 0) return;
+            npcPayQueueP1.Dequeue();
+            payQueueChangeP1?.Invoke(this, EventArgs.Empty);
+        }
+        else if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            if (npcPayQueueP2.Count == 0) return;
+            npcPayQueueP2.Dequeue();
+            payQueueChangeP2?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public int getPositionPayQueue(IContext npc)
     {
         int pos = 0;
-        foreach (IContext queuedNpc in npcPayQueue)
+        if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            //print($"elemento cola: {queuedNpc} npc: {npc}");
-            if (queuedNpc == npc) { return pos; }
-            pos++;
+            foreach (IContext queuedNpc in npcPayQueueP1)
+            {
+                //print($"elemento cola: {queuedNpc} npc: {npc}");
+                if (queuedNpc == npc) { return pos; }
+                pos++;
+            }
         }
+        else if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
+        {
+            foreach (IContext queuedNpc in npcPayQueueP2)
+            {
+                //print($"elemento cola: {queuedNpc} npc: {npc}");
+                if (queuedNpc == npc) { return pos; }
+                pos++;
+            }
+        }
+
         return -1;
     }
 

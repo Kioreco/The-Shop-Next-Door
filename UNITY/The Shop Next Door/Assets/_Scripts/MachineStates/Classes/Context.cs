@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 
 namespace Assets.Scripts.MachineStates.Classes
 {
@@ -19,21 +20,36 @@ namespace Assets.Scripts.MachineStates.Classes
         public int positionPayQueue;
 
         public IObjectPool objectPool;
+        bool isReset;
 
         #region MetodosGenerales
         private void Start()
         {
+            print("start");
             tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
             inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-            tiendaManager.payQueueChange += MoveInQueue;
+            tiendaManager.payQueueChangeP1 += MoveInQueue;
+        }
+        private void OnEnable()
+        {
+            if (isReset)
+            {
+                isReset = false;
+                inicializar();
+            }
         }
         public void inicializar()
         {
+            //print($"is on navmesh: {GetComponent<NavMeshAgent>().isOnNavMesh}");
+            lista.lista.Clear();
             lista.CrearLista();
+            dineroCompra = 0;
+            //print($"inicializando\t lista: {lista.lista.Count}");
+            //lista.imprimirLista();
             SetState(new SearchShelf(this));
         }
 
@@ -104,10 +120,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Destuir()
         {
-            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
-            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
-            //GameObject.FindWithTag("Player").GetComponent<PlayerControler>().client.instanciarNPC();
-            //Destroy(gameObject);
+            //print($"destroying... objectPool: {objectPool}");
             objectPool?.Release(this);
         }
         public Vector3 getPosition()
@@ -138,6 +151,13 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             return positionPayQueue;
         }
+        public GameObject getPlayer()
+        {
+            PlayerControler player = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            if (player.IsOwner) return player.gameObject;
+            return null;
+        }
+
         #endregion
 
         #region objectpool and prototype
@@ -155,12 +175,15 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Reset()
         {
-            transform.position = TiendaManager.Instance.npcPositionInitial.position;
-            inicializar();
+            //print("reseting");
+            isReset = true;
+            //GetComponent<NavMeshAgent>().Warp(TiendaManager.Instance.npcPositionInitial.position);
+            transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
         }
-        public IObjectPool getObjectPool()
+        public void setObjectPool(IObjectPool o)
         {
-            return objectPool;
+            //print("seting obj pool");
+            objectPool = o;
         }
 
         public IContext Clone(Vector3 p, Quaternion r)

@@ -1,53 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class ClientPrototype : MonoBehaviour
 {
-    public MonoBehaviour snowFlakePrototype;
-    public int initialNumberOfSnowFlakes = 1;
-    public bool allowAddNewSnowFlakes = false;
-    public float snowFlakesPerSecond;
-    public float maxSnowFlakeSpeed = 1f;
-    public float spreadAreaExtent = 30f;
-
-    private float _halfSpreadAreaExtent;
-    private float _lastSnowFlake;
-    private ObjectPool _snowFlakesPool;
-
+    public MonoBehaviour npcPrototype;
+    public int maxNumberNPC;
+    public int maxActiveInScene;
+    public bool allowAddNew = false;
+    public bool isCreated = false;
+    private ObjectPool npcBasicObjectPool;
 
     private void Start()
     {
-        _snowFlakesPool = new ObjectPool((IContext)snowFlakePrototype, initialNumberOfSnowFlakes, allowAddNewSnowFlakes);
-        _halfSpreadAreaExtent = spreadAreaExtent / 2;
+        npcBasicObjectPool = new ObjectPool((IContext) npcPrototype, maxNumberNPC, allowAddNew);
     }
-
     private void Update()
     {
-        //if (snowing)
-        //{
-        //    _lastSnowFlake += Time.deltaTime;
-        //    if (_lastSnowFlake >= 1)
-        //    {
-        //        for (int i = 0; i < snowFlakesPerSecond; i++)
-        //        {
-        //            IContext snowFlake = CreateSnowFlake();
-        //        }
-        //    }
-        //}
+        if (isCreated && npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
+        {
+            IContext npcBasic = createNpcBasic();
+        }
+        if (isCreated && allowAddNew)
+        {
+            for (int i = npcBasicObjectPool.GetActive(); i < npcBasicObjectPool.GetCount(); i++)
+            {
+                IContext npcBasic = createNpcBasic();
+            }
+            allowAddNew = false;
+        }
 
     }
-
-    private IContext CreateSnowFlake()
+    private IContext createNpcBasic()
     {
-        IContext snowFlake = (IContext)_snowFlakesPool.GetPoolableObject();
+        IContext npcBasic = (IContext)npcBasicObjectPool.GetPoolableObject();
+        npcBasic.isActive = true;
 
-        //if (snowFlake)
-        //{
-        //    snowFlake.getObjectPool() = _snowFlakesPool;
-        //}
+        if (npcBasic != null)
+        {
+            npcBasic.setObjectPool(npcBasicObjectPool);
+        }
 
-        return snowFlake;
+        return npcBasic;
     }
 }

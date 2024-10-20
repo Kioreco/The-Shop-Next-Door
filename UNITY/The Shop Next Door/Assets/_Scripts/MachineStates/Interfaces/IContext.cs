@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 
 public interface IContext : IPooleableObject, IPrototype
 {
@@ -26,6 +28,6 @@ public interface IContext : IPooleableObject, IPrototype
     public void setIsInColliderCajaPago(bool b);
     public void MoveInQueue(object s, EventArgs e);
     public int getPositionPay();
-
-    public IObjectPool getObjectPool();
+    public void setObjectPool(IObjectPool obj);
+    public GameObject getPlayer();
 }

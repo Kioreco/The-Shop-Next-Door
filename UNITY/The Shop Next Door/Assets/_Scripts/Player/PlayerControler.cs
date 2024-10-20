@@ -10,8 +10,8 @@ public class PlayerControler : NetworkBehaviour
     Transform _playerTransform;
     private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
     public NavMeshAgent _agent;
-    int ID;
-    bool isInitialized = false;
+    public int ID;
+    public bool isInitialized = false;
 
     [Header("Camera Movement")]
     //public GameObject camController;
@@ -67,7 +67,10 @@ public class PlayerControler : NetworkBehaviour
             maxX = Camera.main.transform.position.x + 10f;
             minZ = Camera.main.transform.position.z - 10f;
             maxZ = Camera.main.transform.position.z + 10f;
-            //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
+
+            client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
+            client.isCreated = true;
+
             //client.instanciarNPC();
             //client.instanciarNPC();
             //client.instanciarNPC();

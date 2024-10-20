@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObjectPool : IObjectPool
 {
-    private IContext _objectPrototype;
+    private IContext objectPrototype;
     private readonly bool canAdd;
 
     private List<IContext> npcs;
@@ -14,14 +14,17 @@ public class ObjectPool : IObjectPool
 
     public ObjectPool(IContext ctx, int countNpcMax, bool ca)
     {
-        _objectPrototype = ctx;
+        Debug.Log("creado");
+        objectPrototype = ctx;
         canAdd = ca;
         npcs = new List<IContext>(countNpcMax);
         countNpcsActive = 0;
 
         for (int i = 0; i < countNpcMax; i++)
         {
-            npcs.Add(CreateObject());
+            IContext npc = CreateObject();
+            npc.isActive = false;
+            npcs.Add(npc);
         }
     }
 
@@ -52,6 +55,7 @@ public class ObjectPool : IObjectPool
 
     public void Release(IContext obj)
     {
+        Debug.Log("release");
         obj.isActive = false;
         countNpcsActive -= 1;
         obj.Reset();
@@ -59,7 +63,7 @@ public class ObjectPool : IObjectPool
 
     private IContext CreateObject()
     {
-        IContext newObj = _objectPrototype.Clone(GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitial.position, GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitial.rotation);
+        IContext newObj = objectPrototype.Clone(GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitialP1.position, GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>().npcPositionInitialP1.rotation);
         return newObj;
     }
 

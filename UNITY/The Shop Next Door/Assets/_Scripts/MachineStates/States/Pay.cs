@@ -17,13 +17,30 @@ public class Pay : AStateNPC
     int actualPosQueue = 0;
     bool hasSpace = true;
 
+    [Header("Variables Aux")]
+    Transform posSalida;
+    Transform poscollider;
+    List<Transform> posCheckpoints;
+
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
         //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         Debug.Log("paying...");
         //Debug.Log($"dinero: {contexto.getDineroCompra()}");
-        contexto.getNavMesh().SetDestination(contexto.getTiendaManager().positionColliderPayBox.position);
+        if(contexto.getPlayer().GetComponent<PlayerControler>().ID == 0 && contexto.getPlayer().GetComponent<PlayerControler>().IsOwner)
+        {
+            posSalida = contexto.getTiendaManager().outDoorShopP1;
+            poscollider = contexto.getTiendaManager().positionColliderPayBoxP1;
+            posCheckpoints = contexto.getTiendaManager().posPayCheckpointsP1;
+        }        
+        else if(contexto.getPlayer().GetComponent<PlayerControler>().ID == 1 && contexto.getPlayer().GetComponent<PlayerControler>().IsOwner)
+        {
+            posSalida = contexto.getTiendaManager().outDoorShopP2;
+            poscollider = contexto.getTiendaManager().positionColliderPayBoxP2;
+            posCheckpoints = contexto.getTiendaManager().posPayCheckpointsP2;
+        }
+        contexto.getNavMesh().SetDestination(poscollider.position);
     }
     public override void FixedUpdate()
     {
@@ -37,7 +54,7 @@ public class Pay : AStateNPC
             actualPosQueue = contexto.getTiendaManager().cogerSitioCola(contexto);
             if (actualPosQueue == -1)
             {
-                contexto.getNavMesh().SetDestination(contexto.getTiendaManager().outDoorShop.position);
+                contexto.getNavMesh().SetDestination(posSalida.position);
                 isFinish = true;
                 hasSpace = false;
                 isPaying = true;
@@ -46,7 +63,7 @@ public class Pay : AStateNPC
             }
             else
             {
-                contexto.getNavMesh().SetDestination(contexto.getTiendaManager().posPayCheckpoints[actualPosQueue].position);
+                contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
                 isInQueue = true;
             }
         }
@@ -55,7 +72,7 @@ public class Pay : AStateNPC
         {
             actualPosQueue = contexto.getPositionPay();
             //Debug.Log($"actual pos: {actualPosQueue}");
-            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().posPayCheckpoints[actualPosQueue].position);
+            contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
         }
         if(contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0 && hasSpace)// contexto.getTiendaManager().npcPayQueue.Count == 1)
         {
@@ -69,7 +86,7 @@ public class Pay : AStateNPC
         {
             lastSeek = 0f;
             contexto.getTiendaManager().avanzarLaCola();
-            contexto.getNavMesh().SetDestination(contexto.getTiendaManager().outDoorShop.position);
+            contexto.getNavMesh().SetDestination(posSalida.position);
             contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
             contexto.getUIManager().UpdateDineroJugador();
             isFinish = true;
