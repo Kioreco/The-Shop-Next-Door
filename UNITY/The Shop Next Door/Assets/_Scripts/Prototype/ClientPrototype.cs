@@ -8,6 +8,7 @@ public class ClientPrototype : MonoBehaviour
     public bool allowAddNew = false;
     public bool isCreated = false;
     private ObjectPool npcBasicObjectPool;
+    public bool isEnable;
 
     private void Start()
     {
@@ -15,17 +16,20 @@ public class ClientPrototype : MonoBehaviour
     }
     private void Update()
     {
-        if (isCreated && npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
+        if (isEnable)
         {
-            IContext npcBasic = createNpcBasic();
-        }
-        if (isCreated && allowAddNew)
-        {
-            for (int i = npcBasicObjectPool.GetActive(); i < npcBasicObjectPool.GetCount(); i++)
+            if (isCreated && npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
             {
                 IContext npcBasic = createNpcBasic();
             }
-            allowAddNew = false;
+            if (isCreated && allowAddNew)
+            {
+                for (int i = npcBasicObjectPool.GetActive(); i < npcBasicObjectPool.GetCount(); i++)
+                {
+                    IContext npcBasic = createNpcBasic();
+                }
+                allowAddNew = false;
+            }
         }
 
     }

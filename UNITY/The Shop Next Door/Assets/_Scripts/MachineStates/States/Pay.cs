@@ -49,7 +49,7 @@ public class Pay : AStateNPC
     }
     public override void Update()
     {
-        if (contexto.getNavMesh().remainingDistance == 0f && contexto.getIsInColliderCajaPago() && !isPaying && !isInQueue && hasSpace)
+        if (contexto.getNavMesh().remainingDistance <= 0.5f && contexto.getIsInColliderCajaPago() && !isPaying && !isInQueue && hasSpace)
         {
             //Debug.Log("está en el collider pidiendo la vez");
             actualPosQueue = contexto.getTiendaManager().cogerSitioCola(contexto);

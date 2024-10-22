@@ -136,7 +136,7 @@ public class TiendaManager : MonoBehaviour
         if (ID == 0 && player.IsOwner)
         //if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            print("host");
+            //print("host");
             foreach (var item in shelfsP1)
             {
                 if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;

@@ -77,10 +77,10 @@ public class PlayerControler : NetworkBehaviour
                 client.GetComponent<ClientPrototype>().isCreated = true;
             }
             isInitialized = true;
-            minX = Camera.main.transform.position.x - 10f;
-            maxX = Camera.main.transform.position.x + 10f;
-            minZ = Camera.main.transform.position.z - 10f;
-            maxZ = Camera.main.transform.position.z + 10f;
+            minX = Camera.main.transform.position.x - 15f;
+            maxX = Camera.main.transform.position.x + 5f;
+            minZ = Camera.main.transform.position.z - 5f;
+            maxZ = Camera.main.transform.position.z + 15f;
 
             
 
@@ -131,11 +131,11 @@ public class PlayerControler : NetworkBehaviour
         int layerMask = ~LayerMask.GetMask("UI");
         if (context.performed && IsOwner)
         {
-            //print(_agent.isOnNavMesh);
+            //print($"mouse psoition: {Input.mousePosition}\t ");
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouse, out var hit, Mathf.Infinity, layerMask))
-            //if (Physics.Raycast(mouse, out var hit))
             {
+                print($"if dentro\t destination: {hit.point}");
                 _agent.SetDestination(hit.point);
                 _playerTransform.LookAt(hit.point);
             }
