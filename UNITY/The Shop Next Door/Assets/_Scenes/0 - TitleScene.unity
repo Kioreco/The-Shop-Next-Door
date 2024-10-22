@@ -1974,14 +1974,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1557370207}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OpenMenu
-        m_Mode: 2
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 1919792607}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 1 - MenuInicio
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &628882750
@@ -3596,7 +3596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddef4bb575f8544408889f28cad760b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dependencyStatus: 0
   _emailLoginField: {fileID: 27611524}
   _passwordLogin: {fileID: 945997474}
   _resultReqLogin: {fileID: 1157044309}
@@ -3940,10 +3939,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matchCodeMatchMaking_Text: {fileID: 0}
+  joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}
   messageMatch_wrong: {fileID: 0}
   dineroJugador_text: {fileID: 0}
   nombreTienda_text: {fileID: 0}
+  inventoryInfo_text: {fileID: 0}
+  timeReference: {fileID: 0}
+  day_text: {fileID: 0}
+  hour_text: {fileID: 0}
+  clientHappiness_Bar: {fileID: 0}
+  playerVigor_Bar: {fileID: 0}
 --- !u!4 &1557370208
 Transform:
   m_ObjectHideFlags: 0

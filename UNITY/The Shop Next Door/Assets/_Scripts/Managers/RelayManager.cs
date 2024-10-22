@@ -1,3 +1,4 @@
+using System.Globalization;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -8,7 +9,7 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RelayManager : MonoBehaviour
+public class RelayManager : NetworkBehaviour
 {
     private const int maxConnections = 50;
     private string joinCode = "Room code";
@@ -75,17 +76,17 @@ public class RelayManager : MonoBehaviour
 
     private void OnClientConnected(ulong obj)
     {
-        if (NetworkManager.Singleton.IsServer)
-        {
+        //if (NetworkManager.Singleton.IsServer)
+        //{
             connectedPlayers++;
 
-            if (connectedPlayers == 2)
+            if (connectedPlayers == 2 || NetworkManager.Singleton.IsClient & !NetworkManager.Singleton.IsServer)
             {
                 SceneManager.LoadSceneAsync("PrototypeScene");
             }
 
             _obj = obj;
-        }
+            //}
     }
 
     private void OnServerStarted()

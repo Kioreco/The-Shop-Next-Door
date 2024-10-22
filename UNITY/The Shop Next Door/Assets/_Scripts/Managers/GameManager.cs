@@ -39,11 +39,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _networkManager = NetworkManager.Singleton;
-        _playerPrefab = _networkManager.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+        //_networkManager = NetworkManager.Singleton;
+        //_playerPrefab = _networkManager.NetworkConfig.Prefabs.Prefabs[0].Prefab;
 
-        _networkManager.OnServerStarted += OnServerStarted;
-        _networkManager.OnClientConnectedCallback += OnClientConnected;
+        //_networkManager.OnServerStarted += OnServerStarted;
+        //_networkManager.OnClientConnectedCallback += OnClientConnected;
 
         dineroJugador = 500.0f;
         espacioAlmacen = 0;
@@ -54,14 +54,14 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
-        //_playerPrefab = RelayManager.Instance._playerPrefab;
-        //if (NetworkManager.Singleton.IsServer)
-        //{
-        //    var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
-        //    player.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj);
+        _playerPrefab = RelayManager.Instance._playerPrefab;
+        if (NetworkManager.Singleton.IsServer)
+        {
+            var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
+            player.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj);
 
-        //    _spawnIndex++;
-        //}
+            _spawnIndex++;
+        }
     }
 
     private void OnClientConnected(ulong obj)
