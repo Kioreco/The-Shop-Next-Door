@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/1 - MenuInicio.unity
     guid: 122f1d527eb4aa34aa8b04ddb422d017
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/2 - Matchmaking.unity
     guid: 2218de1ffbbe5e64e8324a9a7fdd55a5
   - enabled: 1
