@@ -30,7 +30,7 @@ public class DropItem : MonoBehaviour, IDropHandler
         objectDropped.DesactiveActivity();
 
         //Se guarda la actividad en la lista del calendario
-        calendarController.activities_selected[dropZoneNumber].CopyActivity(objectDropped.activity);
+        calendarController.activities_selected[dropZoneNumber].CopyActivity(objectDropped.activity.activityInfo);
         
     }
 }

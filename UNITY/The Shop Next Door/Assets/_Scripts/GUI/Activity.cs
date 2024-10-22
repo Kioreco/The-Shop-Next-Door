@@ -4,42 +4,32 @@ using UnityEngine;
 
 public class Activity : MonoBehaviour
 {
-    public string activityName { get; set; }
-    public string[] outcomes { get; set; }
+    public ActivityInfo activityInfo = new();
 
-    public float occurrenceProbability { get; set; }
-    public float statesLuck { get; set; }
+    //public void CreateActivityInfo(string actName, string[] outc, float ocProb, float stLuck, float romProb, float friendProb, float persProb, float hapProb, float restProb)
+    //{
+    //    activityInfo.activityName = actName;
+    //    activityInfo.outcomes = outc;
+    //    activityInfo.occurrenceProbability = ocProb;
+    //    activityInfo.statesLuck = stLuck;
+    //    activityInfo.romanticProbability = romProb;
+    //    activityInfo.friendshipProbability = friendProb;
+    //    activityInfo.personalDevelopmentProbability = persProb;
+    //    activityInfo.happinessProbability = hapProb;
+    //    activityInfo.restingProbability = restProb;
+    //}
 
-    public float romanticProbability { get; set; }
-    public float friendshipProbability { get; set; }
-    public float personalDevelopmentProbability { get; set; }
-    public float happinessProbability { get; set; }
-    public float restingProbability { get; set; }
-
-    public Activity(string actName, string[] outc, float ocProb, float stLuck, float romProb, float friendProb, float persProb, float hapProb, float restProb)
+    public void CopyActivity(ActivityInfo act)
     {
-        activityName = actName;
-        outcomes = outc;
-        occurrenceProbability = ocProb;
-        statesLuck = stLuck;
-        romanticProbability = romProb;
-        friendshipProbability = friendProb;
-        personalDevelopmentProbability = persProb;
-        happinessProbability = hapProb;
-        restingProbability = restProb;
-    }
-
-    public void CopyActivity(Activity act)
-    {
-        activityName = act.activityName;
-        outcomes = act.outcomes;
-        occurrenceProbability = act.occurrenceProbability;
-        statesLuck = act.statesLuck;
-        romanticProbability = act.romanticProbability;
-        friendshipProbability = act.friendshipProbability;
-        personalDevelopmentProbability = act.personalDevelopmentProbability;
-        happinessProbability = act.happinessProbability;
-        restingProbability = act.restingProbability;
+        activityInfo.activityName = act.activityName;
+        activityInfo.outcomes = act.outcomes;
+        activityInfo.occurrenceProbability = act.occurrenceProbability;
+        activityInfo.statesLuck = act.statesLuck;
+        activityInfo.romanticProbability = act.romanticProbability;
+        activityInfo.friendshipProbability = act.friendshipProbability;
+        activityInfo.personalDevelopmentProbability = act.personalDevelopmentProbability;
+        activityInfo.happinessProbability = act.happinessProbability;
+        activityInfo.restingProbability = act.restingProbability;
     }
 
 }
