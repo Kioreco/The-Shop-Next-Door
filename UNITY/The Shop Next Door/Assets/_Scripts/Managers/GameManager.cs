@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public float dineroJugador;
     public float espacioAlmacen;
     public float maxEspacioAlmacen;
+    public float clientHappiness;
+    public float playerVigor;
+
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -45,6 +48,11 @@ public class GameManager : MonoBehaviour
         dineroJugador = 500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 50;
+        clientHappiness = 0;
+        playerVigor = 100;
+        UIManager.Instance.UpdateClientHappiness_UI();
+        UIManager.Instance.UpdatePlayerVigor_UI();
+        UIManager.Instance.UpdateInventorySpace_UI();
 
         //_playerPrefab = RelayManager.Instance._playerPrefab;
         //if (NetworkManager.Singleton.IsServer)
@@ -72,5 +80,15 @@ public class GameManager : MonoBehaviour
         print("Funciona el server");
     }
 
-    
+    public void UpdateClientHappiness(float value)
+    {
+        clientHappiness += value; //ELEFANTE - por hacer
+        UIManager.Instance.UpdateClientHappiness_UI();
+    }
+
+    public void UpdatePlayerVigor(float value)
+    {
+        playerVigor += value; //ELEFANTE - por hacer
+        UIManager.Instance.UpdatePlayerVigor_UI();
+    }
 }

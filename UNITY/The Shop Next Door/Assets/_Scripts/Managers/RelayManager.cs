@@ -59,7 +59,7 @@ public class RelayManager : MonoBehaviour
         NetworkManager.Singleton.StartHost();
     }
 
-    public async void StartClient()
+    public async void StartClient(string joinCodeInput)
     {
         await UnityServices.InitializeAsync();
         if (!AuthenticationService.Instance.IsSignedIn)
@@ -67,7 +67,7 @@ public class RelayManager : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 
-        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode: joinCode);
+        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode: joinCodeInput);
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
         NetworkManager.Singleton.StartClient();

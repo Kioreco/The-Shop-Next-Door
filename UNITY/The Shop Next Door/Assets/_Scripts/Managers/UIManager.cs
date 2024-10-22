@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class UIManager : MonoBehaviour
     //[Header("MATCHMAKING SCENE")]
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI matchCodeMatchMaking_Text;
+    [SerializeField] public TMP_InputField joinCode_Input;
     [SerializeField] public GameObject messageMatch_waiting;
     [SerializeField] public GameObject messageMatch_wrong;
 
@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [Header("INGAME SCENE")]
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
+    [SerializeField] private TextMeshProUGUI inventoryInfo_text;
+    [SerializeField] private Image clientHappiness_Bar;
+    [SerializeField] private Image playerVigor_Bar;
 
 
     public static UIManager Instance { get; private set; }
@@ -34,6 +37,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     public void ExitGame()
     {
@@ -56,7 +60,7 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
-    public void UpdateDineroJugador()
+    public void UpdatePlayersIngameMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
         if(GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
@@ -70,9 +74,24 @@ public class UIManager : MonoBehaviour
 
     public void StartClient_Button()
     {
-        RelayManager.Instance.StartClient();
+        RelayManager.Instance.StartClient(joinCode_Input.text);
     }
 
+    public void UpdateInventorySpace_UI()
+    {
+        inventoryInfo_text.SetText("INVENTORY: " + GameManager.Instance.espacioAlmacen + "/" + GameManager.Instance.maxEspacioAlmacen);
+        if (GameManager.Instance.espacioAlmacen == GameManager.Instance.maxEspacioAlmacen) { inventoryInfo_text.color = Color.red; }
+    }
+
+    public void UpdateClientHappiness_UI()
+    {
+        clientHappiness_Bar.fillAmount = Mathf.InverseLerp(GameManager.Instance.clientHappiness, 0, 100);
+    }
+
+    public void UpdatePlayerVigor_UI()
+    {
+        playerVigor_Bar.fillAmount = Mathf.InverseLerp(GameManager.Instance.playerVigor, 0, 100);
+    }
 
 
 }

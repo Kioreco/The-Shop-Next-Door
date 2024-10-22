@@ -66,7 +66,7 @@ public class TelephoneController : MonoBehaviour
         if (producto.CanBuySuply())
         {
             GameManager.Instance.dineroJugador -= producto.precio;
-            UIManager.Instance.UpdateDineroJugador();
+            UIManager.Instance.UpdatePlayersIngameMoney_UI();
         }
     }
 

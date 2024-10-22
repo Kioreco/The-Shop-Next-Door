@@ -16,11 +16,12 @@ public class Supply : MonoBehaviour
 
     public bool CanBuySuply()
     {
-        if ((GameManager.Instance.espacioAlmacen + cuantityToBuy) < GameManager.Instance.maxEspacioAlmacen)
+        if ((GameManager.Instance.espacioAlmacen + cuantityToBuy) <= GameManager.Instance.maxEspacioAlmacen)
         {
             cuantityAlmacen_text.SetText((cuantityOwned + cuantityToBuy).ToString());
             cuantityOwned += cuantityToBuy;
             GameManager.Instance.espacioAlmacen += cuantityToBuy;
+            UIManager.Instance.UpdateInventorySpace_UI();
             return true;
         }
         else
