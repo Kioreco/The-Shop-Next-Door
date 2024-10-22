@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
     [SerializeField] private TextMeshProUGUI inventoryInfo_text;
+
+    [SerializeField] private WorkDayCycle timeReference;
+    [SerializeField] private TextMeshProUGUI day_text;
+    [SerializeField] private TextMeshProUGUI hour_text;
+
     [SerializeField] private Image clientHappiness_Bar;
     [SerializeField] private Image playerVigor_Bar;
 
@@ -85,13 +90,21 @@ public class UIManager : MonoBehaviour
 
     public void UpdateClientHappiness_UI()
     {
-        clientHappiness_Bar.fillAmount = Mathf.InverseLerp(GameManager.Instance.clientHappiness, 0, 100);
+        clientHappiness_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.clientHappiness);
     }
 
     public void UpdatePlayerVigor_UI()
     {
-        playerVigor_Bar.fillAmount = Mathf.InverseLerp(GameManager.Instance.playerVigor, 0, 100);
+        playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
     }
 
+    public void UpdateTime_UI(int hours, int minutes)
+    {
+        hour_text.SetText(string.Format("{0:D2}:{1:D2}", hours, minutes));
+    }
 
+    public void UpdateDay_UI(string day)
+    {
+        day_text.SetText(day);
+    }
 }
