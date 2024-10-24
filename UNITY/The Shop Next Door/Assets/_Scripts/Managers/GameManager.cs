@@ -7,9 +7,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private NetworkManager _networkManager;
-    private GameObject _playerPrefab;
-    private int _spawnIndex = 0;
+    //private NetworkManager _networkManager;
+    private GameObject _playerPrefabHost;
+    private GameObject _playerPrefabClient;
+    //private int _spawnIndex = 0;
     public List<Transform> _spawnPositions = new List<Transform>();
 
     public GameObject cameraP1;
@@ -54,31 +55,39 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
-        _playerPrefab = RelayManager.Instance._playerPrefab;
+        InstantiatePlayers();
+    }
+
+
+    private void InstantiatePlayers()
+    {
         if (NetworkManager.Singleton.IsServer)
         {
-            var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
-            player.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj);
+            _playerPrefabHost = RelayManager.Instance._playerPrefabClient;
+            var playerHost = Instantiate(_playerPrefabHost, _spawnPositions[0]);
+            playerHost.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj[0]);
 
-            _spawnIndex++;
+            _playerPrefabClient = RelayManager.Instance._playerPrefabClient;
+            var playerClient = Instantiate(_playerPrefabClient, _spawnPositions[1]);
+            playerClient.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj[1]);
         }
     }
 
-    private void OnClientConnected(ulong obj)
-    {
-        if (NetworkManager.Singleton.IsServer) 
-        {
-            var player = Instantiate(_playerPrefab, _spawnPositions[_spawnIndex]);
-            player.GetComponent<NetworkObject>().SpawnAsPlayerObject(obj); 
+    //private void OnClientConnected(ulong obj)
+    //{
+    //    if (NetworkManager.Singleton.IsServer) 
+    //    {
+    //        var player = Instantiate(_playerPrefabHost, _spawnPositions[_spawnIndex]);
+    //        player.GetComponent<NetworkObject>().SpawnAsPlayerObject(obj); 
 
-            _spawnIndex++;
-        }
-    }
+    //        _spawnIndex++;
+    //    }
+    //}
 
-    private void OnServerStarted()
-    {
-        print("Funciona el server");
-    }
+    //private void OnServerStarted()
+    //{
+    //    print("Funciona el server");
+    //}
 
     public void UpdateClientHappiness(float value)
     {

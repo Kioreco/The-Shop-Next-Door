@@ -65,12 +65,6 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
-    public void UpdatePlayersIngameMoney_UI()
-    {
-        dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
-        if(GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
-    }
-
     public void StartHost_Button()
     {
         RelayManager.Instance.StartHost();
@@ -80,6 +74,12 @@ public class UIManager : MonoBehaviour
     public void StartClient_Button()
     {
         RelayManager.Instance.StartClient(joinCode_Input.text);
+    }
+
+    public void UpdatePlayersIngameMoney_UI()
+    {
+        dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
+        if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
     }
 
     public void UpdateInventorySpace_UI()

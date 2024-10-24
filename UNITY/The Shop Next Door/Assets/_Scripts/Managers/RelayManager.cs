@@ -15,8 +15,9 @@ public class RelayManager : NetworkBehaviour
     private string joinCode = "Room code";
 
     public int connectedPlayers = 0;
-    public GameObject _playerPrefab;
-    public ulong _obj;
+    public GameObject _playerPrefabClient;
+    public GameObject _playerPrefabHost;
+    public ulong[] _obj;
 
     public static RelayManager Instance { get; private set; }
 
@@ -35,7 +36,10 @@ public class RelayManager : NetworkBehaviour
 
     private void Start()
     {
-        _playerPrefab = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+        _obj = new ulong[2];
+
+        _playerPrefabHost = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+        _playerPrefabClient = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
 
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
@@ -68,25 +72,34 @@ public class RelayManager : NetworkBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 
-        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode: joinCodeInput);
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
+        try
+        {
+            var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode: joinCodeInput);
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
-        NetworkManager.Singleton.StartClient();
+            if (UIManager.Instance.messageMatch_wrong.activeInHierarchy) { UIManager.Instance.messageMatch_wrong.SetActive(false); }
+
+            NetworkManager.Singleton.StartClient();
+        }
+        catch (RelayServiceException e)
+        {
+            Debug.LogError("Failed to join with the provided code: " + e.Message);
+            UIManager.Instance.messageMatch_wrong.SetActive(true);
+        }
+
+        
     }
 
     private void OnClientConnected(ulong obj)
     {
-        //if (NetworkManager.Singleton.IsServer)
-        //{
-            connectedPlayers++;
+        _obj[connectedPlayers] = obj;
+        connectedPlayers++;
 
-            if (connectedPlayers == 2 || NetworkManager.Singleton.IsClient & !NetworkManager.Singleton.IsServer)
-            {
-                SceneManager.LoadSceneAsync("PrototypeScene");
-            }
+        if (connectedPlayers == 2 || NetworkManager.Singleton.IsClient & !NetworkManager.Singleton.IsServer)
+        {
+            SceneManager.LoadSceneAsync("PrototypeScene");
+        }
 
-            _obj = obj;
-            //}
     }
 
     private void OnServerStarted()
