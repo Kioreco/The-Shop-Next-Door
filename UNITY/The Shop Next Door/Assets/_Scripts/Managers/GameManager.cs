@@ -7,21 +7,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Network Variables")]
     //private NetworkManager _networkManager;
     private GameObject _playerPrefabHost;
     private GameObject _playerPrefabClient;
     //private int _spawnIndex = 0;
     public List<Transform> _spawnPositions = new List<Transform>();
 
+    [Header("Player Objects Shared")]
     public GameObject cameraP1;
     public GameObject cameraP2;
     public GameObject separador;
 
+    [SerializeField] private GameObject techoPlayer1;
+    [SerializeField] private GameObject techoPlayer2;
+
+    [Header("Individual Player References")]
     public float dineroJugador;
     public float espacioAlmacen;
     public float maxEspacioAlmacen;
     public float clientHappiness;
     public float playerVigor;
+
 
 
     public static GameManager Instance { get; private set; }
@@ -70,6 +77,12 @@ public class GameManager : MonoBehaviour
             _playerPrefabClient = RelayManager.Instance._playerPrefabClient;
             var playerClient = Instantiate(_playerPrefabClient, _spawnPositions[1]);
             playerClient.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj[1]);
+
+            techoPlayer2.SetActive(true);
+        }
+        else
+        {
+            techoPlayer1.SetActive(true);
         }
     }
 

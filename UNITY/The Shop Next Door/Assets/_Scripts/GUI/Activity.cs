@@ -23,7 +23,6 @@ public class Activity : MonoBehaviour
     {
         activityInfo.activityName = act.activityName;
         activityInfo.outcomes = act.outcomes;
-        activityInfo.occurrenceProbability = act.occurrenceProbability;
         activityInfo.statesLuck = act.statesLuck;
         activityInfo.romanticProbability = act.romanticProbability;
         activityInfo.friendshipProbability = act.friendshipProbability;
