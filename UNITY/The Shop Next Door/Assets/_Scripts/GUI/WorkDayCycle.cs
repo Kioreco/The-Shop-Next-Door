@@ -48,6 +48,12 @@ public class WorkDayCycle : MonoBehaviour
                 UpdateDayText();
             }
         }
+
+        if (currentDay == 2)
+        {
+            GameManager.Instance.EndDay();
+            GameObject.Find("Canvas_DAY_END").transform.gameObject.SetActive(true);
+        }
     }
 
     // Actualizar el texto del tiempo (formato: 9:00, 10:30, etc.)

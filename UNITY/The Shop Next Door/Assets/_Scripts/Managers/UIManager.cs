@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image clientHappiness_Bar;
     [SerializeField] private Image playerVigor_Bar;
 
+    [Header("DAY-END SCENE")] 
+    //public GameObject canvasDayEnd;
+    public TextMeshProUGUI player1Money;
+    public TextMeshProUGUI player2Money;
 
     public static UIManager Instance { get; private set; }
 
@@ -41,6 +46,12 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Start()
+    {
+        //player1Money = GameObject.Find("Canvas_DAY_END").transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        //player2Money = GameObject.Find("Canvas_DAY_END").transform.GetChild(7).GetComponent<TextMeshProUGUI>();
     }
 
 

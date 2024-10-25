@@ -5,8 +5,9 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     [Header("Network Variables")]
     //private NetworkManager _networkManager;
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour
     public float maxEspacioAlmacen;
     public float clientHappiness;
     public float playerVigor;
+
+    [Header("Rpc Player References")]
+    private float moneyHost;
+    private float moneyClient;
 
 
 
@@ -133,4 +138,39 @@ public class GameManager : MonoBehaviour
         playerVigor += value; //ELEFANTE - por hacer
         UIManager.Instance.UpdatePlayerVigor_UI();
     }
+
+    public void EndDay()
+    {
+        if (IsServer)
+        {
+            moneyHost = dineroJugador;
+            UpdateMoneyClientRpc(moneyHost, moneyClient);
+        }
+        else
+        {
+            SendClientMoneyServerRpc(dineroJugador);
+        }
+
+        Debug.Log("Dinero P1: " + moneyHost);
+        Debug.Log("Dinero P2: " + moneyClient);
+    }
+
+    #region Rpc
+
+    [ServerRpc]
+    public void SendClientMoneyServerRpc(float money)
+    {
+        moneyClient = money;
+        UpdateMoneyClientRpc(moneyHost, moneyClient);
+
+    }
+
+    [ClientRpc]
+    public void UpdateMoneyClientRpc(float moneyHost, float moneyClient)
+    {
+        UIManager.Instance.player1Money.SetText("Host Money: " + moneyHost);
+        UIManager.Instance.player2Money.SetText("Client Money: " + moneyClient);
+    }
+
+    #endregion
 }
