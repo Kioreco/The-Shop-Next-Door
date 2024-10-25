@@ -36,13 +36,14 @@ public class RelayManager : NetworkBehaviour
 
     private void Start()
     {
-        _obj = new ulong[2];
+        _obj = new ulong[15];
 
         _playerPrefabHost = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
         _playerPrefabClient = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
 
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
     }
 
 
@@ -92,14 +93,46 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientConnected(ulong obj)
     {
+        Debug.Log($"Cliente conectedo: {obj}");
+
+        //if (IsServer)
+        //{
+        //    if (NetworkManager.Singleton.ConnectedClients.Count > 2)
+        //    {
+        //        Debug.Log("Demasiados clientes");
+        //        NetworkManager.Singleton.DisconnectClient(obj);
+        //        return;
+        //    }
+        //}
+
         _obj[connectedPlayers] = obj;
         connectedPlayers++;
 
-        if (connectedPlayers == 2 || NetworkManager.Singleton.IsClient & !NetworkManager.Singleton.IsServer)
+        if (IsServer)
         {
-            SceneManager.LoadSceneAsync("PrototypeScene");
+            //if (obj > 1)
+            //{
+            //    NetworkManager.Singleton.DisconnectClient(obj);
+            //    SceneManager.LoadScene("2 - Matchmaking");
+            //}
+
+            if (NetworkManager.Singleton.ConnectedClients.Count == 2)
+            {
+                //SceneManager.LoadSceneAsync("PrototypeScene");
+                NetworkManager.Singleton.SceneManager.LoadScene("PrototypeScene", LoadSceneMode.Single);
+            }
+            //else if(NetworkManager.Singleton.ConnectedClients.Count > 2)
+            //{
+            //    //NetworkManager.Singleton.DisconnectClient(obj);
+            //    SceneManager.LoadSceneAsync("2 - Matchmaking");
+            //}
         }
 
+    }
+
+    private void OnClientDisconnect(ulong obj)
+    {
+        connectedPlayers--;
     }
 
     private void OnServerStarted()

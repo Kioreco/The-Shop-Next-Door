@@ -15,7 +15,7 @@ public class PlayerControler : NetworkBehaviour
 
     [Header("Camera Movement")]
     //public GameObject camController;
-    float moveSpeed = 2f;
+    float moveSpeed = 4f;
     Vector3 lastPosition;
     bool isDrag = false;
     Vector3 moveDir;
@@ -77,10 +77,10 @@ public class PlayerControler : NetworkBehaviour
                 client.GetComponent<ClientPrototype>().isCreated = true;
             }
             isInitialized = true;
-            minX = Camera.main.transform.position.x - 15f;
-            maxX = Camera.main.transform.position.x + 5f;
-            minZ = Camera.main.transform.position.z - 5f;
-            maxZ = Camera.main.transform.position.z + 15f;
+            minX = Camera.main.transform.position.x - 20f;
+            maxX = Camera.main.transform.position.x + 20f;
+            minZ = Camera.main.transform.position.z - 20f;
+            maxZ = Camera.main.transform.position.z + 20f;
 
             
 

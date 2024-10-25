@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,25 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.Count > 2)
+            {
+                for (int i = 2; i < RelayManager.Instance._obj.Length; i++)
+                {
+                    if (NetworkManager.Singleton.ConnectedClients.ContainsKey(RelayManager.Instance._obj[i]))
+                    {
+                        NetworkManager.Singleton.DisconnectClient(RelayManager.Instance._obj[i]);
+                        Debug.Log("Se ha desconectado el cliente " + RelayManager.Instance._obj[i]);
+                        Debug.Log("Ahora quedan " + NetworkManager.Singleton.ConnectedClients.Count);
+                    }
+                }
+            }
         }
     }
 
