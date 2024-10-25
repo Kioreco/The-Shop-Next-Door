@@ -18,21 +18,29 @@ public class UIManager : MonoBehaviour
 
     //[SerializeField] private bool telephoneMini;
     [Header("INGAME SCENE")]
+    [SerializeField] private GameObject canvasIngame;
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
     [SerializeField] private TextMeshProUGUI inventoryInfo_text;
 
-    [SerializeField] private WorkDayCycle timeReference;
+    [SerializeField] public WorkDayCycle timeReference;
     [SerializeField] private TextMeshProUGUI day_text;
     [SerializeField] private TextMeshProUGUI hour_text;
 
     [SerializeField] private Image clientHappiness_Bar;
     [SerializeField] private Image playerVigor_Bar;
 
-    [Header("DAY-END SCENE")] 
-    //public GameObject canvasDayEnd;
+    [Header("DAY-END MENU")] 
+    public GameObject canvasDayEnd;
+
+    public TextMeshProUGUI player1ShopName;
+    public TextMeshProUGUI player2ShopName;
+
     public TextMeshProUGUI player1Money;
     public TextMeshProUGUI player2Money;
+
+    public TextMeshProUGUI player1Clients;
+    public TextMeshProUGUI player2Clients;
 
     public static UIManager Instance { get; private set; }
 

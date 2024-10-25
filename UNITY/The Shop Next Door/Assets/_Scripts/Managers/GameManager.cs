@@ -153,6 +153,15 @@ public class GameManager : NetworkBehaviour
 
         Debug.Log("Dinero P1: " + moneyHost);
         Debug.Log("Dinero P2: " + moneyClient);
+
+        StartCoroutine("ContinueDay");
+    }
+
+    IEnumerator ContinueDay()
+    {
+        yield return new WaitForSeconds(10f);
+        UIManager.Instance.timeReference.timeStopped = false;
+        UIManager.Instance.canvasDayEnd.SetActive(false);
     }
 
     #region Rpc
@@ -162,7 +171,6 @@ public class GameManager : NetworkBehaviour
     {
         moneyClient = money;
         UpdateMoneyClientRpc(moneyHost, moneyClient);
-
     }
 
     [ClientRpc]

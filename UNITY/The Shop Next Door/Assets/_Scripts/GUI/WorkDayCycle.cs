@@ -7,20 +7,21 @@ public class WorkDayCycle : MonoBehaviour
     public float gameTime = 0.0f;
     private int currentDay = 0;
     private int totalDays = 5;
-    private float realTimePerDay = 60f;
+    private float realTimePerDay = 15f;
     private float gameStartTime = 9f;
     private float gameEndTime = 15f;
     private float gameHoursPerDay = 6f;
 
     private float realTimePassed = 0f; // Tiempo real transcurrido en segundos
     private bool cycleCompleted = false;
+    public bool timeStopped = false;
 
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
     void Update()
     {
         if (cycleCompleted) return;
-
+        if (timeStopped) return;
         // Incrementar el tiempo real
         realTimePassed += Time.deltaTime;
 
@@ -46,14 +47,18 @@ public class WorkDayCycle : MonoBehaviour
             {
                 // Actualizar el texto del día en el UI
                 UpdateDayText();
+
+                GameManager.Instance.EndDay();
+                UIManager.Instance.canvasDayEnd.SetActive(true);
+                timeStopped = true;
             }
         }
 
-        if (currentDay == 2)
-        {
-            GameManager.Instance.EndDay();
-            GameObject.Find("Canvas_DAY_END").transform.gameObject.SetActive(true);
-        }
+        //if (currentDay == 2)
+        //{
+        //    GameManager.Instance.EndDay();
+        //    UIManager.Instance.canvasDayEnd.SetActive(true);
+        //}
     }
 
     // Actualizar el texto del tiempo (formato: 9:00, 10:30, etc.)

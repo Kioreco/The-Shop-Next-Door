@@ -18671,6 +18671,7 @@ MonoBehaviour:
   joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}
   messageMatch_wrong: {fileID: 0}
+  canvasIngame: {fileID: 37347051}
   dineroJugador_text: {fileID: 1318248217}
   nombreTienda_text: {fileID: 1634855137}
   inventoryInfo_text: {fileID: 1980490406}
@@ -18679,8 +18680,13 @@ MonoBehaviour:
   hour_text: {fileID: 2065263323}
   clientHappiness_Bar: {fileID: 1834107487}
   playerVigor_Bar: {fileID: 104353860}
-  player1Money: {fileID: 0}
-  player2Money: {fileID: 0}
+  canvasDayEnd: {fileID: 1576944823}
+  player1ShopName: {fileID: 1064243435}
+  player2ShopName: {fileID: 823834136}
+  player1Money: {fileID: 1528932255}
+  player2Money: {fileID: 142431793}
+  player1Clients: {fileID: 957301439}
+  player2Clients: {fileID: 1071349862}
 --- !u!4 &1618253345
 Transform:
   m_ObjectHideFlags: 0
