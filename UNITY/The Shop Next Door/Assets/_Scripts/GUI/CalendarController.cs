@@ -11,6 +11,7 @@ public class CalendarController : MonoBehaviour
     [SerializeField] private GameObject hour1_text;
     [SerializeField] private GameObject hour2_text;
     [SerializeField] private GameObject hour3_text;
+    private string[] final_outcomes;
 
     [Header("Activities Objects")]
     [SerializeField] private Activity[] activities_daily = new Activity[10];
@@ -276,11 +277,13 @@ public class CalendarController : MonoBehaviour
 
     private void Awake()
     {
+        final_outcomes = new string[3];
+
         RandomizeActivities(activities_mixed);
         RandomizeActivities(activities_romantic_NotPartner);
         RandomizeActivities(activities_romantic_Partner);
 
-        WriteActivitiesInUI();
+        WriteDailyActivities();
     }
 
     private void RandomizeActivities(ActivityInfo[] list)
@@ -296,13 +299,11 @@ public class CalendarController : MonoBehaviour
         }
     }
 
-    private void WriteActivitiesInUI()
+    private void WriteDailyActivities()
     {
         // Mixed Actions
         for (int i = 0; i < 7; i++)
         {
-            print("Activity Mixed " + activities_mixed[i]);
-            print("Activity Daily " + activities_daily[i]);
             activities_text[i].SetText(activities_mixed[i].activityName);
             activities_daily[i].CopyActivity(activities_mixed[i]);
         }
@@ -328,9 +329,16 @@ public class CalendarController : MonoBehaviour
                 j++;
             }
         }
-
-        
-
-        
     }
+
+    public void ActivitiesOutcomes()
+    {
+        final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
+        final_outcomes[1] = activities_selected[1].activityInfo.outcomes[2];
+        final_outcomes[2] = activities_selected[2].activityInfo.outcomes[2];
+
+        UIManager.Instance.WriteActivityOutcomes_UI(final_outcomes);
+    }
+
+
 }

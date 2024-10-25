@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private bool telephoneMini;
     [Header("INGAME SCENE")]
     [SerializeField] private GameObject canvasIngame;
+
+    [SerializeField] public TelephoneController telephone;
+
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
     [SerializeField] private TextMeshProUGUI inventoryInfo_text;
@@ -32,6 +35,10 @@ public class UIManager : MonoBehaviour
 
     [Header("DAY-END MENU")] 
     public GameObject canvasDayEnd;
+
+    [SerializeField] private TextMeshProUGUI activity1_outcome_text;
+    [SerializeField] private TextMeshProUGUI activity2_outcome_text;
+    [SerializeField] private TextMeshProUGUI activity3_outcome_text;
 
     public TextMeshProUGUI player1ShopName;
     public TextMeshProUGUI player2ShopName;
@@ -54,12 +61,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void Start()
-    {
-        //player1Money = GameObject.Find("Canvas_DAY_END").transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        //player2Money = GameObject.Find("Canvas_DAY_END").transform.GetChild(7).GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -125,5 +126,12 @@ public class UIManager : MonoBehaviour
     public void UpdateDay_UI(string day)
     {
         day_text.SetText(day);
+    }
+
+    public void WriteActivityOutcomes_UI(string[] final_outcomes)
+    {
+        activity1_outcome_text.SetText(final_outcomes[0]);
+        activity2_outcome_text.SetText(final_outcomes[1]);
+        activity3_outcome_text.SetText(final_outcomes[2]);
     }
 }

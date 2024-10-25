@@ -3942,6 +3942,8 @@ MonoBehaviour:
   joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}
   messageMatch_wrong: {fileID: 0}
+  canvasIngame: {fileID: 0}
+  telephone: {fileID: 0}
   dineroJugador_text: {fileID: 0}
   nombreTienda_text: {fileID: 0}
   inventoryInfo_text: {fileID: 0}
@@ -3950,6 +3952,16 @@ MonoBehaviour:
   hour_text: {fileID: 0}
   clientHappiness_Bar: {fileID: 0}
   playerVigor_Bar: {fileID: 0}
+  canvasDayEnd: {fileID: 0}
+  activity1_outcome_text: {fileID: 0}
+  activity2_outcome_text: {fileID: 0}
+  activity3_outcome_text: {fileID: 0}
+  player1ShopName: {fileID: 0}
+  player2ShopName: {fileID: 0}
+  player1Money: {fileID: 0}
+  player2Money: {fileID: 0}
+  player1Clients: {fileID: 0}
+  player2Clients: {fileID: 0}
 --- !u!4 &1557370208
 Transform:
   m_ObjectHideFlags: 0
@@ -4437,8 +4449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0}
+  m_SizeDelta: {x: 0, y: 289.1659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1771772528
 MonoBehaviour:
@@ -4453,16 +4465,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10877939, g: 0.0054040514, b: 0.2603773, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: b3b8f3db40f25d14db1b8bbe2fe80de7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4582,8 +4594,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 69}
-  m_SizeDelta: {x: 1225.6, y: 881.4984}
+  m_AnchoredPosition: {x: 0.000061035, y: -170.72693}
+  m_SizeDelta: {x: 1920, y: 496.6514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1830496100
 MonoBehaviour:
@@ -4598,7 +4610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4988,7 +5000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -98.25081}
+  m_AnchoredPosition: {x: 0, y: 342}
   m_SizeDelta: {x: 694.4, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897637194
@@ -5021,8 +5033,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5039,8 +5051,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85
-  m_fontSizeBase: 85
+  m_fontSize: 36.7
+  m_fontSizeBase: 36.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5075,7 +5087,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -58.57687, z: 0, w: -7.3215466}
+  m_margin: {x: 347.97992, y: -58.57687, z: 344.03485, w: -7.3215466}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

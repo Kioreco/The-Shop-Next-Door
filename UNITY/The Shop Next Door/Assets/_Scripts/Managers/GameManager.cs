@@ -103,11 +103,11 @@ public class GameManager : NetworkBehaviour
             var playerClient = Instantiate(_playerPrefabClient, _spawnPositions[1]);
             playerClient.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj[1]);
 
-            techoPlayer2.SetActive(true);
+            techoPlayer1.SetActive(false);
         }
         else
         {
-            techoPlayer1.SetActive(true);
+            techoPlayer2.SetActive(false);
         }
     }
 
@@ -154,6 +154,9 @@ public class GameManager : NetworkBehaviour
         Debug.Log("Dinero P1: " + moneyHost);
         Debug.Log("Dinero P2: " + moneyClient);
 
+        UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
+        UIManager.Instance.canvasDayEnd.SetActive(true);
+
         StartCoroutine("ContinueDay");
     }
 
@@ -162,6 +165,7 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(10f);
         UIManager.Instance.timeReference.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);
+        //UIManager.Instance.telephone.calendar.ResetActivities();
     }
 
     #region Rpc

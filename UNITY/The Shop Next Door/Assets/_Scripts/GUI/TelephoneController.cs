@@ -24,6 +24,9 @@ public class TelephoneController : MonoBehaviour
     [SerializeField] private GameObject booksContent;
     [SerializeField] private GameObject entertainmentContent;
 
+    [Header("Calendar App")]
+    [SerializeField] public CalendarController calendar;
+
     private void OnEnable()
     {
         MiniTelephone.SetActive(false);
