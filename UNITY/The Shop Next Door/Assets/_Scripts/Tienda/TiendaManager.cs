@@ -66,14 +66,14 @@ public class TiendaManager : MonoBehaviour
     #region inicializacion Objetos
     void InicializarRopa()
     {
-        RopaYCalzado.Add("camisa", new Producto(19.99f, 50, 0, 'r', true));
-        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 50, 0, 'r', true));
-        RopaYCalzado.Add("vestidos", new Producto( 30.00f, 50, 0, 'r', false));
-        RopaYCalzado.Add("pantalones", new Producto(25.99f, 50, 0, 'r', true));
-        RopaYCalzado.Add("faldas", new Producto(20.00f, 50, 0, 'r', true));
-        RopaYCalzado.Add("pijamas", new Producto(7.50f, 50, 0, 'r', false));
-        RopaYCalzado.Add("deportivas", new Producto(55.00f, 50, 0, 'r', true));
-        RopaYCalzado.Add("edgy", new Producto(69.00f, 50, 0, 'r', true));
+        RopaYCalzado.Add("camisa", new Producto(19.99f, 5, 0, 'r', true));
+        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 2, 0, 'r', true));
+        RopaYCalzado.Add("vestidos", new Producto( 30.00f, 0, 0, 'r', false));
+        RopaYCalzado.Add("pantalones", new Producto(25.99f, 2, 0, 'r', true));
+        RopaYCalzado.Add("faldas", new Producto(20.00f, 0, 0, 'r', true));
+        RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 'r', false));
+        RopaYCalzado.Add("deportivas", new Producto(55.00f, 0, 0, 'r', true));
+        RopaYCalzado.Add("edgy", new Producto(69.00f, 1, 0, 'r', true));
     }
     void InicializarPapeleria()
     {
@@ -86,20 +86,20 @@ public class TiendaManager : MonoBehaviour
     }
     void InicializarComida()
     {
-        Comida.Add("manzana", new Producto(0.85f, 50, 0, 'c', true));
-        Comida.Add("sandia", new Producto(2.75f, 50, 0, 'c', true));
-        Comida.Add("melon", new Producto(2.15f, 50, 0, 'c', false));
-        Comida.Add("pizza", new Producto(3.45f, 50, 0, 'c', true));
-        Comida.Add("croquetas", new Producto(4.60f, 50, 0, 'c', false));
-        Comida.Add("calabaza", new Producto(5.00f, 50, 0, 'c', true));
-        Comida.Add("carne", new Producto(12.50f, 50, 0, 'c', true));
-        Comida.Add("pescado", new Producto(12.50f, 50, 0, 'c', true));
+        Comida.Add("manzana", new Producto(0.85f, 2, 0, 'c', true));
+        Comida.Add("sandia", new Producto(2.75f, 0, 0, 'c', true));
+        Comida.Add("melon", new Producto(2.15f, 0, 0, 'c', false));
+        Comida.Add("pizza", new Producto(3.45f, 1, 0, 'c', true));
+        Comida.Add("croquetas", new Producto(4.60f, 0, 0, 'c', false));
+        Comida.Add("calabaza", new Producto(5.00f, 5, 0, 'c', true));
+        Comida.Add("carne", new Producto(12.50f, 1, 0, 'c', true));
+        Comida.Add("pescado", new Producto(12.50f, 1, 0, 'c', true));
     }
     void InicializarOcio()
     {
-        JuegosPeliculasMusica.Add("HQLNNS", new Producto(5.60f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Hasta que la noche nos separe", new Producto(7.60f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("Decor Dilemma", new Producto(5.60f, 50, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Virtual velocity", new Producto(5.60f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Virtual Velocity", new Producto(5.60f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("Shrek 1", new Producto(4.75f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("Shrek 2", new Producto(4.75f, 50, 0, 'o', false));
         JuegosPeliculasMusica.Add("Shrek 3", new Producto(4.75f, 50, 0, 'o', false));
@@ -266,4 +266,41 @@ public class TiendaManager : MonoBehaviour
         }
         return 0;
     }
+
+    public float GetPrecioProductoIndividual(string nombreProducto, char tipo)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
+        {
+            return result.precio;
+        }
+        return 0;
+    }
+
+    public int GetAlmacenQuantityOfProduct(string nombreProducto, char tipo)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
+        {
+            return result.stockAlmacen;
+        }
+        return 0;
+    }
+
+    public bool CheckIfCanBuyProduct(string nombreProducto, char tipo)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
+        {
+            return result.disponible;
+        }
+        return false;
+    }
+
+    public void UpdateProductQuantity(string nombreProducto, char tipo, int quantity)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
+        {
+            result.stockAlmacen += quantity;
+        }
+    }
+
+
 }

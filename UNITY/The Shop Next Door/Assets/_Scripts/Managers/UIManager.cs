@@ -65,8 +65,12 @@ public class UIManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
         ChangeScene("0 - TitleScene");
+        if (NetworkManager.Singleton)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+        Application.Quit();
     }
 
     public void ChangeScene(string sceneName)
@@ -97,7 +101,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdatePlayersIngameMoney_UI()
     {
-        dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString());
+        dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
     }
 

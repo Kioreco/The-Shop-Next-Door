@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
-        InstantiatePlayers();
+        //InstantiatePlayers();
     }
 
     private void InstantiatePlayers()
@@ -111,6 +111,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdatePlayerVigor_UI();
     }
 
+    //public void UpdateAlmacenQuantity()
+    //{
+
+    //}
+
     public void EndDay()
     {
         //LLAMADA A server rpc
@@ -118,8 +123,8 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
 
-        //UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
-        //UIManager.Instance.canvasDayEnd.SetActive(true);
+        UIManager.Instance.canvasDayEnd.SetActive(true);
+        UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
 
         //StartCoroutine("ContinueDay");
     }

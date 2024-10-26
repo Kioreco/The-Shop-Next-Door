@@ -18,14 +18,24 @@ public class TelephoneController : MonoBehaviour
     [SerializeField] private bool theresFood;
     [SerializeField] private bool theresBooks;
     [SerializeField] private bool theresEntertainment;
-    
+
     [SerializeField] private GameObject clothesContent;
     [SerializeField] private GameObject foodContent;
     [SerializeField] private GameObject booksContent;
     [SerializeField] private GameObject entertainmentContent;
 
+    [Header("Shop App - Supplies")]
+    [SerializeField] private Supply[] supplies;
+
+
     [Header("Calendar App")]
     [SerializeField] public CalendarController calendar;
+
+    private void Awake()
+    {
+        calendar.final_outcomes = new string[3];
+        CheckAlmacenSpaceForBuying();
+    }
 
     private void OnEnable()
     {
@@ -62,15 +72,24 @@ public class TelephoneController : MonoBehaviour
         
         content.SetActive(true);
         contenedorTienda.content = content.GetComponent<RectTransform>();
+
+        CheckAlmacenSpaceForBuying();
     }
 
     public void BuySupply(Supply producto)
     {
-        if (producto.CanBuySuply())
-        {
-            GameManager.Instance.dineroJugador -= producto.precio;
-            UIManager.Instance.UpdatePlayersIngameMoney_UI();
-        }
+        producto.Buy();
+        GameManager.Instance.dineroJugador -= producto.precio;
+        UIManager.Instance.UpdatePlayersIngameMoney_UI();
+
+        CheckAlmacenSpaceForBuying() ;
     }
 
+    public void CheckAlmacenSpaceForBuying()
+    {
+        foreach(Supply supply in supplies)
+        {
+            supply.CheckIfCanBuy();
+        }
+    }
 }

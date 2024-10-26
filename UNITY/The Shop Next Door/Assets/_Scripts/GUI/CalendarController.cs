@@ -13,7 +13,7 @@ public class CalendarController : MonoBehaviour
     [SerializeField] private GameObject hour1_text;
     [SerializeField] private GameObject hour2_text;
     [SerializeField] private GameObject hour3_text;
-    private string[] final_outcomes;
+    public string[] final_outcomes;
 
     [Header("Activities Objects")]
     [SerializeField] private Activity[] activities_daily = new Activity[10];
@@ -279,8 +279,6 @@ public class CalendarController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Inicia");
-        final_outcomes = new string[3];
 
         RandomizeActivities(activities_mixed);
         RandomizeActivities(activities_romantic_NotPartner);

@@ -7,7 +7,7 @@ public class WorkDayCycle : MonoBehaviour
     public float gameTime = 0.0f;
     private int currentDay = 0;
     private int totalDays = 4;
-    private float realTimePerDay = 30f;
+    private float realTimePerDay = 60f;
     private float gameStartTime = 9f;
     private float gameClientTime = 10f;
     private float gameEndTime = 15f;
@@ -66,8 +66,6 @@ public class WorkDayCycle : MonoBehaviour
                 UpdateDayText();
                 GameManager.Instance.EndDay();
 
-                //UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
-                UIManager.Instance.canvasDayEnd.SetActive(true);
             }
         }
     }
