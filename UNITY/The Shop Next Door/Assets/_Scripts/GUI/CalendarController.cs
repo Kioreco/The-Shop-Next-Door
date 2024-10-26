@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CalendarController : MonoBehaviour
 {
@@ -277,6 +279,7 @@ public class CalendarController : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Inicia");
         final_outcomes = new string[3];
 
         RandomizeActivities(activities_mixed);

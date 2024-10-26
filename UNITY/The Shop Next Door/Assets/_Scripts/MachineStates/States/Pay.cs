@@ -89,6 +89,8 @@ public class Pay : AStateNPC
             contexto.getTiendaManager().avanzarLaCola();
             contexto.getNavMesh().SetDestination(posSalida.position);
             contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
+            //contexto.getGameManager().moneyRed.Value += contexto.getDineroCompra();
+
             contexto.getUIManager().UpdatePlayersIngameMoney_UI();
             isFinish = true;
         }

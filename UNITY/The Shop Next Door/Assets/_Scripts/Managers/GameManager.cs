@@ -35,6 +35,10 @@ public class GameManager : NetworkBehaviour
     private float moneyHost;
     private float moneyClient;
 
+    public NetworkVariable<float> moneyRed = new NetworkVariable<float>(500.0f,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
+
 
 
     public static GameManager Instance { get; private set; }
@@ -48,6 +52,38 @@ public class GameManager : NetworkBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        //_networkManager = NetworkManager.Singleton;
+        //_playerPrefab = _networkManager.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+
+        //_networkManager.OnServerStarted += OnServerStarted;
+        //_networkManager.OnClientConnectedCallback += OnClientConnected;
+        if (IsOwner)
+        {
+            dineroJugador = 500.0f;
+            //RequestMoneyRedUpdateServerRpc(dineroJugador); ;
+        }
+
+        moneyRed.OnValueChanged += OnMoneyChanged;
+        OnMoneyChanged(0, moneyRed.Value);
+    }
+
+    private void OnMoneyChanged(float previousValue, float newValue)
+    {
+        if (IsServer)
+        {
+            UIManager.Instance.player1Money.text = newValue.ToString();
+            Debug.Log("Cambia el red a " + UIManager.Instance.player1Money.text);
+        }
+        else if (IsClient && !IsServer)
+        {
+            UIManager.Instance.player2Money.text = newValue.ToString();
+            Debug.Log("Cambia el red a " + UIManager.Instance.player2Money.text);
         }
     }
 
@@ -78,7 +114,7 @@ public class GameManager : NetworkBehaviour
         //_networkManager.OnServerStarted += OnServerStarted;
         //_networkManager.OnClientConnectedCallback += OnClientConnected;
 
-        dineroJugador = 500.0f;
+        //dineroJugador = 500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 50;
         clientHappiness = 0;
@@ -182,6 +218,12 @@ public class GameManager : NetworkBehaviour
     {
         UIManager.Instance.player1Money.SetText("Host Money: " + moneyHost);
         UIManager.Instance.player2Money.SetText("Client Money: " + moneyClient);
+    }
+
+    [ServerRpc]
+    private void RequestMoneyRedUpdateServerRpc(float amount)
+    {
+        moneyRed.Value = amount;
     }
 
     #endregion
