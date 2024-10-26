@@ -55,7 +55,7 @@ public class ObjectPool : IObjectPool
 
     public void Release(IContext obj)
     {
-        Debug.Log("release");
+        //Debug.Log("release");
         obj.isActive = false;
         countNpcsActive -= 1;
         obj.Reset();

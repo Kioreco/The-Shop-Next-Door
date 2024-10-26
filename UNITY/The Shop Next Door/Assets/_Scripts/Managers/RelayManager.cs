@@ -39,7 +39,7 @@ public class RelayManager : NetworkBehaviour
         _obj = new ulong[15];
 
         _playerPrefabHost = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
-        _playerPrefabClient = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+        _playerPrefabClient = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[1].Prefab;
 
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;

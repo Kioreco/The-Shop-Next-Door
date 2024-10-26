@@ -17,6 +17,8 @@ public class WorkDayCycle : MonoBehaviour
     private bool cycleCompleted = false;
     public bool timeStopped = false;
 
+    public ClientPrototype npcClient;
+
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
     void Update()
@@ -32,6 +34,16 @@ public class WorkDayCycle : MonoBehaviour
 
         //gameTime==10.0f entran clientes el lunes
         //gameTime==9.3f entran clientes el resto de dias
+        
+        //print(currentDay);
+        if(gameTime >= 10 && currentDay == 0) // lunes
+        {
+            npcClient.isEnable = true;
+        }
+        else if (gameTime >= 9.05f && currentDay > 0)
+        {
+            npcClient.isEnable = true;
+        }
 
         // Actualizar la UI para mostrar la hora del juego
         UpdateTimeText();
@@ -52,11 +64,7 @@ public class WorkDayCycle : MonoBehaviour
                 timeStopped = true;
                 // Actualizar el texto del día en el UI
                 UpdateDayText();
-                //GameManager.Instance.moneyRed.Value = GameManager.Instance.dineroJugador;
-
                 GameManager.Instance.EndDay();
-                Debug.Log(UIManager.Instance.player1Money.text);
-                Debug.Log(UIManager.Instance.player2Money.text);
 
                 //UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
                 UIManager.Instance.canvasDayEnd.SetActive(true);
@@ -70,6 +78,7 @@ public class WorkDayCycle : MonoBehaviour
         int hours = Mathf.FloorToInt(gameTime);
         int minutes = Mathf.FloorToInt((gameTime - hours) * 60);
 
+        //if (minutes == 30) print(gameTime);
 
         UIManager.Instance.UpdateTime_UI(hours, minutes);
     }

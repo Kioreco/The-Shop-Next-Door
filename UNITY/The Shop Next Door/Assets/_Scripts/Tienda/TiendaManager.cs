@@ -145,7 +145,7 @@ public class TiendaManager : MonoBehaviour
         else if (ID == 1 && player.IsOwner)
         //else if(GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            print("cliente");
+            //print("cliente");
             foreach (var item in shelfsP2)
             {
                 if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
@@ -197,7 +197,7 @@ public class TiendaManager : MonoBehaviour
 
             npcPayQueueP1.Enqueue(npc);
             payQueueChangeP1?.Invoke(this, EventArgs.Empty);
-            print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
+            //print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
             return npcPayQueueP1.Count;
         }
         else if (ID == 1 && player.IsOwner)
@@ -208,7 +208,7 @@ public class TiendaManager : MonoBehaviour
             payQueueChangeP2?.Invoke(this, EventArgs.Empty);
             return npcPayQueueP2.Count;
         }
-        print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
+        //print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
 
         return -1;
     }

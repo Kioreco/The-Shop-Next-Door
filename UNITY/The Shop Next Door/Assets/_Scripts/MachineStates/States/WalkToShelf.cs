@@ -12,7 +12,7 @@ public class WalkToShelf : AStateNPC
     #region metodos
     public override void Enter() 
     {
-        Debug.Log("walking to shelf and taking product");
+        //Debug.Log("walking to shelf and taking product");
         contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);
         //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());

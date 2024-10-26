@@ -11,7 +11,7 @@ public class SearchShelf : AStateNPC
 
     public override void Enter()
     {
-        Debug.Log($"searching next shelf\tElementosRestantes: {contexto.getLista().lista.Count}");
+        //Debug.Log($"searching next shelf\tElementosRestantes: {contexto.getLista().lista.Count}");
         elementosRestantes = contexto.getLista().lista.Count;
         if(elementosRestantes > 0)
         {

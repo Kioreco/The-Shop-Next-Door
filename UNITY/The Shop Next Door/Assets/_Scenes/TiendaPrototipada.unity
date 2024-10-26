@@ -121,7 +121,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 30ea164960c572a438ebe1488bc701ac, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f13a57199867be14783670820783e155, type: 2}
 --- !u!1 &2500205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,7 +2088,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &225116941
 MeshCollider:
@@ -5054,8 +5054,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedPlayers: 0
-  _playerPrefab: {fileID: 0}
-  _obj: 0
+  _playerPrefabClient: {fileID: 0}
+  _playerPrefabHost: {fileID: 0}
+  _obj: 
 --- !u!114 &523355280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11889,6 +11890,7 @@ MonoBehaviour:
   foodContent: {fileID: 590939032}
   booksContent: {fileID: 0}
   entertainmentContent: {fileID: 0}
+  calendar: {fileID: 0}
 --- !u!1 &1184324814
 GameObject:
   m_ObjectHideFlags: 0
@@ -16241,11 +16243,26 @@ MonoBehaviour:
   joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}
   messageMatch_wrong: {fileID: 0}
+  canvasIngame: {fileID: 0}
+  telephone: {fileID: 0}
   dineroJugador_text: {fileID: 1318248217}
   nombreTienda_text: {fileID: 1634855137}
   inventoryInfo_text: {fileID: 0}
+  timeReference: {fileID: 0}
+  day_text: {fileID: 0}
+  hour_text: {fileID: 0}
   clientHappiness_Bar: {fileID: 0}
   playerVigor_Bar: {fileID: 0}
+  canvasDayEnd: {fileID: 0}
+  activity1_outcome_text: {fileID: 0}
+  activity2_outcome_text: {fileID: 0}
+  activity3_outcome_text: {fileID: 0}
+  player1ShopName: {fileID: 0}
+  player2ShopName: {fileID: 0}
+  player1Money: {fileID: 0}
+  player2Money: {fileID: 0}
+  player1Clients: {fileID: 0}
+  player2Clients: {fileID: 0}
 --- !u!4 &1618253345
 Transform:
   m_ObjectHideFlags: 0
@@ -16849,11 +16866,15 @@ MonoBehaviour:
   cameraP1: {fileID: 1048757763}
   cameraP2: {fileID: 557485725}
   separador: {fileID: 1006306845}
+  techoPlayer1: {fileID: 0}
+  techoPlayer2: {fileID: 0}
   dineroJugador: 500
+  dineroRival: 0
   espacioAlmacen: 0
   maxEspacioAlmacen: 0
   clientHappiness: 0
   playerVigor: 0
+  _player: {fileID: 0}
 --- !u!4 &1682136469
 Transform:
   m_ObjectHideFlags: 0

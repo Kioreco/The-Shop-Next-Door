@@ -7,7 +7,7 @@ public class CajaPago : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            print("está");
+            //print("está");
             other.gameObject.GetComponent<Context>().setIsInColliderCajaPago(true);
         }
     }

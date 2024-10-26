@@ -32,8 +32,14 @@ public class PlayerControler : NetworkBehaviour
     float amountZoom;
     float zoomSpeed = 5f;
 
-
     public GameObject client;
+
+
+    [Header("Network Variables")]
+    NetworkVariable<float> playerMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    float dineroJ;
+    float dineroE;
+
     #endregion
 
     void Start()
@@ -44,9 +50,11 @@ public class PlayerControler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
-            amountZoom = fovSinZoom; 
+            amountZoom = fovSinZoom;
             //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
         }
+        playerMoney.OnValueChanged += OnPlayerMoneyChange;
+
     }
 
     public override void OnNetworkSpawn()
@@ -60,8 +68,9 @@ public class PlayerControler : NetworkBehaviour
 
             if (ID == 0) 
             {
-                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().player = this;
-                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().ID = 0;
+                TiendaManager.Instance.player = this;
+                TiendaManager.Instance.ID = 0;
+                GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
                 client.GetComponent<ClientPrototype>().isCreated = true; 
             }
@@ -70,9 +79,9 @@ public class PlayerControler : NetworkBehaviour
             {
                 GameManager.Instance.cameraP1.SetActive(false);
                 GameManager.Instance.cameraP2.SetActive(true);
-                GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
-                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().player = this;
-                GameObject.FindWithTag("TiendaManager").GetComponent<TiendaManager>().ID = 1;
+                TiendaManager.Instance.player = this;
+                TiendaManager.Instance.ID = 1;
+                GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
             }
@@ -82,11 +91,7 @@ public class PlayerControler : NetworkBehaviour
             minZ = Camera.main.transform.position.z - 20f;
             maxZ = Camera.main.transform.position.z + 20f;
 
-            
-
-            //client.instanciarNPC();
-            //client.instanciarNPC();
-            //client.instanciarNPC();
+            //GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
         }
     }
 
@@ -135,7 +140,7 @@ public class PlayerControler : NetworkBehaviour
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouse, out var hit, Mathf.Infinity, layerMask))
             {
-                print($"if dentro\t destination: {hit.point}");
+                //print($"if dentro\t destination: {hit.point}");
                 _agent.SetDestination(hit.point);
                 _playerTransform.LookAt(hit.point);
             }
@@ -168,5 +173,45 @@ public class PlayerControler : NetworkBehaviour
             amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
         }
     }
+    #endregion
+
+    #region network
+
+    public void FinalResume()
+    {
+        print("final resume");
+        if(ID == 0) UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
+        if(ID == 1) UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
+
+        SetupNetworkMoney();
+        
+    }
+
+    private void SetupNetworkMoney()
+    {
+        if (IsOwner)
+        {
+            print("setupnetworkmoney owner");
+
+            dineroJ = GameManager.Instance.dineroJugador;
+            playerMoney.Value = dineroJ; //lo que se va a mandar
+
+            OnPlayerMoneyChange(dineroJ, playerMoney.Value);
+        }
+    }
+
+    void OnPlayerMoneyChange(float previous, float newM) 
+    {
+        print($"on value change: {newM}");
+        if(dineroJ != newM)
+        {
+            dineroE = newM;
+            GameManager.Instance.dineroRival = dineroE;
+        }
+        //UIManager.Instance.player2Money.SetText(dineroE.ToString());
+        if (ID == 0) UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+        if (ID == 1) UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
+    }
+
     #endregion
 }

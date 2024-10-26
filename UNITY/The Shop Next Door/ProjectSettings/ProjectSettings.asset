@@ -839,8 +839,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: The Shop Next Door
-  metroPackageVersion: 
+  metroPackageName: TheShopNextDoor
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -848,7 +848,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: The Shop Next Door
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: The Shop Next Door
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

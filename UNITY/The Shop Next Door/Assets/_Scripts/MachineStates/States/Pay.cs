@@ -26,7 +26,7 @@ public class Pay : AStateNPC
     public override void Enter()
     {
         //contexto.getNavMesh().avoidancePriority = Random.Range(30, 50);
-        Debug.Log("paying...");
+        //Debug.Log("paying...");
         //Debug.Log($"dinero: {contexto.getDineroCompra()}");
         if(contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().player.IsOwner)
         {
