@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Producto : MonoBehaviour
+public class Producto
 {
     public float precio { get; set; }
     public int stockAlmacen { get; set; } 

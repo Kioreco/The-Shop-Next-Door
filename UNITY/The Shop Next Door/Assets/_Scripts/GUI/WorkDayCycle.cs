@@ -6,9 +6,10 @@ public class WorkDayCycle : MonoBehaviour
 {
     public float gameTime = 0.0f;
     private int currentDay = 0;
-    private int totalDays = 5;
-    private float realTimePerDay = 10f;
+    private int totalDays = 4;
+    private float realTimePerDay = 15f;
     private float gameStartTime = 9f;
+    private float gameClientTime = 10f;
     private float gameEndTime = 15f;
     private float gameHoursPerDay = 6f;
 
@@ -28,6 +29,9 @@ public class WorkDayCycle : MonoBehaviour
         // Calcular el tiempo en el juego (de 9:00 a 15:00)
         float timeRatio = realTimePassed / realTimePerDay;
         gameTime = Mathf.Lerp(gameStartTime, gameEndTime, timeRatio);
+
+        //gameTime==10.0f entran clientes el lunes
+        //gameTime==9.3f entran clientes el resto de dias
 
         // Actualizar la UI para mostrar la hora del juego
         UpdateTimeText();
@@ -58,12 +62,6 @@ public class WorkDayCycle : MonoBehaviour
                 UIManager.Instance.canvasDayEnd.SetActive(true);
             }
         }
-
-        //if (currentDay == 2)
-        //{
-        //    GameManager.Instance.EndDay();
-        //    UIManager.Instance.canvasDayEnd.SetActive(true);
-        //}
     }
 
     // Actualizar el texto del tiempo (formato: 9:00, 10:30, etc.)
@@ -71,6 +69,7 @@ public class WorkDayCycle : MonoBehaviour
     {
         int hours = Mathf.FloorToInt(gameTime);
         int minutes = Mathf.FloorToInt((gameTime - hours) * 60);
+
 
         UIManager.Instance.UpdateTime_UI(hours, minutes);
     }

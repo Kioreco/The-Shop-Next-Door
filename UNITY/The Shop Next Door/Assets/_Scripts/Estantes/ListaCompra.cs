@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListaCompra : MonoBehaviour
+public class ListaCompra
 {
     List<char> tipo = new List<char>();
     public Dictionary<string,(char tipo, int cantidad)> lista = new Dictionary<string, (char, int)>();
     int cont = 0;
 
-    private void Start()
-    {
-    }
 
     public void CrearLista()
     {
@@ -37,23 +34,24 @@ public class ListaCompra : MonoBehaviour
             }
         }
     }
+    //
 
-    public void imprimirLista()
-    {
-        print("\t\tINICIO LISTA");
+    //public void imprimirLista()
+    //{
+    //    //print("\t\tINICIO LISTA");
 
-        foreach (var par in lista)
-        {
-            print($"Clave: {par.Key}, Valor: {par.Value}");
-        }
-        print("\t\tFIN LISTA");
-    }
+    //    foreach (var par in lista)
+    //    {
+    //        //print($"Clave: {par.Key}, Valor: {par.Value}");
+    //    }
+    //    //print("\t\tFIN LISTA");
+    //}
 
 
-    public void listaPrueba()
-    {
-        Agregar("camisa", 'r', 1);
-    }
+    //public void listaPrueba()
+    //{
+    //    Agregar("camisa", 'r', 1);
+    //}
 
     public void Agregar(string s, char c,int n)
     {
