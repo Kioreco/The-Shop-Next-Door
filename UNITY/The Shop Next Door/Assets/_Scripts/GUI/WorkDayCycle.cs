@@ -7,7 +7,7 @@ public class WorkDayCycle : MonoBehaviour
     public float gameTime = 0.0f;
     private int currentDay = 0;
     private int totalDays = 4;
-    private float realTimePerDay = 15f;
+    private float realTimePerDay = 30f;
     private float gameStartTime = 9f;
     private float gameClientTime = 10f;
     private float gameEndTime = 15f;
@@ -52,13 +52,13 @@ public class WorkDayCycle : MonoBehaviour
                 timeStopped = true;
                 // Actualizar el texto del día en el UI
                 UpdateDayText();
-                GameManager.Instance.moneyRed.Value = GameManager.Instance.dineroJugador;
+                //GameManager.Instance.moneyRed.Value = GameManager.Instance.dineroJugador;
 
-                //GameManager.Instance.EndDay();
+                GameManager.Instance.EndDay();
                 Debug.Log(UIManager.Instance.player1Money.text);
                 Debug.Log(UIManager.Instance.player2Money.text);
 
-                UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
+                //UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
                 UIManager.Instance.canvasDayEnd.SetActive(true);
             }
         }

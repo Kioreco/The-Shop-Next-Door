@@ -32,14 +32,20 @@ public class GameManager : NetworkBehaviour
     public float playerVigor;
 
     [Header("Rpc Player References")]
-    private float moneyHost;
-    private float moneyClient;
+    //private float moneyHost;
+    //private float moneyClient;
 
     public NetworkVariable<float> moneyRed = new NetworkVariable<float>(500.0f,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Owner);
 
+    public NetworkVariable<float> moneyHost = new NetworkVariable<float>(500.0f,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
 
+    public NetworkVariable<float> moneyClient = new NetworkVariable<float>(500.0f,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -57,6 +63,7 @@ public class GameManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        Debug.Log("Se mete spawn");
         base.OnNetworkSpawn();
         //_networkManager = NetworkManager.Singleton;
         //_playerPrefab = _networkManager.NetworkConfig.Prefabs.Prefabs[0].Prefab;
@@ -65,49 +72,65 @@ public class GameManager : NetworkBehaviour
         //_networkManager.OnClientConnectedCallback += OnClientConnected;
         if (IsOwner)
         {
+            Debug.Log("Inicia en Spawn a 500");
             dineroJugador = 500.0f;
-            //RequestMoneyRedUpdateServerRpc(dineroJugador); ;
+            //RequestMoneyRedUpdateServerRpc(dineroJugador);
         }
 
-        moneyRed.OnValueChanged += OnMoneyChanged;
-        OnMoneyChanged(0, moneyRed.Value);
+        //moneyRed.OnValueChanged += OnMoneyChanged;
+        //OnMoneyChanged(0, moneyRed.Value);
     }
 
     private void OnMoneyChanged(float previousValue, float newValue)
     {
-        if (IsServer)
+        Debug.Log("Se mete en Changed");
+        if (NetworkManager.Singleton.IsServer)
         {
-            UIManager.Instance.player1Money.text = newValue.ToString();
             Debug.Log("Cambia el red a " + UIManager.Instance.player1Money.text);
+            UIManager.Instance.player1Money.text = newValue.ToString();
+            //RequestMoneyRedUpdateServerRpc(dineroJugador);
         }
-        else if (IsClient && !IsServer)
+        else if (NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
-            UIManager.Instance.player2Money.text = newValue.ToString();
             Debug.Log("Cambia el red a " + UIManager.Instance.player2Money.text);
+            UIManager.Instance.player2Money.text = newValue.ToString();
+            //RequestMoneyRedUpdateServerRpc(dineroJugador);
         }
     }
 
-    void Update()
-    {
-        if (NetworkManager.Singleton.IsServer)
-        {
-            if (NetworkManager.Singleton.ConnectedClients.Count > 2)
-            {
-                for (int i = 2; i < RelayManager.Instance._obj.Length; i++)
-                {
-                    if (NetworkManager.Singleton.ConnectedClients.ContainsKey(RelayManager.Instance._obj[i]))
-                    {
-                        NetworkManager.Singleton.DisconnectClient(RelayManager.Instance._obj[i]);
-                        Debug.Log("Se ha desconectado el cliente " + RelayManager.Instance._obj[i]);
-                        Debug.Log("Ahora quedan " + NetworkManager.Singleton.ConnectedClients.Count);
-                    }
-                }
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (NetworkManager.Singleton.IsServer)
+    //    {
+    //        if (NetworkManager.Singleton.ConnectedClients.Count > 2)
+    //        {
+    //            for (int i = 2; i < RelayManager.Instance._obj.Length; i++)
+    //            {
+    //                if (NetworkManager.Singleton.ConnectedClients.ContainsKey(RelayManager.Instance._obj[i]))
+    //                {
+    //                    NetworkManager.Singleton.DisconnectClient(RelayManager.Instance._obj[i]);
+    //                    Debug.Log("Se ha desconectado el cliente " + RelayManager.Instance._obj[i]);
+    //                    Debug.Log("Ahora quedan " + NetworkManager.Singleton.ConnectedClients.Count);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     void Start()
     {
+        if (IsOwner)
+        {
+            Debug.Log("Inicia en Spawn a 500");
+            dineroJugador = 500.0f;
+            //RequestMoneyRedUpdateServerRpc(dineroJugador);
+        }
+
+        //moneyRed.OnValueChanged += OnMoneyChanged;
+        //OnMoneyChanged(0, moneyRed.Value);
+
+        moneyHost.OnValueChanged += OnMoneyHostChanged;
+        moneyClient.OnValueChanged += OnMoneyClientChanged;
         //_networkManager = NetworkManager.Singleton;
         //_playerPrefab = _networkManager.NetworkConfig.Prefabs.Prefabs[0].Prefab;
 
@@ -126,6 +149,25 @@ public class GameManager : NetworkBehaviour
         InstantiatePlayers();
     }
 
+    private void OnMoneyClientChanged(float previousValue, float newValue)
+    {
+        Debug.Log("Se mete en OnMoneyCliente");
+        // Actualizar la UI del cliente
+        if (!NetworkManager.Singleton.IsServer)
+        {
+            UIManager.Instance.player2Money.text = newValue.ToString();
+        }
+    }
+
+    private void OnMoneyHostChanged(float previousValue, float newValue)
+    {
+        Debug.Log("Se mete en OnMoneyHost");
+        // Actualizar la UI del host
+        if (NetworkManager.Singleton.IsServer)
+        {
+            UIManager.Instance.player1Money.text = newValue.ToString();
+        }
+    }
 
     private void InstantiatePlayers()
     {
@@ -177,23 +219,29 @@ public class GameManager : NetworkBehaviour
 
     public void EndDay()
     {
-        if (IsServer)
+        if (NetworkManager.Singleton.IsServer)
         {
-            moneyHost = dineroJugador;
-            UpdateMoneyClientRpc(moneyHost, moneyClient);
+            Debug.Log("Cambia dinero host en EndDay");
+            //moneyHost = dineroJugador;
+            //UpdateMoneyClientRpc(moneyHost, moneyClient);
+            moneyHost.Value = dineroJugador;
+            //OnMoneyHostChanged(0, moneyHost.Value);
         }
         else
         {
-            SendClientMoneyServerRpc(dineroJugador);
+            Debug.Log("Cambia dinero cliente en EndDay");
+            //SendClientMoneyServerRpc(dineroJugador);
+            moneyClient.Value = dineroJugador;
+            //OnMoneyClientChanged(0, moneyClient.Value);
         }
 
-        Debug.Log("Dinero P1: " + moneyHost);
-        Debug.Log("Dinero P2: " + moneyClient);
+        Debug.Log("Dinero P1: " + moneyHost.Value);
+        Debug.Log("Dinero P2: " + moneyClient.Value);
 
-        UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
+        //UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
         UIManager.Instance.canvasDayEnd.SetActive(true);
 
-        StartCoroutine("ContinueDay");
+        //StartCoroutine("ContinueDay");
     }
 
     IEnumerator ContinueDay()
@@ -206,12 +254,12 @@ public class GameManager : NetworkBehaviour
 
     #region Rpc
 
-    [ServerRpc]
-    public void SendClientMoneyServerRpc(float money)
-    {
-        moneyClient = money;
-        UpdateMoneyClientRpc(moneyHost, moneyClient);
-    }
+    //[ServerRpc]
+    //public void SendClientMoneyServerRpc(float money)
+    //{
+    //    moneyClient = money;
+    //    UpdateMoneyClientRpc(moneyHost, moneyClient);
+    //}
 
     [ClientRpc]
     public void UpdateMoneyClientRpc(float moneyHost, float moneyClient)
@@ -223,6 +271,15 @@ public class GameManager : NetworkBehaviour
     [ServerRpc]
     private void RequestMoneyRedUpdateServerRpc(float amount)
     {
+        //Debug.Log("Cambia a " + amount);
+        //moneyRed.Value = amount;
+        RequestMoneyRedUpdateClientRpc(amount);
+    }
+
+    [ClientRpc]
+    private void RequestMoneyRedUpdateClientRpc(float amount)
+    {
+        Debug.Log("Cambia a " + amount);
         moneyRed.Value = amount;
     }
 
