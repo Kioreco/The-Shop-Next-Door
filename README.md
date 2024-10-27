@@ -1,4 +1,4 @@
-![imagen](https://github.com/user-attachments/assets/36a01cf3-b5f2-4c04-bedd-52883800660e)![imagen](https://github.com/user-attachments/assets/9b567b87-7a20-442a-b388-e16acf2963b6)# **The Shop Next Door** - **un juego por el equipo de Kioreco**
+**The Shop Next Door** - **un juego por el equipo de Kioreco**
 
 Versión 0.1.0
 2022\.3.48f1 -> LTS
