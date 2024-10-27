@@ -334,9 +334,35 @@ public class CalendarController : MonoBehaviour
 
     public void ActivitiesOutcomes()
     {
-        final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
-        final_outcomes[1] = activities_selected[1].activityInfo.outcomes[2];
-        final_outcomes[2] = activities_selected[2].activityInfo.outcomes[2];
+        final_outcomes = new string[3];
+
+        if (activities_selected[0] != null)
+        {
+            final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
+        }
+        else
+        {
+            final_outcomes[0] = "";
+        }
+
+        if(activities_selected[1] != null)
+        {
+            final_outcomes[1] = activities_selected[1].activityInfo.outcomes[2];
+        }
+        else
+        {
+            final_outcomes[1] = "";
+        }
+
+        if (activities_selected[2] != null)
+        {
+            final_outcomes[2] = activities_selected[2].activityInfo.outcomes[2];
+        }
+        else
+        {
+            final_outcomes[2] = "";
+        }
+
 
         UIManager.Instance.WriteActivityOutcomes_UI(final_outcomes);
     }

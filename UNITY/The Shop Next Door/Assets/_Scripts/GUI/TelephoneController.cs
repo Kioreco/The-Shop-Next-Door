@@ -33,8 +33,8 @@ public class TelephoneController : MonoBehaviour
 
     private void Awake()
     {
-        calendar.final_outcomes = new string[3];
-        calendar.activities_selected = new Activity[3];
+        //calendar.final_outcomes = new string[3];
+        //calendar.activities_selected = new Activity[3];
         CheckAlmacenSpaceForBuying();
     }
 

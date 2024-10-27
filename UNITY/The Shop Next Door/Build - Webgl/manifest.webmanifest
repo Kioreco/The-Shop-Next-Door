@@ -3,7 +3,7 @@
     "short_name": "The Shop Next Door",
     "start_url": "index.html",
     "display": "fullscreen",
-    "background_color": "#231F20",
+    "background_color": "#FFFFFF",
     "theme_color": "#000",
     "description": "The Shop Next Door by Kioreco",
     "icons": [{

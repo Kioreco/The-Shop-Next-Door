@@ -1,9 +1,9 @@
 const cacheName = "Kioreco-The Shop Next Door-0.1.0";
 const contentToCache = [
-    "Build/Build - Webgl.loader.js",
-    "Build/Build - Webgl.framework.js.br",
-    "Build/Build - Webgl.data.br",
-    "Build/Build - Webgl.wasm.br",
+    "Build/Build - WebGl.loader.js",
+    "Build/Build - WebGl.framework.js.br",
+    "Build/Build - WebGl.data.br",
+    "Build/Build - WebGl.wasm.br",
     "TemplateData/style.css"
 
 ];
