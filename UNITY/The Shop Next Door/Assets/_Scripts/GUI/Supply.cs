@@ -56,7 +56,7 @@ public class Supply : MonoBehaviour
     private void SetQuantityOwned()
     {
         quantityOwned = TiendaManager.Instance.GetAlmacenQuantityOfProduct(producto, categoria);
-
+        print($"cantidad de producto: {quantityOwned}  producto: {producto}  categoria: {categoria}");
         quantityAlmacen_text.SetText(quantityOwned.ToString());
     }
 

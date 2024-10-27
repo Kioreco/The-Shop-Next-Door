@@ -34,6 +34,7 @@ public class TelephoneController : MonoBehaviour
     private void Awake()
     {
         calendar.final_outcomes = new string[3];
+        calendar.activities_selected = new Activity[3];
         CheckAlmacenSpaceForBuying();
     }
 
@@ -81,6 +82,7 @@ public class TelephoneController : MonoBehaviour
         producto.Buy();
         GameManager.Instance.dineroJugador -= producto.precio;
         UIManager.Instance.UpdatePlayersIngameMoney_UI();
+        TiendaManager.Instance.refillStock(producto.producto, producto.quantityToBuy, producto.categoria);
 
         CheckAlmacenSpaceForBuying() ;
     }

@@ -103,6 +103,7 @@ public class UIManager : MonoBehaviour
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
+        if (GameManager.Instance.dineroJugador > 0) { dineroJugador_text.color = Color.white; }
     }
 
     public void UpdateInventorySpace_UI()

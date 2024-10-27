@@ -69,14 +69,14 @@ public class GameManager : MonoBehaviour
     {
         dineroJugador = 500.0f;
         espacioAlmacen = 0;
-        maxEspacioAlmacen = 50;
+        maxEspacioAlmacen = 100;
         clientHappiness = 0;
         playerVigor = 100;
         UIManager.Instance.UpdateClientHappiness_UI();
         UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
-        //InstantiatePlayers();
+        InstantiatePlayers();
     }
 
     private void InstantiatePlayers()
@@ -111,10 +111,10 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdatePlayerVigor_UI();
     }
 
-    //public void UpdateAlmacenQuantity()
-    //{
-
-    //}
+    public void UpdateAlmacenQuantity()
+    {
+        TiendaManager.Instance.updateAlmacenQuantity();
+    }
 
     public void EndDay()
     {

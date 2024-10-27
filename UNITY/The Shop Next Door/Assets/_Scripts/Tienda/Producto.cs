@@ -16,35 +16,8 @@ public class Producto
         stockEstanteria = se;
         tipo = t;
         disponible = b;
+        //if(b && (t == 'r' || t == 'c')) Debug.Log($"stockAlmacen: {sa}   stockEstanteria: {se}     tipo: {t}");
     }
-
-    //public override bool Equals(object obj)
-    //{
-    //    if (obj is Producto aux)
-    //    {
-    //        return
-    //            aux.precio == precio &&
-    //            aux.stockAlmacen == stockAlmacen &&
-    //            aux.stockEstanteria == stockEstanteria &&
-    //            aux.tipo == tipo &&
-    //            aux.disponible == disponible;
-    //    }
-
-    //    return false;
-    //}
-
-    //public override int GetHashCode()
-    //{
-    //    int hashCode = 17;
-
-    //    hashCode = hashCode * 23 + precio.GetHashCode();
-    //    hashCode = hashCode * 23 + stockAlmacen.GetHashCode();
-    //    hashCode = hashCode * 23 + stockEstanteria.GetHashCode();
-    //    hashCode = hashCode * 23 + tipo.GetHashCode();
-    //    hashCode = hashCode * 23 + disponible.GetHashCode();
-
-    //    return hashCode;
-    //}
 
     public override string ToString()
     {
@@ -53,20 +26,34 @@ public class Producto
 
     public void gestionarStockEstanteriaYAlmacen(int a)
     {
-        int repuestos = 20 - stockEstanteria;
-        
-        stockEstanteria += repuestos;
-        stockAlmacen += a - repuestos;
+        Debug.Log($"stockAlmacen: {stockAlmacen}  stockEstanteria: {stockEstanteria}  cantidad: {a}  resta: {stockAlmacen - a}");
+        if (stockAlmacen - a >= 0)
+        {
+            Debug.Log("almacen con cantidad");
+            stockEstanteria += a;
+            stockAlmacen -= a;
+            Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
+
+        }
+        else
+        {
+            Debug.Log("almacen sin cantidad");
+
+            stockEstanteria += stockAlmacen;
+            stockAlmacen = 0;
+            Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
+
+        }
     }
 
-    public int cogerProducto(int c)
+    public void cogerProducto(int c)
     {
         if(stockEstanteria - c >= 0) stockEstanteria -= c;
         else
         {
             stockEstanteria = 0;
-            return -1; //devuelve -1 si se ha intentado coger más cantidad de la que quedaba
+            //return -1; //devuelve -1 si se ha intentado coger más cantidad de la que quedaba
         }
-        return 0; //si ha cogido todos los elementos que podía coger
+        //return 0; //si ha cogido todos los elementos que podía coger
     }
 }

@@ -72,7 +72,10 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
-                client.GetComponent<ClientPrototype>().isCreated = true; 
+                client.GetComponent<ClientPrototype>().isCreated = true;
+                TiendaManager.Instance.reponerEstanteria(20);
+                TiendaManager.Instance.updateAlmacenQuantity();
+                UIManager.Instance.UpdateInventorySpace_UI();
             }
 
             if (ID == 1)
@@ -84,14 +87,16 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
+                TiendaManager.Instance.reponerEstanteria(20);
+                TiendaManager.Instance.updateAlmacenQuantity();
+                UIManager.Instance.UpdateInventorySpace_UI();
+                GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             }
             isInitialized = true;
             minX = Camera.main.transform.position.x - 20f;
             maxX = Camera.main.transform.position.x + 20f;
             minZ = Camera.main.transform.position.z - 20f;
             maxZ = Camera.main.transform.position.z + 20f;
-
-            //GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
         }
     }
 

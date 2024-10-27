@@ -829,6 +829,8 @@ MonoBehaviour:
   joinCode_Input: {fileID: 65241094}
   messageMatch_waiting: {fileID: 78213285}
   messageMatch_wrong: {fileID: 1290701186}
+  canvasIngame: {fileID: 0}
+  telephone: {fileID: 0}
   dineroJugador_text: {fileID: 124384687}
   nombreTienda_text: {fileID: 0}
   inventoryInfo_text: {fileID: 0}
@@ -837,6 +839,16 @@ MonoBehaviour:
   hour_text: {fileID: 0}
   clientHappiness_Bar: {fileID: 0}
   playerVigor_Bar: {fileID: 0}
+  canvasDayEnd: {fileID: 0}
+  activity1_outcome_text: {fileID: 0}
+  activity2_outcome_text: {fileID: 0}
+  activity3_outcome_text: {fileID: 0}
+  player1ShopName: {fileID: 0}
+  player2ShopName: {fileID: 0}
+  player1Money: {fileID: 0}
+  player2Money: {fileID: 0}
+  player1Clients: {fileID: 0}
+  player2Clients: {fileID: 0}
 --- !u!4 &300335086
 Transform:
   m_ObjectHideFlags: 0
@@ -1825,8 +1837,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedPlayers: 0
-  _playerPrefabClient: {fileID: 0}
-  _playerPrefabHost: {fileID: 0}
+  _playerPrefabClient: {fileID: 8095243382799895585, guid: 91c31006ba02cbc47bb84f9fb861bb30,
+    type: 3}
+  _playerPrefabHost: {fileID: 3365088233014281664, guid: 7793301f982dd0546b05ecdb8745a7b1,
+    type: 3}
   _obj: 
 --- !u!4 &1163272537
 Transform:

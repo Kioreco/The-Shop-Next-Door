@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TiendaManager : MonoBehaviour
@@ -57,6 +58,7 @@ public class TiendaManager : MonoBehaviour
             InicializarOcio();
             InicializarPapeleria();
             InicializarRopa();
+
         }
         else
         {
@@ -66,14 +68,14 @@ public class TiendaManager : MonoBehaviour
     #region inicializacion Objetos
     void InicializarRopa()
     {
-        RopaYCalzado.Add("camisa", new Producto(19.99f, 5, 0, 'r', true));
-        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 2, 0, 'r', true));
+        RopaYCalzado.Add("camisa", new Producto(19.99f, 25, 0, 'r', true));
+        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 22, 0, 'r', true));
         RopaYCalzado.Add("vestidos", new Producto( 30.00f, 0, 0, 'r', false));
-        RopaYCalzado.Add("pantalones", new Producto(25.99f, 2, 0, 'r', true));
-        RopaYCalzado.Add("faldas", new Producto(20.00f, 0, 0, 'r', true));
+        RopaYCalzado.Add("pantalones", new Producto(25.99f, 22, 0, 'r', true));
+        RopaYCalzado.Add("faldas", new Producto(20.00f, 20, 0, 'r', true));
         RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 'r', false));
-        RopaYCalzado.Add("deportivas", new Producto(55.00f, 0, 0, 'r', true));
-        RopaYCalzado.Add("edgy", new Producto(69.00f, 1, 0, 'r', true));
+        RopaYCalzado.Add("deportivas", new Producto(55.00f, 20, 0, 'r', true));
+        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, 0, 'r', true));
     }
     void InicializarPapeleria()
     {
@@ -86,14 +88,14 @@ public class TiendaManager : MonoBehaviour
     }
     void InicializarComida()
     {
-        Comida.Add("manzana", new Producto(0.85f, 2, 0, 'c', true));
-        Comida.Add("sandia", new Producto(2.75f, 0, 0, 'c', true));
+        Comida.Add("manzana", new Producto(0.85f, 22, 0, 'c', true));
+        Comida.Add("sandia", new Producto(2.75f, 20, 0, 'c', true));
         Comida.Add("melon", new Producto(2.15f, 0, 0, 'c', false));
-        Comida.Add("pizza", new Producto(3.45f, 1, 0, 'c', true));
+        Comida.Add("pizza", new Producto(3.45f, 21, 0, 'c', true));
         Comida.Add("croquetas", new Producto(4.60f, 0, 0, 'c', false));
-        Comida.Add("calabaza", new Producto(5.00f, 5, 0, 'c', true));
-        Comida.Add("carne", new Producto(12.50f, 1, 0, 'c', true));
-        Comida.Add("pescado", new Producto(12.50f, 1, 0, 'c', true));
+        Comida.Add("calabaza", new Producto(5.00f, 25, 0, 'c', true));
+        Comida.Add("carne", new Producto(12.50f, 21, 0, 'c', true));
+        Comida.Add("pescado", new Producto(12.50f, 21, 0, 'c', true));
     }
     void InicializarOcio()
     {
@@ -166,11 +168,39 @@ public class TiendaManager : MonoBehaviour
         else return "";
     }
 
-    public void reponerEstanteria(string s, char tipo, int cantidad)
+    public void reponerEstanteria(int cantidad)
     {
-        if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
+        if (ID == 0 && player.IsOwner)
         {
-            result.gestionarStockEstanteriaYAlmacen(cantidad);
+            foreach (var item in shelfsP1)
+            {
+                for(int i = 0; i < item.GetComponent<Estanteria>().objetosEstanteria.Count; i++)
+                {
+                    char tipo = item.GetComponent<Estanteria>().tipoObj;
+                    string s = item.GetComponent<Estanteria>().objetosEstanteria[i];
+                    if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
+                    {
+                        result.gestionarStockEstanteriaYAlmacen(cantidad);
+                    }
+                }
+                
+            }
+        }
+        else if (ID == 1 && player.IsOwner)
+        {
+            foreach (var item in shelfsP2)
+            {
+                for (int i = 0; i < item.GetComponent<Estanteria>().objetosEstanteria.Count; i++)
+                {
+                    char tipo = item.GetComponent<Estanteria>().tipoObj;
+                    string s = item.GetComponent<Estanteria>().objetosEstanteria[i];
+                    if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
+                    {
+                        result.gestionarStockEstanteriaYAlmacen(cantidad);
+                    }
+                }
+
+            }
         }
     }
 
@@ -280,6 +310,7 @@ public class TiendaManager : MonoBehaviour
     {
         if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
         {
+            print($"producto: {nombreProducto}, resultado: {result}, stock: {result.stockAlmacen}");
             return result.stockAlmacen;
         }
         return 0;
@@ -302,5 +333,51 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
+    public void updateAlmacenQuantity()
+    {
+        if (sellClothes)
+        {
+            foreach(var key in RopaYCalzado)
+            {
+                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+            }
+        }
+        if (sellFood)
+        {
+            foreach (var key in Comida)
+            {
+                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+            }
+        }
+        if (sellLeisure)
+        {
+            foreach (var key in JuegosPeliculasMusica)
+            {
+                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+            }
+        }
+        if (sellStationery)
+        {
+            foreach (var key in PapeleriaYArte)
+            {
+                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+            }
+        }
+    }
 
+    public void refillStock(string producto, int cantidad, char tipo)
+    {
+        if (ID == 0 && player.IsOwner)
+        {
+            Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+            aux[producto].stockAlmacen += cantidad;
+            aux[producto].gestionarStockEstanteriaYAlmacen(20);
+        }
+        else if (ID == 1 && player.IsOwner)
+        {
+            Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+            aux[producto].stockAlmacen += cantidad;
+            aux[producto].gestionarStockEstanteriaYAlmacen(20);
+        }
+    }
 }

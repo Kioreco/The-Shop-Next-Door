@@ -13,15 +13,17 @@ public class Estanteria : MonoBehaviour
 
     private void Start()
     {
-        TiendaManager.Instance.reponerEstanteria(objetosEstanteria[0],tipoObj, maxElem);
-        TiendaManager.Instance.reponerEstanteria(objetosEstanteria[1],tipoObj, maxElem);
-        TiendaManager.Instance.reponerEstanteria(objetosEstanteria[2],tipoObj, maxElem);
+        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[0],tipoObj, maxElem);
+        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[1],tipoObj, maxElem);
+        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[2],tipoObj, maxElem);
+
+        //GameManager.Instance.
     }
 
-    public void Reponer(string s)
-    {
-        TiendaManager.Instance.reponerEstanteria(s, tipoObj, maxElem);
-    }
+    //public void Reponer(string s)
+    //{
+    //    TiendaManager.Instance.reponerEstanteria(s, tipoObj, maxElem);
+    //}
 
     public void CogerElemento(string s, int c)
     {

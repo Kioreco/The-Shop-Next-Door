@@ -7,7 +7,7 @@ public class WorkDayCycle : MonoBehaviour
     public float gameTime = 0.0f;
     private int currentDay = 0;
     private int totalDays = 4;
-    private float realTimePerDay = 60f;
+    private float realTimePerDay = 240f; //60
     private float gameStartTime = 9f;
     private float gameClientTime = 10f;
     private float gameEndTime = 15f;

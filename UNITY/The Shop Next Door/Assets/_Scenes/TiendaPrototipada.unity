@@ -1986,11 +1986,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4387a1e68bf47384e95f3000e3ca24c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producto: 
+  categoria: 0
   precio: 120
-  cuantityToBuy: 10
-  cuantityOwned: 0
+  descuentoEmpresa: 0
+  rarity: 0
+  quantityToBuy: 0
+  quantityOwned: 0
   buyButton: {fileID: 541529487}
-  cuantityAlmacen_text: {fileID: 1401530042}
+  quantityAlmacen_text: {fileID: 0}
+  quantityToBuy_text: {fileID: 0}
+  precioToBuy_text: {fileID: 0}
 --- !u!1 &198701056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,11 +2835,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4387a1e68bf47384e95f3000e3ca24c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producto: 
+  categoria: 0
   precio: 130
-  cuantityToBuy: 5
-  cuantityOwned: 0
+  descuentoEmpresa: 0
+  rarity: 0
+  quantityToBuy: 0
+  quantityOwned: 0
   buyButton: {fileID: 448092967}
-  cuantityAlmacen_text: {fileID: 647649782}
+  quantityAlmacen_text: {fileID: 0}
+  quantityToBuy_text: {fileID: 0}
+  precioToBuy_text: {fileID: 0}
 --- !u!1 &322460568
 GameObject:
   m_ObjectHideFlags: 0
@@ -10615,7 +10627,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -11890,6 +11902,7 @@ MonoBehaviour:
   foodContent: {fileID: 590939032}
   booksContent: {fileID: 0}
   entertainmentContent: {fileID: 0}
+  supplies: []
   calendar: {fileID: 0}
 --- !u!1 &1184324814
 GameObject:
@@ -15391,6 +15404,7 @@ MonoBehaviour:
   hour1_text: {fileID: 1663390009}
   hour2_text: {fileID: 1420220051}
   hour3_text: {fileID: 1010969870}
+  final_outcomes: []
   activities_daily:
   - {fileID: 2008551833}
   - {fileID: 1439410478}
@@ -17278,11 +17292,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4387a1e68bf47384e95f3000e3ca24c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producto: 
+  categoria: 0
   precio: 200
-  cuantityToBuy: 10
-  cuantityOwned: 20
+  descuentoEmpresa: 0
+  rarity: 0
+  quantityToBuy: 0
+  quantityOwned: 0
   buyButton: {fileID: 498096008}
-  cuantityAlmacen_text: {fileID: 736101187}
+  quantityAlmacen_text: {fileID: 0}
+  quantityToBuy_text: {fileID: 0}
+  precioToBuy_text: {fileID: 0}
 --- !u!1 &1725152535
 GameObject:
   m_ObjectHideFlags: 0
