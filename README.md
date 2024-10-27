@@ -1,164 +1,152 @@
+# **The Shop Next Door** - **un juego por el equipo de Kioreco**
 
-
-
-
-
-
-
-
-**The Shop Next Door**
-
-**un juego por el equipo de Kioreco**
-
-Versión 0.0.0
-
-0\.0.0
-
+Versión 0.1.0
 2022\.3.48f1 -> LTS
 
+___
+## **ÍNDICE**
+___
+[**1.**	**Cambios**](#_toc180924127)
 
-# **ÍNDICE**
-[**1.**	**Cambios**	3](#_toc180924127)
+   [**1.1.**	**Revisión 1: Prototipo**](#_toc180924128)
 
-[**1.1.**	**Revisión 1: Prototipo**	3](#_toc180924128)
+   [**1.2.**	**Revisión 2: Beta**](#_toc180924129)
 
-[**1.2.**	**Revisión 2: Beta**	3](#_toc180924129)
+   [**1.3.**	**Revisión 3: Gold Master**](#_toc180924130)
 
-[**1.3.**	**Revisión 3: Gold Master**	3](#_toc180924130)
+[**2.**	**Introducción: The Shop Next Door**](#_toc180924131)
 
-[**2.**	**Introducción: The Shop Next Door**	4](#_toc180924131)
+   [**2.1.**	**Descripción breve del concepto**](#_toc180924132)
 
-[**2.1.**	**Descripción breve del concepto**	4](#_toc180924132)
+   [**2.2.**	**Descripción breve de la historia y personajes**](#_toc180924133)
 
-[**2.2.**	**Descripción breve de la historia y personajes**	4](#_toc180924133)
+   [**2.3.**	**Propósito, público objetivo y plataformas**](#_toc180924134)
 
-[**2.3.**	**Propósito, público objetivo y plataformas**	5](#_toc180924134)
+[**3.**	**Monetización y modelo de negocio**](#_toc180924135)
 
-[**3.**	**Monetización y modelo de negocio**	6](#_toc180924135)
+   [**3.1.**	**Información sobre los usuarios de Kioreco**](#_toc180924136)
 
-[**3.1.**	**Información sobre los usuarios de Kioreco**	6](#_toc180924136)
+   [**3.2.**	**Modelo de negocio de Kioreco**](#_toc180924137)
 
-[**3.2.**	**Modelo de negocio de Kioreco**	6](#_toc180924137)
+   [**3.3.**	**Monetización de The Shop Next Door**](#_toc180924138)
 
-[**3.3.**	**Monetización de The Shop Next Door**	7](#_toc180924138)
+   [**3.4.**	**Mapa de empatía**](#_toc180924139)
 
-[**3.4.**	**Mapa de empatía**	7](#_toc180924139)
+   [**3.5.**	**Caja de herramientas**](#_toc180924140)
 
-[**3.5.**	**Caja de herramientas**	8](#_toc180924140)
+   [**3.6.**	**Modelo de liezo**](#_toc180924141)
 
-[**3.6.**	**Modelo de liezo**	8](#_toc180924141)
+   [**3.7.**	**Tablas de productos y precios**](#_toc180924142)
 
-[**3.7.**	**Tablas de productos y precios**	9](#_toc180924142)
+[**4.**	**Planificación y Costes**](#_toc180924143)
 
-[**4.**	**Planificación y Costes**	10](#_toc180924143)
+[**4.1.**	**El equipo humano**](#_toc180924144)
 
-[**4.1.**	**El equipo humano**	10](#_toc180924144)
+[**4.2.**	**Estimación temporal del desarrollo**](#_toc180924145)
 
-[**4.2.**	**Estimación temporal del desarrollo**	11](#_toc180924145)
+[**4.3.**	**Costes asociados**](#_toc180924146)
 
-[**4.3.**	**Costes asociados**	12](#_toc180924146)
+[**5.**	**Mecánicas de Juego y Elementos de Juego**](#_toc180924147)
 
-[**5.**	**Mecánicas de Juego y Elementos de Juego**	13](#_toc180924147)
+[**5.1.**	**Descripción detallada del concepto de juego**](#_toc180924148)
 
-[**5.1.**	**Descripción detallada del concepto de juego**	13](#_toc180924148)
+[**5.2.**	**Descripción detallada de las mecánicas de juego**](#_toc180924149)
 
-[**5.2.**	**Descripción detallada de las mecánicas de juego**	13](#_toc180924149)
+[**5.2.1.**	**Vida en la tienda**](#_toc180924150)
 
-[**5.2.1.**	**Vida en la tienda**	14](#_toc180924150)
-
-[**5.2.2.**	**Vida personal**	15](#_toc180924151)
+[**5.2.2.**	**Vida personal**](#_toc180924151)
 
 [**5.2.3.**	**Resolución de la semana**	16](#_toc180924152)
 
 [**5.3.**	**Controles**	16](#_toc180924153)
 
-[**5.4.**	**Clientes y productos**	16](#_toc180924154)
+[**5.4.**	**Clientes y productos**](#_toc180924154)
 
-[**5.5.**	**Comportamiento de personajes**	17](#_toc180924155)
+[**5.5.**	**Comportamiento de personajes**](#_toc180924155)
 
 [**6.**	**Trasfondo**	25](#_toc180924156)
 
-[**6.1.**	**Descripción detallada de la historia y la trama**	25](#_toc180924157)
+[**6.1.**	**Descripción detallada de la historia y la trama**](#_toc180924157)
 
-[**6.2.**	**Personajes**	25](#_toc180924158)
+[**6.2.**	**Personajes**](#_toc180924158)
 
-[**6.2.1.**	**Telma**	25](#_toc180924159)
+[**6.2.1.**	**Telma**](#_toc180924159)
 
-[**6.2.2.**	**Gemma**	26](#_toc180924160)
+[**6.2.2.**	**Gemma**](#_toc180924160)
 
-[**6.2.3.**	**Emma**	26](#_toc180924161)
+[**6.2.3.**	**Emma**](#_toc180924161)
 
-[**6.3.**	**Entornos y lugares**	26](#_toc180924162)
+[**6.3.**	**Entornos y lugares**](#_toc180924162)
 
-[**7.**	**Arte**	28](#_toc180924163)
+[**7.**	**Arte**](#_toc180924163)
 
-[**7.1.**	**Estética general del juego**	28](#_toc180924164)
+[**7.1.**	**Estética general del juego**](#_toc180924164)
 
-[**7.2.**	**Concept Art**	28](#_toc180924165)
+[**7.2.**	**Concept Art**](#_toc180924165)
 
-[**7.2.1.**	**Hermanas**	28](#_toc180924166)
+[**7.2.1.**	**Hermanas**](#_toc180924166)
 
-[**7.2.2.**	**Madre**	31](#_toc180924167)
+[**7.2.2.**	**Madre**](#_toc180924167)
 
-[**7.2.3.**	**Clientes**	32](#_toc180924168)
+[**7.2.3.**	**Clientes**](#_toc180924168)
 
-[**7.2.4.**	**Escenarios**	33](#_toc180924169)
+[**7.2.4.**	**Escenarios**](#_toc180924169)
 
-[**7.3.**	**Modelos 3D**	34](#_toc180924170)
+[**7.3.**	**Modelos 3D**](#_toc180924170)
 
-[**7.3.1.**	**Hermanas**	34](#_toc180924171)
+[**7.3.1.**	**Hermanas**](#_toc180924171)
 
-[**7.3.2.**	**Clientes**	34](#_toc180924172)
+[**7.3.2.**	**Clientes**](#_toc180924172)
 
-[**7.3.3.**	**Escenarios**	35](#_toc180924173)
+[**7.3.3.**	**Escenarios**](#_toc180924173)
 
-[**8.1.**	**Diagrama de flujo**	36](#_toc180924174)
+[**8.1.**	**Diagrama de flujo**](#_toc180924174)
 
-[**8.2.**	**Menú de título e inicio de sesión**	36](#_toc180924175)
+[**8.2.**	**Menú de título e inicio de sesión**](#_toc180924175)
 
-[**8.3.**	**Menú de inicio**	37](#_toc180924176)
+[**8.3.**	**Menú de inicio**](#_toc180924176)
 
-[**8.4.**	**Menú de créditos**	37](#_toc180924177)
+[**8.4.**	**Menú de créditos**](#_toc180924177)
 
-[**8.5.**	**MatchMaking**	37](#_toc180924178)
+[**8.5.**	**MatchMaking**](#_toc180924178)
 
-[**8.6.**	**InGame**	38](#_toc180924179)
+[**8.6.**	**InGame**](#_toc180924179)
 
-[**8.7.**	**GameOver**	38](#_toc180924180)
+[**8.7.**	**GameOver**](#_toc180924180)
 
-[**8.8.**	**Menú de Pausa**	38](#_toc180924181)
+[**8.8.**	**Menú de Pausa**](#_toc180924181)
 
-[**8.9.**	**Menú de Personalización**	38](#_toc180924182)
+[**8.9.**	**Menú de Personalización**](#_toc180924182)
 
-[**8.10.**	**Tienda**	39](#_toc180924183)
+[**8.10.**	**Tienda**](#_toc180924183)
 
-[**9.**	**Sonido**	40](#_toc180924184)
+[**9.**	**Sonido**](#_toc180924184)
 
-[**9.1.**	**Sonido ambiente y música**	40](#_toc180924185)
+[**9.1.**	**Sonido ambiente y música**](#_toc180924185)
 
-[**9.2.**	**Efectos de sonido**	40](#_toc180924186)
+[**9.2.**	**Efectos de sonido**](#_toc180924186)
 
-[**9.3.**	**Lista de sonidos**	40](#_toc180924187)
+[**9.3.**	**Lista de sonidos**](#_toc180924187)
 
-[**10.**	**Hoja de ruta del desarrollo**	41](#_toc180924188)
+[**10.**	**Hoja de ruta del desarrollo**](#_toc180924188)
 
-[**10.1.**	**Hito 1: Prototipo**	41](#_toc180924189)
+[**10.1.**	**Hito 1: Prototipo**](#_toc180924189)
 
-[**10.2.**	**Hito 2: Beta**	41](#_toc180924190)
+[**10.2.**	**Hito 2: Beta**](#_toc180924190)
 
-[**10.3.**	**Hito 3: Gold Master**	41](#_toc180924191)
+[**10.3.**	**Hito 3: Gold Master**](#_toc180924191)
 
-[**10.4.**	**Hito 4: Lanzamiento**	41](#_toc180924192)
+[**10.4.**	**Hito 4: Lanzamiento**](#_toc180924192)
 
-[**11.**	**ANEXO:**	42](#_toc180924193)
+[**11.**	**ANEXO:**](#_toc180924193)
 
 
-**
+___
 
-1. # <a name="_toc180924127"></a>**Cambios**
+# 1. <a name="_toc180924127"></a>**Cambios**
 Aquí se incluirán todos los cambios que se realicen en el proyecto en las respectivas revisiones.
 
-1. <a name="_toc180924128"></a>**Revisión 1: Prototipo**
+<a name="_toc180924128"></a>**1.1. Revisión 1: Prototipo**
 
 28 de octubre de 2024
 
@@ -174,52 +162,51 @@ Objetivos deseados para el próximo hito:
 
 \-
 
-1. <a name="_toc180924129"></a>**Revisión 2: Beta**
+<a name="_toc180924129"></a>**1.2. Revisión 2: Beta**
 
 Cosas revisión 2
 
-1. <a name="_toc180924130"></a>**Revisión 3: Gold Master**
+<a name="_toc180924130"></a>**1.3. Revisión 3: Gold Master**
 
 Cosas revisión 3
 
-
-1. # <a name="_toc180924131"></a>**Introducción: The Shop Next Door**
-   1. <a name="_toc180924132"></a>**Descripción breve del concepto**
+___
+## <a name="_toc180924131"></a>**2. Introducción: The Shop Next Door**
+___
+<a name="_toc180924132"></a>**2.1. Descripción breve del concepto**
 
 ***The Shop Next Door*** es un juego competitivo de dos jugadores donde se debe mantener un buen equilibrio entre el trabajo y la vida personal para complacer a una madre de buena familia.
 
 Cada jugador será representado por una hermana distinta, regentando su propio negocio. En el local tendrán que realizar varias tareas relacionadas con su tienda: atender clientes, limpiar el local, comprar suministros, reponer estantes… Al mismo tiempo, podrán manejar su horario de la tarde con las distintas labores a las que quiera dedicar su tiempo. Lo que decida hacer afectará de diversas maneras su trabajo en la tienda el día siguiente y principalmente servirá para crecer como persona.
 
 Una partida completa, de una duración aproximada de 15 a 20 minutos, contemplaría una semana laboral de 5 días con sus respectivas tardes, un día de descanso y el domingo como día final. En este se evaluarán los resultados de ambas hermanas en torno a la labor hecha en la tienda y la evolución de su vida personal, donde será la madre quién dará la victoria a una de sus hijas.
-
-1. <a name="_toc180924133"></a>**Descripción breve de la historia y personajes**
+___
+<a name="_toc180924133"></a>**2.2. Descripción breve de la historia y personajes**
 
 En ***The Shop Next Door*** se sigue la historia de dos hermanas, Gemma y Emma, y su madre, Telma. La madre tenía una tienda grande en la que vendía todo tipo de productos, pero ya se está haciendo mayor y no puede seguir regentándola. Fue entonces cuando decidió construir un muro y dividir la tienda en dos, dándole cada una de las mitades a sus hijas.
 
 Les dijo que quien consiguiera sobrellevar mejor el negocio se iría llevando parte de su herencia. Además, no solo le importaba el negocio, sino que quería verlas crecer hacia mujeres de bien como ella, así que valoraría si también consiguen un buen balance con su vida personal y romántica.
-
-
-1. <a name="_toc180924134"></a>**Propósito, público objetivo y plataformas**
+___
+<a name="_toc180924134"></a>**2.3. Propósito, público objetivo y plataformas**
 
 The Shop Next Door es un juego de partidas cortas y consecutivas orientado a un público casual. Está enfocado para páginas web y dispositivos móviles, con la posibilidad de ser ejecutado en PC.
 
 Tiene el objetivo de proporcionar momentos de diversión y entretenimiento entre amigos o desconocidos. Pretende diferenciarse del resto de juegos del género por la originalidad de la propuesta de la vida personal, generando situaciones cómicas y originales, así como no dejar de lado todo lo que supone dirigir un pequeño comercio.
 
-
-1. # <a name="_toc180924135"></a>**Monetización y modelo de negocio**
-   1. <a name="_toc180924136"></a>**Información sobre los usuarios de Kioreco**
+<a name="_toc180924135"></a>**2.4. Monetización y modelo de negocio**
+<a name="_toc180924136"></a>**2.4.1. Información sobre los usuarios de Kioreco**
 
 Los usuarios a los que están dirigidos los juegos de Kioreco podrían ser definidos por su búsqueda de experiencias creativas. Además, serían jugadores casuales que dediquen un corto tiempo diario a un entretenimiento frenético y divertido. No necesitarían equipos con grandes requisitos, pudiendo lanzar los juegos en navegadores web y dispositivos móviles.
 
 Aun así, se buscaría una base de jugadores menos casuales (midcores) que se viesen más incentivados a invertir su dinero en objetos o servicios especiales, lanzando además los juegos para PC.
 
-1. <a name="_toc180924137"></a>**Modelo de negocio de Kioreco**
+<a name="_toc180924137"></a>**2.4.2. Modelo de negocio de Kioreco**
 
 Kioreco busca la fidelización de los jugadores dentro de sus juegos, creando una base de usuarios adeptos dispuestos a invertir su dinero en productos *ingame*. Además, usará un sistema de donaciones / PWYC (paga lo que puedas) en el que se ofrecerán los juegos gratis como norma general para que los usuarios puedan conocer la empresa y sus creaciones, y afiliarse si el contenido es de su agrado. El sistema principal de distribución sería en itch.io, aunque se buscaría la expansión a plataformas como Steam. Se tendría un sistema de donaciones a parte en nuestras redes sociales y dentro del juego mediante plataformas como Ko-fi.
 
 Por la búsqueda de clientes casuales y, en el caso específico de ***The Shop Next Door***, compañeros contra los que puedan jugar, dicho modelo de negocio ayudaría a atraer una base amplia de usuarios que se asienten primeramente sobre las mecánicas del juego, y luego se vean incitados a invertir en productos dentro de la tienda. Además, dependiendo de la acogida de la empresa y sus productos, se desarrollarían una serie de productos de merchandising que ayuden a la financiación de los proyectos. También existirá un servidor de Discord de acceso público y moderado donde los usuarios podrían conversar y quedar para jugar en conjunto. Este tendría canales exclusivos para los donantes donde tendrían acceso a ventajas varias como avances exclusivos y contacto con los desarrolladores.
 
-1. <a name="_toc180924138"></a>**Monetización de The Shop Next Door**
+<a name="_toc180924138"></a>**2.4.3. Monetización de The Shop Next Door**
 
 The Shop Next Door se plantea como un juego gratuito en el que se incluirían ciertos servicios y productos que se podrían comprar con una moneda de juego, que a su vez se podría adquirir mediante compras reales de manera más rápida. Esta moneda de juego se correspondería a la herencia que la madre otorgaría al final de cada partida a la hermana ganadora. Se incluirán anuncios opcionales que permitirá a la persona que lo desee duplicar sus ganancias.
 
@@ -227,37 +214,23 @@ Entre los productos que se ofrecen, aparte de un sistema de donaciones y canales
 
 Para potenciar la fidelización de los usuarios y su permanencia en el juego se ofrecerían retos semanales donde el jugador deberá completar ciertas misiones, obteniendo objetos o dinero que mejoren la experiencia.
 
-1. <a name="_toc180924139"></a>**Mapa de empatía**
-
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.001.png)<a name="_hlk179018260"></a>El mapa de empatía de los usuarios de The Shop Next Door sería el siguiente:
-
-
-
-
-
-
-
-
-
-1. <a name="_toc180924140"></a>**Caja de herramientas**
-
+<a name="_toc180924139"></a>**2.4.4. Mapa de empatía**
+El mapa de empatía de los usuarios de The Shop Next Door sería el siguiente:
+![Mapa De Empatia](https://github.com/user-attachments/assets/3a949d3e-2b39-416e-8064-e27099005948)
+<a name="_toc180924140"></a>**2.4.5. Caja de herramientas**
 La caja de herramientas de Kioreco sería la siguiente:
-
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.002.png)
-
-1. <a name="_toc180924141"></a>**Modelo de liezo**
-
+<a name="_toc180924141"></a>**2.4.6. Modelo de liezo**
 El modelo de lienzo o canvas de The Shop Next Door sería el siguiente:
-
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.003.png)
-
-1. <a name="_toc180924142"></a>**Tablas de productos y precios**
-
+<a name="_toc180924142"></a>**2.4.7. Tablas de productos y precios**
 Por determinar.**
-1. # <a name="_toc180924143"></a>**Planificación y Costes**
-   1. <a name="_toc180924144"></a>**El equipo humano**
+___
+## <a name="_toc180924143"></a>**3. Planificación y Costes**
+   <a name="_toc180924144"></a>**3.1. El equipo humano**
+El equipo principal se compone de 6 miembros cada uno con una especialización diferente, pero con habilidades en distintas aptitudes. Las competencias quedarían resumidas en la siguiente tabla.
+![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.004.png)
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.004.png)El equipo principal se compone de 6 miembros cada uno con una especialización diferente, pero con habilidades en distintas aptitudes. Las competencias quedarían resumidas en la siguiente tabla.
 
 - En verde están marcadas las aptitudes en las que la persona **se desenvuelve con soltura**.
 - En naranja están marcadas las aptitudes en las que la persona **se desenvuelve con cierta facilidad.**
@@ -272,9 +245,7 @@ En resumen, los roles que cada uno de los miembros del equipo desempeñaría en 
 - **Pablo Prior**: Programador back-end, de network y programador asistente en mecánicas.
 - **Raúl Somavilla**: Concept artist de personajes, artista 2D y modelador 3D.
 
-
-
-1. <a name="_toc180924145"></a>**Estimación temporal del desarrollo**
+<a name="_toc180924145"></a>**3.2. Estimación temporal del desarrollo**
 
 El control del progreso se realizará mediante los proyectos de GitHub, encargándose cada uno de los miembros de sus tareas asociadas y de crear nuevos *issues* cuando se necesiten. El proyecto contaría con los siguientes hitos:
 
@@ -283,24 +254,15 @@ El control del progreso se realizará mediante los proyectos de GitHub, encargá
 - Versión Gold Master (8 de diciembre de 2024): el juego debe estar preparado para su lanzamiento, tanto por el equipo de producción como el de marketing. No debe existir ningún error crítico y tiene que haber una mejora considerable de jugabilidad /rejugabilidad, siendo un producto atractivo y listo para ser comercializado.
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.005.png)**Proyecto visto en GitHub:**
-
-
-
-
-
-
-
-
-
-1. <a name="_toc180924146"></a>**Costes asociados**
+<a name="_toc180924146"></a>**3.3. Costes asociados**
 
 Se ha realizado un estudio de los costos estimados asociados al desarrollo de los cuatro meses del videojuego, desglosándolos entre costos directos e indirectos. 
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.006.png)
 **
-
-1. # <a name="_toc180924147"></a>**Mecánicas de Juego y Elementos de Juego**
-   1. <a name="_toc180924148"></a>**Descripción detallada del concepto de juego**
+___
+# <a name="_toc180924147"></a>**4. Mecánicas de Juego y Elementos de Juego**
+<a name="_toc180924148"></a>**4.1. Descripción detallada del concepto de juego**
 
 ***The Shop Next Door*** es un juego de simulación y estrategia de carácter competitivo orientado a dos jugadores. Cada uno tomará el rol de una de las hijas de Telma, una madre con un negocio próspero que, debido a su edad y el tiempo que lleva regentándolo, ha decidido no trabajar más. Telma toma la decisión de dividir su tienda en dos partes iguales para poner a competir a sus hijas (Emma y Gemma), para ver quien es la más capaz de gestionar su propia tienda. Al final de la semana, junto con la gestión de sus vidas privadas, se determinará quien recibe la herencia de la madre.
 
@@ -308,10 +270,10 @@ El **objetivo principal** del videojuego es equilibrar las responsabilidades lab
 
 El juego se desarrolla en el transcurso de una semana laboral, que termina con una valoración final por parte de su madre Telma, la que decidirá quién de sus dos hijas merece esa ansiada herencia, haciendo un cómputo global de los dos aspectos en la vida de cada hija. Cada partida se estima en un tiempo de 15/20 minutos la cual es ofrecida a base de una experiencia rápida, competitiva, divertida y con situaciones un tanto cómicas a lo largo de esa apasionante semana.
 
-1. <a name="_toc180924149"></a>**Descripción detallada de las mecánicas de juego**
+<a name="_toc180924149"></a>**4.2. Descripción detallada de las mecánicas de juego**
 
 Las mecánicas de The Shop Next Door se dividen en dos grandes bloques: vida en la tienda y vida personal.
-1. ### <a name="_toc180924150"></a>**Vida en la tienda**
+### <a name="_toc180924150"></a>*4.2.1 *Vida en la tienda**
 Cada jugador deberá realizar diferentes tareas diarias para mantener la tienda y poder darle una gestión adecuada:
 
 - **Atender a clientes:** Proveer productos de manera eficiente se considera esencial para la satisfacción del cliente y asegurar ventas abundantes, haciendo volver a esos clientes. El jugador deberá acercarse a la caja de la tienda para iniciar la tarea de atender a cada cliente esperando a pagar su compra.
