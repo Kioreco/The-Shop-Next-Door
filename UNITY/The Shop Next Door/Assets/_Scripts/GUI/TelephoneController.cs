@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,11 @@ public class TelephoneController : MonoBehaviour
 {
     [Header("Telephone Parts")]
     [SerializeField] private GameObject MiniTelephone;
+    [SerializeField] private TextMeshProUGUI hour_telephone_text;
     [SerializeField] private GameObject LockedScreen;
+    [SerializeField] private Image LockedScreen_bg;
+    [SerializeField] private Sprite LockedScreen_bg_1;
+    [SerializeField] private Sprite LockedScreen_bg_2;
     [SerializeField] private GameObject ShopApp;
     [SerializeField] private GameObject CalendarApp;
 
@@ -56,6 +61,12 @@ public class TelephoneController : MonoBehaviour
             if(CalendarApp.activeSelf) CalendarApp.SetActive(false);
             LockedScreen.SetActive(true);
         }
+    }
+
+    public void ChangeLockedScreenBG(int player)
+    {
+        if(player == 1) { LockedScreen_bg.sprite = LockedScreen_bg_1; }
+        if(player == 2) { LockedScreen_bg.sprite = LockedScreen_bg_2; }
     }
 
     public void OpenApp(GameObject app)

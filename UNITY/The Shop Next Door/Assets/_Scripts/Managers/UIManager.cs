@@ -24,7 +24,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
-    [SerializeField] private TextMeshProUGUI inventoryInfo_text;
+    [SerializeField] private TextMeshProUGUI inventory_text;
+    [SerializeField] private TextMeshProUGUI maxInventory_text;
 
     [SerializeField] public WorkDayCycle timeReference;
     [SerializeField] private TextMeshProUGUI day_text;
@@ -52,6 +53,9 @@ public class UIManager : MonoBehaviour
     public Image player1Clients;
     public Image player2Clients;
 
+    private Color redColor;
+    private Color whiteTextColor;
+
     public static UIManager Instance { get; private set; }
 
     void Awake()
@@ -64,6 +68,12 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        redColor = new Color(205.0f, 5.0f, 69.0f);
+        whiteTextColor = new Color(189.0f, 198.0f, 198.0f);
     }
 
     public void ExitGame()
@@ -105,14 +115,16 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayersIngameMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
-        if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = Color.red; }
-        if (GameManager.Instance.dineroJugador > 0) { dineroJugador_text.color = Color.white; }
+        if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
+        else { dineroJugador_text.color = whiteTextColor; }
     }
 
     public void UpdateInventorySpace_UI()
     {
-        inventoryInfo_text.SetText("INVENTORY: " + GameManager.Instance.espacioAlmacen + "/" + GameManager.Instance.maxEspacioAlmacen);
-        if (GameManager.Instance.espacioAlmacen == GameManager.Instance.maxEspacioAlmacen) { inventoryInfo_text.color = Color.red; }
+        inventory_text.SetText(GameManager.Instance.espacioAlmacen.ToString());
+        maxInventory_text.SetText(GameManager.Instance.maxEspacioAlmacen.ToString());
+        if (GameManager.Instance.espacioAlmacen == GameManager.Instance.maxEspacioAlmacen) { inventory_text.color = redColor; }
+        else { inventory_text.color = whiteTextColor; }
     }
 
     public void UpdateClientHappiness_UI()

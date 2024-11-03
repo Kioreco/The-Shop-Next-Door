@@ -92,10 +92,13 @@ public class GameManager : MonoBehaviour
             playerClient.GetComponent<NetworkObject>().SpawnAsPlayerObject(RelayManager.Instance._obj[1]);
 
             techoPlayer1.SetActive(false);
+
+            UIManager.Instance.telephone.ChangeLockedScreenBG(1);
         }
         else
         {
             techoPlayer2.SetActive(false);
+            UIManager.Instance.telephone.ChangeLockedScreenBG(2);
         }
     }
 
