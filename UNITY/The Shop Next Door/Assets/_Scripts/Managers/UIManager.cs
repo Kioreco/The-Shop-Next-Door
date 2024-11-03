@@ -46,8 +46,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI player1Money;
     public TextMeshProUGUI player2Money;
 
-    public TextMeshProUGUI player1Clients;
-    public TextMeshProUGUI player2Clients;
+    public TextMeshProUGUI day_EndDay_Text;
+    public TextMeshProUGUI hour_EndDay_Text;
+
+    public Image player1Clients;
+    public Image player2Clients;
 
     public static UIManager Instance { get; private set; }
 
