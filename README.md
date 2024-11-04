@@ -1,4 +1,4 @@
-**The Shop Next Door** - **un juego por el equipo de Kioreco**
+# **The Shop Next Door** - **un juego por el equipo de Kioreco**
 
 Versión 0.1.0
 2022\.3.48f1 -> LTS
@@ -152,15 +152,35 @@ Aquí se incluirán todos los cambios que se realicen en el proyecto en las resp
 
 Objetivos alcanzados:
 
-\-
+- Flujo de juego básico
+- Diseño del juego
+- Un día en la tienda funcional
+- Matchmaking por código
+- Estructuración básica del proyecto
+- Funcionamiento del cliente básico
+- Instanciación del jugador en cada tienda
+- Escenario y assets 3D básicos
+- Funcionalidad de comprar suministros
+- Funcionalidad de escoger actividades de la tarde
+- Diseños conceptualizados de los personajes
+- Modelos 3D de las hermanas y cliente básico
+- Diseño del comportamiento de personajes
 
 Objetivos en proceso:
 
-\-
+- Login y base de datos
+- Más funcionalidades del móvil
+- Máquinas de estados de todos los clientes
 
 Objetivos deseados para el próximo hito:
 
-\-
+- Acabar objetivos en proceso
+- Sistema de contratación
+- Actividades de la tarde con efectos
+- Sistema de reponer estanterías
+- Más aplicaciones del móvil
+- Funcionalidades de semana completa
+- Actualizar interfaces
 
 <a name="_toc180924129"></a>**1.2. Revisión 2: Beta**
 
