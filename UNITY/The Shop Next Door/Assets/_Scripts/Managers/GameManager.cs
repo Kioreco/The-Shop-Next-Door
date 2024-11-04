@@ -21,12 +21,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject techoPlayer2;
 
     [Header("Individual Player References")]
-    public float dineroJugador;
-    public float dineroRival;
-    public float espacioAlmacen;
-    public float maxEspacioAlmacen;
-    public float clientHappiness;
-    public float playerVigor;
+    [HideInInspector] public float dineroJugador;
+    [HideInInspector] public float dineroRival;
+    [HideInInspector] public float espacioAlmacen;
+    [HideInInspector] public float maxEspacioAlmacen;
+    [HideInInspector] public float clientHappiness;
+    [HideInInspector] public float playerVigor;
 
     [Header("Network Game Manager")]
     public PlayerControler _player;
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
 
-        //StartCoroutine("ContinueDay");
+        StartCoroutine(nameof(ContinueDay));
     }
 
 

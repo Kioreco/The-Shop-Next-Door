@@ -58,7 +58,7 @@ public class TelephoneController : MonoBehaviour
     {
         if (LockedScreen.activeSelf)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             MiniTelephone.SetActive(true);
         }
         else
@@ -69,6 +69,11 @@ public class TelephoneController : MonoBehaviour
             if(LifeApp.activeSelf) LifeApp.SetActive(false);
             LockedScreen.SetActive(true);
         }
+    }
+
+    public void UpdateHourTelephone(string time)
+    {
+        hour_telephone_text.SetText(time);
     }
 
     public void ChangeLockedScreenBG(int player)

@@ -139,7 +139,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTime_UI(int hours, int minutes)
     {
-        hour_text.SetText(string.Format("{0:D2}:{1:D2}", hours, minutes));
+        string time = string.Format("{0:D2}:{1:D2}", hours, minutes);
+        hour_text.SetText(time);
+        if (telephone.gameObject.activeSelf) { telephone.UpdateHourTelephone(time); }
     }
 
     public void UpdateDay_UI(string day)

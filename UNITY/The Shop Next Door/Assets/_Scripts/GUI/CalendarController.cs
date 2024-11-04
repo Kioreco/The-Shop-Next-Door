@@ -367,5 +367,10 @@ public class CalendarController : MonoBehaviour
         UIManager.Instance.WriteActivityOutcomes_UI(final_outcomes);
     }
 
+    public void UpdateDayCalendar(string day)
+    {
+        weekDay_text.SetText(day);
+    }
+
 
 }
