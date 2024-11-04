@@ -16,6 +16,7 @@ public class TelephoneController : MonoBehaviour
     [SerializeField] private GameObject ShopApp;
     [SerializeField] private GameObject CalendarApp;
     [SerializeField] private GameObject HireApp;
+    [SerializeField] private GameObject LifeApp;
 
     [Header("Shop App")]
     [SerializeField] private ScrollRect contenedorTienda;
@@ -40,10 +41,11 @@ public class TelephoneController : MonoBehaviour
     //[Header("Hire App")]
     //[SerializeField] public CalendarController calendar;
 
+    [Header("Life App")]
+    [SerializeField] private TextMeshProUGUI lifeApp_name;
+
     private void Awake()
     {
-        //calendar.final_outcomes = new string[3];
-        //calendar.activities_selected = new Activity[3];
         CheckAlmacenSpaceForBuying();
     }
 
@@ -64,6 +66,7 @@ public class TelephoneController : MonoBehaviour
             if(ShopApp.activeSelf) ShopApp.SetActive(false);
             if(CalendarApp.activeSelf) CalendarApp.SetActive(false);
             if(HireApp.activeSelf) HireApp.SetActive(false);
+            if(LifeApp.activeSelf) LifeApp.SetActive(false);
             LockedScreen.SetActive(true);
         }
     }
@@ -72,6 +75,12 @@ public class TelephoneController : MonoBehaviour
     {
         if(player == 1) { LockedScreen_bg.sprite = LockedScreen_bg_1; }
         if(player == 2) { LockedScreen_bg.sprite = LockedScreen_bg_2; }
+    }
+
+    public void ChangeLifeAppName(int player)
+    {
+        if (player == 1) { lifeApp_name.SetText("Gemma's Life"); }
+        if (player == 2) { lifeApp_name.SetText("Emma's Life"); }
     }
 
     public void OpenApp(GameObject app)

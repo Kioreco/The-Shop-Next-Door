@@ -94,11 +94,13 @@ public class GameManager : MonoBehaviour
             techoPlayer1.SetActive(false);
 
             UIManager.Instance.telephone.ChangeLockedScreenBG(1);
+            UIManager.Instance.telephone.ChangeLifeAppName(1);
         }
         else
         {
             techoPlayer2.SetActive(false);
             UIManager.Instance.telephone.ChangeLockedScreenBG(2);
+            UIManager.Instance.telephone.ChangeLifeAppName(2);
         }
     }
 
