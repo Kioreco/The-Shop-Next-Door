@@ -15,6 +15,7 @@ public class TelephoneController : MonoBehaviour
     [SerializeField] private Sprite LockedScreen_bg_2;
     [SerializeField] private GameObject ShopApp;
     [SerializeField] private GameObject CalendarApp;
+    [SerializeField] private GameObject HireApp;
 
     [Header("Shop App")]
     [SerializeField] private ScrollRect contenedorTienda;
@@ -35,6 +36,9 @@ public class TelephoneController : MonoBehaviour
 
     [Header("Calendar App")]
     [SerializeField] public CalendarController calendar;
+
+    //[Header("Hire App")]
+    //[SerializeField] public CalendarController calendar;
 
     private void Awake()
     {
@@ -59,6 +63,7 @@ public class TelephoneController : MonoBehaviour
         {
             if(ShopApp.activeSelf) ShopApp.SetActive(false);
             if(CalendarApp.activeSelf) CalendarApp.SetActive(false);
+            if(HireApp.activeSelf) HireApp.SetActive(false);
             LockedScreen.SetActive(true);
         }
     }
