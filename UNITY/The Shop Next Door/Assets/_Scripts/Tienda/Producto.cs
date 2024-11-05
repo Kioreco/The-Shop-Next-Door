@@ -26,22 +26,22 @@ public class Producto
 
     public void gestionarStockEstanteriaYAlmacen(int a)
     {
-        Debug.Log($"stockAlmacen: {stockAlmacen}  stockEstanteria: {stockEstanteria}  cantidad: {a}  resta: {stockAlmacen - a}");
+        //Debug.Log($"stockAlmacen: {stockAlmacen}  stockEstanteria: {stockEstanteria}  cantidad: {a}  resta: {stockAlmacen - a}");
         if (stockAlmacen - a >= 0)
         {
-            Debug.Log("almacen con cantidad");
+            //Debug.Log("almacen con cantidad");
             stockEstanteria += a;
             stockAlmacen -= a;
-            Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
+            //Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
 
         }
         else
         {
-            Debug.Log("almacen sin cantidad");
+            //Debug.Log("almacen sin cantidad");
 
             stockEstanteria += stockAlmacen;
             stockAlmacen = 0;
-            Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
+            //Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
 
         }
     }

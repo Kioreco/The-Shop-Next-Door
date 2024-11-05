@@ -9,7 +9,7 @@ public class WorkDayCycle : MonoBehaviour
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
-    private float realTimePerDay = 240f;    // TIEMPO POR DÍA
+    private float realTimePerDay = 15f;    // TIEMPO POR DÍA -----> 240
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
     private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES

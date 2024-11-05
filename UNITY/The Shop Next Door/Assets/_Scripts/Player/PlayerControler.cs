@@ -8,7 +8,6 @@ public class PlayerControler : NetworkBehaviour
     #region variables
     Vector2 _movement;
     Transform _playerTransform;
-    private NetworkVariable<Quaternion> _rotation = new NetworkVariable<Quaternion>();
     public NavMeshAgent _agent;
     public int ID;
     public bool isInitialized = false;
@@ -36,9 +35,10 @@ public class PlayerControler : NetworkBehaviour
 
 
     [Header("Network Variables")]
-    NetworkVariable<float> playerMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    float dineroJ;
-    float dineroE;
+    NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //float dineroJ;
+    //float dineroE;
 
     #endregion
 
@@ -53,7 +53,8 @@ public class PlayerControler : NetworkBehaviour
             amountZoom = fovSinZoom;
             //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
         }
-        playerMoney.OnValueChanged += OnPlayerMoneyChange;
+        hostMoney.OnValueChanged += OnHostMoneyChange;
+        clientMoney.OnValueChanged += OnClientMoneyChange;
 
     }
 
@@ -64,7 +65,7 @@ public class PlayerControler : NetworkBehaviour
             client = GameObject.FindWithTag("ClientNPC");
 
             ID = (int)OwnerClientId;
-            //print(ID);
+            print(ID);
 
             if (ID == 0) 
             {
@@ -185,37 +186,44 @@ public class PlayerControler : NetworkBehaviour
     public void FinalResume()
     {
         print("final resume");
-        if(ID == 0) UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
-        if(ID == 1) UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
-
-        SetupNetworkMoney();
-        
+        if (ID == 0 && IsOwner)
+        {
+            print("canging el host");
+            hostMoney.Value = GameManager.Instance.dineroJugador;
+            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
+        }
+        if (ID == 1 && IsOwner)
+        {
+            print("changing el cliente");
+            clientMoney.Value = GameManager.Instance.dineroJugador;
+            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
+        }       
     }
 
-    private void SetupNetworkMoney()
+    void OnHostMoneyChange(float previous, float newM) 
     {
-        if (IsOwner)
+        //print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+
+        if (IsClient)
         {
-            print("setupnetworkmoney owner");
-
-            dineroJ = GameManager.Instance.dineroJugador;
-            playerMoney.Value = dineroJ; //lo que se va a mandar
-
-            OnPlayerMoneyChange(dineroJ, playerMoney.Value);
+            //print($"on host money change if");
+            GameManager.Instance.dineroRival = newM;
+            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
-    }
-
-    void OnPlayerMoneyChange(float previous, float newM) 
+    }    
+    void OnClientMoneyChange(float previous, float newM) 
     {
-        print($"on value change: {newM}");
-        if(dineroJ != newM)
+        //print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+
+        if (IsServer)
         {
-            dineroE = newM;
-            GameManager.Instance.dineroRival = dineroE;
+            //print($"on client money change if");
+
+            GameManager.Instance.dineroRival = newM;
+            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
-        //UIManager.Instance.player2Money.SetText(dineroE.ToString());
-        if (ID == 0) UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
-        if (ID == 1) UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
     }
 
     #endregion

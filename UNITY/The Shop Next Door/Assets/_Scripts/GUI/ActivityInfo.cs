@@ -28,7 +28,7 @@ public class ActivityInfo
     public ActivityInfo()
     {
         activityName = "";
-        outcomes = new string[] { };
+        outcomes = new string[3] {" ", " ", " "};
         statesLuck = new float[] { };
         romanticProbability = 0.0f;
         friendshipProbability = 0.0f;

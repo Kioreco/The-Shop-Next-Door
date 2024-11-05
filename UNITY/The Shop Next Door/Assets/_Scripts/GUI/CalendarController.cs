@@ -338,6 +338,9 @@ public class CalendarController : MonoBehaviour
 
         if (activities_selected[0] != null)
         {
+            //print($"outcomes: {final_outcomes[0]}");
+            //print($"activi: {activities_selected[0]}");
+            //print($"otro: {activities_selected[0].activityInfo.outcomes[2]}");
             final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
         }
         else
