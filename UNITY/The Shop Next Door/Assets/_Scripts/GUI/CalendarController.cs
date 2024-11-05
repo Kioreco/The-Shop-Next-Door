@@ -250,7 +250,7 @@ public class CalendarController : MonoBehaviour
             0.35f,
             0.1f),
         new("Prepare a fancy dinner and lay by the phone",
-            new string[] { "You met a cute person", "You got puke on your favourite t-shirt", "You ended with a precious ring in your pocket and accidentally sold it on a black-marketplace" },
+            new string[] { "It was a disaster! The food tasted horrible and nobody texted me! I feel like dark tumblr 2014 posts...", "I'm starting to believe my phone is broken, because i didn't receive any messages! At least the food was really good I guess...", "I almost burnt the kitchen down! But I was fast and called the firefighters and a handsome and strong one came to help extinguish it and asked me on a date!!" },
             new float[] {1.0f, 1.0f, 1.0f, 1.0f},
             0.69f,
             0.54f,
@@ -258,7 +258,7 @@ public class CalendarController : MonoBehaviour
             0.35f,
             0.1f),
         new("Go to the town disco",
-            new string[] { "You met a cute person", "You got puke on your favourite t-shirt", "You ended with a precious ring in your pocket and accidentally sold it on a black-marketplace" },
+            new string[] { "Every popular person in high school was there, and let me tell you they aged like rotten milk! I couldn't stand it so I left early", "I have never seen a disco more old-fashioned and boring! Luckily someone bought a bottle of champagne and forgot about it!", "I crashed into my high school sweetheart and they confesed they had a crush on me back then!! They are still the most beautiful person I have ever seen!" },
             new float[] {1.0f, 1.0f, 1.0f, 1.0f},
             0.69f,
             0.54f,
@@ -266,7 +266,7 @@ public class CalendarController : MonoBehaviour
             0.35f,
             0.1f),
         new("Go to blind date",
-            new string[] { "You met a cute person", "You got puke on your favourite t-shirt", "You ended with a precious ring in your pocket and accidentally sold it on a black-marketplace" },
+            new string[] { "I couldn't believe it when I saw them showing up in THAT outfit... It seems that it was really a BLIND date...", "It was not a match I fear... But at least the food and the place was really good!", "I think I fell in love the moment I saw them showing up with a Gilmore Girls t-shirt, listening to Taylor Swift and saying they love The Smiths!" },
             new float[] {1.0f, 1.0f, 1.0f, 1.0f},
             0.69f,
             0.54f,
@@ -274,7 +274,7 @@ public class CalendarController : MonoBehaviour
             0.35f,
             0.1f),
         new("Read a pretentious book in the park",
-            new string[] { "You met a cute person", "You got puke on your favourite t-shirt", "You ended with a precious ring in your pocket and accidentally sold it on a black-marketplace" },
+            new string[] { "Now I understand why is called pretentious... It was awful! Never reading anything by a man ever again", "Did you know the father's DNA stays inside the mother for seven years? Now I don't think I want to have children...", "A cute person sat next to me in the bench and we both read peacefully till the sun set up... When I was about to leave, they said they waited all afternoon to ask for my number!" },
             new float[] {1.0f, 1.0f, 1.0f, 1.0f},
             0.69f,
             0.54f,
@@ -282,7 +282,7 @@ public class CalendarController : MonoBehaviour
             0.35f,
             0.1f),
         new("Go to dance classes",
-            new string[] { "You met a cute person", "You got puke on your favourite t-shirt", "You ended with a precious ring in your pocket and accidentally sold it on a black-marketplace" },
+            new string[] { "Everyone there was old! VERY OLD! And they kept stepping on my feet!!", "I thought they were going to be romantic, but they ended to be a bunch of moms dancing together and gossiping... I LOVE IT!", "I was out of breath when my assigned partner looked sculpted by the angels! I assure you that the rest of the afternoon was pure FUEGO" },
             new float[] {1.0f, 1.0f, 1.0f, 1.0f },
             0.69f,
             0.54f,
@@ -295,7 +295,6 @@ public class CalendarController : MonoBehaviour
 
     private void Awake()
     {
-
         RandomizeActivities(activities_mixed);
         RandomizeActivities(activities_romantic_NotPartner);
         RandomizeActivities(activities_romantic_Partner);
@@ -319,16 +318,16 @@ public class CalendarController : MonoBehaviour
     private void WriteDailyActivities()
     {
         // Mixed Actions
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 5; i++)
         {
             activities_text[i].SetText(activities_mixed[i].activityName);
             activities_daily[i].CopyActivity(activities_mixed[i]);
         }
-        int j = 7;
+        int j = 5;
         if (VidaPersonalManager.Instance.hasPartner)
         {
             // Romantic Actions
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 1; i++)
             {
                 //int randomAction = Random.Range(0, activities_romantic_Partner.Count);
                 activities_text[j].SetText(activities_romantic_Partner[i].activityName);
@@ -338,7 +337,7 @@ public class CalendarController : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 1; i++)
             {
                 //int randomAction = Random.Range(0, activities_romantic_NotPartner.Count);
                 activities_text[j].SetText(activities_romantic_NotPartner[i].activityName);
