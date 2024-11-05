@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
-        else { dineroJugador_text.color = whiteTextColor; }
+        if (GameManager.Instance.dineroJugador > 0) { dineroJugador_text.color = whiteTextColor; }
     }
 
     public void UpdateInventorySpace_UI()
@@ -124,7 +124,7 @@ public class UIManager : MonoBehaviour
         inventory_text.SetText(GameManager.Instance.espacioAlmacen.ToString());
         maxInventory_text.SetText(GameManager.Instance.maxEspacioAlmacen.ToString());
         if (GameManager.Instance.espacioAlmacen == GameManager.Instance.maxEspacioAlmacen) { inventory_text.color = redColor; }
-        else { inventory_text.color = whiteTextColor; }
+        if (GameManager.Instance.espacioAlmacen < GameManager.Instance.maxEspacioAlmacen) { inventory_text.color = whiteTextColor; }
     }
 
     public void UpdateClientHappiness_UI()
