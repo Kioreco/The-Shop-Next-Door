@@ -73,6 +73,7 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
+                client.GetComponent<ClientPrototype>().isEnable = false;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
@@ -87,6 +88,7 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
+                client.GetComponent<ClientPrototype>().isEnable = false;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();

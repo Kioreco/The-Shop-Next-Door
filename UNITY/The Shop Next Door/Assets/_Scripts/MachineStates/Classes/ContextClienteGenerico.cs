@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.MachineStates.Classes
 {
-    public class Context : MonoBehaviour, IContext
+    public class ContextClienteGenerico : MonoBehaviour, IContext
     {
         private IState currentState;
         [SerializeField] float speed;
@@ -13,10 +14,17 @@ namespace Assets.Scripts.MachineStates.Classes
         [SerializeField] UIManager UIManager;
         [SerializeField] GameManager GameManager;
         Vector3 currentEstanteria;
+
+        //caja pago:
         public float dineroCompra = 0;
         bool stopedInShelf = false;
         bool stopedInCajaPago = false;
         public int positionPayQueue;
+
+        //lista compra
+        int idxLista = 0;
+        List<string> listaCompraClaves;
+
 
         public IObjectPool objectPool;
         bool isReset;
@@ -43,12 +51,11 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void inicializar()
         {
-            //print($"is on navmesh: {GetComponent<NavMeshAgent>().isOnNavMesh}");
             lista.lista.Clear();
             lista.CrearLista();
+            listaCompraClaves = new List<string>(lista.lista.Keys);
             dineroCompra = 0;
-            //print($"inicializando\t lista: {lista.lista.Count}");
-            //lista.imprimirLista();
+            idxLista = 0;
             SetState(new SearchShelf(this));
         }
 
@@ -119,7 +126,6 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Destuir()
         {
-            //print($"destroying... objectPool: {objectPool}");
             objectPool?.Release(this);
         }
         public Vector3 getPosition()
@@ -174,24 +180,34 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void Reset()
         {
-            //print("reseting");
             isReset = true;
-            //GetComponent<NavMeshAgent>().Warp(TiendaManager.Instance.npcPositionInitial.position);
             if(TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
             else if(TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP2.position;
         }
         public void setObjectPool(IObjectPool o)
         {
-            //print("seting obj pool");
             objectPool = o;
         }
 
         public IContext Clone(Vector3 p, Quaternion r)
         {
             GameObject obj = Instantiate(gameObject, p, r);
-            IContext stc = obj.GetComponent<Context>();
+            IContext stc = obj.GetComponent<ContextClienteGenerico>();
             return stc;
         }
+        public int getIdxLista()
+        {
+            return idxLista;
+        }
+        public void setIdxLista(int i)
+        {
+            idxLista = i;
+        }
+        public List<string> getKeysLista()
+        {
+            return listaCompraClaves;
+        }
+
         #endregion
     }
 }

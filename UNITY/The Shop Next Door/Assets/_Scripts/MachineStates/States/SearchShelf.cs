@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+
 
 public class SearchShelf : AStateNPC
 {
@@ -15,14 +13,13 @@ public class SearchShelf : AStateNPC
         elementosRestantes = contexto.getLista().lista.Count;
         if(elementosRestantes > 0)
         {
-            //Debug.Log($"Estanteria: {contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First())}");
             contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First()));
-            //contexto.getLista().imprimirLista();
-            contexto.SetState(new WalkToShelf(contexto));
+            contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);
+            contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
         }
         else
         {
-            contexto.SetState(new Pay(contexto));
+            contexto.SetState(new LeaveAngry(contexto));
         }
     }
     public override void FixedUpdate()
@@ -31,5 +28,9 @@ public class SearchShelf : AStateNPC
 
     public override void Update()
     {
+        if (contexto.getNavMesh().remainingDistance == 0f)
+        {
+            contexto.SetState(new TakeProduct(contexto));
+        }
     }
 }

@@ -30,4 +30,7 @@ public interface IContext : IPooleableObject, IPrototype
     public int getPositionPay();
     public void setObjectPool(IObjectPool obj);
     public GameObject getPlayer();
+    public int getIdxLista();
+    public void setIdxLista(int i);
+    public List<string> getKeysLista();
 }

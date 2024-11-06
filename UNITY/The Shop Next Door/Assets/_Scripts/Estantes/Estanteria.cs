@@ -8,28 +8,6 @@ public class Estanteria : MonoBehaviour
     public List<string> objetosEstanteria = new List<string>();
     public int maxElem = 20;
 
-    string stateNPCBuying = "WalkToShelf";
-
-
-    private void Start()
-    {
-        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[0],tipoObj, maxElem);
-        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[1],tipoObj, maxElem);
-        //TiendaManager.Instance.reponerEstanteria(objetosEstanteria[2],tipoObj, maxElem);
-
-        //GameManager.Instance.
-    }
-
-    //public void Reponer(string s)
-    //{
-    //    TiendaManager.Instance.reponerEstanteria(s, tipoObj, maxElem);
-    //}
-
-    public void CogerElemento(string s, int c)
-    {
-        TiendaManager.Instance.cogerDeEstanteria(s, tipoObj, c);
-    }
-
     public bool TieneElemento(string s)
     {
         //print($"producto: {s}\n{objetosEstanteria.Contains(s)}");
@@ -41,7 +19,7 @@ public class Estanteria : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<Context>().setIsInColliderShelf(true);
+            other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(true);
         }
 
         if (other.CompareTag("Player"))
@@ -54,7 +32,7 @@ public class Estanteria : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<Context>().setIsInColliderShelf(false);
+            other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(false);
         }
 
         if (other.CompareTag("Player"))

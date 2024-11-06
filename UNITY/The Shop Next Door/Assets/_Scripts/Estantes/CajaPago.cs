@@ -8,7 +8,7 @@ public class CajaPago : MonoBehaviour
         if (other.CompareTag("NPC"))
         {
             //print("está");
-            other.gameObject.GetComponent<Context>().setIsInColliderCajaPago(true);
+            other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderCajaPago(true);
         }
     }
 
@@ -16,7 +16,7 @@ public class CajaPago : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<Context>().setIsInColliderCajaPago(false);
+            other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderCajaPago(false);
         }
     }
 }
