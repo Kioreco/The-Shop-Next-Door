@@ -1,0 +1,130 @@
+{
+  "activities": [
+    {
+      "activityName": "Go to a museum date with partner",
+      "outcomes": [
+        "We got into a fight about which was Botticelli best painting and now we don't talk!",
+        "Event though it's forbiden, we managed to take pics with every painting in the museum!",
+        "THEY KNEEL INTO THE FLOOR IN FRONT OF THE BIRTH OF VENUS AND PROPOSED!!! I'm the luckiest!! My sister is going to be so envious!"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.92,
+      "friendshipProbability": 0.3,
+      "personalDevelopmentProbability": 0.43,
+      "happinessProbability": 0.88,
+      "restingProbability": 0.92,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": true
+    },
+    {
+      "activityName": "Ask partner if they will love me if I was a bug",
+      "outcomes": [
+        "My partner said they would bury me and trample me!! He doesn't like ugly bugs at all! THIS IS THE END!",
+        "My partner said that they don't like bugs, but he would find a cure to my curse!",
+        "My partner said they would love me on every lifetime! They would become a bug just to love me and nurture me!"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.79,
+      "friendshipProbability": 0.31,
+      "personalDevelopmentProbability": 0.38,
+      "happinessProbability": 0.47,
+      "restingProbability": 0.66,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": true
+    },
+    {
+      "activityName": "Have a picnic with partner",
+      "outcomes": [
+        "I made the mistake of wearing a skirt... And it was all full of ants!! Memories of Vietnam!!! HATE IT!",
+        "Standing in the towel wasn't very comfortable, but my partner hold me in their arms caressing my hair!",
+        "The food was perfect! The place was perfect! AND THEY PROPOSED!"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.87,
+      "friendshipProbability": 0.26,
+      "personalDevelopmentProbability": 0.42,
+      "happinessProbability": 0.85,
+      "restingProbability": 0.72,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Ask partner if they love The Smiths",
+      "outcomes": [
+        "THEY SHOUTED ME! My partner said they hate The Smiths and I had to end it all!",
+        "My partner said they've never heard of that indie band, but they will do it for me!",
+        "MY PARTNER SAID THEY LOVE THE SMITHS!!! I knew I could trust them!!"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.93,
+      "friendshipProbability": 0.26,
+      "personalDevelopmentProbability": 0.73,
+      "happinessProbability": 0.76,
+      "restingProbability": 0.7,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": true
+    },
+    {
+      "activityName": "Have a tematic date with partner",
+      "outcomes": [
+        "The vibes were totally off... I wanted them to dress up as a Priest and they wanted to be a pirate! Illiterate!",
+        "It was good I guess... Life is not like the films, but I love them still!",
+        "We dressed up as Fleabag and the Priest! It was wonderfull! I hope this love won't pass..."
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.89,
+      "friendshipProbability": 0.3,
+      "personalDevelopmentProbability": 0.45,
+      "happinessProbability": 0.92,
+      "restingProbability": 0.53,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": true
+    },
+    {
+      "activityName": "Visit my partner hometown",
+      "outcomes": [
+        "We met their ex... They are more beautiful than me... I HATE IT! I HATE ME!",
+        "Their hometown was sooo boring... But they talked about it with so much love!",
+        "Their hometown was good, so good really... Maybe we should buy a house"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.94,
+      "friendshipProbability": 0.4,
+      "personalDevelopmentProbability": 0.68,
+      "happinessProbability": 0.52,
+      "restingProbability": 0.71,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Make partner watch Gilmore Girls with you",
+      "outcomes": [
+        "My partner couldn't even finish the first chapter! I HATE THEM! I blocked their number!",
+        "We watched the first season in one seating... I wanted more but they were really sleepy",
+        "We talk about the complexities of human relationships and how well Gilmore Girls portrays them"
+      ],
+      "ClimateStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "PersonalStateLuck": [1.0, 1.0, 1.0, 1.0],
+      "romanticProbability": 0.9,
+      "friendshipProbability": 0.6,
+      "personalDevelopmentProbability": 0.94,
+      "happinessProbability": 0.89,
+      "restingProbability": 1.0,
+      "isRomanticPartner": true,
+      "givesPartner": false,
+      "breakPartner": true
+    }
+  ]
+}

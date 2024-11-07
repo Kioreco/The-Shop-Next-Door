@@ -1,0 +1,424 @@
+{
+  "activities": [
+    {
+      "activityName": "Go for a walk with a book that you won't read",
+      "outcomes": [
+        "I got interviewed by a TikToker and the Internet made fun of me :(",
+        "I didn't remember to take out the book of my tote bag, but someone gifted me a massage coupon!!",
+        "A cute person sat next to me and asked for books recommendations... and my number!!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.4,
+      "friendshipProbability": 0.1,
+      "personalDevelopmentProbability": 0.2,
+      "happinessProbability": 0.6,
+      "restingProbability": 0.62,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Do yoga",
+      "outcomes": [
+        "I tried doing the Astavakrasana but my hand slipped and it hurt so much :,(",
+        "I believe I reached the Nirvana and now I don't have problems sleeeping!!!",
+        "I became intimate with the modern moms and they gifted me a pricey necklace!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.1,
+      "friendshipProbability": 0.45,
+      "personalDevelopmentProbability": 0.65,
+      "happinessProbability": 0.7,
+      "restingProbability": 0.8,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to the gym",
+      "outcomes": [
+        "The treadmill outruned me and I fell in a ridiculous way to the floor :(",
+        "The gym was empty and I could blast out loud Taylor Swift without any judgement from the gymbros",
+        "I lifted more weight than the noisy gymbro and make him cry!!!!!!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.18,
+      "friendshipProbability": 0.25,
+      "personalDevelopmentProbability": 0.66,
+      "happinessProbability": 0.2,
+      "restingProbability": 0.1,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go shopping with friends",
+      "outcomes": [
+        "There was nothing cute of my size and I started crying in the middle of the shopping center",
+        "I exited one shop without paying and nobody noticed... oops!",
+        "Everything I wanted was half-priced and I even got gifted a curious book!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.13,
+      "friendshipProbability": 0.9,
+      "personalDevelopmentProbability": 0.3,
+      "happinessProbability": 0.42,
+      "restingProbability": 0.33,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Binge watch Gilmore Girls",
+      "outcomes": [
+        "I was crying so bad watching Lorelai and Rory love each other so much that the pizza on the oven got burn",
+        "I wanted to be like Rory so you read an intellectual book in one sitting",
+        "I got moved so much by the relation of Emily and Lorelai that I called my mother to ask how is her life"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.3,
+      "friendshipProbability": 0.54,
+      "personalDevelopmentProbability": 1.0,
+      "happinessProbability": 1.0,
+      "restingProbability": 0.9,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to an art workshop",
+      "outcomes": [
+        "I mistook my glass of wine and drank the dirty water instead... IT WAS HORRIBLE!",
+        "I ended with my hands lilac, stained the t-shirt of the person next to me without them knowing and ran away with it!!",
+        "The hot teacher was impressed by my painting and went down their knees to ask me on a date!!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.55,
+      "friendshipProbability": 0.23,
+      "personalDevelopmentProbability": 0.34,
+      "happinessProbability": 0.68,
+      "restingProbability": 0.65,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Bake chocolate cookies",
+      "outcomes": [
+        "I got distracted learning a choreography, and burnt the cookies in the oven :(",
+        "I got the quantities wrong, so now I got cookies for a whole week!",
+        "My cute and silly neighbour smelt my cookies and I invited them to stay the night..."
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.43,
+      "friendshipProbability": 0.1,
+      "personalDevelopmentProbability": 0.39,
+      "happinessProbability": 0.75,
+      "restingProbability": 0.55,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to a DJ workshop",
+      "outcomes": [
+        "Never in my life have I been surrounded by so many monkey dudes that I had to ran away crying!!",
+        "I unplugged the mixing desk while nobody was watching and use the distraction to fill my pockets with the telephones of the annoying dudes... oops!",
+        "I got everyone to burn down the dance floor to the beat of Sophie!! I was born to do this!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.6,
+      "friendshipProbability": 0.4,
+      "personalDevelopmentProbability": 0.05,
+      "happinessProbability": 0.55,
+      "restingProbability": 0.23,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Clean the house",
+      "outcomes": [
+        "I had to fought a spider's nest and couldn't end cleaning :( IT WAS HORRIBLE!",
+        "I got distracted while cleaning with things I didn't remember having and found money under the bed!",
+        "I feel life is worth living again, everything is in order and so is my life!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.0,
+      "friendshipProbability": 0.3,
+      "personalDevelopmentProbability": 1.0,
+      "happinessProbability": 1.0,
+      "restingProbability": 0.9,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Call mom and listen to her complains",
+      "outcomes": [
+        "We ended up yelling at each other because of a misunderstanding!! HATE HER!!",
+        "I left the telephone in the room while I showered and when I went back she was still talking alone... sorry not sorry!",
+        "I realised I have grown old just as my mother, and although she is guilty of part of my pain, I understand her..."
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.0,
+      "friendshipProbability": 0.7,
+      "personalDevelopmentProbability": 1.0,
+      "happinessProbability": 0.4,
+      "restingProbability": 0.5,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Write fanfics with the lights off",
+      "outcomes": [
+        "A screenshot of my fic went viral on Twitter and everybody made fun of me!!",
+        "The omegaverse fans praised my fic and made me an internet sensation... Yuhu! I guess?",
+        "'The Lovely Adventures of Paquita and Fernandito' became an internet sensation and they offered me a publishing contract!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.64,
+      "friendshipProbability": 0.82,
+      "personalDevelopmentProbability": 0.86,
+      "happinessProbability": 0.97,
+      "restingProbability": 0.98,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go vintage shopping with a cute hat",
+      "outcomes": [
+        "Nobody complemented my avant garde hat and I bought a scabies dress without knowing! WORST EXPERIENCE EVER!",
+        "I found the perfect skirt to match my extravagant hat! Life is worth living!",
+        "An alternative hot looking person complemented my outfit and asked for my number!!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.57,
+      "friendshipProbability": 0.59,
+      "personalDevelopmentProbability": 0.48,
+      "happinessProbability": 0.74,
+      "restingProbability": 0.82,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Listen to a sad playlist",
+      "outcomes": [
+        "The neighbours heard my laments and called the police to see if something was wrong... EMBARRASSING!!",
+        "I cried in silence all night long and wake up refreshed and thinking life is about the ups and the downs",
+        "I tweeted how much I liked a certain sad singer song, and they replied and asked me on a date! Feeling like Paul Mescal rn..."
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.3,
+      "friendshipProbability": 0.2,
+      "personalDevelopmentProbability": 0.96,
+      "happinessProbability": 0.25,
+      "restingProbability": 0.87,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Watch Twilight with your friends",
+      "outcomes": [
+        "My friends were #TeamJacob (ew), so I fought with them! They are never entering my house till they rethink it!",
+        "I dreamt a hot vampire lured me into the dark and now I wait every night by the window...",
+        "We all bonded talking and dreaming about Edward Cullen (Edward, if you ever read this, call me up!!)"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.61,
+      "friendshipProbability": 0.98,
+      "personalDevelopmentProbability": 0.48,
+      "happinessProbability": 0.81,
+      "restingProbability": 0.89,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to a rodeo bar",
+      "outcomes": [
+        "My legs hurt so much that I had to exit crawling!!!",
+        "I bonded with the lonely ladies in the corner and started dancing together till the floor fell down!!!",
+        "I fell off the horse straight into the strong arms of a cowboy and ride all night long... yeah!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.99,
+      "friendshipProbability": 0.59,
+      "personalDevelopmentProbability": 0.22,
+      "happinessProbability": 0.76,
+      "restingProbability": 0.31,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    }
+  ]
+}

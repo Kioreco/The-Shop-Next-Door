@@ -1,48 +1,45 @@
-
-
-using Unity.VisualScripting.Antlr3.Runtime;
-
+[System.Serializable]
 public class ActivityInfo 
 {
-    public string activityName { get; set; }
-    public string[] outcomes { get; set; }
+    public string activityName;
+    public string[] outcomes;
 
-    public float[] ClimateStateLuck { get; set; }
-    public float[] PersonalStateLuck { get; set; }
+    public float[] ClimateStateLuck;
+    public float[] PersonalStateLuck;
 
-    public float romanticProbability { get; set; }
-    public float friendshipProbability { get; set; }
-    public float personalDevelopmentProbability { get; set; }
-    public float happinessProbability { get; set; }
-    public float restingProbability { get; set; }
+    public float romanticProbability;
+    public float friendshipProbability;
+    public float personalDevelopmentProbability;
+    public float happinessProbability;
+    public float restingProbability;
 
-    public bool isRomanticPartner { get; set; }
-    public bool givesPartner { get; set; }
-    public bool breakPartner { get; set; }
+    public bool isRomanticPartner;
+    public bool givesPartner;
+    public bool breakPartner;
 
-    public ActivityInfo(string actName, string[] outc, float[] stClimateLuck, float[] stPersonalLuck, float romProb, float friendProb, float persProb, float hapProb, float restProb, bool romanticPartner, bool partner)
-    {
-        activityName = actName;
-        outcomes = outc;
-        ClimateStateLuck = stClimateLuck;
-        PersonalStateLuck = stPersonalLuck;
-        romanticProbability = romProb;
-        friendshipProbability = friendProb;
-        personalDevelopmentProbability = persProb;
-        happinessProbability = hapProb;
-        restingProbability = restProb;
-        isRomanticPartner = romanticPartner;
-        if (isRomanticPartner)
-        {
-            breakPartner = partner;
-            givesPartner = false;
-        }
-        else
-        {
-            breakPartner = false;
-            givesPartner = partner;
-        }
-    }
+    //public ActivityInfo(string actName, string[] outc, float[] stClimateLuck, float[] stPersonalLuck, float romProb, float friendProb, float persProb, float hapProb, float restProb, bool romanticPartner, bool partner)
+    //{
+    //    activityName = actName;
+    //    outcomes = outc;
+    //    ClimateStateLuck = stClimateLuck;
+    //    PersonalStateLuck = stPersonalLuck;
+    //    romanticProbability = romProb;
+    //    friendshipProbability = friendProb;
+    //    personalDevelopmentProbability = persProb;
+    //    happinessProbability = hapProb;
+    //    restingProbability = restProb;
+    //    isRomanticPartner = romanticPartner;
+    //    if (isRomanticPartner)
+    //    {
+    //        breakPartner = partner;
+    //        givesPartner = false;
+    //    }
+    //    else
+    //    {
+    //        breakPartner = false;
+    //        givesPartner = partner;
+    //    }
+    //}
 
     public ActivityInfo()
     {

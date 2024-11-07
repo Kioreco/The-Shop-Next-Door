@@ -1,0 +1,256 @@
+{
+  "activities": [
+    {
+      "activityName": "Go to a private party",
+      "outcomes": [
+        "I got puke on my favourite t-shirt :(",
+        "I ended with a precious ring in my pocket and accidentally sold it on a black-marketplace... oops!",
+        "A very cute person stayed all night by my side and we went to talk to a more intimate place about life and the stars... Life sometimes is like a movie!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.75,
+      "friendshipProbability": 0.85,
+      "personalDevelopmentProbability": 0.23,
+      "happinessProbability": 0.47,
+      "restingProbability": 0.12,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go on a date with someone from a dating app",
+      "outcomes": [
+        "It was weird... They didn't ask a single question! I wasted my time...",
+        "They didn't look like their profile AT ALL, so I ran away before they saw me!",
+        "They were as nervous as me, and somehow that made it lovelier! I'm going to ask them on a second date!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.58,
+      "friendshipProbability": 0.48,
+      "personalDevelopmentProbability": 0.36,
+      "happinessProbability": 0.15,
+      "restingProbability": 0.22,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to a café alone and act mysterious",
+      "outcomes": [
+        "I spilled the coffee all over my dress! I felt pathetic!",
+        "I sat in the café thinking all love ever does is break and burn, and end...",
+        "I was about to slip with my coffee but a very handsome person caught me in the air and they made me company!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.92,
+      "friendshipProbability": 0.53,
+      "personalDevelopmentProbability": 0.61,
+      "happinessProbability": 0.72,
+      "restingProbability": 0.84,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Invite someone over",
+      "outcomes": [
+        "I stayed by the door all night long and they never came... I hate it here!",
+        "I tried inviting my crush, but they couldn't come... But my friends came to cheer me up!",
+        "None of my friends could come so I went to the nearest Chinese food store and found my crush and I invited them to come! It was great!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.97,
+      "friendshipProbability": 0.66,
+      "personalDevelopmentProbability": 0.42,
+      "happinessProbability": 0.47,
+      "restingProbability": 0.76,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Prepare a fancy dinner and lay by the phone",
+      "outcomes": [
+        "It was a disaster! The food tasted horrible and nobody texted me! I feel like dark tumblr 2014 posts...",
+        "I'm starting to believe my phone is broken, because I didn't receive any messages! At least the food was really good I guess...",
+        "I almost burnt the kitchen down! But I was fast and called the firefighters and a handsome and strong one came to help extinguish it and asked me on a date!!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.66,
+      "friendshipProbability": 0.52,
+      "personalDevelopmentProbability": 0.6,
+      "happinessProbability": 0.72,
+      "restingProbability": 0.84,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to the town disco",
+      "outcomes": [
+        "Every popular person in high school was there, and let me tell you they aged like rotten milk! I couldn't stand it so I left early",
+        "I have never seen a disco more old-fashioned and boring! Luckily someone bought a bottle of champagne and forgot about it!",
+        "I crashed into my high school sweetheart and they confessed they had a crush on me back then!! They are still the most beautiful person I have ever seen!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.37,
+      "friendshipProbability": 0.68,
+      "personalDevelopmentProbability": 0.21,
+      "happinessProbability": 0.26,
+      "restingProbability": 0.13,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to blind date",
+      "outcomes": [
+        "I couldn't believe it when I saw them showing up in THAT outfit... It seems that it was really a BLIND date...",
+        "It was not a match I fear... But at least the food and the place was really good!",
+        "I think I fell in love the moment I saw them showing up with a Gilmore Girls t-shirt, listening to Taylor Swift and saying they love The Smiths!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.76,
+      "friendshipProbability": 0.59,
+      "personalDevelopmentProbability": 0.42,
+      "happinessProbability": 0.46,
+      "restingProbability": 0.58,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Read a pretentious book in the park",
+      "outcomes": [
+        "Now I understand why it's called pretentious... It was awful! Never reading anything by a man ever again",
+        "Did you know the father's DNA stays inside the mother for seven years? Now I don't think I want to have children...",
+        "A cute person sat next to me on the bench and we both read peacefully till the sun set up... When I was about to leave, they said they waited all afternoon to ask for my number!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.88,
+      "friendshipProbability": 0.44,
+      "personalDevelopmentProbability": 0.94,
+      "happinessProbability": 0.62,
+      "restingProbability": 0.87,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to dance classes",
+      "outcomes": [
+        "Everyone there was old! VERY OLD! And they kept stepping on my feet!!",
+        "I thought they were going to be romantic, but they ended up being a bunch of moms dancing together and gossiping... I LOVE IT!",
+        "I was out of breath when my assigned partner looked sculpted by the angels! I assure you that the rest of the afternoon was pure FUEGO"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.82,
+      "friendshipProbability": 0.71,
+      "personalDevelopmentProbability": 0.69,
+      "happinessProbability": 0.56,
+      "restingProbability": 0.58,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    }
+  ]
+}

@@ -7831,6 +7831,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &593255881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14084,6 +14110,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!1 &1025352557
 GameObject:
   m_ObjectHideFlags: 0
@@ -19909,6 +19961,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!1 &1432099867
 GameObject:
   m_ObjectHideFlags: 0
@@ -20036,6 +20114,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &1439410479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21119,6 +21223,9 @@ MonoBehaviour:
   - {fileID: 810263912}
   - {fileID: 1610124783}
   - {fileID: 1957116117}
+  activities_mixed: []
+  activities_romantic: []
+  activities_partner: []
 --- !u!114 &1542379636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21726,6 +21833,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &1586628472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22763,6 +22896,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!1 &1682136467
 GameObject:
   m_ObjectHideFlags: 0
@@ -22998,7 +23157,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.45
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -27142,6 +27301,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &2008551834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28443,6 +28628,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &2103929788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28809,6 +29020,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bd90bff309c2744910aab896f62325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activityInfo:
+    activityName: 
+    outcomes:
+    - ' '
+    - ' '
+    - ' '
+    ClimateStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    PersonalStateLuck:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    romanticProbability: 0
+    friendshipProbability: 0
+    personalDevelopmentProbability: 0
+    happinessProbability: 0
+    restingProbability: 0
+    isRomanticPartner: 0
+    givesPartner: 0
+    breakPartner: 0
 --- !u!114 &2116855224
 MonoBehaviour:
   m_ObjectHideFlags: 0
