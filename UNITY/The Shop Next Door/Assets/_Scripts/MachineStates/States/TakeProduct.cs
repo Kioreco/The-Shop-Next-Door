@@ -12,8 +12,8 @@ public class TakeProduct : AStateNPC
     #region metodos
     public override void Enter() 
     {
-        contexto.getLista().lista.ToList();
-        nombreProducto = contexto.getKeysLista()[contexto.getIdxLista()];
+        //contexto.getLista().lista.ToList();
+        nombreProducto = contexto.getLista().lista.Keys.First();
     }
 
     public override void Update()
@@ -28,14 +28,14 @@ public class TakeProduct : AStateNPC
             lastSeek = 0f;
             if (contexto.getIsInColliderShelf())
             {
-                Debug.Log("cogiendo elemento...");
+                //Debug.Log("cogiendo elemento...");
                 contexto.getTiendaManager().cogerDeEstanteria(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad);
                 contexto.sumDineroCompra(contexto.getTiendaManager().getPrecioProducto(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad));
-                //contexto.getLista().lista.Remove(nombreProducto);
-                contexto.setIdxLista(contexto.getIdxLista() + 1);
+                contexto.getLista().lista.Remove(nombreProducto);
+                //contexto.setIdxLista(contexto.getIdxLista() + 1);
             }
 
-            if (contexto.getIdxLista() < contexto.getLista().lista.Count) contexto.SetState(new SearchShelf(contexto));
+            if (contexto.getLista().lista.Count > 0) contexto.SetState(new SearchShelf(contexto));
             else contexto.SetState(new WaitPayTurn(contexto));
             //falta transicion a preguntar duda
         }

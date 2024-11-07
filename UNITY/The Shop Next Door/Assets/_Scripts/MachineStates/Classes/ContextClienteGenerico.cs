@@ -21,11 +21,6 @@ namespace Assets.Scripts.MachineStates.Classes
         bool stopedInCajaPago = false;
         public int positionPayQueue;
 
-        //lista compra
-        int idxLista = 0;
-        List<string> listaCompraClaves;
-
-
         public IObjectPool objectPool;
         bool isReset;
 
@@ -53,9 +48,7 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             lista.lista.Clear();
             lista.CrearLista();
-            listaCompraClaves = new List<string>(lista.lista.Keys);
             dineroCompra = 0;
-            idxLista = 0;
             SetState(new SearchShelf(this));
         }
 
@@ -162,7 +155,10 @@ namespace Assets.Scripts.MachineStates.Classes
             if (player.IsOwner) return player.gameObject;
             return null;
         }
-
+        public Transform GetTransform()
+        {
+            return transform;
+        }
         #endregion
 
         #region objectpool and prototype
@@ -195,18 +191,8 @@ namespace Assets.Scripts.MachineStates.Classes
             IContext stc = obj.GetComponent<ContextClienteGenerico>();
             return stc;
         }
-        public int getIdxLista()
-        {
-            return idxLista;
-        }
-        public void setIdxLista(int i)
-        {
-            idxLista = i;
-        }
-        public List<string> getKeysLista()
-        {
-            return listaCompraClaves;
-        }
+
+
 
         #endregion
     }

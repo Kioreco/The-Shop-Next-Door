@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -46,6 +47,12 @@ public class TiendaManager : MonoBehaviour
     Dictionary<string, Producto> PapeleriaYArte = new Dictionary<string, Producto>();
     Dictionary<string, Producto> Comida = new Dictionary<string, Producto>();
     Dictionary<string, Producto> JuegosPeliculasMusica = new Dictionary<string, Producto>();
+
+    [Header("Bolsas y manchas")]
+    public GameObject bolsaBasura;
+    public GameObject manchaSuelo;
+    public Transform doorPos1;
+    public Transform doorPos2;
 
     public static TiendaManager Instance { get; private set; }
     void Awake()
@@ -379,5 +386,11 @@ public class TiendaManager : MonoBehaviour
             aux[producto].stockAlmacen += cantidad;
             aux[producto].gestionarStockEstanteriaYAlmacen(20);
         }
+    }
+
+    public void InstanceBag(Vector3 position)
+    {
+        print("instanciando bolsa basura");
+        Instantiate(bolsaBasura, position, Quaternion.identity);
     }
 }
