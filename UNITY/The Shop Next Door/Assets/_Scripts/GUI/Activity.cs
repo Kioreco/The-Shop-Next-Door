@@ -23,12 +23,14 @@ public class Activity : MonoBehaviour
     {
         activityInfo.activityName = act.activityName;
         activityInfo.outcomes = act.outcomes;
-        activityInfo.statesLuck = act.statesLuck;
+        activityInfo.ClimateStateLuck = act.ClimateStateLuck;
         activityInfo.romanticProbability = act.romanticProbability;
         activityInfo.friendshipProbability = act.friendshipProbability;
         activityInfo.personalDevelopmentProbability = act.personalDevelopmentProbability;
         activityInfo.happinessProbability = act.happinessProbability;
         activityInfo.restingProbability = act.restingProbability;
     }
+
+
 
 }
