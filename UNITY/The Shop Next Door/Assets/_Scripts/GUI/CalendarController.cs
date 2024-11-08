@@ -21,31 +21,6 @@ public class CalendarController : MonoBehaviour
     [HideInInspector] public ActivityInfo[] activities_romantic;
     [HideInInspector] public ActivityInfo[] activities_partner;
 
-    #region JSON-ish
-
-    [System.Serializable]
-    public class ActivityList
-    {
-        public ActivityInfo[] activitiesJSON;
-    }
-
-    private ActivityInfo[] LoadActivitiesFromJson(string fileName)
-    {
-        TextAsset jsonFile = Resources.Load<TextAsset>("Activities/" + fileName);
-        if (jsonFile == null)
-        {
-            Debug.LogWarning("JSON file not found");
-            return null;
-        }
-
-        ActivityList activityList = JsonUtility.FromJson<ActivityList>(jsonFile.text);
-        print(activityList);
-        print(activityList.activitiesJSON);
-        return activityList.activitiesJSON;
-    }
-    #endregion
-
-
     #region Activities List 
 
     //private ActivityInfo[] activities_mixed = new ActivityInfo[] {
@@ -402,9 +377,6 @@ public class CalendarController : MonoBehaviour
 
     private void Awake()
     {
-        //activities_mixed = LoadActivitiesFromJson("activities_mixed");
-        //activities_romantic = LoadActivitiesFromJson("activities_romantic");
-        //activities_partner = LoadActivitiesFromJson("activities_partner");
         ActivityLoader loader = new ActivityLoader();
         loader.LoadActivities();
 
@@ -417,8 +389,6 @@ public class CalendarController : MonoBehaviour
 
     private void RandomizeActivities(ActivityInfo[] list)
     {
-        Debug.Log("Lista" + list);
-        Debug.Log("Lista length" + list.Length);
         int n = list.Length;
         for (int i = 0; i < n; i++)
         {
@@ -558,7 +528,7 @@ public class CalendarController : MonoBehaviour
                 }
             }
 
-            UpdateDailyPartialActivityProgress(i, outcomeWeighted);
+            CalculateDailyPartialActivityProgress(i, outcomeWeighted);
 
             final_outcomes[i] = activities_selected[i].activityInfo.outcomes[outcomeWeighted];
         }
@@ -569,7 +539,7 @@ public class CalendarController : MonoBehaviour
 
     float discountValue = 0f;
 
-    private void UpdateDailyPartialActivityProgress(int actNumber, int outcome)
+    private void CalculateDailyPartialActivityProgress(int actNumber, int outcome)
     {
         if (outcome == 0) { discountValue = 0.1f; }
         else if (outcome == 1) { discountValue = 0.5f; }
@@ -587,38 +557,3 @@ public class CalendarController : MonoBehaviour
         weekDay_text.SetText(day);
     }
 }
-
-
-
-
-
-
-//final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
-
-
-//if (activities_selected[0] != null)
-//{
-//    final_outcomes[0] = activities_selected[0].activityInfo.outcomes[2];
-//}
-//else
-//{
-//    final_outcomes[0] = "";
-//}
-
-//if(activities_selected[1] != null)
-//{
-//    final_outcomes[1] = activities_selected[1].activityInfo.outcomes[2];
-//}
-//else
-//{
-//    final_outcomes[1] = "";
-//}
-
-//if (activities_selected[2] != null)
-//{
-//    final_outcomes[2] = activities_selected[2].activityInfo.outcomes[2];
-//}
-//else
-//{
-//    final_outcomes[2] = "";
-//}

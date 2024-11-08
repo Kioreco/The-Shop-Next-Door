@@ -17,29 +17,6 @@ public class ActivityInfo
     public bool givesPartner;
     public bool breakPartner;
 
-    //public ActivityInfo(string actName, string[] outc, float[] stClimateLuck, float[] stPersonalLuck, float romProb, float friendProb, float persProb, float hapProb, float restProb, bool romanticPartner, bool partner)
-    //{
-    //    activityName = actName;
-    //    outcomes = outc;
-    //    ClimateStateLuck = stClimateLuck;
-    //    PersonalStateLuck = stPersonalLuck;
-    //    romanticProbability = romProb;
-    //    friendshipProbability = friendProb;
-    //    personalDevelopmentProbability = persProb;
-    //    happinessProbability = hapProb;
-    //    restingProbability = restProb;
-    //    isRomanticPartner = romanticPartner;
-    //    if (isRomanticPartner)
-    //    {
-    //        breakPartner = partner;
-    //        givesPartner = false;
-    //    }
-    //    else
-    //    {
-    //        breakPartner = false;
-    //        givesPartner = partner;
-    //    }
-    //}
 
     public ActivityInfo()
     {

@@ -1,14 +1,7 @@
 using UnityEngine;
 
-[System.Serializable]
 public class ActivityLoader
 {
-    [System.Serializable]
-    public class ActivityList
-    {
-        public ActivityInfo[] activitiesJSON;
-    }
-
     private ActivityInfo[] LoadActivitiesFromJson(string fileName)
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("Activities/" + fileName);
@@ -19,9 +12,7 @@ public class ActivityLoader
         }
 
         ActivityList activityList = JsonUtility.FromJson<ActivityList>(jsonFile.text);
-        Debug.Log(activityList);
-        Debug.Log(activityList.activitiesJSON);
-        return activityList.activitiesJSON;
+        return activityList.activities;
     }
 
     public void LoadActivities()
@@ -30,4 +21,10 @@ public class ActivityLoader
         UIManager.Instance.telephone.calendar.activities_romantic = LoadActivitiesFromJson("activities_romantic");
         UIManager.Instance.telephone.calendar.activities_partner = LoadActivitiesFromJson("activities_partner");
     }
+}
+
+[System.Serializable]
+public class ActivityList
+{
+    public ActivityInfo[] activities;
 }
