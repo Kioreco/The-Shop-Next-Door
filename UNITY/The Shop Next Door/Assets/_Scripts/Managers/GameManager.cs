@@ -140,6 +140,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10f);
         UIManager.Instance.timeReference.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);
-        //UIManager.Instance.telephone.calendar.ResetActivities();
+        UIManager.Instance.telephone.calendar.ResetActivities();
     }
 }

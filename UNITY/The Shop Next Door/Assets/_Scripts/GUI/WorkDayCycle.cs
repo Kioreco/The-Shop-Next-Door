@@ -12,9 +12,9 @@ public class WorkDayCycle : MonoBehaviour
     private float realTimePerDay = 90f;    // TIEMPO POR DÍA -----> 240
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
-    private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
+    //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
     private float gameEndTime = 15f;        // HORA DE CIERRE
-    private float gameHoursPerDay = 6f;     // HORAS DE TRABAJO POR DÍA
+    //private float gameHoursPerDay = 6f;     // HORAS DE TRABAJO POR DÍA
 
     private float realTimePassed = 0f;      // TIEMPO EN SEGUNDOS QUE HAN PASADO
 
