@@ -43,10 +43,14 @@ public class TelephoneController : MonoBehaviour
 
     [Header("Life App")]
     [SerializeField] private TextMeshProUGUI lifeApp_name;
+    [SerializeField] private Life_RadarChart lifeRadar;
 
     private void Awake()
     {
         CheckAlmacenSpaceForBuying();
+
+        //ELEFANTE
+        lifeRadar.UpdateStatsRadar();
     }
 
     private void OnEnable()

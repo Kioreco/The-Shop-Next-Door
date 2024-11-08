@@ -34,10 +34,10 @@ public class VidaPersonalManager : MonoBehaviour
     private void InitializeProgress()
     {
         restProgress = 100.0f;
-        happinessProgress = 50.0f;
-        friendshipProgress = 30.0f;
-        developmentProgress = 0.0f;
-        romanticProgress = 0.0f;
+        happinessProgress = 100.0f;
+        friendshipProgress = 100.0f;
+        developmentProgress = 100.0f;
+        romanticProgress = 100.0f;
     }
 
 
