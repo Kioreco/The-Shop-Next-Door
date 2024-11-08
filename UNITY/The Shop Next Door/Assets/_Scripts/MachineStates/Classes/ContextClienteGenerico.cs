@@ -21,6 +21,24 @@ namespace Assets.Scripts.MachineStates.Classes
         bool stopedInCajaPago = false;
         public int positionPayQueue;
 
+        //dudas:
+        int porcentajeDuda = 20;
+        bool tieneDuda = false;
+        string productoDuda;
+
+        //pila estados:
+        Stack<IState> pilaStates = new Stack<IState>();
+
+        //enfado;
+        int maxEnfado = 100;
+        int enfadoActual = 0;
+        int umbralPropinaFelicidad = 65;
+        /*
+         por producto -> 15
+         por mancha -> 3
+         por esperar en la cola -> 10
+         */
+
         public IObjectPool objectPool;
         bool isReset;
 
@@ -49,6 +67,20 @@ namespace Assets.Scripts.MachineStates.Classes
             lista.lista.Clear();
             lista.CrearLista();
             dineroCompra = 0;
+
+            int random = UnityEngine.Random.Range(0, 100);
+            if(random < porcentajeDuda)
+            {
+                tieneDuda = true;
+                var productos = new List<string>(lista.lista.Keys);
+                productoDuda = productos[UnityEngine.Random.Range(0, lista.lista.Count-1)];
+            }
+            else
+            {
+                tieneDuda = false;
+                productoDuda = null;
+            }
+
             SetState(new SearchShelf(this));
         }
 
@@ -158,6 +190,38 @@ namespace Assets.Scripts.MachineStates.Classes
         public Transform GetTransform()
         {
             return transform;
+        }
+        public string getProductoDuda()
+        {
+            return productoDuda;
+        }
+        public bool getTieneDuda()
+        {
+            return tieneDuda;
+        }
+        public void setTieneDuda(bool duda)
+        {
+            tieneDuda = duda;
+        }
+        public Stack<IState> getPilaState()
+        {
+            return pilaStates;
+        }
+        public int getEnfado()
+        {
+            return enfadoActual;
+        }
+        public int getMaxEnfado()
+        {
+            return maxEnfado;
+        }
+        public void aumentarEnfado(int enfado)
+        {
+            enfadoActual += enfado;
+        }
+        public int getUmbralPropina()
+        {
+            return umbralPropinaFelicidad;
         }
         #endregion
 

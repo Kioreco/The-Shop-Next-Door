@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class WaitPayTurn : AStateNPC
@@ -40,6 +38,8 @@ public class WaitPayTurn : AStateNPC
 
     public override void Update()
     {
+        if(contexto.getEnfado() == contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
+
         if (contexto.getNavMesh().remainingDistance <= 0.5f && contexto.getIsInColliderCajaPago() && !isInQueue)
         {
             //Debug.Log("está en el collider pidiendo la vez");
@@ -59,7 +59,7 @@ public class WaitPayTurn : AStateNPC
             contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
         }
 
-        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
-        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
+        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
+        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
     }
 }

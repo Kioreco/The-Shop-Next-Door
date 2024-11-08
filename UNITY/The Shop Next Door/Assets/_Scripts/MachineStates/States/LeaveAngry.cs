@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class LeaveAngry : AStateNPC
@@ -27,12 +23,16 @@ public class LeaveAngry : AStateNPC
             doorPos = contexto.getTiendaManager().doorPos1;
         }
         actualPos = contexto.GetTransform();
+
         //generar en una pos random una bolsa de basura
         random = Random.Range(0f, 1f);
         spawnPosition = Vector3.Lerp(actualPos.position, doorPos.position, random);
         Debug.Log($"spawnposition: {spawnPosition}");
+
         //se va por la puerta
         contexto.getNavMesh().SetDestination(exitPos.position);
+        contexto.getTiendaManager().avanzarLaCola();
+
     }
     public override void FixedUpdate()
     {
@@ -40,6 +40,7 @@ public class LeaveAngry : AStateNPC
 
     public override void Update()
     {
+        Debug.Log($"pos cliente: {contexto.GetTransform().position}");
         if(contexto.GetTransform().position == spawnPosition)
         {
             Debug.Log("iguales");

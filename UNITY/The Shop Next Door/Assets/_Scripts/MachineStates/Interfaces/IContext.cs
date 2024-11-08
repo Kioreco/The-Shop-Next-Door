@@ -31,4 +31,12 @@ public interface IContext : IPooleableObject, IPrototype
     public void setObjectPool(IObjectPool obj);
     public GameObject getPlayer();
     public Transform GetTransform();
+    public string getProductoDuda();
+    public bool getTieneDuda();
+    public void setTieneDuda(bool duda);
+    public Stack<IState> getPilaState();
+    public int getEnfado();
+    public int getMaxEnfado();
+    public void aumentarEnfado(int enfado);
+    public int getUmbralPropina();
 }

@@ -54,6 +54,10 @@ public class TiendaManager : MonoBehaviour
     public Transform doorPos1;
     public Transform doorPos2;
 
+    [Header("Trabajadores")]
+    public List<GameObject> workersP1;
+    public List<GameObject> workersP2;
+
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -211,14 +215,15 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
-    public void cogerDeEstanteria(string s, char tipo, int cantidad)
+    public int cogerDeEstanteria(string s, char tipo, int cantidad)
     {
         if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
         {
             //print($"antes: {result}");
-            result.cogerProducto(cantidad);
+            return result.cogerProducto(cantidad);
             //print($"despues: {result}");
         }
+        return -1;
     }
 
     public int cogerSitioCola(IContext npc)

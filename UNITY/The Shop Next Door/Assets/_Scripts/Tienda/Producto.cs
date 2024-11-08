@@ -46,14 +46,14 @@ public class Producto
         }
     }
 
-    public void cogerProducto(int c)
+    public int cogerProducto(int c)
     {
         if(stockEstanteria - c >= 0) stockEstanteria -= c;
         else
         {
             stockEstanteria = 0;
-            //return -1; //devuelve -1 si se ha intentado coger más cantidad de la que quedaba
+            return -1; //devuelve -1 si se ha intentado coger más cantidad de la que quedaba
         }
-        //return 0; //si ha cogido todos los elementos que podía coger
+        return 0; //si ha cogido todos los elementos que podía coger
     }
 }

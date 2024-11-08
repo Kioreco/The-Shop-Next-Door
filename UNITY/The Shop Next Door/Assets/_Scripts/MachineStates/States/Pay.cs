@@ -39,10 +39,14 @@ public class Pay : AStateNPC
 
         if (lastSeek >= secondsToSeek)
         {
+            float dinero = contexto.getDineroCompra();
             lastSeek = 0f;
             contexto.getTiendaManager().avanzarLaCola();
             contexto.getNavMesh().SetDestination(exitPos.position);
-            contexto.getGameManager().dineroJugador += contexto.getDineroCompra();
+
+            if (contexto.getEnfado() <= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
+
+            contexto.getGameManager().dineroJugador += dinero;
 
             contexto.getUIManager().UpdatePlayersIngameMoney_UI();
             isFinish = true;
