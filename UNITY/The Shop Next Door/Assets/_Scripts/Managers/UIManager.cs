@@ -8,7 +8,10 @@ public class UIManager : MonoBehaviour
 {
     //[Header("TITLE SCENE")]
 
-    //[Header("MENU SCENE")]
+    [Header("MENU SCENE")]
+    [SerializeField] private TextMeshProUGUI cashRegister_Text;
+    int[] numeros = new int[4] { 0, 0, 0, 0 };
+
     //[Header("MATCHMAKING SCENE")]
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI matchCodeMatchMaking_Text;
@@ -154,5 +157,14 @@ public class UIManager : MonoBehaviour
         activity1_outcome_text.SetText(final_outcomes[0]);
         activity2_outcome_text.SetText(final_outcomes[1]);
         activity3_outcome_text.SetText(final_outcomes[2]);
+    }
+
+    public void WriteCashRegister(int numero)
+    {
+        numeros[0] = numeros[1];
+        numeros[1] = numeros[2];
+        numeros[2] = numeros[3];
+        numeros[3] = numero;
+        cashRegister_Text.SetText(numeros[0].ToString() + " " + numeros[1].ToString() + " " + numeros[2].ToString() + " " + numeros[3].ToString());
     }
 }
