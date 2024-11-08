@@ -4,7 +4,6 @@ using UnityEngine;
 public class AskWorker : AStateNPC
 {
     Transform posWorker;
-    bool isfinish = false;
     GameObject worker;
     int distanceMin = 10000;
     float secondsToSeek = 3f; //tiempo de la animación

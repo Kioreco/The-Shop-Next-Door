@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class WaitPayTurn : AStateNPC
 {
-    bool isPaying = false;
-    float secondsToSeek = 3f; //tiempo de la animación
-    float lastSeek = 0f;
-    float secondsToSeekGoOutShop = 0.2f; //tiempo de salir de la tienda
-    float lastSeekGoOutShop = 0f;
-    bool isFinish = false;
-    bool lastMovement = false;
     bool isInQueue = false;
     int actualPosQueue = 0;
 
@@ -59,7 +52,7 @@ public class WaitPayTurn : AStateNPC
             contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
         }
 
-        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
-        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
+        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
+        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
     }
 }

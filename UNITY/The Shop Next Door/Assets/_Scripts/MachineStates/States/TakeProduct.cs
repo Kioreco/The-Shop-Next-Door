@@ -8,7 +8,6 @@ public class TakeProduct : AStateNPC
 
     float secondsToSeek = 0.5f; //tiempo de la animación
     float lastSeek = 0f;
-    bool enDestino = false;
     string nombreProducto;
     int cantidadProductos;
     #region metodos
@@ -16,11 +15,11 @@ public class TakeProduct : AStateNPC
     {
         //contexto.getLista().lista.ToList();
         nombreProducto = contexto.getLista().lista.Keys.First();
-        if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda()) 
-        {
-            contexto.getPilaState().Push(this);
-            contexto.SetState(new AskWorker(contexto)); 
-        }
+        //if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda()) 
+        //{
+        //    contexto.getPilaState().Push(this);
+        //    contexto.SetState(new AskWorker(contexto)); 
+        //}
     }
 
     public override void Update()

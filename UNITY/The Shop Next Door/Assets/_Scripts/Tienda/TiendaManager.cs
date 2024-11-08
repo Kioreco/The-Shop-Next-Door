@@ -395,7 +395,7 @@ public class TiendaManager : MonoBehaviour
 
     public void InstanceBag(Vector3 position)
     {
-        print("instanciando bolsa basura");
-        Instantiate(bolsaBasura, position, Quaternion.identity);
+        //print("instanciando bolsa basura");
+        Instantiate(bolsaBasura, position, new Quaternion(270, 0, 0, 0));
     }
 }

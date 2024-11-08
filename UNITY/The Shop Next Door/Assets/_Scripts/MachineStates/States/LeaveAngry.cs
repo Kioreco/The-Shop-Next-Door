@@ -7,6 +7,7 @@ public class LeaveAngry : AStateNPC
     Transform doorPos;
     float random;
     Vector3 spawnPosition;
+    bool notInstance = true;
 
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
@@ -40,10 +41,11 @@ public class LeaveAngry : AStateNPC
 
     public override void Update()
     {
-        Debug.Log($"pos cliente: {contexto.GetTransform().position}");
-        if(contexto.GetTransform().position == spawnPosition)
+        //Debug.Log($"pos cliente: {contexto.GetTransform().position.x} spawnposition: {spawnPosition.x}");
+        if(contexto.GetTransform().position.z - spawnPosition.z < 0.1 & notInstance)
         {
-            Debug.Log("iguales");
+            //Debug.Log("iguales");
+            notInstance = false;
             contexto.getTiendaManager().InstanceBag(spawnPosition);
         }
 
