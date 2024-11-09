@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SecureForm
 {
-    private WWWForm _secureForm = null;
+    //private WWWForm _secureForm = null;
 
-    private const string CONNECTION_PASSWORD = "";
-    private const string MOBILE_PASSWORD = "";
-    private const string WINDOWS_PASSWORD = "";
+    //private const string CONNECTION_PASSWORD = "";
+    //private const string MOBILE_PASSWORD = "";
+    //private const string WINDOWS_PASSWORD = "";
 
     public SecureForm()
     {

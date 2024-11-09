@@ -713,7 +713,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: b272280ffc45bd04b843be412611100d, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 0
+    ConnectionApproval: 1
     ConnectionData: 
     EnableTimeResync: 0
     TimeResyncInterval: 30
@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313c016e93f0544b25ff31ca8af6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cashRegister_Text: {fileID: 0}
   matchCodeMatchMaking_Text: {fileID: 124384687}
   joinCode_Input: {fileID: 65241094}
   messageMatch_waiting: {fileID: 78213285}

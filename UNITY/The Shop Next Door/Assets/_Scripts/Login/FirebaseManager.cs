@@ -7,24 +7,24 @@ using TMPro;
 
 public class FirebaseManager : MonoBehaviour
 {
-    [Header("Firebase")]
-    //[SerializeField] private DependencyStatus _dependencyStatus;
-    //private FirebaseAuth _auth;
-    //private FirebaseUser _user;
+    //[Header("Firebase")]
+    ////[SerializeField] private DependencyStatus _dependencyStatus;
+    ////private FirebaseAuth _auth;
+    ////private FirebaseUser _user;
 
-    [Space]
-    [Header("Login")]
-    [SerializeField] private TMP_InputField _emailLoginField;
-    [SerializeField] private TMP_InputField _passwordLogin;
-    [SerializeField] private TextMeshProUGUI _resultReqLogin = null;
+    //[Space]
+    //[Header("Login")]
+    //[SerializeField] private TMP_InputField _emailLoginField;
+    //[SerializeField] private TMP_InputField _passwordLogin;
+    //[SerializeField] private TextMeshProUGUI _resultReqLogin = null;
 
-    [Space]
-    [Header("Registration")]
-    [SerializeField] private TMP_InputField _userNameRegister;
-    [SerializeField] private TMP_InputField _emailRegister;
-    [SerializeField] private TMP_InputField _passwordRegister;
-    [SerializeField] private TMP_InputField _rePasswordRegister;
-    [SerializeField] private TextMeshProUGUI _resultReqRegister = null;
+    //[Space]
+    //[Header("Registration")]
+    //[SerializeField] private TMP_InputField _userNameRegister;
+    //[SerializeField] private TMP_InputField _emailRegister;
+    //[SerializeField] private TMP_InputField _passwordRegister;
+    //[SerializeField] private TMP_InputField _rePasswordRegister;
+    //[SerializeField] private TextMeshProUGUI _resultReqRegister = null;
 
     private void Awake()
     {

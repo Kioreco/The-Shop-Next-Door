@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Globalization;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -18,6 +19,8 @@ public class RelayManager : NetworkBehaviour
     public GameObject _playerPrefabClient;
     public GameObject _playerPrefabHost;
     public ulong[] _obj;
+
+    private const int MAXPLAYERS = 2;
 
     public static RelayManager Instance { get; private set; }
 
@@ -44,6 +47,7 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+        NetworkManager.Singleton.ConnectionApprovalCallback += ApproveConnection;
     }
 
 
@@ -88,46 +92,38 @@ public class RelayManager : NetworkBehaviour
             UIManager.Instance.messageMatch_wrong.SetActive(true);
         }
 
-        
+
     }
 
     private void OnClientConnected(ulong obj)
     {
         Debug.Log($"Cliente conectedo: {obj}");
 
-        //if (IsServer)
-        //{
-        //    if (NetworkManager.Singleton.ConnectedClients.Count > 2)
-        //    {
-        //        Debug.Log("Demasiados clientes");
-        //        NetworkManager.Singleton.DisconnectClient(obj);
-        //        return;
-        //    }
-        //}
-
         _obj[connectedPlayers] = obj;
         connectedPlayers++;
 
         if (IsServer)
         {
-            //if (obj > 1)
-            //{
-            //    NetworkManager.Singleton.DisconnectClient(obj);
-            //    SceneManager.LoadScene("2 - Matchmaking");
-            //}
-
-            if (NetworkManager.Singleton.ConnectedClients.Count == 2)
+            if (NetworkManager.Singleton.ConnectedClients.Count == MAXPLAYERS)
             {
-                //SceneManager.LoadSceneAsync("PrototypeScene");
                 NetworkManager.Singleton.SceneManager.LoadScene("PrototypeScene", LoadSceneMode.Single);
             }
-            //else if(NetworkManager.Singleton.ConnectedClients.Count > 2)
-            //{
-            //    //NetworkManager.Singleton.DisconnectClient(obj);
-            //    SceneManager.LoadSceneAsync("2 - Matchmaking");
-            //}
         }
 
+    }
+
+    private void ApproveConnection(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
+    {
+        if (NetworkManager.Singleton.ConnectedClients.Count < MAXPLAYERS)
+        {
+            response.Approved = true;
+        }
+        else
+        {
+            Debug.Log("Límite de jugadores alcanzado. Rechazando conexión");
+            Debug.Log("Clientes conectados " + NetworkManager.Singleton.ConnectedClients.Count);
+            response.Approved = false;
+        }
     }
 
     private void OnClientDisconnect(ulong obj)
