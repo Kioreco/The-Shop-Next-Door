@@ -7,13 +7,17 @@ public class Producto
     public float precio { get; set; }
     public int stockAlmacen { get; set; } 
     public int stockEstanteria { get; set; }
+    public int maxStockEstanteria { get; set; }
     public char tipo {  get; set; }
     public bool disponible { get; set; }   
-    public Producto(float p, int sa, int se, char t, bool b) 
+
+
+    public Producto(float p, int sa, int se, int maxSE, char t, bool b) 
     {
         precio = p;
         stockAlmacen = sa;
         stockEstanteria = se;
+        maxStockEstanteria = maxSE;
         tipo = t;
         disponible = b;
         //if(b && (t == 'r' || t == 'c')) Debug.Log($"stockAlmacen: {sa}   stockEstanteria: {se}     tipo: {t}");

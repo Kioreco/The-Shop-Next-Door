@@ -78,12 +78,17 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
                 UIManager.Instance.UpdateInventorySpace_UI();
+
+                GameManager.Instance.activeCamera = GameManager.Instance.cameraP1.transform.GetChild(0).GetComponent<Camera>();
             }
 
             if (ID == 1)
             {
                 GameManager.Instance.cameraP1.SetActive(false);
                 GameManager.Instance.cameraP2.SetActive(true);
+                GameManager.Instance.activeCamera = GameManager.Instance.cameraP2.transform.GetChild(0).GetComponent<Camera>();
+                GameManager.Instance.canvasInteractable.worldCamera = GameManager.Instance.activeCamera;
+
                 TiendaManager.Instance.player = this;
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance._player = this;

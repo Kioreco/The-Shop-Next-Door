@@ -40,4 +40,14 @@ public class Estanteria : MonoBehaviour
             //desactivar interfaz de acciones en la estantería
         }
     }
+
+    public int CheckQuantityProduct(string nombreProducto)
+    {
+        return TiendaManager.Instance.GetEstanteriaQuantityOfProduct(nombreProducto, tipoObj);
+    }
+
+    public int CheckMaxQuantityProduct(string nombreProducto)
+    {
+        return TiendaManager.Instance.GetEstanteriaMaxQuantityOfProduct(nombreProducto, tipoObj);
+    }
 }

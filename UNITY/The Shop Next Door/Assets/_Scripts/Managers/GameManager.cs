@@ -6,15 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Network Variables")]
-    //private NetworkManager _networkManager;
     private GameObject _playerPrefabHost;
     private GameObject _playerPrefabClient;
-    //private int _spawnIndex = 0;
     public List<Transform> _spawnPositions = new List<Transform>();
 
     [Header("Player Objects Shared")]
     public GameObject cameraP1;
     public GameObject cameraP2;
+    public Camera activeCamera;
     public GameObject separador;
 
     [SerializeField] private GameObject techoPlayer1;
@@ -30,6 +29,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Network Game Manager")]
     public PlayerControler _player;
+
+    [Header("Other Objects")]
+    public Canvas canvasInteractable;
 
     public static GameManager Instance { get; private set; }
     void Awake()
