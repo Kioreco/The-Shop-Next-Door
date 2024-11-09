@@ -6748,8 +6748,7 @@ MonoBehaviour:
   sellLeisure: 0
   bolsaBasura: {fileID: 1001929056747507788, guid: 0e51961935132d34db9fdd3ff46bf5aa,
     type: 3}
-  manchaSuelo: {fileID: 8734011251956781804, guid: fae951f4ecf85c04b8cf9ec2d0a09ffb,
-    type: 3}
+  basura: {fileID: 8734011251956781804, guid: fae951f4ecf85c04b8cf9ec2d0a09ffb, type: 3}
   doorPos1: {fileID: 2136931314}
   doorPos2: {fileID: 1506491960}
   workersP1: []
@@ -22287,6 +22286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313c016e93f0544b25ff31ca8af6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cashRegister_Text: {fileID: 0}
   matchCodeMatchMaking_Text: {fileID: 0}
   joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}

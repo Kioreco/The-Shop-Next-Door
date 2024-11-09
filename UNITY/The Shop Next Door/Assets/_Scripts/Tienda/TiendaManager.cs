@@ -50,7 +50,7 @@ public class TiendaManager : MonoBehaviour
 
     [Header("Bolsas y manchas")]
     public GameObject bolsaBasura;
-    public GameObject manchaSuelo;
+    public GameObject basura;
     public Transform doorPos1;
     public Transform doorPos2;
 
@@ -393,9 +393,15 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
-    public void InstanceBag(Vector3 position)
+    public void InstanceBag(Vector3 position, float money)
     {
         //print("instanciando bolsa basura");
-        Instantiate(bolsaBasura, position, new Quaternion(270, 0, 0, 0));
+        var obj = Instantiate(bolsaBasura, position, bolsaBasura.transform.rotation);
+        obj.GetComponent<GarbageBagController>().moneyShop = money;
+    }
+    public void InstanceGarbage(Transform position)
+    {
+        print("instanciando basura");
+        Instantiate(basura, position.position, basura.transform.rotation);
     }
 }

@@ -12,7 +12,7 @@ public class LeaveAngry : AStateNPC
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
-        Debug.Log("leave angry");
+        //Debug.Log("leave angry");
         if (contexto.getTiendaManager().ID == 0)
         {
             exitPos = contexto.getTiendaManager().outDoorShopP1;
@@ -28,7 +28,7 @@ public class LeaveAngry : AStateNPC
         //generar en una pos random una bolsa de basura
         random = Random.Range(0f, 1f);
         spawnPosition = Vector3.Lerp(actualPos.position, doorPos.position, random);
-        Debug.Log($"spawnposition: {spawnPosition}");
+        //Debug.Log($"spawnposition: {spawnPosition}");
 
         //se va por la puerta
         contexto.getNavMesh().SetDestination(exitPos.position);
@@ -46,7 +46,8 @@ public class LeaveAngry : AStateNPC
         {
             //Debug.Log("iguales");
             notInstance = false;
-            contexto.getTiendaManager().InstanceBag(spawnPosition);
+            spawnPosition.x = contexto.GetTransform().position.x;
+            contexto.getTiendaManager().InstanceBag(spawnPosition, contexto.getDineroCompra());
         }
 
         if (contexto.getNavMesh().remainingDistance == 0)

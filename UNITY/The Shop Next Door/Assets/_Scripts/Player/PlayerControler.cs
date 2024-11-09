@@ -187,17 +187,17 @@ public class PlayerControler : NetworkBehaviour
 
     public void FinalResume()
     {
-        print("final resume");
+        //print("final resume");
         if (ID == 0 && IsOwner)
         {
-            print("canging el host");
+            //print("canging el host");
             hostMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
         }
         if (ID == 1 && IsOwner)
         {
-            print("changing el cliente");
+            //print("changing el cliente");
             clientMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
