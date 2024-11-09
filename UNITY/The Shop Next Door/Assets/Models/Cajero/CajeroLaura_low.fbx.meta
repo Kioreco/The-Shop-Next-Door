@@ -3,7 +3,12 @@ guid: 79c2c1514487d284b91f5dfafc570407
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cajero-Base
+    second: {fileID: 2100000, guid: b6ea40a68f0e29d428b3f4a025f33fdc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -71,7 +76,7 @@ ModelImporter:
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
