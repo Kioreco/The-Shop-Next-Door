@@ -20,6 +20,7 @@ namespace Assets.Scripts.MachineStates.Classes
         bool stopedInShelf = false;
         bool stopedInCajaPago = false;
         public int positionPayQueue;
+        public bool isInPayQueue = false;
 
         //dudas:
         int porcentajeDuda = 20;
@@ -30,8 +31,8 @@ namespace Assets.Scripts.MachineStates.Classes
         Stack<IState> pilaStates = new Stack<IState>();
 
         //enfado;
-        int maxEnfado = 100;
-        int enfadoActual = 0;
+        int felicidad = 100;
+        int maxEnfado = 0;
         int umbralPropinaFelicidad = 65;
         /*
          por producto -> 15
@@ -67,6 +68,12 @@ namespace Assets.Scripts.MachineStates.Classes
             lista.lista.Clear();
             lista.CrearLista();
             dineroCompra = 0;
+            felicidad = 0;
+            stopedInShelf = false;
+            stopedInCajaPago = false;
+            positionPayQueue = 0;
+            isInPayQueue = false;
+            pilaStates.Clear();
 
             int random = UnityEngine.Random.Range(0, 100);
             if(random < porcentajeDuda)
@@ -92,7 +99,6 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             currentState.FixedUpdate();
         }
-
         public void SetState(IState cntx)
         {
             currentState = cntx;
@@ -101,14 +107,6 @@ namespace Assets.Scripts.MachineStates.Classes
         #endregion
 
         #region metodosEspecificos
-        public float getSpeed()
-        {
-            return speed;
-        }
-        public void setSpeed(float s)
-        {
-            speed = s;
-        }
         public NavMeshAgent getNavMesh()
         {
             return gameObject.GetComponent<NavMeshAgent>();
@@ -207,21 +205,31 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             return pilaStates;
         }
-        public int getEnfado()
+        public int getFelicidad()
         {
-            return enfadoActual;
+            return felicidad;
         }
         public int getMaxEnfado()
         {
             return maxEnfado;
         }
-        public void aumentarEnfado(int enfado)
+        public void reducirFelicidad(int enfado)
         {
-            enfadoActual += enfado;
+            //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
+            felicidad -= enfado;
+            //print($"felicidad reducia: {felicidad}");
         }
         public int getUmbralPropina()
         {
             return umbralPropinaFelicidad;
+        }
+        public bool getIsInPayQueue()
+        {
+            return isInPayQueue;
+        }
+        public void setIsInPayQueue(bool b)
+        {
+            isInPayQueue = b;
         }
         #endregion
 

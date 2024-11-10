@@ -20,6 +20,7 @@ public class Pay : AStateNPC
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        contexto.getTiendaManager().clientesTotales += 1;
         if (contexto.getTiendaManager().ID == 0)
         {
             exitPos = contexto.getTiendaManager().outDoorShopP1;
@@ -44,12 +45,14 @@ public class Pay : AStateNPC
             contexto.getTiendaManager().avanzarLaCola();
             contexto.getNavMesh().SetDestination(exitPos.position);
 
-            if (contexto.getEnfado() <= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
+            if (contexto.getFelicidad() <= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
 
             contexto.getGameManager().dineroJugador += dinero;
 
             contexto.getUIManager().UpdatePlayersIngameMoney_UI();
             isFinish = true;
+
+            //contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
         }
 
         //se queda
@@ -67,4 +70,9 @@ public class Pay : AStateNPC
         }
     }
 
+
+    float calcularFelicidadCliente()
+    {
+        return (contexto.getGameManager().clientHappiness * (contexto.getTiendaManager().clientesTotales - 1) + contexto.getFelicidad()) / contexto.getTiendaManager().clientesTotales;
+    }
 }

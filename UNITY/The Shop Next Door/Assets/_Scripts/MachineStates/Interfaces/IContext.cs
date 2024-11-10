@@ -8,8 +8,6 @@ using UnityEngine.Pool;
 public interface IContext : IPooleableObject, IPrototype
 {
     public void SetState(IState cntx);
-    public float getSpeed();
-    public void setSpeed(float s);
     public NavMeshAgent getNavMesh();
     public ListaCompra getLista();
     public TiendaManager getTiendaManager();
@@ -35,8 +33,10 @@ public interface IContext : IPooleableObject, IPrototype
     public bool getTieneDuda();
     public void setTieneDuda(bool duda);
     public Stack<IState> getPilaState();
-    public int getEnfado();
+    public int getFelicidad();
     public int getMaxEnfado();
-    public void aumentarEnfado(int enfado);
+    public void reducirFelicidad(int enfado);
     public int getUmbralPropina();
+    public bool getIsInPayQueue();
+    public void setIsInPayQueue(bool b);
 }

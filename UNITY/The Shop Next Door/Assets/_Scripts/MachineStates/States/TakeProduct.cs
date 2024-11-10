@@ -26,7 +26,7 @@ public class TakeProduct : AStateNPC
     {
         //contador animación de coger elemento
         //cuanbdo acabe cambia estado
-        if (contexto.getEnfado() == contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
+        if (contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
         lastSeek += Time.deltaTime;
 
@@ -45,7 +45,7 @@ public class TakeProduct : AStateNPC
             if(cantidadProductos == -1)
             {
                 Debug.Log($"no hay suficientes productos");
-                contexto.aumentarEnfado(15);
+                contexto.reducirFelicidad(15);
             }
 
             if (contexto.getLista().lista.Count > 0) contexto.SetState(new SearchShelf(contexto));

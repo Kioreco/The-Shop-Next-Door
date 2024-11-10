@@ -31,7 +31,7 @@ public class WaitPayTurn : AStateNPC
 
     public override void Update()
     {
-        if(contexto.getEnfado() == contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
+        if(contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
         if (contexto.getNavMesh().remainingDistance <= 0.5f && contexto.getIsInColliderCajaPago() && !isInQueue)
         {
@@ -43,6 +43,7 @@ public class WaitPayTurn : AStateNPC
             {
                 contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
                 isInQueue = true;
+                contexto.setIsInPayQueue(true);
             }
         }
 

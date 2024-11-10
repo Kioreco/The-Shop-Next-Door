@@ -11,7 +11,11 @@ public class GarbageBagController : MonoBehaviour
     float maxShop = 0.7f;
     //others:
     bool isCollected = false;
-    
+
+    private void Start()
+    {
+        //print($"coordenadas bolsa: {transform.position}");
+    }
     private void Update()
     {
         if (!isCollected) lastSeek += Time.deltaTime;
@@ -28,7 +32,7 @@ public class GarbageBagController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             isCollected = true;
             if (lastSeek < 1) GameManager.Instance.dineroJugador += moneyShop * maxShop;
             else
@@ -36,8 +40,7 @@ public class GarbageBagController : MonoBehaviour
                 float porcentaje = maxShop - (float)(Math.Round(lastSeek) * 0.1f);
                 if (porcentaje < 0) porcentaje = 0;
                 GameManager.Instance.dineroJugador += moneyShop * porcentaje;
-                print($"dinero: {moneyShop}  tiempo: {lastSeek} division: {Math.Round(lastSeek)}  porcentaje: {(float)(Math.Round(lastSeek) * 0.1f)}   operacion: {moneyShop * porcentaje}  dinero jugador: {GameManager.Instance.dineroJugador}");
-
+                //print($"dinero: {moneyShop}  tiempo: {lastSeek} division: {Math.Round(lastSeek)}  porcentaje: {(float)(Math.Round(lastSeek) * 0.1f)}   operacion: {moneyShop * porcentaje}  dinero jugador: {GameManager.Instance.dineroJugador}");
             }
 
             UIManager.Instance.UpdatePlayersIngameMoney_UI();

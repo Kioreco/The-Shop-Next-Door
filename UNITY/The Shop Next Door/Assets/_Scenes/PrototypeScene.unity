@@ -32564,7 +32564,7 @@ MonoBehaviour:
   npcPrototype: {fileID: 6815518855550218875, guid: af84dbd0c6fe0c1498d8cec4d3f31b0d,
     type: 3}
   maxNumberNPC: 6
-  maxActiveInScene: 2
+  maxActiveInScene: 4
   allowAddNew: 0
   isCreated: 0
   isEnable: 0

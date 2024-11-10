@@ -48,25 +48,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //void Update()
-    //{
-    //    if (NetworkManager.Singleton.IsServer)
-    //    {
-    //        if (NetworkManager.Singleton.ConnectedClients.Count > 2)
-    //        {
-    //            for (int i = 2; i < RelayManager.Instance._obj.Length; i++)
-    //            {
-    //                if (NetworkManager.Singleton.ConnectedClients.ContainsKey(RelayManager.Instance._obj[i]))
-    //                {
-    //                    NetworkManager.Singleton.DisconnectClient(RelayManager.Instance._obj[i]);
-    //                    Debug.Log("Se ha desconectado el cliente " + RelayManager.Instance._obj[i]);
-    //                    Debug.Log("Ahora quedan " + NetworkManager.Singleton.ConnectedClients.Count);
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
     void Start()
     {
         dineroJugador = 1500.0f;
@@ -108,7 +89,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateClientHappiness(float value)
     {
-        clientHappiness += value; //ELEFANTE - por hacer
+        print($"actualizo felicidad clientes: {value}");
+        clientHappiness = value; //ELEFANTE - por hacer
         UIManager.Instance.UpdateClientHappiness_UI();
     }
 

@@ -58,6 +58,8 @@ public class TiendaManager : MonoBehaviour
     public List<GameObject> workersP1;
     public List<GameObject> workersP2;
 
+    public int clientesTotales = 0;
+
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -409,13 +411,15 @@ public class TiendaManager : MonoBehaviour
 
     public void InstanceBag(Vector3 position, float money)
     {
-        //print("instanciando bolsa basura");
+        //print($" posicion instanciación bolsa: {position}");
         var obj = Instantiate(bolsaBasura, position, bolsaBasura.transform.rotation);
         obj.GetComponent<GarbageBagController>().moneyShop = money;
     }
     public void InstanceGarbage(Transform position)
     {
-        print("instanciando basura");
+        //print("instanciando basura");
+        //print($" posicion instanciación basura: {position.position}");
+
         Instantiate(basura, position.position, basura.transform.rotation);
     }
 }

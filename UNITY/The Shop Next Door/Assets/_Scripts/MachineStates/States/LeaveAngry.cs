@@ -12,6 +12,7 @@ public class LeaveAngry : AStateNPC
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        contexto.getTiendaManager().clientesTotales += 1;
         //Debug.Log("leave angry");
         if (contexto.getTiendaManager().ID == 0)
         {
@@ -32,8 +33,10 @@ public class LeaveAngry : AStateNPC
 
         //se va por la puerta
         contexto.getNavMesh().SetDestination(exitPos.position);
-        contexto.getTiendaManager().avanzarLaCola();
 
+        if(contexto.getIsInPayQueue()) contexto.getTiendaManager().avanzarLaCola();
+
+        //contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
     }
     public override void FixedUpdate()
     {
@@ -46,7 +49,11 @@ public class LeaveAngry : AStateNPC
         {
             //Debug.Log("iguales");
             notInstance = false;
-            spawnPosition.x = contexto.GetTransform().position.x;
+            //Debug.Log($"ANTES: spawnposition: {spawnPosition}    posicion npc: {contexto.GetTransform().position}");
+            //spawnPosition.x = contexto.GetTransform().position.x;
+            //Debug.Log($"DESPUÉS: spawnposition: {spawnPosition}    posicion npc: {contexto.GetTransform().position}");
+            //Debug.Log($"posicion npc: {contexto.GetTransform().position}");
+            spawnPosition = new Vector3(contexto.GetTransform().position.x, spawnPosition.y, contexto.GetTransform().position.z);
             contexto.getTiendaManager().InstanceBag(spawnPosition, contexto.getDineroCompra());
         }
 
@@ -54,5 +61,10 @@ public class LeaveAngry : AStateNPC
         {
             contexto.Destuir();
         }
+    }
+
+    float calcularFelicidadCliente()
+    {
+        return (contexto.getGameManager().clientHappiness*(contexto.getTiendaManager().clientesTotales-1) + contexto.getFelicidad())/ contexto.getTiendaManager().clientesTotales;
     }
 }
