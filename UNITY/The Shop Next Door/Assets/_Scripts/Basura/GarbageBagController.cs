@@ -43,7 +43,7 @@ public class GarbageBagController : MonoBehaviour
                 //print($"dinero: {moneyShop}  tiempo: {lastSeek} division: {Math.Round(lastSeek)}  porcentaje: {(float)(Math.Round(lastSeek) * 0.1f)}   operacion: {moneyShop * porcentaje}  dinero jugador: {GameManager.Instance.dineroJugador}");
             }
 
-            UIManager.Instance.UpdatePlayersIngameMoney_UI();
+            UIManager.Instance.UpdatePlayersMoney_UI();
             Destroy(gameObject);
             //HABRÍA QUE PONER QUE SE DEVUELVA AL OBJECT POOL
         }

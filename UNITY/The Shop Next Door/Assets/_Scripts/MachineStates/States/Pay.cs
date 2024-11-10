@@ -49,7 +49,7 @@ public class Pay : AStateNPC
 
             contexto.getGameManager().dineroJugador += dinero;
 
-            contexto.getUIManager().UpdatePlayersIngameMoney_UI();
+            contexto.getUIManager().UpdatePlayersMoney_UI();
             isFinish = true;
 
             //contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
@@ -73,6 +73,6 @@ public class Pay : AStateNPC
 
     float calcularFelicidadCliente()
     {
-        return (contexto.getGameManager().clientHappiness * (contexto.getTiendaManager().clientesTotales - 1) + contexto.getFelicidad()) / contexto.getTiendaManager().clientesTotales;
+        return (contexto.getGameManager().reputation * (contexto.getTiendaManager().clientesTotales - 1) + contexto.getFelicidad()) / contexto.getTiendaManager().clientesTotales;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -34,8 +35,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI day_text;
     [SerializeField] private TextMeshProUGUI hour_text;
 
-    [SerializeField] private Image clientHappiness_Bar;
+    [SerializeField] private Image reputation_Bar;
     [SerializeField] private Image playerVigor_Bar;
+    [HideInInspector] public Image cajero_Bar;
 
     [Header("DAY-END MENU")] 
     public GameObject canvasDayEnd;
@@ -53,8 +55,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI day_EndDay_Text;
     public TextMeshProUGUI hour_EndDay_Text;
 
-    public Image player1Clients;
-    public Image player2Clients;
+    public Image player1Reputation;
+    public Image player2Reputation;
 
     private Color redColor;
     private Color whiteTextColor;
@@ -115,7 +117,7 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.StartClient(joinCode_Input.text);
     }
 
-    public void UpdatePlayersIngameMoney_UI()
+    public void UpdatePlayersMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
@@ -130,9 +132,9 @@ public class UIManager : MonoBehaviour
         else { inventory_text.color = whiteTextColor; }
     }
 
-    public void UpdateClientHappiness_UI()
+    public void UpdateReputationIngame_UI()
     {
-        clientHappiness_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.clientHappiness);
+        reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
     public void UpdatePlayerVigor_UI()
@@ -140,7 +142,37 @@ public class UIManager : MonoBehaviour
         playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
     }
 
-    public void UpdateTime_UI(int hours, int minutes)
+    public void UpdatePayingBar_UI()
+    {
+        StartCoroutine(RellenarImagen());
+
+        //He puesto que se tarda 10 segundos en pagar, pero cambialo según se necesite PAULA
+    }
+
+    IEnumerator RellenarImagen()
+    {
+        float tiempoTranscurrido = 0f;
+
+        // Mientras no se haya completado el tiempo de relleno
+        while (tiempoTranscurrido < 10.0f)
+        {
+            // Aumenta el tiempo transcurrido
+            tiempoTranscurrido += Time.deltaTime;
+
+            // Calcula el progreso como un valor entre 0 y 1
+            float progreso = tiempoTranscurrido / 10.0f;
+
+            // Asigna el progreso a la propiedad fillAmount de la imagen
+            cajero_Bar.fillAmount = progreso;
+
+            // Espera hasta el siguiente frame
+            yield return null;
+        }
+
+        cajero_Bar.fillAmount = 1f;
+    }
+
+public void UpdateTime_UI(int hours, int minutes)
     {
         string time = string.Format("{0:D2}:{1:D2}", hours, minutes);
         hour_text.SetText(time);

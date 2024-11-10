@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float dineroRival;
     [HideInInspector] public float espacioAlmacen;
     [HideInInspector] public float maxEspacioAlmacen;
-    [HideInInspector] public float clientHappiness;
+    [HideInInspector] public float reputation;
     [HideInInspector] public float playerVigor;
 
     [Header("Network Game Manager")]
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Other Objects")]
     public Canvas canvasInteractable;
+    public Image cajero_1_Bar;
+    public Image cajero_2_Bar;
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -53,9 +56,9 @@ public class GameManager : MonoBehaviour
         dineroJugador = 1500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 100;
-        clientHappiness = 0;
+        reputation = 0;
         playerVigor = 100;
-        UIManager.Instance.UpdateClientHappiness_UI();
+        UIManager.Instance.UpdateReputationIngame_UI();
         UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
@@ -78,20 +81,22 @@ public class GameManager : MonoBehaviour
 
             UIManager.Instance.telephone.ChangeLockedScreenBG(1);
             UIManager.Instance.telephone.ChangeLifeAppName(1);
+            UIManager.Instance.cajero_Bar = cajero_1_Bar;
         }
         else
         {
             techoPlayer2.SetActive(false);
             UIManager.Instance.telephone.ChangeLockedScreenBG(2);
             UIManager.Instance.telephone.ChangeLifeAppName(2);
+            //UIManager.Instance.cajero_Bar = cajero_2_Bar;
         }
     }
 
     public void UpdateClientHappiness(float value)
     {
         print($"actualizo felicidad clientes: {value}");
-        clientHappiness = value; //ELEFANTE - por hacer
-        UIManager.Instance.UpdateClientHappiness_UI();
+        reputation = value; //ELEFANTE - por hacer
+        UIManager.Instance.UpdateReputationIngame_UI();
     }
 
     public void UpdatePlayerVigor(float value)

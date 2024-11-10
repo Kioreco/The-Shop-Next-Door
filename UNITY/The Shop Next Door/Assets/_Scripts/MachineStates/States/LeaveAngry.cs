@@ -65,6 +65,6 @@ public class LeaveAngry : AStateNPC
 
     float calcularFelicidadCliente()
     {
-        return (contexto.getGameManager().clientHappiness*(contexto.getTiendaManager().clientesTotales-1) + contexto.getFelicidad())/ contexto.getTiendaManager().clientesTotales;
+        return (contexto.getGameManager().reputation*(contexto.getTiendaManager().clientesTotales-1) + contexto.getFelicidad())/ contexto.getTiendaManager().clientesTotales;
     }
 }
