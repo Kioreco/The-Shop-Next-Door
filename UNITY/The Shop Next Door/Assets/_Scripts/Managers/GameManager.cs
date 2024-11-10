@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        dineroJugador = 500.0f;
+        dineroJugador = 1500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 100;
         clientHappiness = 0;

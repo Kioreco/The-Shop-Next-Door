@@ -1,34 +1,26 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WorldObject_UI_Interable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class WorldObject_UI_Interable : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject canvas;
+    [SerializeField] private UI_ShelvesProducts[] products;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(canvas.activeSelf) { canvas.SetActive(false); }
-        else { canvas.SetActive(true); }
-        
-    }
+        else
+        {
+            products[0].UpdateQuantityFillImage();
+            products[0].UpdateShelvesQuantityProduct_UI();
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
+            products[1].UpdateQuantityFillImage();
+            products[1].UpdateShelvesQuantityProduct_UI();
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
+            products[2].UpdateQuantityFillImage();
+            products[2].UpdateShelvesQuantityProduct_UI();
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
+            canvas.SetActive(true); 
+        }
     }
 }

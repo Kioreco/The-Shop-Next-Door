@@ -8,6 +8,7 @@ public class WorkersInfo
     public string name;
     public int salary;
     public int priceToHire;
+    public bool hired = false;
 
     public WorkersInfo(int genreNew, string nameNew, int salaryNew, int priceToHireNew)
     {

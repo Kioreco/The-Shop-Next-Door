@@ -43,11 +43,13 @@ public class Estanteria : MonoBehaviour
 
     public int CheckQuantityProduct(string nombreProducto)
     {
+        print("Cantidad de producto " + TiendaManager.Instance.GetEstanteriaQuantityOfProduct(nombreProducto, tipoObj));
         return TiendaManager.Instance.GetEstanteriaQuantityOfProduct(nombreProducto, tipoObj);
     }
 
     public int CheckMaxQuantityProduct(string nombreProducto)
     {
+        print("Cantidad TOTAL de producto " + TiendaManager.Instance.GetEstanteriaMaxQuantityOfProduct(nombreProducto, tipoObj));
         return TiendaManager.Instance.GetEstanteriaMaxQuantityOfProduct(nombreProducto, tipoObj);
     }
 }
