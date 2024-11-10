@@ -45,7 +45,7 @@ public class Pay : AStateNPC
             contexto.getTiendaManager().avanzarLaCola();
             contexto.getNavMesh().SetDestination(exitPos.position);
 
-            if (contexto.getFelicidad() <= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
+            if (contexto.getFelicidad() >= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
 
             contexto.getGameManager().dineroJugador += dinero;
 
