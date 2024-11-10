@@ -95,6 +95,44 @@ public class RelayManager : NetworkBehaviour
 
     }
 
+    public void CancelMatch()
+    {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            NetworkManager.Singleton.Shutdown();
+            Debug.Log("Host detenido");
+
+            // Reiniciar el código de unión y estado de la interfaz de usuario.
+            joinCode = null;
+            connectedPlayers = 0;
+            _obj = new ulong[15];
+            UIManager.Instance.matchCodeMatchMaking_Text.SetText("Partida cancelada");
+
+            // Esperar un poco para asegurar que NetworkManager se reinicie adecuadamente.
+            Invoke("ClearNetworkState", 0.5f);
+        }
+        else
+        {
+            Debug.LogWarning("No hay un host");
+        }
+    }
+
+    private void ClearNetworkState()
+    {
+        NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
+        NetworkManager.Singleton.ConnectionApprovalCallback -= ApproveConnection;
+
+        // Asegurar que las conexiones están listas para reiniciar
+        NetworkManager.Singleton.OnServerStarted += OnServerStarted;
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+        NetworkManager.Singleton.ConnectionApprovalCallback += ApproveConnection;
+
+        Debug.Log("Estado de la red limpiado y listo para una nueva partida");
+    }
+
     private void OnClientConnected(ulong obj)
     {
         Debug.Log($"Cliente conectedo: {obj}");

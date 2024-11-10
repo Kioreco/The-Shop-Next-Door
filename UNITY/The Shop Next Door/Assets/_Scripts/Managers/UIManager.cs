@@ -117,6 +117,11 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.StartClient(joinCode_Input.text);
     }
 
+    public void Cancel_Button()
+    {
+        RelayManager.Instance.CancelMatch();
+    }
+
     public void UpdatePlayersMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
