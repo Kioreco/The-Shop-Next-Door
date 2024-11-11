@@ -18,7 +18,7 @@ public interface IContext : IPooleableObject, IPrototype
     public void sumDineroCompra(float d);
     public UIManager getUIManager();
     public GameManager getGameManager();
-    public void Destuir();
+    public void Destruir();
     public Vector3 getPosition();
     public bool getIsInColliderShelf();
     public void setIsInColliderShelf(bool b);    

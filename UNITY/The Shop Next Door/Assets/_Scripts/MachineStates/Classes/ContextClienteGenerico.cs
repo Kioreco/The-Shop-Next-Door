@@ -68,7 +68,7 @@ namespace Assets.Scripts.MachineStates.Classes
             lista.lista.Clear();
             lista.CrearLista();
             dineroCompra = 0;
-            felicidad = 0;
+            felicidad = 100;
             stopedInShelf = false;
             stopedInCajaPago = false;
             positionPayQueue = 0;
@@ -147,7 +147,7 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             return GameManager;
         }
-        public void Destuir()
+        public void Destruir()
         {
             objectPool?.Release(this);
         }

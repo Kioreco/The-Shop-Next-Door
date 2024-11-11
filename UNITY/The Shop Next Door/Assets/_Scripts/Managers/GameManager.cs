@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateClientHappiness(float value)
     {
-        print($"actualizo felicidad clientes: {value}");
+        //print($"actualizo felicidad clientes: {value}");
         reputation = value; //ELEFANTE - por hacer
         UIManager.Instance.UpdateReputationIngame_UI();
     }
@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
     IEnumerator ContinueDay()
     {
         yield return new WaitForSeconds(10f);
+        Time.timeScale = 1;
+
         UIManager.Instance.timeReference.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);
         UIManager.Instance.telephone.calendar.ResetActivities();

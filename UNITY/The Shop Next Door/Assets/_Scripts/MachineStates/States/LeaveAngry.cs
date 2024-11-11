@@ -36,7 +36,7 @@ public class LeaveAngry : AStateNPC
 
         if(contexto.getIsInPayQueue()) contexto.getTiendaManager().avanzarLaCola();
 
-        //contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
+        contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
     }
     public override void FixedUpdate()
     {
@@ -59,7 +59,7 @@ public class LeaveAngry : AStateNPC
 
         if (contexto.getNavMesh().remainingDistance == 0)
         {
-            contexto.Destuir();
+            contexto.Destruir();
         }
     }
 

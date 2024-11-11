@@ -53,7 +53,7 @@ public class WaitPayTurn : AStateNPC
             contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
         }
 
-        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
-        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
+        //if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new LeaveAngry(contexto));
+        if (contexto.getNavMesh().remainingDistance == 0f && isInQueue && actualPosQueue == 0) contexto.SetState(new Pay(contexto));
     }
 }

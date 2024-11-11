@@ -33,12 +33,9 @@ public class PlayerControler : NetworkBehaviour
 
     public GameObject client;
 
-
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //float dineroJ;
-    //float dineroE;
 
     #endregion
 
@@ -51,7 +48,6 @@ public class PlayerControler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom;
-            //client = GameObject.FindWithTag("ClientNPC").GetComponent<ClientPrototype>();
         }
         hostMoney.OnValueChanged += OnHostMoneyChange;
         clientMoney.OnValueChanged += OnClientMoneyChange;
@@ -73,7 +69,7 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
-                client.GetComponent<ClientPrototype>().isEnable = true;
+                //client.GetComponent<ClientPrototype>().isEnable = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
@@ -93,7 +89,7 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
-                client.GetComponent<ClientPrototype>().isEnable = true;
+                //client.GetComponent<ClientPrototype>().isEnable = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
@@ -101,10 +97,10 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             }
             isInitialized = true;
-            minX = Camera.main.transform.position.x - 20f;
+            minX = Camera.main.transform.position.x - 30f; //20
             maxX = Camera.main.transform.position.x + 20f;
             minZ = Camera.main.transform.position.z - 20f;
-            maxZ = Camera.main.transform.position.z + 20f;
+            maxZ = Camera.main.transform.position.z + 30f;
         }
     }
 
@@ -192,17 +188,14 @@ public class PlayerControler : NetworkBehaviour
 
     public void FinalResume()
     {
-        //print("final resume");
         if (ID == 0 && IsOwner)
         {
-            //print("canging el host");
             hostMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
         }
         if (ID == 1 && IsOwner)
         {
-            //print("changing el cliente");
             clientMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
@@ -233,5 +226,19 @@ public class PlayerControler : NetworkBehaviour
         }
     }
 
+    #endregion
+
+    #region others
+
+    public void WalkToPayBox(Vector3 position)
+    {
+        GetComponent<PlayerInput>().enabled = false;
+        GetComponent<NavMeshAgent>().SetDestination(position);
+    }
+
+    public void enableMovement()
+    {
+        GetComponent<PlayerInput>().enabled = true;
+    }
     #endregion
 }

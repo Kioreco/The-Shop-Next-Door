@@ -60,6 +60,7 @@ public class TiendaManager : MonoBehaviour
 
     public int clientesTotales = 0;
 
+
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -417,7 +418,7 @@ public class TiendaManager : MonoBehaviour
 
         bag.moneyShop = money;
 
-        UIManager.Instance.UpdateCleaningBar_UI(bag.progressImage, bag.secondsToSeek);
+        UIManager.Instance.UpdateCleaningBar_UI(bag.progressImage, bag.secondsToSeek - 1);
     }
     public void InstanceGarbage(Transform position)
     {

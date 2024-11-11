@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pay : AStateNPC
@@ -12,15 +8,17 @@ public class Pay : AStateNPC
     float lastSeekGoOutShop = 0f;
     bool isFinish = false;
     bool lastMovement = false;
-    
-
     [Header("Variables Aux")]
     Transform exitPos;
 
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        //referencia al canvas del uimanager oara que se active
+        //cuando el jugador haga click comienza el pago
+        //contexto.getUIManager().UpdatePayingBar_UI(secondsToSeek);
         contexto.getTiendaManager().clientesTotales += 1;
+
         if (contexto.getTiendaManager().ID == 0)
         {
             exitPos = contexto.getTiendaManager().outDoorShopP1;
@@ -53,7 +51,7 @@ public class Pay : AStateNPC
             contexto.getUIManager().UpdatePlayersMoney_UI();
             isFinish = true;
 
-            //contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
+            contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
         }
 
         //se queda
@@ -67,10 +65,9 @@ public class Pay : AStateNPC
 
         if (contexto.getNavMesh().remainingDistance == 0 && lastMovement)
         {
-            contexto.Destuir();
+            contexto.Destruir();
         }
     }
-
 
     float calcularFelicidadCliente()
     {
