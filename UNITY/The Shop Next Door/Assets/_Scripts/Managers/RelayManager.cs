@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Globalization;
+using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -53,6 +54,12 @@ public class RelayManager : NetworkBehaviour
 
     public async void StartHost()
     {
+        if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.Shutdown();
+            await Task.Delay(500);
+        }
+
         await UnityServices.InitializeAsync();
 
         if (!AuthenticationService.Instance.IsSignedIn)
@@ -67,10 +74,21 @@ public class RelayManager : NetworkBehaviour
         UIManager.Instance.matchCodeMatchMaking_Text.SetText(joinCode);
 
         NetworkManager.Singleton.StartHost();
+
+        if (IsServer)
+        {
+            Debug.Log("El server dice que hay estos clientes " + NetworkManager.Singleton.ConnectedClients.Count);
+        }
     }
 
     public async void StartClient(string joinCodeInput)
     {
+        if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.Shutdown();
+            await Task.Delay(500);
+        }
+
         await UnityServices.InitializeAsync();
         if (!AuthenticationService.Instance.IsSignedIn)
         {
@@ -92,7 +110,7 @@ public class RelayManager : NetworkBehaviour
             UIManager.Instance.messageMatch_wrong.SetActive(true);
         }
 
-
+        Debug.Log("Start client");
     }
 
     public void CancelMatch()
@@ -102,13 +120,11 @@ public class RelayManager : NetworkBehaviour
             NetworkManager.Singleton.Shutdown();
             Debug.Log("Host detenido");
 
-            // Reiniciar el código de unión y estado de la interfaz de usuario.
             joinCode = null;
-            connectedPlayers = 0;
+            //connectedPlayers = 0;
             _obj = new ulong[15];
             UIManager.Instance.matchCodeMatchMaking_Text.SetText("Partida cancelada");
 
-            // Esperar un poco para asegurar que NetworkManager se reinicie adecuadamente.
             Invoke("ClearNetworkState", 0.5f);
         }
         else
@@ -123,6 +139,14 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         NetworkManager.Singleton.ConnectionApprovalCallback -= ApproveConnection;
+
+        joinCode = "Room code";
+
+        connectedPlayers = 0;
+        _obj = new ulong[15];
+
+        _playerPrefabHost = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[0].Prefab;
+        _playerPrefabClient = NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs[1].Prefab;
 
         // Asegurar que las conexiones están listas para reiniciar
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
