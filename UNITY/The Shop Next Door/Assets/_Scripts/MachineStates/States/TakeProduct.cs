@@ -1,5 +1,4 @@
 using System.Linq;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class TakeProduct : AStateNPC
@@ -15,11 +14,15 @@ public class TakeProduct : AStateNPC
     {
         //contexto.getLista().lista.ToList();
         nombreProducto = contexto.getLista().lista.Keys.First();
-        //if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda()) 
-        //{
-        //    contexto.getPilaState().Push(this);
-        //    contexto.SetState(new AskWorker(contexto)); 
-        //}
+        if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda())
+        {
+            Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
+            Debug.Log($"ANTES pila: {contexto.getPilaState().Count}");
+
+            contexto.getPilaState().Push(this);
+            Debug.Log($"DESPUES pila: {contexto.getPilaState().Count}    añadido: {contexto.getPilaState().First()}");
+            contexto.SetState(new AskWorker(contexto));
+        }
     }
 
     public override void Update()

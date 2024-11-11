@@ -23,7 +23,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public bool isInPayQueue = false;
 
         //dudas:
-        int porcentajeDuda = 20;
+        int porcentajeDuda = 20; //20
         bool tieneDuda = false;
         string productoDuda;
 

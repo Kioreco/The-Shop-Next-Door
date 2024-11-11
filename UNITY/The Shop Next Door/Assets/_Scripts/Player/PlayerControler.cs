@@ -69,7 +69,6 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
-                //client.GetComponent<ClientPrototype>().isEnable = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
@@ -89,7 +88,6 @@ public class PlayerControler : NetworkBehaviour
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
-                //client.GetComponent<ClientPrototype>().isEnable = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
@@ -135,7 +133,6 @@ public class PlayerControler : NetworkBehaviour
         }
 
         if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
-
     }
 
     #region Input
@@ -230,7 +227,7 @@ public class PlayerControler : NetworkBehaviour
 
     #region others
 
-    public void WalkToPayBox(Vector3 position)
+    public void WalkToPosition(Vector3 position)
     {
         GetComponent<PlayerInput>().enabled = false;
         GetComponent<NavMeshAgent>().SetDestination(position);

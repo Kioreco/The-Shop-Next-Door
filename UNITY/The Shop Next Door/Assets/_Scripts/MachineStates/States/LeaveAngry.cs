@@ -22,14 +22,13 @@ public class LeaveAngry : AStateNPC
         else if (contexto.getTiendaManager().ID == 1)
         {
             exitPos = contexto.getTiendaManager().outDoorShopP2;
-            doorPos = contexto.getTiendaManager().doorPos1;
+            doorPos = contexto.getTiendaManager().doorPos2;
         }
         actualPos = contexto.GetTransform();
 
         //generar en una pos random una bolsa de basura
         random = Random.Range(0f, 1f);
         spawnPosition = Vector3.Lerp(actualPos.position, doorPos.position, random);
-        //Debug.Log($"spawnposition: {spawnPosition}");
 
         //se va por la puerta
         contexto.getNavMesh().SetDestination(exitPos.position);
