@@ -147,34 +147,38 @@ public class UIManager : MonoBehaviour
         playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
     }
 
-    public void UpdatePayingBar_UI()
+    public void UpdatePayingBar_UI(float timeToPay)
     {
-        StartCoroutine(RellenarImagen());
-
-        //He puesto que se tarda 10 segundos en pagar, pero cambialo según se necesite PAULA
+        StartCoroutine(RellenarImagen(cajero_Bar, timeToPay));
+        //Solo se rellena la barra, no se activa ni nada (pero por defecto esta encendido en el juego)
     }
 
-    IEnumerator RellenarImagen()
+    public void UpdateCleaningBar_UI(Image bagImage, float time)
+    {
+        StartCoroutine(RellenarImagen(bagImage, time));
+    }
+
+    IEnumerator RellenarImagen(Image imageToFill, float timeToFill)
     {
         float tiempoTranscurrido = 0f;
 
         // Mientras no se haya completado el tiempo de relleno
-        while (tiempoTranscurrido < 10.0f)
+        while (tiempoTranscurrido < timeToFill)
         {
             // Aumenta el tiempo transcurrido
             tiempoTranscurrido += Time.deltaTime;
 
             // Calcula el progreso como un valor entre 0 y 1
-            float progreso = tiempoTranscurrido / 10.0f;
+            float progreso = tiempoTranscurrido / timeToFill;
 
             // Asigna el progreso a la propiedad fillAmount de la imagen
-            cajero_Bar.fillAmount = progreso;
+            imageToFill.fillAmount = progreso;
 
             // Espera hasta el siguiente frame
             yield return null;
         }
 
-        cajero_Bar.fillAmount = 1f;
+        imageToFill.fillAmount = 1f;
     }
 
 public void UpdateTime_UI(int hours, int minutes)

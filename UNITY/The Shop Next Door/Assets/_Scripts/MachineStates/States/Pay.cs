@@ -33,6 +33,7 @@ public class Pay : AStateNPC
     public override void FixedUpdate()
     {
     }
+
     public override void Update()
     {
         //está ya en la caja

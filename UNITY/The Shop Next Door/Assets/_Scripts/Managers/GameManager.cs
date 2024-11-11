@@ -58,9 +58,10 @@ public class GameManager : MonoBehaviour
         maxEspacioAlmacen = 100;
         reputation = 0;
         playerVigor = 100;
-        //UIManager.Instance.UpdateReputationIngame_UI();
-        //UIManager.Instance.UpdatePlayerVigor_UI();
-        //UIManager.Instance.UpdateInventorySpace_UI();
+
+        UIManager.Instance.UpdateReputationIngame_UI();
+        UIManager.Instance.UpdatePlayerVigor_UI();
+        UIManager.Instance.UpdateInventorySpace_UI();
 
         InstantiatePlayers();
     }

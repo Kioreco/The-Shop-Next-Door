@@ -121,38 +121,48 @@ public class HireApp : MonoBehaviour
     {
         if (GameManager.Instance.dineroJugador - workersToHire[currentWorkerToHire].priceToHire <= 0 || (hiredWorkers + 1) == 4) { return; }
 
-        print("WorkersHired lenght: " + workersHired.Length);
-        print("WorkersHired value antes: " + workersHired);
-        print("WorkersHired value antes: " + workersHired[hiredWorkers]);
+        int workersIndex = 0;
 
-        workersHired[hiredWorkers] = workersToHire[currentWorkerToHire];
-        print("WorkersHired value despues: " + workersHired[hiredWorkers]);
-
-        if (workersHired[hiredWorkers].genre == 0)
+        if (workersHired[0] == null)
         {
-            employee_M_salaries[hiredWorkers].SetText(workersHired[hiredWorkers].name);
-            employee_M_salaries[hiredWorkers].SetText(workersHired[hiredWorkers].salary + "€");
-            employee_male_buttons[hiredWorkers].SetActive(true);
+            workersIndex = 0;
+        }
+        else if (workersHired[1] == null)
+        {
+            workersIndex = 1;
+        }
+        else if (workersHired[2] == null)
+        {
+            workersIndex = 2;
+        }
 
-            GameManager.Instance.dineroJugador -= workersHired[hiredWorkers].priceToHire;
+        workersHired[workersIndex] = workersToHire[currentWorkerToHire];
+
+        if (workersHired[workersIndex].genre == 0)
+        {
+            employee_M_salaries[workersIndex].SetText(workersHired[workersIndex].name);
+            employee_M_salaries[workersIndex].SetText(workersHired[workersIndex].salary + "€");
+            employee_male_buttons[workersIndex].SetActive(true);
+
+            GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
             UIManager.Instance.UpdatePlayersMoney_UI();
 
             //Instanciar trabajador chico
         }
         else
         {
-            employee_F_salaries[hiredWorkers].SetText(workersHired[hiredWorkers].name);
-            employee_F_salaries[hiredWorkers].SetText(workersHired[hiredWorkers].salary + "€");
-            employee_female_buttons[hiredWorkers].SetActive(true);
+            employee_F_salaries[workersIndex].SetText(workersHired[workersIndex].name);
+            employee_F_salaries[workersIndex].SetText(workersHired[workersIndex].salary + "€");
+            employee_female_buttons[workersIndex].SetActive(true);
 
-            GameManager.Instance.dineroJugador -= workersHired[hiredWorkers].priceToHire;
+            GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
             UIManager.Instance.UpdatePlayersMoney_UI();
 
             //Instanciar trabajador chica
         }
 
         hireButton.interactable = false;
-        workersHired[hiredWorkers].hired = true;
+        workersHired[workersIndex].hired = true;
         workersToHire[currentWorkerToHire].hired = true;
 
         hiredWorkers++;
@@ -160,8 +170,11 @@ public class HireApp : MonoBehaviour
 
     public void FireWorker(int workerNumber)
     {
+        workersHired[workerNumber] = null;
+
         employee_male_buttons[workerNumber].SetActive(false);
         employee_female_buttons[workerNumber].SetActive(false);
+
         hiredWorkers--;
     }
 

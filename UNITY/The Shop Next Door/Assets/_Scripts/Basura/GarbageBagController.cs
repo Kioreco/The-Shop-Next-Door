@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GarbageBagController : MonoBehaviour
 {
     //timer:
-    float secondsToSeek = 10f; //tiempo de la animación
+    public float secondsToSeek = 10f; //tiempo de la animación
     float lastSeek = 0f;
 
     public float moneyShop;
@@ -12,10 +13,8 @@ public class GarbageBagController : MonoBehaviour
     //others:
     bool isCollected = false;
 
-    private void Start()
-    {
-        //print($"coordenadas bolsa: {transform.position}");
-    }
+    public Image progressImage;
+
     private void Update()
     {
         if (!isCollected) lastSeek += Time.deltaTime;
@@ -24,6 +23,7 @@ public class GarbageBagController : MonoBehaviour
         {
             lastSeek = 0f;
             TiendaManager.Instance.InstanceGarbage(transform);
+            
             Destroy(gameObject);//CAMBIARLO POR DEVOLVER AL OBJECT POOL
         }
     }

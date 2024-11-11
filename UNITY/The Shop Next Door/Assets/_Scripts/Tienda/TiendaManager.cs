@@ -413,7 +413,11 @@ public class TiendaManager : MonoBehaviour
     {
         //print($" posicion instanciación bolsa: {position}");
         var obj = Instantiate(bolsaBasura, position, bolsaBasura.transform.rotation);
-        obj.GetComponent<GarbageBagController>().moneyShop = money;
+        GarbageBagController bag = obj.GetComponent<GarbageBagController>();
+
+        bag.moneyShop = money;
+
+        UIManager.Instance.UpdateCleaningBar_UI(bag.progressImage, bag.secondsToSeek);
     }
     public void InstanceGarbage(Transform position)
     {

@@ -29989,7 +29989,7 @@ MonoBehaviour:
   timeReference: {fileID: 496816290}
   day_text: {fileID: 2015316945}
   hour_text: {fileID: 1825802371}
-  reputation_Bar: {fileID: 0}
+  reputation_Bar: {fileID: 1834107487}
   playerVigor_Bar: {fileID: 1693939788}
   cajero_Bar: {fileID: 0}
   canvasDayEnd: {fileID: 1576944823}
@@ -30002,8 +30002,8 @@ MonoBehaviour:
   player2Money: {fileID: 781051238}
   day_EndDay_Text: {fileID: 1404245772}
   hour_EndDay_Text: {fileID: 1025352560}
-  player1Reputation: {fileID: 0}
-  player2Reputation: {fileID: 0}
+  player1Reputation: {fileID: 447655828}
+  player2Reputation: {fileID: 608663277}
 --- !u!4 &1618253345
 Transform:
   m_ObjectHideFlags: 0
