@@ -10,6 +10,7 @@ public class WorkDayCycle : MonoBehaviour
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
     private float realTimePerDay = 90f;    // TIEMPO POR DÍA -----> 240
+    private float realTimePerNight = 15f;    // TIEMPO POR DÍA -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
     //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
@@ -25,9 +26,15 @@ public class WorkDayCycle : MonoBehaviour
     [SerializeField] private GameObject[] pastDay_Bg;
     [SerializeField] private GameObject[] followingDay_Bg;
 
+    private bool isNightTime = false;
 
     void Update()
     {
+        if (isNightTime)
+        {
+            NightTimer();
+        }
+
         if (timeStopped) return;
 
         // SEMANA COMPLETADA
@@ -37,6 +44,11 @@ public class WorkDayCycle : MonoBehaviour
             // ACTIVAR FINAL
         }
 
+        DayTimer();
+    }
+
+    private void DayTimer()
+    {
         // Se actualiza el tiempo que ha pasado
         realTimePassed += Time.deltaTime;
 
@@ -46,15 +58,20 @@ public class WorkDayCycle : MonoBehaviour
 
         //gameTime==10.0f entran clientes el lunes
         //gameTime==9.3f entran clientes el resto de dias
-        
 
-        if(gameTime >= 10 && currentDay == 0) // Lunes
+
+        if (gameTime >= 10 && currentDay == 0) // Lunes
         {
             npcClient.isEnable = true;
         }
         else if (gameTime >= 9.05f && currentDay > 0)
         {
             npcClient.isEnable = true;
+        }
+
+        if (gameTime == 14f)
+        {
+            npcClient.isEnable = false;
         }
 
         // Actualizar la UI para mostrar la hora del juego
@@ -73,13 +90,31 @@ public class WorkDayCycle : MonoBehaviour
             else
             {
                 timeStopped = true;
-                // Actualizar el texto del día en el UI
+
                 UpdateDayText();
+                isNightTime = true;
                 GameManager.Instance.EndDay();
 
                 pastDay_Bg[currentDay--].SetActive(true);
                 followingDay_Bg[currentDay--].SetActive(false);
             }
+        }
+    }
+
+    private void NightTimer()
+    {
+        realTimePassed += Time.deltaTime;
+
+        float timeRatio = realTimePassed / realTimePerNight;
+        gameTime = Mathf.Lerp(gameStartTime, gameEndTime, timeRatio);
+
+        UpdateTimeText();
+
+        if (realTimePassed >= realTimePerNight)
+        {
+            realTimePassed = 0f; // Reiniciar el tiempo real para el próximo día
+
+            isNightTime = false;
         }
     }
 
@@ -89,7 +124,8 @@ public class WorkDayCycle : MonoBehaviour
         int hours = Mathf.FloorToInt(gameTime);
         int minutes = Mathf.FloorToInt((gameTime - hours) * 60);
 
-        UIManager.Instance.UpdateTime_UI(hours, minutes);
+        if (!isNightTime) { UIManager.Instance.UpdateTime_UI(hours, minutes); }
+        else { UIManager.Instance.UpdateNightTime_UI(hours, minutes); }
     }
 
     // Actualizar el texto del día

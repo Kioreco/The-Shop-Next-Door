@@ -15,8 +15,8 @@ public class Pay : AStateNPC
     public override void Enter()
     {
         //referencia al canvas del uimanager oara que se active
-        //cuando el jugador haga click comienza el pago
-        //contexto.getUIManager().UpdatePayingBar_UI(secondsToSeek);
+        UIManager.Instance.cajero_Canvas.SetActive(true);
+
         contexto.getTiendaManager().clientesTotales += 1;
 
         if (contexto.getTiendaManager().ID == 0)
@@ -48,7 +48,7 @@ public class Pay : AStateNPC
 
             contexto.getGameManager().dineroJugador += dinero;
 
-            contexto.getUIManager().UpdatePlayersMoney_UI();
+            contexto.getUIManager().UpdatePlayerMoney_UI();
             isFinish = true;
 
             contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());

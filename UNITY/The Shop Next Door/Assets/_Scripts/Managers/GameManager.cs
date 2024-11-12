@@ -33,8 +33,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Other Objects")]
     public Canvas canvasInteractable;
-    public Image cajero_1_Bar;
-    public Image cajero_2_Bar;
+    [SerializeField] private Image cajero_1_Bar;
+    [SerializeField] private Image cajero_2_Bar;
+    [SerializeField] private GameObject cajero_1_Canvas;
+    [SerializeField] private GameObject cajero_2_Canvas;
+
+    [Header("Pay Zones")]
+    [SerializeField] public Transform cajaPositionP1;
+    [SerializeField] public Transform cajaPositionP2;
+
 
     public static GameManager Instance { get; private set; }
     void Awake()
@@ -83,6 +90,8 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.telephone.ChangeLockedScreenBG(1);
             UIManager.Instance.telephone.ChangeLifeAppName(1);
             UIManager.Instance.cajero_Bar = cajero_1_Bar;
+            UIManager.Instance.cajero_Canvas = cajero_1_Canvas;
+            UIManager.Instance.cajaPlayerPosition = cajaPositionP1;
         }
         else
         {
@@ -90,6 +99,8 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.telephone.ChangeLockedScreenBG(2);
             UIManager.Instance.telephone.ChangeLifeAppName(2);
             //UIManager.Instance.cajero_Bar = cajero_2_Bar;
+            //UIManager.Instance.cajero_Canvas = cajero_2_Canvas;
+            //UIManager.Instance.cajaPlayerPosition = cajaPositionP2;
         }
     }
 
@@ -116,7 +127,7 @@ public class GameManager : MonoBehaviour
         //LLAMADA A server rpc
         _player.FinalResume();
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
 
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
@@ -127,8 +138,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ContinueDay()
     {
-        yield return new WaitForSeconds(10f);
-        Time.timeScale = 1;
+        yield return new WaitForSeconds(15f);
+        //Time.timeScale = 1;
 
         UIManager.Instance.timeReference.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);

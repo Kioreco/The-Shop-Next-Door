@@ -14,6 +14,7 @@ public class GarbageBagController : MonoBehaviour
     bool isCollected = false;
 
     public Image progressImage;
+    public Coroutine fillCoroutine;
 
     private void Update()
     {
@@ -32,8 +33,14 @@ public class GarbageBagController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player");
             isCollected = true;
+
+            if (fillCoroutine != null)
+            {
+                StopCoroutine(fillCoroutine);
+                fillCoroutine = null;
+            }
+
             if (lastSeek < 1) GameManager.Instance.dineroJugador += moneyShop * maxShop;
             else
             {
@@ -43,7 +50,7 @@ public class GarbageBagController : MonoBehaviour
                 //print($"dinero: {moneyShop}  tiempo: {lastSeek} division: {Math.Round(lastSeek)}  porcentaje: {(float)(Math.Round(lastSeek) * 0.1f)}   operacion: {moneyShop * porcentaje}  dinero jugador: {GameManager.Instance.dineroJugador}");
             }
 
-            UIManager.Instance.UpdatePlayersMoney_UI();
+            UIManager.Instance.UpdatePlayerMoney_UI();
             Destroy(gameObject);
             //HABRÍA QUE PONER QUE SE DEVUELVA AL OBJECT POOL
         }

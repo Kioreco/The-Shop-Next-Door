@@ -145,7 +145,7 @@ public class HireApp : MonoBehaviour
             employee_male_buttons[workersIndex].SetActive(true);
 
             GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
-            UIManager.Instance.UpdatePlayersMoney_UI();
+            UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chico
         }
@@ -156,7 +156,7 @@ public class HireApp : MonoBehaviour
             employee_female_buttons[workersIndex].SetActive(true);
 
             GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
-            UIManager.Instance.UpdatePlayersMoney_UI();
+            UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chica
         }

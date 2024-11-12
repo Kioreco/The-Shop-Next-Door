@@ -20,6 +20,8 @@ public class TiendaManager : MonoBehaviour
     public Queue<IContext> npcPayQueueP1 = new Queue<IContext>();
     public event EventHandler payQueueChangeP1;
 
+    
+
     [Header("NPC Instanciate P1")]
     public Transform npcPositionInitialP1;
 
@@ -32,6 +34,8 @@ public class TiendaManager : MonoBehaviour
     [Header("Pay Queue P2")]
     public Queue<IContext> npcPayQueueP2 = new Queue<IContext>();
     public event EventHandler payQueueChangeP2;
+
+    
 
     [Header("NPC Instanciate P2")]
     public Transform npcPositionInitialP2;
@@ -412,19 +416,14 @@ public class TiendaManager : MonoBehaviour
 
     public void InstanceBag(Vector3 position, float money)
     {
-        //print($" posicion instanciación bolsa: {position}");
         var obj = Instantiate(bolsaBasura, position, bolsaBasura.transform.rotation);
         GarbageBagController bag = obj.GetComponent<GarbageBagController>();
 
         bag.moneyShop = money;
-
-        UIManager.Instance.UpdateCleaningBar_UI(bag.progressImage, bag.secondsToSeek - 1);
+        bag.fillCoroutine = StartCoroutine(UIManager.Instance.VaciarImagen(bag.progressImage, bag.secondsToSeek - 1));
     }
     public void InstanceGarbage(Transform position)
     {
-        //print("instanciando basura");
-        //print($" posicion instanciación basura: {position.position}");
-
         Instantiate(basura, position.position, basura.transform.rotation);
     }
 }

@@ -12,8 +12,10 @@ public class UIManager : MonoBehaviour
     [Header("MENU SCENE")]
     [SerializeField] private TextMeshProUGUI cashRegister_Text;
     int[] numeros = new int[4] { 0, 0, 0, 0 };
+    [SerializeField] private GameObject canvas_menu;
+    [SerializeField] private GameObject canvas_credits;
 
-    //[Header("MATCHMAKING SCENE")]
+
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI matchCodeMatchMaking_Text;
     [SerializeField] public TMP_InputField joinCode_Input;
@@ -38,6 +40,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image reputation_Bar;
     [SerializeField] private Image playerVigor_Bar;
     [HideInInspector] public Image cajero_Bar;
+    [HideInInspector] public GameObject cajero_Canvas;
 
     [Header("DAY-END MENU")] 
     public GameObject canvasDayEnd;
@@ -52,8 +55,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI player1Money;
     public TextMeshProUGUI player2Money;
 
-    public TextMeshProUGUI day_EndDay_Text;
-    public TextMeshProUGUI hour_EndDay_Text;
+    [SerializeField] private TextMeshProUGUI player1Day;
+    [SerializeField] private TextMeshProUGUI player2Day;
+
+    [SerializeField] public TextMeshProUGUI day_EndDay_Text;
+    [SerializeField] public TextMeshProUGUI hour_EndDay_Text;
 
     public Image player1Reputation;
     public Image player2Reputation;
@@ -106,6 +112,12 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
+    public void OpenCloseCredits()
+    {
+        canvas_menu.SetActive(!canvas_menu.activeSelf);
+        canvas_credits.SetActive(!canvas_credits.activeSelf);
+    }
+
     public void StartHost_Button()
     {
         RelayManager.Instance.StartHost();
@@ -122,7 +134,7 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.CancelMatch();
     }
 
-    public void UpdatePlayersMoney_UI()
+    public void UpdatePlayerMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
@@ -147,50 +159,74 @@ public class UIManager : MonoBehaviour
         playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
     }
 
-    public void UpdatePayingBar_UI(float timeToPay)
+    [HideInInspector] public Transform cajaPlayerPosition;
+
+    public void GoToPay_Button()
     {
-        StartCoroutine(RellenarImagen(cajero_Bar, timeToPay));
-        //Solo se rellena la barra, no se activa ni nada (pero por defecto esta encendido en el juego)
+        GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position);
     }
 
-    public void UpdateCleaningBar_UI(Image bagImage, float time)
+    public void UpdatePayingBar_UI()
     {
-        StartCoroutine(RellenarImagen(bagImage, time));
+        StartCoroutine(RellenarImagen(cajero_Bar, 3f));
     }
 
-    IEnumerator RellenarImagen(Image imageToFill, float timeToFill)
+    public IEnumerator RellenarImagen(Image imageToFill, float timeToFill)
     {
         float tiempoTranscurrido = 0f;
 
-        // Mientras no se haya completado el tiempo de relleno
         while (tiempoTranscurrido < timeToFill)
         {
-            // Aumenta el tiempo transcurrido
             tiempoTranscurrido += Time.deltaTime;
 
-            // Calcula el progreso como un valor entre 0 y 1
             float progreso = tiempoTranscurrido / timeToFill;
-
-            // Asigna el progreso a la propiedad fillAmount de la imagen
             imageToFill.fillAmount = progreso;
 
-            // Espera hasta el siguiente frame
             yield return null;
         }
 
         imageToFill.fillAmount = 1f;
+        
+        if (cajero_Canvas.activeSelf) { cajero_Canvas.SetActive(false); }
     }
 
-public void UpdateTime_UI(int hours, int minutes)
+    public IEnumerator VaciarImagen(Image imageToFill, float timeToFill)
+    {
+        float tiempoTranscurrido = 0f;
+        imageToFill.fillAmount = 1f;
+
+        while (tiempoTranscurrido < timeToFill)
+        {
+            tiempoTranscurrido += Time.deltaTime;
+
+            float progreso = 1f - (tiempoTranscurrido / timeToFill);
+            imageToFill.fillAmount = progreso;
+
+            yield return null;
+        }
+
+        imageToFill.fillAmount = 0f;
+    }
+
+    public void UpdateTime_UI(int hours, int minutes)
     {
         string time = string.Format("{0:D2}:{1:D2}", hours, minutes);
         hour_text.SetText(time);
         if (telephone.gameObject.activeSelf) { telephone.UpdateHourTelephone(time); }
     }
 
+    public void UpdateNightTime_UI(int hours, int minutes)
+    {
+        string time = string.Format("{0:D2}\n{1:D2}", hours, minutes);
+        hour_EndDay_Text.SetText(time);
+    }
+
     public void UpdateDay_UI(string day)
     {
         day_text.SetText(day);
+        day_EndDay_Text.SetText(day);
+        player1Day.SetText(day);
+        player2Day.SetText(day);
     }
 
     public void WriteActivityOutcomes_UI(string[] final_outcomes)
@@ -207,5 +243,10 @@ public void UpdateTime_UI(int hours, int minutes)
         numeros[2] = numeros[3];
         numeros[3] = numero;
         cashRegister_Text.SetText(numeros[0].ToString() + " " + numeros[1].ToString() + " " + numeros[2].ToString() + " " + numeros[3].ToString());
+    }
+
+    public void OpenURL(string url)
+    {
+        Application.OpenURL(url);
     }
 }
