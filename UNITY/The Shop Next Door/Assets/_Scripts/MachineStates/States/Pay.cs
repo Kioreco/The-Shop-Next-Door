@@ -49,6 +49,7 @@ public class Pay : AStateNPC
             contexto.getGameManager().dineroJugador += dinero;
 
             contexto.getUIManager().UpdatePlayerMoney_UI();
+            contexto.getUIManager().UpdateNewMoney_UI(dinero, true);
             isFinish = true;
 
             contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());

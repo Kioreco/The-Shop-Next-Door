@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorkDayCycle : MonoBehaviour
 {
     public float gameTime = 0.0f;
-    private int currentDay = 0;
+    public int currentDay = 0;
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 

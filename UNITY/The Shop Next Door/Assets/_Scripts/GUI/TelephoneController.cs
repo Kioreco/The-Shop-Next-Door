@@ -116,6 +116,7 @@ public class TelephoneController : MonoBehaviour
         producto.Buy();
         GameManager.Instance.dineroJugador -= producto.precio;
         UIManager.Instance.UpdatePlayerMoney_UI();
+        UIManager.Instance.UpdateNewMoney_UI(producto.precio, false);
         TiendaManager.Instance.refillStock(producto.producto, producto.quantityToBuy, producto.categoria);
 
         CheckAlmacenSpaceForBuying() ;

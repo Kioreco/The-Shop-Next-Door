@@ -90,23 +90,6 @@ public class Supply : MonoBehaviour
 
         GameManager.Instance.espacioAlmacen += quantityToBuy;
         UIManager.Instance.UpdateInventorySpace_UI();
-        //if ((GameManager.Instance.espacioAlmacen + quantityToBuy) <= GameManager.Instance.maxEspacioAlmacen)
-        //{
-        //    TiendaManager.Instance.UpdateProductQuantity(producto, categoria, quantityToBuy);
-        //    SetQuantityOwned();
-
-        //    GameManager.Instance.espacioAlmacen += quantityToBuy;
-        //    UIManager.Instance.UpdateInventorySpace_UI();
-
-        //    //quantityAlmacen_text.SetText((quantityOwned + quantityToBuy).ToString());
-        //    //quantityOwned += quantityToBuy;
-        //    return true;
-        //}
-        //else
-        //{
-        //    buyButton.interactable = false;
-        //    return false;
-        //}
     }
 
     public bool CheckIfCanBuy()
@@ -117,11 +100,6 @@ public class Supply : MonoBehaviour
             {
                 return true;
             }
-            //else
-            //{
-            //    buyButton.interactable = false;
-            //    return false;
-            //}
         }
 
         buyButton.interactable = false;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,7 +8,6 @@ public class CalendarController : MonoBehaviour
 {
     [Header("Basic Info")]
     [SerializeField] private TextMeshProUGUI weekDay_text;
-    [SerializeField] private GameObject status;
     [SerializeField] private GameObject hour1_text;
     [SerializeField] private GameObject hour2_text;
     [SerializeField] private GameObject hour3_text;
@@ -22,6 +22,42 @@ public class CalendarController : MonoBehaviour
     [HideInInspector] public List<ActivityInfo> activities_romantic;
     [HideInInspector] public List<ActivityInfo> activities_partner;
 
+    [Header("States")]
+    [SerializeField] private CalendarState[] weatherStates;
+    [SerializeField] private CalendarState[] personalStates;
+
+    private int currentWeatherState;
+    private int currentPersonalState;
+
+    private void ChooseNewState()
+    {
+        if (UIManager.Instance.schedule.currentDay - 1 >= 0)
+        {
+            weatherStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+            personalStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+        }
+        weatherStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+        currentWeatherState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+
+        personalStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+        currentPersonalState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+    }
+
+    private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
+    {
+        foreach (var state in weatherStates) 
+        { 
+            if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
+        foreach (var state in personalStates)
+        {
+            if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
+    }
+
+
 
     private void Awake()
     {
@@ -33,11 +69,39 @@ public class CalendarController : MonoBehaviour
         RandomizeActivities(activities_partner);
 
         WriteDailyActivities();
+
+        RandomizeStates(weatherStates);
+        RandomizeStates(personalStates);
+
+        ChooseNewState();
+
+
+        //if (NetworkManager.Singleton.IsServer)
+        //{
+        //    ChooseNewState();
+        //}
+        //else
+        //{
+        //    ChoseNewStateByNumber(currentWeatherState, currentPersonalState);
+        //}
     }
 
     private void RandomizeActivities(List<ActivityInfo> list)
     {
         int n = list.Count;
+        for (int i = 0; i < n; i++)
+        {
+            // Genera un índice aleatorio a partir de la posición actual (i) hasta el final de la lista
+            int randomIndex = Random.Range(i, n);
+
+            // Intercambia el elemento actual (i) con el elemento aleatorio (randomIndex)
+            (list[randomIndex], list[i]) = (list[i], list[randomIndex]);
+        }
+    }
+
+    private void RandomizeStates(CalendarState[] list)
+    {
+        int n = list.Length;
         for (int i = 0; i < n; i++)
         {
             // Genera un índice aleatorio a partir de la posición actual (i) hasta el final de la lista
@@ -218,6 +282,17 @@ public class CalendarController : MonoBehaviour
         RandomizeActivities(activities_partner);
 
         WriteDailyActivities();
+
+        ChooseNewState();
+
+        //if (NetworkManager.Singleton.IsServer)
+        //{
+        //    ChooseNewState();
+        //}
+        //else
+        //{
+        //    ChoseNewStateByNumber(currentWeatherState, currentPersonalState);
+        //}
     }
 
     public void UpdateDayCalendar(string day)

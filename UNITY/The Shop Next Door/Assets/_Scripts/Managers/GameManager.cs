@@ -60,14 +60,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        dineroJugador = 1500.0f;
+        dineroJugador = 500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 100;
         reputation = 0;
         playerVigor = 100;
 
         UIManager.Instance.UpdateReputationIngame_UI();
-        UIManager.Instance.UpdatePlayerVigor_UI();
+        //UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
 
         InstantiatePlayers();
@@ -111,11 +111,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateReputationIngame_UI();
     }
 
-    public void UpdatePlayerVigor(float value)
-    {
-        playerVigor += value; //ELEFANTE - por hacer
-        UIManager.Instance.UpdatePlayerVigor_UI();
-    }
+    //public void UpdatePlayerVigor(float value)
+    //{
+    //    playerVigor += value; //ELEFANTE - por hacer
+    //    UIManager.Instance.UpdatePlayerVigor_UI();
+    //}
 
     public void UpdateAlmacenQuantity()
     {
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15f);
         //Time.timeScale = 1;
 
-        UIManager.Instance.timeReference.timeStopped = false;
+        UIManager.Instance.schedule.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);
         UIManager.Instance.telephone.calendar.ResetActivities();
     }

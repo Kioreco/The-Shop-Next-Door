@@ -29,11 +29,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TelephoneController telephone;
 
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
+    [SerializeField] private TextMeshProUGUI newMoney_text;
     [SerializeField] private TextMeshProUGUI nombreTienda_text;
     [SerializeField] private TextMeshProUGUI inventory_text;
     [SerializeField] private TextMeshProUGUI maxInventory_text;
 
-    [SerializeField] public WorkDayCycle timeReference;
+    [SerializeField] public WorkDayCycle schedule;
     [SerializeField] private TextMeshProUGUI day_text;
     [SerializeField] private TextMeshProUGUI hour_text;
 
@@ -64,8 +65,9 @@ public class UIManager : MonoBehaviour
     public Image player1Reputation;
     public Image player2Reputation;
 
-    private Color redColor;
-    private Color whiteTextColor;
+    private Color redColor = new Color(0.80f, 0.02f, 0.27f);
+    private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
+    private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
     public static UIManager Instance { get; private set; }
 
@@ -83,8 +85,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        redColor = new Color(0.80f, 0.02f, 0.27f);
-        whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
+        //redColor = new Color(0.80f, 0.02f, 0.27f);
+        //whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
     }
 
     public void ExitGame()
@@ -141,6 +143,21 @@ public class UIManager : MonoBehaviour
         else { dineroJugador_text.color = whiteTextColor; }
     }
 
+    public void UpdateNewMoney_UI(float money, bool increase)
+    {
+        if (increase) { newMoney_text.color = greenColor; }
+        else { newMoney_text.color = redColor; }
+
+        newMoney_text.SetText("+" + money.ToString("F2"));
+        StartCoroutine(WaitSecondsToHide());
+    }
+
+    private IEnumerator WaitSecondsToHide()
+    {
+        yield return new WaitForSeconds(2f);
+        newMoney_text.SetText("");
+    }
+
     public void UpdateInventorySpace_UI()
     {
         inventory_text.SetText(GameManager.Instance.espacioAlmacen.ToString());
@@ -154,10 +171,10 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-    public void UpdatePlayerVigor_UI()
-    {
-        playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
-    }
+    //public void UpdatePlayerVigor_UI()
+    //{
+    //    playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
+    //}
 
     [HideInInspector] public Transform cajaPlayerPosition;
 
