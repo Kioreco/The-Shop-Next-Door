@@ -16,11 +16,11 @@ public class TakeProduct : AStateNPC
         nombreProducto = contexto.getLista().lista.Keys.First();
         if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda())
         {
-            Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
-            Debug.Log($"ANTES pila: {contexto.getPilaState().Count}");
+            //Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
+            //Debug.Log($"ANTES pila: {contexto.getPilaState().Count}");
 
             contexto.getPilaState().Push(this);
-            Debug.Log($"DESPUES pila: {contexto.getPilaState().Count}    añadido: {contexto.getPilaState().First()}");
+            //Debug.Log($"DESPUES pila: {contexto.getPilaState().Count}    añadido: {contexto.getPilaState().First()}");
             contexto.SetState(new AskWorker(contexto));
         }
     }

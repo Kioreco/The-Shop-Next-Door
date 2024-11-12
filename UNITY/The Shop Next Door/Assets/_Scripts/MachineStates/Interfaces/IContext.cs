@@ -39,4 +39,6 @@ public interface IContext : IPooleableObject, IPrototype
     public int getUmbralPropina();
     public bool getIsInPayQueue();
     public void setIsInPayQueue(bool b);
+    public bool getHayCajeroEnCaja();
+    public void setHayCajeroEnCaja(bool b);
 }

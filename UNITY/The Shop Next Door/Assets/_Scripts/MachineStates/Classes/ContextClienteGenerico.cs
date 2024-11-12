@@ -42,6 +42,8 @@ namespace Assets.Scripts.MachineStates.Classes
 
         public IObjectPool objectPool;
         bool isReset;
+        //variables control pagar si hay cajero
+        bool hayCajeroEnCaja = false;
 
         #region MetodosGenerales
         private void Start()
@@ -54,6 +56,7 @@ namespace Assets.Scripts.MachineStates.Classes
             inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
             tiendaManager.payQueueChangeP1 += MoveInQueue;
+            GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
         }
         private void OnEnable()
         {
@@ -76,11 +79,11 @@ namespace Assets.Scripts.MachineStates.Classes
             pilaStates.Clear();
 
             int random = UnityEngine.Random.Range(0, 100);
-            if(random < porcentajeDuda)
+            if (random < porcentajeDuda)
             {
                 tieneDuda = true;
                 var productos = new List<string>(lista.lista.Keys);
-                productoDuda = productos[UnityEngine.Random.Range(0, lista.lista.Count-1)];
+                productoDuda = productos[UnityEngine.Random.Range(0, lista.lista.Count - 1)];
             }
             else
             {
@@ -141,7 +144,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public UIManager getUIManager()
         {
-            return UIManager; 
+            return UIManager;
         }
         public GameManager getGameManager()
         {
@@ -231,6 +234,15 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             isInPayQueue = b;
         }
+        public bool getHayCajeroEnCaja()
+        {
+            return hayCajeroEnCaja;
+        }
+        public void setHayCajeroEnCaja(bool b)
+        {
+            print($"set hay cajero?: {b}");
+            hayCajeroEnCaja = b;
+        }
         #endregion
 
         #region objectpool and prototype
@@ -249,8 +261,8 @@ namespace Assets.Scripts.MachineStates.Classes
         public void Reset()
         {
             isReset = true;
-            if(TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
-            else if(TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP2.position;
+            if (TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
+            else if (TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP2.position;
         }
         public void setObjectPool(IObjectPool o)
         {
@@ -266,6 +278,15 @@ namespace Assets.Scripts.MachineStates.Classes
 
 
 
+        #endregion
+
+        #region events
+
+        public void updateIfExistCajero(object s, EventArgs e)
+        {
+            print("hay cajero");
+            setHayCajeroEnCaja(true);
+        }
         #endregion
     }
 }

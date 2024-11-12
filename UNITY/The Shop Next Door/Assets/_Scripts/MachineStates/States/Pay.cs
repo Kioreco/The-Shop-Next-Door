@@ -27,6 +27,8 @@ public class Pay : AStateNPC
         {
             exitPos = contexto.getTiendaManager().outDoorShopP2;
         }
+
+        Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
     }
     public override void FixedUpdate()
     {
@@ -35,7 +37,7 @@ public class Pay : AStateNPC
     public override void Update()
     {
         //está ya en la caja
-        if(!isFinish) lastSeek += Time.deltaTime;
+        if(!isFinish & contexto.getHayCajeroEnCaja()) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
@@ -53,6 +55,8 @@ public class Pay : AStateNPC
             isFinish = true;
 
             contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
+            contexto.setHayCajeroEnCaja(false);
+            contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement();
         }
 
         //se queda

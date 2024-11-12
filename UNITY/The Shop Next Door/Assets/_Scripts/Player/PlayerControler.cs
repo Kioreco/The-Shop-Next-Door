@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,6 +37,12 @@ public class PlayerControler : NetworkBehaviour
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+
+    //variables caja pago:
+    bool isMoving = false;
+    bool isInPayBox = false;
+    public event EventHandler eventPlayerIsInPayBox;
 
     #endregion
 
@@ -133,6 +140,13 @@ public class PlayerControler : NetworkBehaviour
         }
 
         if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
+        if(IsOwner && isMoving && !isInPayBox && GetComponent<NavMeshAgent>().remainingDistance == 0)
+        {
+            isMoving = false;
+            isInPayBox = true;
+            eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
+            print("evento");
+        }
     }
 
     #region Input
@@ -229,6 +243,9 @@ public class PlayerControler : NetworkBehaviour
 
     public void WalkToPosition(Vector3 position)
     {
+        print("walk to position");
+        isMoving = true;
+        isInPayBox = false;
         GetComponent<PlayerInput>().enabled = false;
         GetComponent<NavMeshAgent>().SetDestination(position);
     }

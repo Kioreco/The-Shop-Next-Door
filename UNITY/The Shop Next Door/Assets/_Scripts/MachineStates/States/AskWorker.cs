@@ -13,19 +13,19 @@ public class AskWorker : AStateNPC
     public AskWorker(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
-        Debug.Log($"ir a preguntar a trabajador  pila: {contexto.getPilaState().Count}");
+        //Debug.Log($"ir a preguntar a trabajador  pila: {contexto.getPilaState().Count}");
         contexto.setTieneDuda(false);
         if(contexto.getTiendaManager().ID == 0)
         {
             if(contexto.getTiendaManager().workersP1.Count == 0)
             {
-                Debug.Log("no hay trabajadores");
+                //Debug.Log("no hay trabajadores");
                 worker = contexto.getTiendaManager().player.gameObject;
-                Debug.Log($"worker: {worker}");
+                //Debug.Log($"worker: {worker}");
             }
             else
             {
-                Debug.Log("hay trabajadores");
+                //Debug.Log("hay trabajadores");
                 foreach(GameObject work in contexto.getTiendaManager().workersP1)
                 {
                     if(calculateHeuristicDistance(contexto.GetTransform().position, work.transform.position) < distanceMin)
