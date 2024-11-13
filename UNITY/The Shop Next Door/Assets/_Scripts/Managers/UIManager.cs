@@ -83,12 +83,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //redColor = new Color(0.80f, 0.02f, 0.27f);
-        //whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
-    }
-
     public void ExitGame()
     {
         ChangeScene("0 - TitleScene");
@@ -191,6 +185,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator RellenarImagen(Image imageToFill, float timeToFill)
     {
         float tiempoTranscurrido = 0f;
+        cajero_Bar.fillAmount = 0;
 
         while (tiempoTranscurrido < timeToFill)
         {

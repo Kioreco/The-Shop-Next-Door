@@ -198,6 +198,8 @@ public class CalendarController : MonoBehaviour
                 (activities_selected[i].activityInfo.ClimateStateLuck[0] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[0] * 0.55f) * 0.8f
                 + randomizer * 0.2f);
 
+            print("numero outcome "+ i + ": " + outcomeWeighted);
+            print("valor " + ((activities_selected[i].activityInfo.ClimateStateLuck[0] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[0] * 0.55f) * 0.8f+ randomizer * 0.2f));
 
             if (outcomeWeighted == 2)
             {
@@ -270,6 +272,8 @@ public class CalendarController : MonoBehaviour
 
     public void ResetActivities()
     {
+        //Limpiar drag zone
+
         foreach (Activity act in activities_selected)
         {
             if (activities_mixed.Remove(act.activityInfo))

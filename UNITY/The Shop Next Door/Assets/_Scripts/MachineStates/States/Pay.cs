@@ -16,6 +16,7 @@ public class Pay : AStateNPC
     {
         //referencia al canvas del uimanager oara que se active
         UIManager.Instance.cajero_Canvas.SetActive(true);
+        UIManager.Instance.cajero_Bar.fillAmount = 0;
 
         contexto.getTiendaManager().clientesTotales += 1;
 

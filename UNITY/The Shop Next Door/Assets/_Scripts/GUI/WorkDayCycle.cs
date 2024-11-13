@@ -16,6 +16,8 @@ public class WorkDayCycle : MonoBehaviour
     //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
     private float gameEndTime = 15f;        // HORA DE CIERRE
     //private float gameHoursPerDay = 6f;     // HORAS DE TRABAJO POR DÍA
+    private float nightStartTime = 22f;       // HORA DE ENTRAR A LA TIENDA
+    private float nightEndTime = 24f;       // HORA DE ENTRAR A LA TIENDA
 
     private float realTimePassed = 0f;      // TIEMPO EN SEGUNDOS QUE HAN PASADO
 
@@ -69,7 +71,7 @@ public class WorkDayCycle : MonoBehaviour
             npcClient.isEnable = true;
         }
 
-        if (gameTime == 14f)
+        if (gameTime >= 14f)
         {
             npcClient.isEnable = false;
         }
@@ -95,8 +97,10 @@ public class WorkDayCycle : MonoBehaviour
                 isNightTime = true;
                 GameManager.Instance.EndDay();
 
-                pastDay_Bg[currentDay--].SetActive(true);
-                followingDay_Bg[currentDay--].SetActive(false);
+                print(currentDay);
+                print(currentDay-1);
+                pastDay_Bg[currentDay-1].SetActive(true);
+                followingDay_Bg[currentDay-1].SetActive(false);
             }
         }
     }
@@ -106,7 +110,7 @@ public class WorkDayCycle : MonoBehaviour
         realTimePassed += Time.deltaTime;
 
         float timeRatio = realTimePassed / realTimePerNight;
-        gameTime = Mathf.Lerp(gameStartTime, gameEndTime, timeRatio);
+        gameTime = Mathf.Lerp(nightStartTime, nightEndTime, timeRatio);
 
         UpdateTimeText();
 
@@ -132,9 +136,10 @@ public class WorkDayCycle : MonoBehaviour
     void UpdateDayText()
     {
         string dayName = dayNames[(currentDay) % dayNames.Length];
+        string dayNameNight = dayNames[(currentDay-1) % dayNames.Length];
 
         UIManager.Instance.UpdateDay_UI(dayName);
-        UIManager.Instance.telephone.calendar.UpdateDayCalendar(dayName);
+        UIManager.Instance.telephone.calendar.UpdateDayCalendar(dayNameNight);
     }
 
 }
