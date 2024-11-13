@@ -43,6 +43,7 @@ public class PlayerControler : NetworkBehaviour
     bool isMoving = false;
     bool isInPayBox = false;
     public event EventHandler eventPlayerIsInPayBox;
+    public event EventHandler eventPlayerFinishPay;
 
     #endregion
 
@@ -145,7 +146,7 @@ public class PlayerControler : NetworkBehaviour
             isMoving = false;
             isInPayBox = true;
             eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
-            print("evento");
+            //print("evento");
         }
     }
 
@@ -243,16 +244,24 @@ public class PlayerControler : NetworkBehaviour
 
     public void WalkToPosition(Vector3 position)
     {
-        print("walk to position");
-        isMoving = true;
-        isInPayBox = false;
-        GetComponent<PlayerInput>().enabled = false;
-        GetComponent<NavMeshAgent>().SetDestination(position);
+        //print("walk to position");
+        if (IsOwner)
+        {
+            isMoving = true;
+            isInPayBox = false;
+            GetComponent<PlayerInput>().enabled = false;
+            GetComponent<NavMeshAgent>().SetDestination(position);
+        }
     }
 
     public void enableMovement()
     {
-        GetComponent<PlayerInput>().enabled = true;
+        if (IsOwner)
+        {
+            //print("enable movement");
+            GetComponent<PlayerInput>().enabled = true;
+            eventPlayerFinishPay?.Invoke(this, EventArgs.Empty);
+        }
     }
     #endregion
 }

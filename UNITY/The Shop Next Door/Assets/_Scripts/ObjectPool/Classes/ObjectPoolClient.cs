@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : IObjectPool
+public class ObjectPoolClient : IObjectPool<IContext>
 {
     private IContext objectPrototype;
     private readonly bool canAdd;
@@ -10,7 +10,7 @@ public class ObjectPool : IObjectPool
     Transform instancePos;
     private int countNpcsActive;
 
-    public ObjectPool(IContext ctx, int countNpcMax, bool ca)
+    public ObjectPoolClient(IContext ctx, int countNpcMax, bool ca)
     {
         Debug.Log("creado");
         objectPrototype = ctx;

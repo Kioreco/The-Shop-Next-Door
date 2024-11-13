@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
 
-public interface IContext : IPooleableObject, IPrototype
+public interface IContext : IPooleableObject, IPrototype<IContext>
 {
     public void SetState(IState cntx);
     public NavMeshAgent getNavMesh();
@@ -26,7 +26,7 @@ public interface IContext : IPooleableObject, IPrototype
     public void setIsInColliderCajaPago(bool b);
     public void MoveInQueue(object s, EventArgs e);
     public int getPositionPay();
-    public void setObjectPool(IObjectPool obj);
+    public void setObjectPool(IObjectPool<IContext> obj);
     public GameObject getPlayer();
     public Transform GetTransform();
     public string getProductoDuda();

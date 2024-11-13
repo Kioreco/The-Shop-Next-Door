@@ -28,7 +28,7 @@ public class Pay : AStateNPC
             exitPos = contexto.getTiendaManager().outDoorShopP2;
         }
 
-        Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
+        //Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
     }
     public override void FixedUpdate()
     {

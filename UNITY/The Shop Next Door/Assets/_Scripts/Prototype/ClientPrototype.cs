@@ -7,12 +7,12 @@ public class ClientPrototype : MonoBehaviour
     public int maxActiveInScene;
     public bool allowAddNew = false;
     public bool isCreated = false;
-    private ObjectPool npcBasicObjectPool;
+    private ObjectPoolClient npcBasicObjectPool;
     public bool isEnable;
 
     private void Start()
     {
-        npcBasicObjectPool = new ObjectPool((IContext) npcPrototype, maxNumberNPC, allowAddNew);
+        npcBasicObjectPool = new ObjectPoolClient((IContext) npcPrototype, maxNumberNPC, allowAddNew);
     }
     private void Update()
     {

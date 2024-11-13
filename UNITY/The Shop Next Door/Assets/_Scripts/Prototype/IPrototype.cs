@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPrototype
+public interface IPrototype<T>
 {
-    IContext Clone(Vector3 pos, Quaternion rot);
+    T Clone(Vector3 pos, Quaternion rot);
 }

@@ -1,5 +1,5 @@
-public interface IObjectPool
+public interface IObjectPool<T>
 {
-    public IContext GetPoolableObject();
-    public void Release(IContext obj);
+    public T GetPoolableObject();
+    public void Release(T obj);
 }

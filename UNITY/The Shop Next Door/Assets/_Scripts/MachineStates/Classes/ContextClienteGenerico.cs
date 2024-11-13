@@ -40,7 +40,7 @@ namespace Assets.Scripts.MachineStates.Classes
          por esperar en la cola -> 10
          */
 
-        public IObjectPool objectPool;
+        public IObjectPool<IContext> objectPool;
         bool isReset;
         //variables control pagar si hay cajero
         bool hayCajeroEnCaja = false;
@@ -57,6 +57,7 @@ namespace Assets.Scripts.MachineStates.Classes
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
             tiendaManager.payQueueChangeP1 += MoveInQueue;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
+            GameManager._player.GetComponent<PlayerControler>().eventPlayerFinishPay += updateIfPlayerFinishPay;
         }
         private void OnEnable()
         {
@@ -240,7 +241,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void setHayCajeroEnCaja(bool b)
         {
-            print($"set hay cajero?: {b}");
+            //print($"set hay cajero?: {b}");
             hayCajeroEnCaja = b;
         }
         #endregion
@@ -264,7 +265,7 @@ namespace Assets.Scripts.MachineStates.Classes
             if (TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP1.position;
             else if (TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) transform.position = TiendaManager.Instance.npcPositionInitialP2.position;
         }
-        public void setObjectPool(IObjectPool o)
+        public void setObjectPool(IObjectPool<IContext> o)
         {
             objectPool = o;
         }
@@ -284,8 +285,13 @@ namespace Assets.Scripts.MachineStates.Classes
 
         public void updateIfExistCajero(object s, EventArgs e)
         {
-            print("hay cajero");
+            //print("hay cajero");
             setHayCajeroEnCaja(true);
+        }        
+        public void updateIfPlayerFinishPay(object s, EventArgs e)
+        {
+            //print("cajero acaba pagar");
+            setHayCajeroEnCaja(false);
         }
         #endregion
     }
