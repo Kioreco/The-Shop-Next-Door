@@ -1,68 +1,70 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectPoolRubish : IObjectPool<RubbishInstanciator>
+public class ObjectPoolRubish : IObjectPool<RubbishController>
 {
-    private RubbishInstanciator objectPrototype;
+    private RubbishController objectPrototype;
     private readonly bool canAdd;
 
-    private List<RubbishInstanciator> RubbishList;
+    private List<RubbishController> RubbishList;
     Transform instancePos;
-    private int countNpcsActive;
+    private int countRubbishActive;
 
-    public ObjectPoolRubish(RubbishInstanciator ctx, int countNpcMax, bool ca)
+    public ObjectPoolRubish(RubbishController ctx, int countNpcMax, bool ca)
     {
         Debug.Log("creado");
         objectPrototype = ctx;
         canAdd = ca;
-        RubbishList = new List<RubbishInstanciator>(countNpcMax);
-        countNpcsActive = 0;
+        RubbishList = new List<RubbishController>(countNpcMax);
+        countRubbishActive = 0;
+        instancePos = objectPrototype.transform;
 
         for (int i = 0; i < countNpcMax; i++)
         {
-            RubbishInstanciator rubbish = CreateObject();
+            RubbishController rubbish = CreateObject();
             rubbish.isActive = false;
             RubbishList.Add(rubbish);
         }
     }
 
-    public RubbishInstanciator GetPoolableObject()
+    public RubbishController GetPoolableObject()
     {
         for (int i = 0; i < RubbishList.Count; i++)
         {
             if (!RubbishList[i].isActive)
             {
                 RubbishList[i].isActive = true;
-                countNpcsActive += 1;
+                countRubbishActive += 1;
                 return RubbishList[i];
             }
         }
 
         if (canAdd)
         {
-            RubbishInstanciator newObj = CreateObject();
+            RubbishController newObj = CreateObject();
             newObj.isActive = true;
             RubbishList.Add(newObj);
 
-            countNpcsActive += 1;
+            countRubbishActive += 1;
             return newObj;
         }
 
         return null;
     }
 
-    public void Release(RubbishInstanciator obj)
+    public void Release(RubbishController obj)
     {
         //Debug.Log("release");
         obj.isActive = false;
-        countNpcsActive -= 1;
+        countRubbishActive -= 1;
         obj.Reset();
     }
 
-    private RubbishInstanciator CreateObject()
+    private RubbishController CreateObject()
     {
-        //pos aleatoria
-        RubbishInstanciator newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
+        Debug.Log($"creando objs    objectPrototype: {objectPrototype}");
+        RubbishController newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
         return newObj;
     }
 
@@ -73,6 +75,6 @@ public class ObjectPoolRubish : IObjectPool<RubbishInstanciator>
 
     public int GetActive()
     {
-        return countNpcsActive;
+        return countRubbishActive;
     }
 }

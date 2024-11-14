@@ -15,6 +15,7 @@ TagManager:
   - GameManager
   - ClientNPC
   - Draggable
+  - ClientRubbish
   layers:
   - Default
   - TransparentFX

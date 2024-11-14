@@ -33,6 +33,7 @@ public class PlayerControler : NetworkBehaviour
     float zoomSpeed = 5f;
 
     public GameObject client;
+    public GameObject clientRubbish;
 
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -67,6 +68,7 @@ public class PlayerControler : NetworkBehaviour
         if (IsOwner)
         {
             client = GameObject.FindWithTag("ClientNPC");
+            clientRubbish = GameObject.FindWithTag("ClientRubbish");
 
             ID = (int)OwnerClientId;
             print(ID);
@@ -78,6 +80,8 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
+                clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
+                clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
                 UIManager.Instance.UpdateInventorySpace_UI();
@@ -97,6 +101,8 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance._player = this;
                 client.GetComponent<ClientPrototype>().enabled = true;
                 client.GetComponent<ClientPrototype>().isCreated = true;
+                clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
+                clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
                 TiendaManager.Instance.reponerEstanteria(20);
                 TiendaManager.Instance.updateAlmacenQuantity();
                 UIManager.Instance.UpdateInventorySpace_UI();
@@ -146,6 +152,7 @@ public class PlayerControler : NetworkBehaviour
             isMoving = false;
             isInPayBox = true;
             eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
+            UIManager.Instance.UpdatePayingBar_UI();
             //print("evento");
         }
     }

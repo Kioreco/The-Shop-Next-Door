@@ -40,6 +40,7 @@ namespace Assets.Scripts.MachineStates.Classes
          por esperar en la cola -> 10
          */
 
+        //objectpool
         public IObjectPool<IContext> objectPool;
         bool isReset;
         //variables control pagar si hay cajero

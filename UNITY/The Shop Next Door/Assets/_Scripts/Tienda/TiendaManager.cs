@@ -20,8 +20,6 @@ public class TiendaManager : MonoBehaviour
     public Queue<IContext> npcPayQueueP1 = new Queue<IContext>();
     public event EventHandler payQueueChangeP1;
 
-    
-
     [Header("NPC Instanciate P1")]
     public Transform npcPositionInitialP1;
 
@@ -35,7 +33,6 @@ public class TiendaManager : MonoBehaviour
     public Queue<IContext> npcPayQueueP2 = new Queue<IContext>();
     public event EventHandler payQueueChangeP2;
 
-    
 
     [Header("NPC Instanciate P2")]
     public Transform npcPositionInitialP2;
@@ -62,8 +59,18 @@ public class TiendaManager : MonoBehaviour
     public List<GameObject> workersP1;
     public List<GameObject> workersP2;
 
-    public int clientesTotales = 0;
+    [HideInInspector]public int clientesTotales = 0;
 
+    [Header("Limites Instanciación Basura P1")]
+    public Transform minXP1;
+    public Transform maxXP1;
+    public Transform minZP1;
+    public Transform maxZP1;
+    [Header("Limites Instanciación Basura P2")]
+    public Transform minXP2;
+    public Transform maxXP2;
+    public Transform minZP2;
+    public Transform maxZP2;
 
     public static TiendaManager Instance { get; private set; }
     void Awake()

@@ -31,7 +31,6 @@ public class ClientPrototype : MonoBehaviour
                 allowAddNew = false;
             }
         }
-
     }
     private IContext createNpcBasic()
     {
