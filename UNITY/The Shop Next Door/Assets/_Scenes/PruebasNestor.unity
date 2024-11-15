@@ -937,6 +937,93 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d312c33c5044734eb7ea316985b83ad, type: 3}
+--- !u!1001 &1064393992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.207
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.757
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6105732673620949269, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c52551d11499de1478ce96a581df4500, type: 2}
+    - target: {fileID: -1632883209006159407, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 073a1fc1343d65b4fb1d9cc2a7a67eb0, type: 2}
+    - target: {fileID: 2492448761363862, guid: 40dade0046d868546bff17a6ad911c6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c52551d11499de1478ce96a581df4500, type: 2}
+    - target: {fileID: 919132149155446097, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_Name
+      value: StandDiscosNivel2_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112421496383206261, guid: 40dade0046d868546bff17a6ad911c6b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c52551d11499de1478ce96a581df4500, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40dade0046d868546bff17a6ad911c6b, type: 3}
 --- !u!1 &1070055543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,6 +2013,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CajeroLaura_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79c2c1514487d284b91f5dfafc570407,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5859641976498323360, guid: 79c2c1514487d284b91f5dfafc570407,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2153,3 +2245,4 @@ SceneRoots:
   - {fileID: 1615714913}
   - {fileID: 789721078}
   - {fileID: 1975117823}
+  - {fileID: 1064393992}
