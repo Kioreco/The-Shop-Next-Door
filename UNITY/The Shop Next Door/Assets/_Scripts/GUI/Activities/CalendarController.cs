@@ -14,7 +14,7 @@ public class CalendarController : MonoBehaviour
     public string[] final_outcomes;
 
     [Header("Activities Objects")]
-    [SerializeField] private Activity[] activities_daily = new Activity[10];
+    [SerializeField] private GameObject[] activities_daily = new GameObject[6];
     [SerializeField] public Activity[] activities_selected = new Activity[3];
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
@@ -29,35 +29,10 @@ public class CalendarController : MonoBehaviour
     private int currentWeatherState;
     private int currentPersonalState;
 
-    private void ChooseNewState()
-    {
-        if (UIManager.Instance.schedule.currentDay - 1 >= 0)
-        {
-            weatherStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
-            personalStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
-        }
-        weatherStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
-        currentWeatherState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+    [SerializeField] private PlayerVigor playerVigor;
 
-        personalStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
-        currentPersonalState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
-    }
-
-    private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
-    {
-        foreach (var state in weatherStates) 
-        { 
-            if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
-            else { state.gameObject.SetActive(false); }
-        }
-        foreach (var state in personalStates)
-        {
-            if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
-            else { state.gameObject.SetActive(false); }
-        }
-    }
-
-
+    [Header("Drop Zones")]
+    [SerializeField] private DropItem[] dropZones;
 
     private void Awake()
     {
@@ -74,16 +49,6 @@ public class CalendarController : MonoBehaviour
         RandomizeStates(personalStates);
 
         ChooseNewState();
-
-
-        //if (NetworkManager.Singleton.IsServer)
-        //{
-        //    ChooseNewState();
-        //}
-        //else
-        //{
-        //    ChoseNewStateByNumber(currentWeatherState, currentPersonalState);
-        //}
     }
 
     private void RandomizeActivities(List<ActivityInfo> list)
@@ -112,39 +77,72 @@ public class CalendarController : MonoBehaviour
         }
     }
 
+    private void ChooseNewState()
+    {
+        if (!NetworkManager.Singleton.IsHost) return;
+
+        if (UIManager.Instance.schedule.currentDay - 1 >= 0)
+        {
+            weatherStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+            personalStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+        }
+        weatherStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+        currentWeatherState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+
+        personalStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+        currentPersonalState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+
+        playerVigor.SetNewFaceGemma(currentPersonalState);
+
+        SendNewStateClientRpc(currentWeatherState, currentPersonalState);
+    }
+
+    [ClientRpc]
+    private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
+    {
+        ChoseNewStateByNumber(numberWeather, numberPersonal);
+    }
+
+    private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
+    {
+        currentWeatherState = numberWeather;
+        currentPersonalState = numberPersonal;
+        foreach (var state in weatherStates)
+        {
+            if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
+        foreach (var state in personalStates)
+        {
+            if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
+
+        playerVigor.SetNewFaceEmma(currentPersonalState);
+    }
+
     private void WriteDailyActivities()
     {
         // Mixed Actions
         for (int i = 0; i < 5; i++)
         {
             activities_text[i].SetText(activities_mixed[i].activityName);
-            activities_daily[i].CopyActivity(activities_mixed[i]);
+            activities_daily[i].GetComponent<Activity>().CopyActivity(activities_mixed[i]);
+            activities_mixed.RemoveAt(i);
         }
         // Romantic Action
         if (VidaPersonalManager.Instance.hasPartner)
         {
             // Partner Actions
             activities_text[5].SetText(activities_partner[0].activityName);
-            activities_daily[5].CopyActivity(activities_partner[0]);
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    //int randomAction = Random.Range(0, activities_romantic_Partner.Count);
-            //    activities_text[j].SetText(activities_partner[i].activityName);
-            //    activities_daily[j].CopyActivity(activities_partner[i]);
-            //    j++;
-            //}
+            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_partner[0]);
+            activities_partner.RemoveAt(5);
         }
         else
         {
             activities_text[5].SetText(activities_romantic[0].activityName);
-            activities_daily[5].CopyActivity(activities_romantic[0]);
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    //int randomAction = Random.Range(0, activities_romantic_NotPartner.Count);
-            //    //activities_text[5].SetText(activities_romantic[i].activityName);
-            //    //activities_daily[5].CopyActivity(activities_romantic[i]);
-            //    //j++;
-            //}
+            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_romantic[0]);
+            activities_romantic.RemoveAt(5);
         }
     }
 
@@ -195,11 +193,9 @@ public class CalendarController : MonoBehaviour
             float randomizer = Random.Range(0, 1);
 
             int outcomeWeighted = Mathf.RoundToInt(
-                (activities_selected[i].activityInfo.ClimateStateLuck[0] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[0] * 0.55f) * 0.8f
-                + randomizer * 0.2f);
+                (activities_selected[i].activityInfo.ClimateStateLuck[currentWeatherState] * 0.45f + activities_selected[currentPersonalState].activityInfo.PersonalStateLuck[0] * 0.55f) * 1.75f
+                + randomizer * 0.25f);
 
-            print("numero outcome "+ i + ": " + outcomeWeighted);
-            print("valor " + ((activities_selected[i].activityInfo.ClimateStateLuck[0] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[0] * 0.55f) * 0.8f+ randomizer * 0.2f));
 
             if (outcomeWeighted == 2)
             {
@@ -253,6 +249,7 @@ public class CalendarController : MonoBehaviour
 
         VidaPersonalManager.Instance.UpdateLifeProgress(activitiesFilled, Daily_RomanticProgress, Daily_FriendshipProgress, Daily_DevelopmentProgress, Daily_HappinessProgress, Daily_RestProgress);
         UIManager.Instance.WriteActivityOutcomes_UI(final_outcomes);
+        UIManager.Instance.telephone.lifeRadar.UpdateStatsRadar();
     }
 
     float discountValue = 0f;
@@ -273,30 +270,24 @@ public class CalendarController : MonoBehaviour
     public void ResetActivities()
     {
         //Limpiar drag zone
-
-        foreach (Activity act in activities_selected)
+        foreach (DropItem dropZone in dropZones)
         {
-            if (activities_mixed.Remove(act.activityInfo))
-            {
-                act.activityInfo = null;
-            }
+            dropZone.ResetDropZone();
         }
-        RandomizeActivities(activities_mixed);
-        RandomizeActivities(activities_romantic);
-        RandomizeActivities(activities_partner);
 
+        //Limpiar acciones seleccionadas
+        foreach (GameObject actDaily in activities_daily)
+        {
+            actDaily.GetComponent<DraggingItems>().DesactiveActivity();
+        }
+
+        activities_selected[0].activityInfo = null;
+        activities_selected[1].activityInfo = null;
+        activities_selected[2].activityInfo = null;
+
+        //Nuevas actividades y nuevos estados
         WriteDailyActivities();
-
         ChooseNewState();
-
-        //if (NetworkManager.Singleton.IsServer)
-        //{
-        //    ChooseNewState();
-        //}
-        //else
-        //{
-        //    ChoseNewStateByNumber(currentWeatherState, currentPersonalState);
-        //}
     }
 
     public void UpdateDayCalendar(string day)

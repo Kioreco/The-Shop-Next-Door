@@ -6,6 +6,7 @@ public class Life_RadarChart : MonoBehaviour
 {
     [SerializeField] private CanvasRenderer meshRenderer;
     [SerializeField] private Material meshMaterial;
+    [SerializeField] private Texture2D meshTexture;
 
     public void UpdateStatsRadar()
     {
@@ -15,7 +16,7 @@ public class Life_RadarChart : MonoBehaviour
         int[] triangles = new int[15];
 
 
-        float radarChartSize = 108f;
+        float radarChartSize = 120f;
         float angleParts = 360.0f / 5;
 
         Vector3 romanticVertex = Quaternion.Euler(0, 0, -angleParts * 0) * Vector3.up * radarChartSize * (VidaPersonalManager.Instance.romanticProgress / 100.0f);
@@ -40,6 +41,13 @@ public class Life_RadarChart : MonoBehaviour
         vertices[personalVertexIDX] = personalVertex;
         vertices[friendshipVertexIDX] = friendshipVertex;
         vertices[restVertexIDX] = restVertex;
+
+        uvs[0] = Vector2.zero;
+        uvs[romanticVertexIDX] = Vector2.one;
+        uvs[happinessVertexIDX] = Vector2.one;
+        uvs[personalVertexIDX] = Vector2.one;
+        uvs[friendshipVertexIDX] = Vector2.one;
+        uvs[restVertexIDX] = Vector2.one;
 
         triangles[0] = 0;
         triangles[1] = romanticVertexIDX;
@@ -66,6 +74,6 @@ public class Life_RadarChart : MonoBehaviour
         meshRadar.triangles = triangles;
 
         meshRenderer.SetMesh(meshRadar);
-        meshRenderer.SetMaterial(meshMaterial, null);
+        meshRenderer.SetMaterial(meshMaterial, meshTexture);
     }
 }

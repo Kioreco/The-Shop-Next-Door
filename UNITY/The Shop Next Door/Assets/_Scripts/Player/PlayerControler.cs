@@ -261,13 +261,20 @@ public class PlayerControler : NetworkBehaviour
         }
     }
 
-    public void enableMovement()
+    public void disableMovement()
     {
         if (IsOwner)
         {
-            //print("enable movement");
+            GetComponent<PlayerInput>().enabled = false;
+        }
+    }
+
+    public void enableMovement(bool paying)
+    {
+        if (IsOwner)
+        {
             GetComponent<PlayerInput>().enabled = true;
-            eventPlayerFinishPay?.Invoke(this, EventArgs.Empty);
+            if (paying) { eventPlayerFinishPay?.Invoke(this, EventArgs.Empty); }
         }
     }
     #endregion

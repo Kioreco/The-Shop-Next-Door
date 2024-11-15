@@ -43,14 +43,11 @@ public class TelephoneController : MonoBehaviour
 
     [Header("Life App")]
     [SerializeField] private TextMeshProUGUI lifeApp_name;
-    [SerializeField] private Life_RadarChart lifeRadar;
+    [SerializeField] public Life_RadarChart lifeRadar;
 
     private void Awake()
     {
         CheckAlmacenSpaceForBuying();
-
-        //ELEFANTE
-        lifeRadar.UpdateStatsRadar();
     }
 
     private void OnEnable()
@@ -64,6 +61,8 @@ public class TelephoneController : MonoBehaviour
         {
             gameObject.SetActive(false);
             MiniTelephone.SetActive(true);
+
+            GameManager.Instance._player.enableMovement(false);
         }
         else
         {
@@ -72,6 +71,8 @@ public class TelephoneController : MonoBehaviour
             if(HireApp.activeSelf) HireApp.SetActive(false);
             if(LifeApp.activeSelf) LifeApp.SetActive(false);
             LockedScreen.SetActive(true);
+
+            GameManager.Instance._player.disableMovement();
         }
     }
 

@@ -57,7 +57,7 @@ public class Pay : AStateNPC
 
             contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
             contexto.setHayCajeroEnCaja(false);
-            contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement();
+            contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement(true);
         }
 
         //se queda
