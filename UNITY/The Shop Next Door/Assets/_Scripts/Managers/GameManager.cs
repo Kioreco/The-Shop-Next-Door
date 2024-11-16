@@ -67,8 +67,13 @@ public class GameManager : MonoBehaviour
         playerVigor = 100;
 
         UIManager.Instance.UpdateReputationIngame_UI();
-        //UIManager.Instance.UpdatePlayerVigor_UI();
         UIManager.Instance.UpdateInventorySpace_UI();
+
+        if (NetworkManager.Singleton.IsServer)
+        {
+            UIManager.Instance.telephone.calendar.RandomizeStates();
+            UIManager.Instance.telephone.calendar.ChooseNewState();
+        }
 
         InstantiatePlayers();
     }

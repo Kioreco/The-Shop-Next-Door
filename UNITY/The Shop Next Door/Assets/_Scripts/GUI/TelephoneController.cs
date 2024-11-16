@@ -53,6 +53,16 @@ public class TelephoneController : MonoBehaviour
     private void OnEnable()
     {
         MiniTelephone.SetActive(false);
+        UIManager.Instance.vigor.vigorFill = true;
+        UIManager.Instance.vigor.vigorDiminish = false;
+        GameManager.Instance._player.disableMovement();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance._player.enableMovement(false);
+        UIManager.Instance.vigor.vigorFill = false;
+        UIManager.Instance.vigor.vigorDiminish = true;
     }
 
     public void HomeButton()
@@ -62,7 +72,6 @@ public class TelephoneController : MonoBehaviour
             gameObject.SetActive(false);
             MiniTelephone.SetActive(true);
 
-            GameManager.Instance._player.enableMovement(false);
         }
         else
         {
@@ -71,8 +80,6 @@ public class TelephoneController : MonoBehaviour
             if(HireApp.activeSelf) HireApp.SetActive(false);
             if(LifeApp.activeSelf) LifeApp.SetActive(false);
             LockedScreen.SetActive(true);
-
-            GameManager.Instance._player.disableMovement();
         }
     }
 

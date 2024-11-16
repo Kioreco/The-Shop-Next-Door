@@ -45,10 +45,10 @@ public class CalendarController : MonoBehaviour
 
         WriteDailyActivities();
 
-        RandomizeStates(weatherStates);
-        RandomizeStates(personalStates);
+        //RandomizeStates(weatherStates);
+        //RandomizeStates(personalStates);
 
-        ChooseNewState();
+        //ChooseNewState();
     }
 
     private void RandomizeActivities(List<ActivityInfo> list)
@@ -64,22 +64,30 @@ public class CalendarController : MonoBehaviour
         }
     }
 
-    private void RandomizeStates(CalendarState[] list)
+    public void RandomizeStates()
     {
-        int n = list.Length;
-        for (int i = 0; i < n; i++)
+        int nW = weatherStates.Length;
+        for (int i = 0; i < nW; i++)
         {
             // Genera un índice aleatorio a partir de la posición actual (i) hasta el final de la lista
-            int randomIndex = Random.Range(i, n);
+            int randomIndex = Random.Range(i, nW);
 
             // Intercambia el elemento actual (i) con el elemento aleatorio (randomIndex)
-            (list[randomIndex], list[i]) = (list[i], list[randomIndex]);
+            (weatherStates[randomIndex], weatherStates[i]) = (weatherStates[i], weatherStates[randomIndex]);
+        }
+
+        int nP = personalStates.Length;
+        for (int i = 0; i < nP; i++)
+        {
+            int randomIndex = Random.Range(i, nP);
+
+            (personalStates[randomIndex], personalStates[i]) = (personalStates[i], personalStates[randomIndex]);
         }
     }
 
-    private void ChooseNewState()
+    public void ChooseNewState()
     {
-        if (!NetworkManager.Singleton.IsHost) return;
+        if (!NetworkManager.Singleton.IsServer) return;
 
         if (UIManager.Instance.schedule.currentDay - 1 >= 0)
         {

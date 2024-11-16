@@ -22,20 +22,69 @@ public class PlayerVigor : MonoBehaviour
     private bool stressLevelChanged = true;
     private bool stressLevelMAX = false;
 
-    private void DecreaseVigor()
+    public bool vigorEnabled = true;
+    public bool vigorFill = false;
+    public bool vigorDiminish = true;
+
+    private void Update()
     {
-        if (stressLevelMAX) { return; //Descanso obligatorio
-                                      }
+        if (!vigorEnabled) return;
+
+        if (vigorDiminish) 
+        {
+            if (!stressLevelMAX)
+            {
+                DiminishVigor();
+            }
+            else
+            {
+                GameManager.Instance._player.disableMovement();
+                vigorDiminish = false;
+                vigorFill = true;
+            }
+        }
+
+        if (vigorFill)
+        {
+            ReplenishVigor();
+            if (vigor_bar.fillAmount == 1)
+            {
+                vigorFill = false;
+                stressLevel = 0;
+                stressLevelChanged = true;
+
+                if (stressLevelMAX)
+                {
+                    GameManager.Instance._player.enableMovement(false);
+                    stressLevelMAX = false;
+                    vigorDiminish = true;
+                }
+            }
+        }
+        
+    }
+
+    private void DiminishVigor()
+    {
+        if (stressLevelMAX) 
+        {
+            GameManager.Instance._player.disableMovement();
+            ReplenishVigor();
+            if (vigor_bar.fillAmount == 1) { stressLevelMAX = false; GameManager.Instance._player.enableMovement(false); stressLevel = 0; }
+
+            return; 
+        }
 
         if (stressLevel == 0)
         {
             if (stressLevelChanged) 
             { 
                 ChangeVigorColor(stressLevel);
+                GameManager.Instance._player.ChangePlayerSpeed(5f);
                 stressLevelChanged = false;
-                //Cambiar la burbuja del player y la velocidad
+                //Cambiar el plumbob del player
             }
-            vigor_bar.fillAmount -= Time.deltaTime * 0.2f;
+            vigor_bar.fillAmount -= Time.deltaTime * 0.02f;
             if (vigor_bar.fillAmount <= 0.5f)
             {
                 stressLevel = 1;
@@ -48,10 +97,11 @@ public class PlayerVigor : MonoBehaviour
             if (stressLevelChanged)
             {
                 ChangeVigorColor(stressLevel);
+                GameManager.Instance._player.ChangePlayerSpeed(2.5f);
                 stressLevelChanged = false;
-                //Cambiar la burbuja del player y la velocidad
+                //Cambiar el plumbob del player
             }
-            vigor_bar.fillAmount -= Time.deltaTime * 0.4f;
+            vigor_bar.fillAmount -= Time.deltaTime * 0.04f;
             if (vigor_bar.fillAmount <= 0.25f)
             {
                 stressLevel = 2;
@@ -64,18 +114,18 @@ public class PlayerVigor : MonoBehaviour
             if (stressLevelChanged)
             {
                 ChangeVigorColor(stressLevel);
+                GameManager.Instance._player.ChangePlayerSpeed(1.5f);
                 stressLevelChanged = false;
-                //Cambiar la burbuja del player y la velocidad
+                //Cambiar el plumbob del player
             }
-            
-            vigor_bar.fillAmount -= Time.deltaTime * 0.6f;
+
+            vigor_bar.fillAmount -= Time.deltaTime * 0.06f;
             if (vigor_bar.fillAmount <= 0.05f)
             {
                 stressLevelMAX = true;
             }
         }
     }
-
 
     private void ChangeVigorColor(int level)
     {
@@ -94,6 +144,11 @@ public class PlayerVigor : MonoBehaviour
         {
             vigor_background.color = orangeColor;
         }
+    }
+
+    private void ReplenishVigor()
+    {
+        vigor_bar.fillAmount += Time.deltaTime * 0.08f;
     }
 
     public void SetNewFaceGemma(int numberState)

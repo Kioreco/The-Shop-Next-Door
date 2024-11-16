@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject canvasIngame;
 
     [SerializeField] public TelephoneController telephone;
+    [SerializeField] public PlayerVigor vigor;
 
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
     [SerializeField] private TextMeshProUGUI newMoney_text;
@@ -39,7 +40,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hour_text;
 
     [SerializeField] private Image reputation_Bar;
-    [SerializeField] private Image playerVigor_Bar;
     [HideInInspector] public Image cajero_Bar;
     [HideInInspector] public GameObject cajero_Canvas;
 
@@ -233,12 +233,12 @@ public class UIManager : MonoBehaviour
         hour_EndDay_Text.SetText(time);
     }
 
-    public void UpdateDay_UI(string day)
+    public void UpdateDay_UI(string day, string dayNight)
     {
         day_text.SetText(day);
-        day_EndDay_Text.SetText(day);
-        player1Day.SetText(day);
-        player2Day.SetText(day);
+        day_EndDay_Text.SetText(dayNight);
+        player1Day.SetText(dayNight);
+        player2Day.SetText(dayNight);
     }
 
     public void WriteActivityOutcomes_UI(string[] final_outcomes)

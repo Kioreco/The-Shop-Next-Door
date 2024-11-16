@@ -97,8 +97,6 @@ public class WorkDayCycle : MonoBehaviour
                 isNightTime = true;
                 GameManager.Instance.EndDay();
 
-                print(currentDay);
-                print(currentDay-1);
                 pastDay_Bg[currentDay-1].SetActive(true);
                 followingDay_Bg[currentDay-1].SetActive(false);
             }
@@ -138,7 +136,7 @@ public class WorkDayCycle : MonoBehaviour
         string dayName = dayNames[(currentDay) % dayNames.Length];
         string dayNameNight = dayNames[(currentDay-1) % dayNames.Length];
 
-        UIManager.Instance.UpdateDay_UI(dayName);
+        UIManager.Instance.UpdateDay_UI(dayName, dayNameNight);
         UIManager.Instance.telephone.calendar.UpdateDayCalendar(dayNameNight);
     }
 

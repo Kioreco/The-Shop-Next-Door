@@ -277,5 +277,10 @@ public class PlayerControler : NetworkBehaviour
             if (paying) { eventPlayerFinishPay?.Invoke(this, EventArgs.Empty); }
         }
     }
+
+    public void ChangePlayerSpeed(float value)
+    {
+        moveSpeed = value;
+    }
     #endregion
 }
