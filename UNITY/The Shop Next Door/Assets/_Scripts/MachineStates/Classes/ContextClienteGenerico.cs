@@ -43,8 +43,14 @@ namespace Assets.Scripts.MachineStates.Classes
         //objectpool
         public IObjectPool<IContext> objectPool;
         bool isReset;
+
         //variables control pagar si hay cajero
         bool hayCajeroEnCaja = false;
+
+        //variables tipo de cliente
+        bool isKaren;
+        bool canComplain = false;
+        
 
         #region MetodosGenerales
         private void Start()
@@ -79,6 +85,7 @@ namespace Assets.Scripts.MachineStates.Classes
             positionPayQueue = 0;
             isInPayQueue = false;
             pilaStates.Clear();
+            canComplain = false;
 
             int random = UnityEngine.Random.Range(0, 100);
             if (random < porcentajeDuda)
@@ -111,63 +118,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         #endregion
 
-        #region metodosEspecificos
-        public NavMeshAgent getNavMesh()
-        {
-            return gameObject.GetComponent<NavMeshAgent>();
-        }
-        public ListaCompra getLista()
-        {
-            return lista;
-        }
-        public TiendaManager getTiendaManager()
-        {
-            return tiendaManager;
-        }
-        public Vector3 getCurrentEstanteria()
-        {
-            return currentEstanteria;
-        }
-        public void setCurrentEstanteria(Vector3 e)
-        {
-            currentEstanteria = e;
-        }
-        public IState GetState()
-        {
-            return currentState;
-        }
-        public float getDineroCompra()
-        {
-            return dineroCompra;
-        }
-        public void sumDineroCompra(float d)
-        {
-            dineroCompra += d;
-        }
-        public UIManager getUIManager()
-        {
-            return UIManager;
-        }
-        public GameManager getGameManager()
-        {
-            return GameManager;
-        }
-        public void Destruir()
-        {
-            objectPool?.Release(this);
-        }
-        public Vector3 getPosition()
-        {
-            return transform.position;
-        }
-        public bool getIsInColliderShelf()
-        {
-            return stopedInShelf;
-        }
-        public void setIsInColliderShelf(bool b)
-        {
-            stopedInShelf = b;
-        }
+        #region pay box methods
         public bool getIsInColliderCajaPago()
         {
             return stopedInCajaPago;
@@ -183,46 +134,6 @@ namespace Assets.Scripts.MachineStates.Classes
         public int getPositionPay()
         {
             return positionPayQueue;
-        }
-        public GameObject getPlayer()
-        {
-            PlayerControler player = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
-            if (player.IsOwner) return player.gameObject;
-            return null;
-        }
-        public Transform GetTransform()
-        {
-            return transform;
-        }
-        public string getProductoDuda()
-        {
-            return productoDuda;
-        }
-        public bool getTieneDuda()
-        {
-            return tieneDuda;
-        }
-        public void setTieneDuda(bool duda)
-        {
-            tieneDuda = duda;
-        }
-        public Stack<IState> getPilaState()
-        {
-            return pilaStates;
-        }
-        public int getFelicidad()
-        {
-            return felicidad;
-        }
-        public int getMaxEnfado()
-        {
-            return maxEnfado;
-        }
-        public void reducirFelicidad(int enfado)
-        {
-            //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
-            felicidad -= enfado;
-            //print($"felicidad reducia: {felicidad}");
         }
         public int getUmbralPropina()
         {
@@ -247,7 +158,131 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         #endregion
 
+        #region Compra
+        public ListaCompra getLista()
+        {
+            return lista;
+        }
+        public float getDineroCompra()
+        {
+            return dineroCompra;
+        }
+        public void sumDineroCompra(float d)
+        {
+            dineroCompra += d;
+        }
+        #endregion
+
+        #region Estanterias
+        public Vector3 getCurrentEstanteria()
+        {
+            return currentEstanteria;
+        }
+        public void setCurrentEstanteria(Vector3 e)
+        {
+            currentEstanteria = e;
+        }
+        public bool getIsInColliderShelf()
+        {
+            return stopedInShelf;
+        }
+        public void setIsInColliderShelf(bool b)
+        {
+            stopedInShelf = b;
+        }
+        #endregion
+
+        #region metodosEspecificos
+        public NavMeshAgent getNavMesh()
+        {
+            return gameObject.GetComponent<NavMeshAgent>();
+        }
+        public TiendaManager getTiendaManager()
+        {
+            return tiendaManager;
+        }
+        public UIManager getUIManager()
+        {
+            return UIManager;
+        }
+        public GameManager getGameManager()
+        {
+            return GameManager;
+        }
+        public Vector3 getPosition()
+        {
+            return transform.position;
+        }
+        public GameObject getPlayer()
+        {
+            PlayerControler player = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            if (player.IsOwner) return player.gameObject;
+            return null;
+        }
+        public Transform GetTransform()
+        {
+            return transform;
+        }
+        public Stack<IState> getPilaState()
+        {
+            return pilaStates;
+        }
+        public float calculateHeuristicDistance(Vector3 posClient, Vector3 posWorker)
+        {
+            return MathF.Abs(posClient.x - posWorker.x) + MathF.Abs(posClient.z - posWorker.z);
+        }
+        #endregion
+
+        #region tipo cliente variables
+        public bool getIsKaren()
+        {
+            return isKaren;
+        }
+        public bool getCanComplain()
+        {
+            return canComplain;
+        }
+        public void setCanComplain(bool b)
+        {
+            canComplain = b;
+        }
+        public string getProductoDuda()
+        {
+            return productoDuda;
+        }
+        public bool getTieneDuda()
+        {
+            return tieneDuda;
+        }
+        public void setTieneDuda(bool duda)
+        {
+            tieneDuda = duda;
+        }
+
+        #endregion
+
+        #region felicidad
+        public int getFelicidad()
+        {
+            return felicidad;
+        }
+        public int getMaxEnfado()
+        {
+            return maxEnfado;
+        }
+        public void reducirFelicidad(int enfado)
+        {
+            //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
+            felicidad -= enfado;
+            //print($"felicidad reducia: {felicidad}");
+        }
+        #endregion
+
         #region objectpool and prototype
+        public void Destruir()
+        {
+            objectPool?.Release(this);
+        }
         public bool isActive
         {
             get
@@ -282,8 +317,8 @@ namespace Assets.Scripts.MachineStates.Classes
 
         #endregion
 
-        #region events
 
+        #region events
         public void updateIfExistCajero(object s, EventArgs e)
         {
             //print("hay cajero");

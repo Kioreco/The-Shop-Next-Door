@@ -13,7 +13,6 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public TiendaManager getTiendaManager();
     public Vector3 getCurrentEstanteria();
     public void setCurrentEstanteria(Vector3 e);
-    public IState GetState();
     public float getDineroCompra();
     public void sumDineroCompra(float d);
     public UIManager getUIManager();
@@ -41,4 +40,8 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public void setIsInPayQueue(bool b);
     public bool getHayCajeroEnCaja();
     public void setHayCajeroEnCaja(bool b);
+    public bool getIsKaren();
+    public bool getCanComplain();
+    public void setCanComplain(bool b);
+    public float calculateHeuristicDistance(Vector3 posClient, Vector3 posWorker);
 }

@@ -31,7 +31,12 @@ public class WaitPayTurn : AStateNPC
 
     public override void Update()
     {
-        if(contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
+        if (contexto.getIsKaren() && contexto.getIsInPayQueue() && contexto.getCanComplain())
+        {
+            contexto.getPilaState().Push(this);
+            contexto.SetState(new TalkToAWorker(contexto)); //comprobar que funciona
+        }
+        if (contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
         if (contexto.getNavMesh().remainingDistance <= 0.5f && contexto.getIsInColliderCajaPago() && !isInQueue)
         {

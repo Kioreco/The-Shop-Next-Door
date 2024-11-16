@@ -21,7 +21,7 @@ public class TakeProduct : AStateNPC
 
             contexto.getPilaState().Push(this);
             //Debug.Log($"DESPUES pila: {contexto.getPilaState().Count}    añadido: {contexto.getPilaState().First()}");
-            contexto.SetState(new AskWorker(contexto));
+            contexto.SetState(new TalkToAWorker(contexto));
         }
     }
 
@@ -29,6 +29,12 @@ public class TakeProduct : AStateNPC
     {
         //contador animación de coger elemento
         //cuanbdo acabe cambia estado
+        if (contexto.getIsKaren() && contexto.getCanComplain())
+        {
+            contexto.getPilaState().Push(this);
+            contexto.SetState(new TalkToAWorker(contexto)); //comprobar que funciona
+        }
+
         if (contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
         lastSeek += Time.deltaTime;
@@ -38,11 +44,9 @@ public class TakeProduct : AStateNPC
             lastSeek = 0f;
             if (contexto.getIsInColliderShelf())
             {
-                //Debug.Log("cogiendo elemento...");
                 cantidadProductos = contexto.getTiendaManager().cogerDeEstanteria(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad);
                 contexto.sumDineroCompra(contexto.getTiendaManager().getPrecioProducto(nombreProducto, contexto.getLista().lista[nombreProducto].tipo, contexto.getLista().lista[nombreProducto].cantidad));
                 contexto.getLista().lista.Remove(nombreProducto);
-                //contexto.setIdxLista(contexto.getIdxLista() + 1);
             }
 
             if(cantidadProductos == -1)
@@ -53,7 +57,6 @@ public class TakeProduct : AStateNPC
 
             if (contexto.getLista().lista.Count > 0) contexto.SetState(new SearchShelf(contexto));
             else contexto.SetState(new WaitPayTurn(contexto));
-            //falta transicion a preguntar duda
         }
     }
 

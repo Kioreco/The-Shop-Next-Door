@@ -12,6 +12,11 @@ public class LeaveAngry : AStateNPC
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        if (contexto.getIsKaren())
+        {
+            contexto.getPilaState().Push(this);
+            contexto.SetState(new TalkToAWorker(contexto));
+        }
         contexto.getTiendaManager().clientesTotales += 1;
         //Debug.Log("leave angry");
         if (contexto.getTiendaManager().ID == 0)

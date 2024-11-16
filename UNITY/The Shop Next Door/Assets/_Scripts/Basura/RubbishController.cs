@@ -28,10 +28,16 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
         if (other.CompareTag("NPC"))
         {
             //Debug.Log("reduc velocidad npc");
-            other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(3);
+            if (other.gameObject.GetComponent<ContextClienteGenerico>().getIsKaren())
+            {
+                print("es karen y ha pillado basura");
+                other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(10);
+            }
+            else other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(3);
 
             other.gameObject.GetComponent<NavMeshAgent>().speed -= slowDownAmount;
             StartCoroutine(delaySpeedAgent(other.gameObject));
+            
         }
         if (other.CompareTag("Player") && clicked)
         {
@@ -44,23 +50,15 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
         yield return new WaitForSeconds(2f);
         obj.GetComponent<NavMeshAgent>().speed += slowDownAmount;
         //print("quitado efecto velocidad npc");
-    }
-    public bool isActive { get => gameObject.activeSelf; set => gameObject.SetActive(value); }
 
-    public Vector3 calculateRandomPosition()
-    {
-        int randomX = Random.Range(minX, maxX);
-        int randomZ = Random.Range(minZ, maxZ);
-        Vector3 position = new Vector3(randomX, transform.position.y, randomZ);
-
-        if (NavMesh.SamplePosition(position, out NavMeshHit hit, maxDistanceNavMesh, NavMesh.AllAreas))
+        if (obj.gameObject.GetComponent<ContextClienteGenerico>().getIsKaren())
         {
-            //Instantiate(manchaPrefab, hit.position, Quaternion.identity);
-            position = hit.position;
+            print("se va a ir a quejar...");
+            obj.gameObject.GetComponent<ContextClienteGenerico>().setCanComplain(true);
         }
-        return position;
     }
-
+    #region object pool
+    public bool isActive { get => gameObject.activeSelf; set => gameObject.SetActive(value); }
     public RubbishController Clone(Vector3 pos, Quaternion rot)
     {
         print("clone");
@@ -119,12 +117,24 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             maxZ = (int)TiendaManager.Instance.maxZP2.position.z;
         }
     }
-
-    
-
     public void CleanRubbish()
     {
         GameManager.Instance._player.WalkToPosition(transform.position);
         clicked = true;
+    }
+    #endregion
+
+    public Vector3 calculateRandomPosition()
+    {
+        int randomX = Random.Range(minX, maxX);
+        int randomZ = Random.Range(minZ, maxZ);
+        Vector3 position = new Vector3(randomX, transform.position.y, randomZ);
+
+        if (NavMesh.SamplePosition(position, out NavMeshHit hit, maxDistanceNavMesh, NavMesh.AllAreas))
+        {
+            //Instantiate(manchaPrefab, hit.position, Quaternion.identity);
+            position = hit.position;
+        }
+        return position;
     }
 }
