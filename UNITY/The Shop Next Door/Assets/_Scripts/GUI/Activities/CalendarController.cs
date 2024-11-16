@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CalendarController : MonoBehaviour
+public class CalendarController : NetworkBehaviour
 {
     [Header("Basic Info")]
     [SerializeField] private TextMeshProUGUI weekDay_text;
@@ -87,28 +87,32 @@ public class CalendarController : MonoBehaviour
 
     public void ChooseNewState()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
-
-        if (UIManager.Instance.schedule.currentDay - 1 >= 0)
+        if (NetworkManager.Singleton.IsServer)
         {
-            weatherStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
-            personalStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+            if (UIManager.Instance.schedule.currentDay - 1 >= 0)
+            {
+                weatherStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+                personalStates[UIManager.Instance.schedule.currentDay - 1].gameObject.SetActive(false);
+            }
+            weatherStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+            currentWeatherState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
+
+            personalStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
+            currentPersonalState = personalStates[UIManager.Instance.schedule.currentDay].numberState;
+
+            playerVigor.SetNewFaceGemma(currentPersonalState);
+
+            SendNewStateClientRpc(currentWeatherState, currentPersonalState);
         }
-        weatherStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
-        currentWeatherState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
-
-        personalStates[UIManager.Instance.schedule.currentDay].gameObject.SetActive(true);
-        currentPersonalState = weatherStates[UIManager.Instance.schedule.currentDay].numberState;
-
-        playerVigor.SetNewFaceGemma(currentPersonalState);
-
-        SendNewStateClientRpc(currentWeatherState, currentPersonalState);
     }
 
     [ClientRpc]
     private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
     {
-        ChoseNewStateByNumber(numberWeather, numberPersonal);
+        if (!NetworkManager.Singleton.IsServer)
+        {
+            ChoseNewStateByNumber(numberWeather, numberPersonal);
+        }
     }
 
     private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
@@ -299,6 +303,7 @@ public class CalendarController : MonoBehaviour
 
         //Nuevas actividades y nuevos estados
         WriteDailyActivities();
+
         ChooseNewState();
     }
 

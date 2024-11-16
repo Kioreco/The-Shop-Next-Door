@@ -68,12 +68,6 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.Start_UnityFalse();
 
-        if (NetworkManager.Singleton.IsServer)
-        {
-            UIManager.Instance.telephone.calendar.RandomizeStates();
-            UIManager.Instance.telephone.calendar.ChooseNewState();
-        }
-
         InstantiatePlayers();
     }
 
@@ -96,15 +90,18 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.cajero_Bar = cajero_1_Bar;
             UIManager.Instance.cajero_Canvas = cajero_1_Canvas;
             UIManager.Instance.cajaPlayerPosition = cajaPositionP1;
+
+            UIManager.Instance.telephone.calendar.RandomizeStates();
+            UIManager.Instance.telephone.calendar.ChooseNewState();
         }
         else
         {
             techoPlayer2.SetActive(false);
             UIManager.Instance.telephone.ChangeLockedScreenBG(2);
             UIManager.Instance.telephone.ChangeLifeAppName(2);
-            //UIManager.Instance.cajero_Bar = cajero_2_Bar;
-            //UIManager.Instance.cajero_Canvas = cajero_2_Canvas;
-            //UIManager.Instance.cajaPlayerPosition = cajaPositionP2;
+            UIManager.Instance.cajero_Bar = cajero_2_Bar;
+            UIManager.Instance.cajero_Canvas = cajero_2_Canvas;
+            UIManager.Instance.cajaPlayerPosition = cajaPositionP2;
         }
     }
 
