@@ -2,6 +2,9 @@ using System.Collections;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Profiling;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -43,6 +46,16 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public Image cajero_Bar;
     [HideInInspector] public GameObject cajero_Canvas;
 
+    [Header("Post-Proccessing")]
+    [SerializeField] private Volume gameVolume;
+
+    private ColorAdjustments colorAdjustments;
+    private DepthOfField depthOfField;
+
+    private Color volumeColorNeutral = new Color(1f, 1f, 1f);
+    private Color volumeColorDarkened = new Color(0.5f, 0.5f, 0.5f);
+
+
     [Header("DAY-END MENU")] 
     public GameObject canvasDayEnd;
 
@@ -81,6 +94,15 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Start_UnityFalse()
+    {
+        UpdateReputationIngame_UI();
+        UpdateInventorySpace_UI();
+
+        gameVolume.profile.TryGet(out colorAdjustments);
+        gameVolume.profile.TryGet(out depthOfField);
     }
 
     public void ExitGame()
@@ -165,10 +187,21 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-    //public void UpdatePlayerVigor_UI()
-    //{
-    //    playerVigor_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.playerVigor);
-    //}
+
+
+    public void ChangeVolumeEffects(bool isTelephone)
+    {
+        if (isTelephone)
+        {
+            colorAdjustments.colorFilter.value = volumeColorDarkened;
+            depthOfField.active = true;
+        }
+        else
+        {
+            colorAdjustments.colorFilter.value = volumeColorNeutral;
+            depthOfField.active = false;
+        }
+    }
 
     [HideInInspector] public Transform cajaPlayerPosition;
 
@@ -179,13 +212,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdatePayingBar_UI()
     {
-        StartCoroutine(RellenarImagen(cajero_Bar, 3f));
+        StartCoroutine(RellenarImagen(cajero_Bar, 2.8f, true, false, null));
     }
 
-    public IEnumerator RellenarImagen(Image imageToFill, float timeToFill)
+    public void UpdateCleaning_UI(Image progressImage, RubbishController rubbish)
+    {
+        StartCoroutine(RellenarImagen(progressImage, 3f, false, true, rubbish));
+    }
+
+    public IEnumerator RellenarImagen(Image imageToFill, float timeToFill, bool isCajero, bool isRubbish, RubbishController rubbish)
     {
         float tiempoTranscurrido = 0f;
-        cajero_Bar.fillAmount = 0;
+        imageToFill.fillAmount = 0;
 
         while (tiempoTranscurrido < timeToFill)
         {
@@ -199,7 +237,8 @@ public class UIManager : MonoBehaviour
 
         imageToFill.fillAmount = 1f;
         
-        if (cajero_Canvas.activeSelf) { cajero_Canvas.SetActive(false); }
+        if (isCajero) { cajero_Canvas.SetActive(false); imageToFill.fillAmount = 0f; }
+        if (isRubbish) { rubbish.Destruir(); }
     }
 
     public IEnumerator VaciarImagen(Image imageToFill, float timeToFill)

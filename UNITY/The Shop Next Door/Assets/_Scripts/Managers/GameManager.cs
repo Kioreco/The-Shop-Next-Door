@@ -66,8 +66,7 @@ public class GameManager : MonoBehaviour
         reputation = 0;
         playerVigor = 100;
 
-        UIManager.Instance.UpdateReputationIngame_UI();
-        UIManager.Instance.UpdateInventorySpace_UI();
+        UIManager.Instance.Start_UnityFalse();
 
         if (NetworkManager.Singleton.IsServer)
         {

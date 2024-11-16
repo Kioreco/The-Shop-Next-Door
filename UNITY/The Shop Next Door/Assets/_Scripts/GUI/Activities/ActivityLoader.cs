@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivityLoader
 {
-    private List<ActivityInfo> LoadActivitiesFromJson(string fileName)
+    private ActivityInfo[] LoadActivitiesFromJson(string fileName)
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("Activities/" + fileName);
         if (jsonFile == null)
@@ -13,7 +12,7 @@ public class ActivityLoader
         }
 
         ActivityList activityList = JsonUtility.FromJson<ActivityList>(jsonFile.text);
-        return new List<ActivityInfo>(activityList.activities);
+        return activityList.activities;
     }
 
     public void LoadActivities()

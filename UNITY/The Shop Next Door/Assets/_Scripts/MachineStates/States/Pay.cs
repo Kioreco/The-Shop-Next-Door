@@ -14,9 +14,7 @@ public class Pay : AStateNPC
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
-        //referencia al canvas del uimanager oara que se active
         UIManager.Instance.cajero_Canvas.SetActive(true);
-        UIManager.Instance.cajero_Bar.fillAmount = 0;
 
         contexto.getTiendaManager().clientesTotales += 1;
 
@@ -28,9 +26,9 @@ public class Pay : AStateNPC
         {
             exitPos = contexto.getTiendaManager().outDoorShopP2;
         }
-
         //Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
     }
+
     public override void FixedUpdate()
     {
     }

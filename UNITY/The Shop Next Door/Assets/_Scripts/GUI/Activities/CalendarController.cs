@@ -18,9 +18,9 @@ public class CalendarController : MonoBehaviour
     [SerializeField] public Activity[] activities_selected = new Activity[3];
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
-    [HideInInspector] public List<ActivityInfo> activities_mixed;
-    [HideInInspector] public List<ActivityInfo> activities_romantic;
-    [HideInInspector] public List<ActivityInfo> activities_partner;
+    [HideInInspector] public ActivityInfo[] activities_mixed;
+    [HideInInspector] public ActivityInfo[] activities_romantic;
+    [HideInInspector] public ActivityInfo[] activities_partner;
 
     [Header("States")]
     [SerializeField] private CalendarState[] weatherStates;
@@ -51,9 +51,9 @@ public class CalendarController : MonoBehaviour
         //ChooseNewState();
     }
 
-    private void RandomizeActivities(List<ActivityInfo> list)
+    private void RandomizeActivities(ActivityInfo[] list)
     {
-        int n = list.Count;
+        int n = list.Length;
         for (int i = 0; i < n; i++)
         {
             // Genera un índice aleatorio a partir de la posición actual (i) hasta el final de la lista
@@ -129,28 +129,33 @@ public class CalendarController : MonoBehaviour
         playerVigor.SetNewFaceEmma(currentPersonalState);
     }
 
+    private int mixedActivitiesUsed = 0;
+    private int romanticActivitiesUsed = 0;
+    private int partnerActivitiesUsed = 0;
+
     private void WriteDailyActivities()
     {
         // Mixed Actions
-        for (int i = 0; i < 5; i++)
+        for (int i = mixedActivitiesUsed; i < 5; i++)
         {
             activities_text[i].SetText(activities_mixed[i].activityName);
             activities_daily[i].GetComponent<Activity>().CopyActivity(activities_mixed[i]);
-            activities_mixed.RemoveAt(i);
         }
+        mixedActivitiesUsed += 5;
+
         // Romantic Action
         if (VidaPersonalManager.Instance.hasPartner)
         {
             // Partner Actions
-            activities_text[5].SetText(activities_partner[0].activityName);
-            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_partner[0]);
-            activities_partner.RemoveAt(5);
+            activities_text[5].SetText(activities_partner[partnerActivitiesUsed].activityName);
+            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_partner[partnerActivitiesUsed]);
+            partnerActivitiesUsed++;
         }
         else
         {
-            activities_text[5].SetText(activities_romantic[0].activityName);
-            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_romantic[0]);
-            activities_romantic.RemoveAt(5);
+            activities_text[5].SetText(activities_romantic[romanticActivitiesUsed].activityName);
+            activities_daily[5].GetComponent<Activity>().CopyActivity(activities_romantic[romanticActivitiesUsed]);
+            romanticActivitiesUsed++;
         }
     }
 
@@ -159,7 +164,6 @@ public class CalendarController : MonoBehaviour
     private float Daily_DevelopmentProgress;
     private float Daily_HappinessProgress;
     private float Daily_RestProgress;
-
 
     public void ActivitiesOutcomes()
     {
@@ -286,7 +290,7 @@ public class CalendarController : MonoBehaviour
         //Limpiar acciones seleccionadas
         foreach (GameObject actDaily in activities_daily)
         {
-            actDaily.GetComponent<DraggingItems>().DesactiveActivity();
+            actDaily.GetComponent<DraggingItems>().ActivateActivity();
         }
 
         activities_selected[0].activityInfo = null;

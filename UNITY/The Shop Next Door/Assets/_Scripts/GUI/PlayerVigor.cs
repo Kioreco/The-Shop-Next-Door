@@ -7,6 +7,7 @@ public class PlayerVigor : MonoBehaviour
     [Header("Vigor UI")]
     [SerializeField] private Image vigor_bar;
     [SerializeField] private Image vigor_background;
+    [SerializeField] private Material plumbobMaterial;
 
     [Header("Faces - Gemma")]
     [SerializeField] private GameObject[] facesGemma;
@@ -53,6 +54,7 @@ public class PlayerVigor : MonoBehaviour
                 stressLevel = 0;
                 stressLevelChanged = true;
 
+
                 if (stressLevelMAX)
                 {
                     GameManager.Instance._player.enableMovement(false);
@@ -66,14 +68,6 @@ public class PlayerVigor : MonoBehaviour
 
     private void DiminishVigor()
     {
-        if (stressLevelMAX) 
-        {
-            GameManager.Instance._player.disableMovement();
-            ReplenishVigor();
-            if (vigor_bar.fillAmount == 1) { stressLevelMAX = false; GameManager.Instance._player.enableMovement(false); stressLevel = 0; }
-
-            return; 
-        }
 
         if (stressLevel == 0)
         {
@@ -82,7 +76,6 @@ public class PlayerVigor : MonoBehaviour
                 ChangeVigorColor(stressLevel);
                 GameManager.Instance._player.ChangePlayerSpeed(5f);
                 stressLevelChanged = false;
-                //Cambiar el plumbob del player
             }
             vigor_bar.fillAmount -= Time.deltaTime * 0.02f;
             if (vigor_bar.fillAmount <= 0.5f)
@@ -99,7 +92,6 @@ public class PlayerVigor : MonoBehaviour
                 ChangeVigorColor(stressLevel);
                 GameManager.Instance._player.ChangePlayerSpeed(2.5f);
                 stressLevelChanged = false;
-                //Cambiar el plumbob del player
             }
             vigor_bar.fillAmount -= Time.deltaTime * 0.04f;
             if (vigor_bar.fillAmount <= 0.25f)
@@ -116,7 +108,6 @@ public class PlayerVigor : MonoBehaviour
                 ChangeVigorColor(stressLevel);
                 GameManager.Instance._player.ChangePlayerSpeed(1.5f);
                 stressLevelChanged = false;
-                //Cambiar el plumbob del player
             }
 
             vigor_bar.fillAmount -= Time.deltaTime * 0.06f;
@@ -133,16 +124,19 @@ public class PlayerVigor : MonoBehaviour
         if (level == 0)
         {
             vigor_background.color = greenColor;
+            plumbobMaterial.color = greenColor;
         }
         // Amarillo
         else if (level == 1)
         {
             vigor_background.color = yellowColor;
+            plumbobMaterial.color = yellowColor;
         }
         //Naranja
         else if (level == 2)
         {
             vigor_background.color = orangeColor;
+            plumbobMaterial.color = orangeColor;
         }
     }
 

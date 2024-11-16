@@ -53,6 +53,7 @@ public class TelephoneController : MonoBehaviour
     private void OnEnable()
     {
         MiniTelephone.SetActive(false);
+        UIManager.Instance.ChangeVolumeEffects(true);
         UIManager.Instance.vigor.vigorFill = true;
         UIManager.Instance.vigor.vigorDiminish = false;
         GameManager.Instance._player.disableMovement();
@@ -60,6 +61,7 @@ public class TelephoneController : MonoBehaviour
 
     private void OnDisable()
     {
+        UIManager.Instance.ChangeVolumeEffects(false);
         GameManager.Instance._player.enableMovement(false);
         UIManager.Instance.vigor.vigorFill = false;
         UIManager.Instance.vigor.vigorDiminish = true;

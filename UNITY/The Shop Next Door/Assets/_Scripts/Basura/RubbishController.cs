@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<RubbishController>
 {
@@ -18,6 +19,10 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public IObjectPool<RubbishController> objectPool;
     bool isReset;
 
+
+    [SerializeField] private Image progressImage;
+    private bool clicked = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NPC"))
@@ -27,6 +32,10 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
 
             other.gameObject.GetComponent<NavMeshAgent>().speed -= slowDownAmount;
             StartCoroutine(delaySpeedAgent(other.gameObject));
+        }
+        if (other.CompareTag("Player") && clicked)
+        {
+            UIManager.Instance.UpdateCleaning_UI(progressImage, this);
         }
     }
 
@@ -66,6 +75,9 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public void Reset()
     {
         isReset = true;
+        progressImage.fillAmount = 0;
+        clicked = false;
+
         GetSceneLimit();
         calculateRandomPosition();
     }
@@ -73,6 +85,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     {
         objectPool = o;
     }
+
     private void OnEnable()
     {
         if (isReset)
@@ -85,6 +98,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public void Destruir()
     {
         objectPool?.Release(this);
+        GameManager.Instance._player.enableMovement(false);
     }
 
     public void GetSceneLimit()
@@ -104,5 +118,13 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             minZ = (int)TiendaManager.Instance.minZP2.position.z;
             maxZ = (int)TiendaManager.Instance.maxZP2.position.z;
         }
+    }
+
+    
+
+    public void CleanRubbish()
+    {
+        GameManager.Instance._player.WalkToPosition(transform.position);
+        clicked = true;
     }
 }

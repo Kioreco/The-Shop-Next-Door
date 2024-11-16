@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 37347054}
   - component: {fileID: 37347053}
   - component: {fileID: 37347052}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas_INGAME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3074,8 +3074,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8616086, y: 8.701266, z: 2.7380805}
-  m_Center: {x: 0.07080863, y: -0.59627426, z: -0.22981465}
+  m_Size: {x: 4.9898643, y: 4.589986, z: 2.5024178}
+  m_Center: {x: -0.060092926, y: -0.30609798, z: 0.085858285}
 --- !u!23 &130640034
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3136,7 +3136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -22.05, y: 0.01, z: -2.88}
-  m_LocalScale: {x: 2.6336725, y: 0.49349, z: 1.6220403}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1997121687}
@@ -5057,7 +5057,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 13.5, z: 0.2}
+  m_LocalPosition: {x: 0, y: 16, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6864,8 +6864,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.5746045, z: 2.5608938}
-  m_Center: {x: 0.000000015805798, y: 0.016316177, z: 1.1295319}
+  m_Size: {x: 1.2208115, y: 9.351751, z: 5.553556}
+  m_Center: {x: -0.0846271, y: 0.051127426, z: 2.625875}
 --- !u!1 &405096324
 GameObject:
   m_ObjectHideFlags: 0
@@ -10831,6 +10831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vigor_bar: {fileID: 1693939788}
   vigor_background: {fileID: 2067156330}
+  plumbobMaterial: {fileID: 2100000, guid: f2612e5086c63d343a1b37932a92e863, type: 2}
   facesGemma:
   - {fileID: 354244756}
   - {fileID: 222989809}
@@ -30008,6 +30009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555659237}
+  - component: {fileID: 1555659239}
   - component: {fileID: 1555659238}
   m_Layer: 0
   m_Name: PayingPlayerPosition_P1
@@ -30043,6 +30045,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af68e63ba2760e49a124b191c94d084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1555659239
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555659236}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.794156, y: 1, z: 1.6498305}
+  m_Center: {x: -0.20724458, y: 0, z: -0.012659073}
 --- !u!1 &1557833840
 GameObject:
   m_ObjectHideFlags: 0
@@ -31404,6 +31427,7 @@ MonoBehaviour:
   reputation_Bar: {fileID: 1834107487}
   cajero_Bar: {fileID: 0}
   cajero_Canvas: {fileID: 0}
+  gameVolume: {fileID: 832575518}
   canvasDayEnd: {fileID: 1576944823}
   activity1_outcome_text: {fileID: 1281157243}
   activity2_outcome_text: {fileID: 95796466}
@@ -38866,8 +38890,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997121686}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 3.03}
-  m_LocalScale: {x: 0.37969792, y: 0.6165073, z: 2.026383}
+  m_LocalPosition: {x: 0, y: 0, z: 5.22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1749921614}
@@ -38877,7 +38901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.13, y: -0.1}
+  m_AnchoredPosition: {x: 0.13, y: -0.88}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997121688
