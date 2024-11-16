@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
+        UIManager.Instance.vigor.enabled = false;
 
         StartCoroutine(nameof(ContinueDay));
     }
@@ -148,5 +149,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.schedule.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);
         UIManager.Instance.telephone.calendar.ResetActivities();
+
+        UIManager.Instance.vigor.RestoreVigor();
     }
 }

@@ -156,4 +156,15 @@ public class PlayerVigor : MonoBehaviour
         facesEmma[numberState].SetActive(true);
     }
 
+    public void RestoreVigor()
+    {
+        vigor_bar.fillAmount = 1.0f;
+        stressLevel = 0;
+        ChangeVigorColor(stressLevel);
+        GameManager.Instance._player.ChangePlayerSpeed(5f);
+        stressLevelChanged = false;
+
+        vigorEnabled = true;
+    }
+
 }
