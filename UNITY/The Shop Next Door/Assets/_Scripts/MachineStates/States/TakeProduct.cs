@@ -52,7 +52,8 @@ public class TakeProduct : AStateNPC
             if(cantidadProductos == -1)
             {
                 Debug.Log($"no hay suficientes productos");
-                contexto.reducirFelicidad(15);
+                if(!contexto.getIsKaren()) contexto.reducirFelicidad(15);
+                else contexto.reducirFelicidad(25);
             }
 
             if (contexto.getLista().lista.Count > 0) contexto.SetState(new SearchShelf(contexto));

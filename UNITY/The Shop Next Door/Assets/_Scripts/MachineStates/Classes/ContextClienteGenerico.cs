@@ -48,7 +48,7 @@ namespace Assets.Scripts.MachineStates.Classes
         bool hayCajeroEnCaja = false;
 
         //variables tipo de cliente
-        bool isKaren;
+        public bool isKaren;
         bool canComplain = false;
         
 

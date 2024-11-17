@@ -1,6 +1,6 @@
 using Assets.Scripts.MachineStates.Classes;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -18,10 +18,14 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     [Header("Object Pool")]
     public IObjectPool<RubbishController> objectPool;
     bool isReset;
+    bool clicked = false;
 
 
     [SerializeField] private Image progressImage;
-    private bool clicked = false;
+    private void Start()
+    {
+        GameManager.Instance._player.GetComponent<PlayerControler>().eventPlayerIsInRubbish += updateIfPlayerIsInRubbish;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +34,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             //Debug.Log("reduc velocidad npc");
             if (other.gameObject.GetComponent<ContextClienteGenerico>().getIsKaren())
             {
-                print("es karen y ha pillado basura");
+                //print("es karen y ha pillado basura");
                 other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(10);
             }
             else other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(3);
@@ -39,12 +43,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             StartCoroutine(delaySpeedAgent(other.gameObject));
             
         }
-        if (other.CompareTag("Player") && clicked)
-        {
-            UIManager.Instance.UpdateCleaning_UI(progressImage, this);
-        }
     }
-
     IEnumerator delaySpeedAgent(GameObject obj)
     {
         yield return new WaitForSeconds(2f);
@@ -53,7 +52,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
 
         if (obj.gameObject.GetComponent<ContextClienteGenerico>().getIsKaren())
         {
-            print("se va a ir a quejar...");
+            //print("se va a ir a quejar...");
             obj.gameObject.GetComponent<ContextClienteGenerico>().setCanComplain(true);
         }
     }
@@ -61,23 +60,22 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public bool isActive { get => gameObject.activeSelf; set => gameObject.SetActive(value); }
     public RubbishController Clone(Vector3 pos, Quaternion rot)
     {
-        print("clone");
         GetSceneLimit();
         GameObject obj = Instantiate(gameObject, calculateRandomPosition(), gameObject.transform.rotation);
-        print(obj);
         RubbishController stc = obj.GetComponent<RubbishController>();
-        print(stc);
         return stc;
     }
 
     public void Reset()
     {
+        print("reseted");
         isReset = true;
-        progressImage.fillAmount = 0;
         clicked = false;
+        progressImage.fillAmount = 0;
+        //gameObject.SetActive(false);
 
-        GetSceneLimit();
-        calculateRandomPosition();
+        //GetSceneLimit();
+        transform.position = calculateRandomPosition();
     }
     public void setObjectPool(IObjectPool<RubbishController> o)
     {
@@ -89,8 +87,9 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
         if (isReset)
         {
             isReset = false;
-            calculateRandomPosition();
+            //calculateRandomPosition();
         }
+        //progressImage.enabled = true;
     }
 
     public void Destruir()
@@ -101,7 +100,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
 
     public void GetSceneLimit()
     {
-        print("estabelciendo limites escena");
+        //print("estabelciendo limites escena");
         if (TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner)
         {
             minX = (int)TiendaManager.Instance.minXP1.position.x;
@@ -119,15 +118,15 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     }
     public void CleanRubbish()
     {
-        GameManager.Instance._player.WalkToPosition(transform.position);
         clicked = true;
+        GameManager.Instance._player.WalkToPosition(transform.position, false);
     }
     #endregion
 
     public Vector3 calculateRandomPosition()
     {
-        int randomX = Random.Range(minX, maxX);
-        int randomZ = Random.Range(minZ, maxZ);
+        int randomX = UnityEngine.Random.Range(minX, maxX);
+        int randomZ = UnityEngine.Random.Range(minZ, maxZ);
         Vector3 position = new Vector3(randomX, transform.position.y, randomZ);
 
         if (NavMesh.SamplePosition(position, out NavMeshHit hit, maxDistanceNavMesh, NavMesh.AllAreas))
@@ -136,5 +135,10 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             position = hit.position;
         }
         return position;
+    }
+
+    public void updateIfPlayerIsInRubbish(object s, EventArgs e)
+    {
+        if(clicked) UIManager.Instance.UpdateCleaning_UI(progressImage, this);
     }
 }

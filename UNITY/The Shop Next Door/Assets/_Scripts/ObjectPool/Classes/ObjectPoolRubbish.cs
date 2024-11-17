@@ -55,7 +55,7 @@ public class ObjectPoolRubish : IObjectPool<RubbishController>
 
     public void Release(RubbishController obj)
     {
-        //Debug.Log("release");
+        //Debug.Log($"release obj: {obj}");
         obj.isActive = false;
         countRubbishActive -= 1;
         obj.Reset();
@@ -63,7 +63,7 @@ public class ObjectPoolRubish : IObjectPool<RubbishController>
 
     private RubbishController CreateObject()
     {
-        Debug.Log($"creando objs    objectPrototype: {objectPrototype}");
+        //Debug.Log($"creando objs    objectPrototype: {objectPrototype}");
         RubbishController newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
         return newObj;
     }

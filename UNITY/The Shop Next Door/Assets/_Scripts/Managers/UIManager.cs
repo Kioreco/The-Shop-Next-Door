@@ -187,8 +187,6 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-
-
     public void ChangeVolumeEffects(bool isTelephone)
     {
         if (isTelephone)
@@ -207,7 +205,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToPay_Button()
     {
-        GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position);
+        GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
     }
 
     public void UpdatePayingBar_UI()

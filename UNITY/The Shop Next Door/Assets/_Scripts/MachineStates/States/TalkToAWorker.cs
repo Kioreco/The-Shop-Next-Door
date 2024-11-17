@@ -54,7 +54,7 @@ public class TalkToAWorker : AStateNPC
         if (contexto.getNavMesh().remainingDistance < contexto.getNavMesh().stoppingDistance + 0.1 && !isInWorker) 
         { 
             isInWorker = true; 
-            Debug.Log("está en worker"); 
+            //Debug.Log("está en worker"); 
         }
         if (isInWorker) lastSeek += Time.deltaTime;
 

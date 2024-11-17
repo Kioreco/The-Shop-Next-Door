@@ -20,6 +20,7 @@ public class PlayerControler : NetworkBehaviour
     Vector3 lastPosition;
     bool isDrag = false;
     Vector3 moveDir;
+    bool canMove = true;
 
     [Header("Camera Movement Limits")]
     public float minX; /* = -10f;*/  
@@ -33,8 +34,12 @@ public class PlayerControler : NetworkBehaviour
     float amountZoom;
     float zoomSpeed = 5f;
 
+    //object pools
     public GameObject client;
     public GameObject clientRubbish;
+    public GameObject clientKaren;
+    public GameObject clientTacanio;
+
 
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -46,6 +51,10 @@ public class PlayerControler : NetworkBehaviour
     bool isInPayBox = false;
     public event EventHandler eventPlayerIsInPayBox;
     public event EventHandler eventPlayerFinishPay;
+    public event EventHandler eventPlayerIsInRubbish;
+    bool isPaying = false;
+
+   
 
     #endregion
 
@@ -61,7 +70,6 @@ public class PlayerControler : NetworkBehaviour
         }
         hostMoney.OnValueChanged += OnHostMoneyChange;
         clientMoney.OnValueChanged += OnClientMoneyChange;
-
     }
 
     public override void OnNetworkSpawn()
@@ -70,23 +78,18 @@ public class PlayerControler : NetworkBehaviour
         {
             client = GameObject.FindWithTag("ClientNPC");
             clientRubbish = GameObject.FindWithTag("ClientRubbish");
+            clientKaren = GameObject.FindWithTag("ClientKarenNPC");
+            clientTacanio = GameObject.FindWithTag("ClienteTacanioNPC");
+            TiendaManager.Instance.player = this;
+            GameManager.Instance._player = this;
 
             ID = (int)OwnerClientId;
             print(ID);
 
             if (ID == 0) 
             {
-                TiendaManager.Instance.player = this;
+                //initialiceVariables();
                 TiendaManager.Instance.ID = 0;
-                GameManager.Instance._player = this;
-                client.GetComponent<ClientPrototype>().enabled = true;
-                client.GetComponent<ClientPrototype>().isCreated = true;
-                clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
-                clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
-                TiendaManager.Instance.reponerEstanteria(20);
-                TiendaManager.Instance.updateAlmacenQuantity();
-                UIManager.Instance.UpdateInventorySpace_UI();
-
                 GameManager.Instance.activeCamera = GameManager.Instance.cameraP1.transform.GetChild(0).GetComponent<Camera>();
             }
 
@@ -96,25 +99,38 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.cameraP2.SetActive(true);
                 GameManager.Instance.activeCamera = GameManager.Instance.cameraP2.transform.GetChild(0).GetComponent<Camera>();
                 GameManager.Instance.canvasInteractable.worldCamera = GameManager.Instance.activeCamera;
-
-                TiendaManager.Instance.player = this;
                 TiendaManager.Instance.ID = 1;
-                GameManager.Instance._player = this;
-                client.GetComponent<ClientPrototype>().enabled = true;
-                client.GetComponent<ClientPrototype>().isCreated = true;
-                clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
-                clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
-                TiendaManager.Instance.reponerEstanteria(20);
-                TiendaManager.Instance.updateAlmacenQuantity();
-                UIManager.Instance.UpdateInventorySpace_UI();
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             }
+            initialiceVariables();
             isInitialized = true;
             minX = Camera.main.transform.position.x - 30f; //20
             maxX = Camera.main.transform.position.x + 20f;
             minZ = Camera.main.transform.position.z - 20f;
             maxZ = Camera.main.transform.position.z + 30f;
         }
+    }
+
+    void initialiceVariables()
+    {
+       
+        client.GetComponent<ClientPrototype>().enabled = true;
+        client.GetComponent<ClientPrototype>().isCreated = true;
+
+        clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
+        clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
+        clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
+
+        clientKaren.GetComponent<ClientPrototype>().isEnable = true;
+        clientKaren.GetComponent<ClientPrototype>().enabled = true;
+        clientKaren.GetComponent<ClientPrototype>().isCreated = true;
+
+        clientTacanio.GetComponent<ClientPrototype>().isEnable = true;
+        clientTacanio.GetComponent<ClientPrototype>().enabled = true;
+        clientTacanio.GetComponent<ClientPrototype>().isCreated = true;
+        TiendaManager.Instance.reponerEstanteria(20);
+        TiendaManager.Instance.updateAlmacenQuantity();
+        UIManager.Instance.UpdateInventorySpace_UI();
     }
 
     private void Update()
@@ -148,13 +164,22 @@ public class PlayerControler : NetworkBehaviour
         }
 
         if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
-        if(IsOwner && isMoving && !isInPayBox && GetComponent<NavMeshAgent>().remainingDistance == 0)
+        if(IsOwner && isMoving && GetComponent<NavMeshAgent>().remainingDistance == 0)
         {
             isMoving = false;
-            isInPayBox = true;
-            eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
-            UIManager.Instance.UpdatePayingBar_UI();
-            //print("evento");
+            if (isPaying) 
+            {
+                eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty); print("está en la caja"); 
+                UIManager.Instance.UpdatePayingBar_UI();
+
+            }
+            else
+            {
+                //cleaning
+                eventPlayerIsInRubbish?.Invoke(this, EventArgs.Empty);
+                print("está en basura");
+            }
+            
         }
     }
 
@@ -163,7 +188,7 @@ public class PlayerControler : NetworkBehaviour
     public void MovePlayer(InputAction.CallbackContext context)
     {
         int layerMask = ~LayerMask.GetMask("UI");
-        if (context.performed && IsOwner)
+        if (context.performed && IsOwner && !canMove)
         {
             //print($"mouse psoition: {Input.mousePosition}\t ");
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -250,13 +275,14 @@ public class PlayerControler : NetworkBehaviour
 
     #region others
 
-    public void WalkToPosition(Vector3 position)
+    public void WalkToPosition(Vector3 position, bool paying)
     {
         //print("walk to position");
         if (IsOwner)
         {
+            canMove = false;
             isMoving = true;
-            isInPayBox = false;
+            isPaying = paying;
             GetComponent<PlayerInput>().enabled = false;
             GetComponent<NavMeshAgent>().SetDestination(position);
         }
@@ -266,6 +292,7 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsOwner)
         {
+            canMove = false;
             GetComponent<PlayerInput>().enabled = false;
         }
     }
@@ -274,6 +301,7 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsOwner)
         {
+            canMove = true;
             GetComponent<PlayerInput>().enabled = true;
             if (paying) { eventPlayerFinishPay?.Invoke(this, EventArgs.Empty); }
         }

@@ -16,6 +16,8 @@ TagManager:
   - ClientNPC
   - Draggable
   - ClientRubbish
+  - ClientKarenNPC
+  - ClienteTacanioNPC
   layers:
   - Default
   - TransparentFX
