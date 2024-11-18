@@ -40,7 +40,7 @@ public class LeaveAngry : AStateNPC
 
         if(contexto.getIsInPayQueue()) contexto.getTiendaManager().avanzarLaCola();
 
-        contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
+        contexto.getGameManager().UpdateClientHappiness(contexto.calcularFelicidadCliente());
     }
     public override void FixedUpdate()
     {
@@ -65,10 +65,5 @@ public class LeaveAngry : AStateNPC
         {
             contexto.Destruir();
         }
-    }
-
-    float calcularFelicidadCliente()
-    {
-        return (contexto.getGameManager().reputation*(contexto.getTiendaManager().clientesTotales-1) + contexto.getFelicidad())/ contexto.getTiendaManager().clientesTotales;
     }
 }

@@ -48,7 +48,6 @@ public class PlayerControler : NetworkBehaviour
 
     //variables caja pago:
     bool isMoving = false;
-    bool isInPayBox = false;
     public event EventHandler eventPlayerIsInPayBox;
     public event EventHandler eventPlayerFinishPay;
     public event EventHandler eventPlayerIsInRubbish;
@@ -128,6 +127,7 @@ public class PlayerControler : NetworkBehaviour
         clientTacanio.GetComponent<ClientPrototype>().isEnable = true;
         clientTacanio.GetComponent<ClientPrototype>().enabled = true;
         clientTacanio.GetComponent<ClientPrototype>().isCreated = true;
+
         TiendaManager.Instance.reponerEstanteria(20);
         TiendaManager.Instance.updateAlmacenQuantity();
         UIManager.Instance.UpdateInventorySpace_UI();
@@ -188,7 +188,7 @@ public class PlayerControler : NetworkBehaviour
     public void MovePlayer(InputAction.CallbackContext context)
     {
         int layerMask = ~LayerMask.GetMask("UI");
-        if (context.performed && IsOwner && !canMove)
+        if (context.performed && IsOwner && canMove)
         {
             //print($"mouse psoition: {Input.mousePosition}\t ");
             Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);

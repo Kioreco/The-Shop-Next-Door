@@ -10,7 +10,7 @@ namespace Assets.Scripts.MachineStates.Classes
         private IState currentState;
         [SerializeField] float speed;
         ListaCompra lista = new ListaCompra();
-        [SerializeField] TiendaManager tiendaManager;
+        [SerializeField] TiendaManager TiendaManager;
         [SerializeField] UIManager UIManager;
         [SerializeField] GameManager GameManager;
         Vector3 currentEstanteria;
@@ -50,19 +50,25 @@ namespace Assets.Scripts.MachineStates.Classes
         //variables tipo de cliente
         public bool isKaren;
         bool canComplain = false;
+
+        //Tacaño
+        public bool isTacanio;
+        bool canMakeShow = false;
+        public float presupuestoTacanio;
+
         
 
         #region MetodosGenerales
         private void Start()
         {
             //print("start");
-            tiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
+            TiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
             inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-            tiendaManager.payQueueChangeP1 += MoveInQueue;
+            TiendaManager.payQueueChangeP1 += MoveInQueue;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerFinishPay += updateIfPlayerFinishPay;
         }
@@ -86,18 +92,27 @@ namespace Assets.Scripts.MachineStates.Classes
             isInPayQueue = false;
             pilaStates.Clear();
             canComplain = false;
+            canMakeShow = false;
 
-            int random = UnityEngine.Random.Range(0, 100);
-            if (random < porcentajeDuda)
+            if (!isKaren & !isTacanio)
             {
-                tieneDuda = true;
-                var productos = new List<string>(lista.lista.Keys);
-                productoDuda = productos[UnityEngine.Random.Range(0, lista.lista.Count - 1)];
+                int random = UnityEngine.Random.Range(0, 100);
+                if (random < porcentajeDuda)
+                {
+                    tieneDuda = true;
+                    var productos = new List<string>(lista.lista.Keys);
+                    productoDuda = productos[UnityEngine.Random.Range(0, lista.lista.Count - 1)];
+                }
+                else
+                {
+                    tieneDuda = false;
+                    productoDuda = null;
+                }
             }
-            else
+            if(isTacanio & !isKaren)
             {
-                tieneDuda = false;
-                productoDuda = null;
+                //establecer presupuesto
+                presupuestoTacanio = UnityEngine.Random.Range(80.0f,250.0f);
             }
 
             SetState(new SearchShelf(this));
@@ -129,7 +144,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void MoveInQueue(object s, EventArgs e)
         {
-            positionPayQueue = tiendaManager.getPositionPayQueue(this);
+            positionPayQueue = TiendaManager.getPositionPayQueue(this);
         }
         public int getPositionPay()
         {
@@ -199,7 +214,7 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public TiendaManager getTiendaManager()
         {
-            return tiendaManager;
+            return TiendaManager;
         }
         public UIManager getUIManager()
         {
@@ -234,6 +249,7 @@ namespace Assets.Scripts.MachineStates.Classes
         #endregion
 
         #region tipo cliente variables
+        //karen
         public bool getIsKaren()
         {
             return isKaren;
@@ -246,6 +262,7 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             canComplain = b;
         }
+        //generico
         public string getProductoDuda()
         {
             return productoDuda;
@@ -258,7 +275,23 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             tieneDuda = duda;
         }
-
+        //tacaño
+        public bool getIsTacanio()
+        {
+            return isTacanio;
+        }
+        public bool getCanMakeShow()
+        {
+            return canMakeShow;
+        }
+        public void setCanMakeShow(bool b)
+        {
+            canMakeShow = b;
+        }
+        public float getPresupuesto()
+        {
+            return presupuestoTacanio;
+        }
         #endregion
 
         #region felicidad
@@ -275,6 +308,10 @@ namespace Assets.Scripts.MachineStates.Classes
             //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
             felicidad -= enfado;
             //print($"felicidad reducia: {felicidad}");
+        }
+        public float calcularFelicidadCliente()
+        {
+            return (GameManager.reputation * (TiendaManager.clientesTotales - 1) + getFelicidad()) / TiendaManager.clientesTotales;
         }
         #endregion
 
@@ -316,7 +353,6 @@ namespace Assets.Scripts.MachineStates.Classes
 
 
         #endregion
-
 
         #region events
         public void updateIfExistCajero(object s, EventArgs e)

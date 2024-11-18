@@ -10,6 +10,9 @@ public class Pay : AStateNPC
     bool lastMovement = false;
     [Header("Variables Aux")]
     Transform exitPos;
+    //variables tacaño
+    float diferencia;
+    float propinaTacanio;
 
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
@@ -26,6 +29,16 @@ public class Pay : AStateNPC
         {
             exitPos = contexto.getTiendaManager().outDoorShopP2;
         }
+
+        if (contexto.getIsTacanio()) 
+        {
+            diferencia = contexto.getDineroCompra() - contexto.getPresupuesto(); 
+            //si la resta es negativa: sobra dinero
+            //si la resta es positiva: falta dinero
+            if(diferencia <= 40) { propinaTacanio = diferencia; } //da propina
+            else if(diferencia > 40 & diferencia <= 80) { propinaTacanio = 0; } //se queja pero paga
+            else if(diferencia > 80) { propinaTacanio = -1; } //se va enfadado
+        }
         //Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
     }
 
@@ -36,7 +49,8 @@ public class Pay : AStateNPC
     public override void Update()
     {
         //está ya en la caja
-        if(!isFinish & contexto.getHayCajeroEnCaja()) lastSeek += Time.deltaTime;
+        if(contexto.getHayCajeroEnCaja() & propinaTacanio == -1) contexto.SetState(new MakeShowInPay(contexto));
+        if (!isFinish & contexto.getHayCajeroEnCaja()) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
@@ -45,7 +59,8 @@ public class Pay : AStateNPC
             contexto.getTiendaManager().avanzarLaCola();
             contexto.getNavMesh().SetDestination(exitPos.position);
 
-            if (contexto.getFelicidad() >= contexto.getUmbralPropina()) dinero += dinero * 0.2f; //propina de un 20%
+            if (contexto.getFelicidad() >= contexto.getUmbralPropina() & !contexto.getIsTacanio()) dinero += dinero * 0.2f; //propina de un 20%
+            if (contexto.getIsTacanio()) { dinero += propinaTacanio; }
 
             contexto.getGameManager().dineroJugador += dinero;
 
@@ -53,7 +68,7 @@ public class Pay : AStateNPC
             contexto.getUIManager().UpdateNewMoney_UI(dinero, true);
             isFinish = true;
 
-            contexto.getGameManager().UpdateClientHappiness(calcularFelicidadCliente());
+            contexto.getGameManager().UpdateClientHappiness(contexto.calcularFelicidadCliente());
             contexto.setHayCajeroEnCaja(false);
             contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement(true);
         }
@@ -71,10 +86,5 @@ public class Pay : AStateNPC
         {
             contexto.Destruir();
         }
-    }
-
-    float calcularFelicidadCliente()
-    {
-        return (contexto.getGameManager().reputation * (contexto.getTiendaManager().clientesTotales - 1) + contexto.getFelicidad()) / contexto.getTiendaManager().clientesTotales;
     }
 }

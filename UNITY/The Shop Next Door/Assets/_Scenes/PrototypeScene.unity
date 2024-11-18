@@ -3282,7 +3282,7 @@ GameObject:
   - component: {fileID: 141107475}
   - component: {fileID: 141107474}
   m_Layer: 0
-  m_Name: NPCClientKearen
+  m_Name: NPCClientKaren
   m_TagString: ClientKarenNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

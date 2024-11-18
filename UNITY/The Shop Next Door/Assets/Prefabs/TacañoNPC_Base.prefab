@@ -237,13 +237,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.5
-  tiendaManager: {fileID: 0}
+  TiendaManager: {fileID: 0}
   UIManager: {fileID: 0}
   GameManager: {fileID: 0}
   dineroCompra: 0
   positionPayQueue: 0
   isInPayQueue: 0
-  isKaren: 1
+  isKaren: 0
+  isTacanio: 1
+  presupuestoTacanio: 0
 --- !u!54 &7678678087795473514
 Rigidbody:
   m_ObjectHideFlags: 0

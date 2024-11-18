@@ -44,4 +44,9 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public bool getCanComplain();
     public void setCanComplain(bool b);
     public float calculateHeuristicDistance(Vector3 posClient, Vector3 posWorker);
+    public float calcularFelicidadCliente();
+    public bool getIsTacanio();
+    public bool getCanMakeShow();
+    public void setCanMakeShow(bool b);
+    public float getPresupuesto();
 }
