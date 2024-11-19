@@ -71,6 +71,10 @@ namespace Assets.Scripts.MachineStates.Classes
             if(TiendaManager.ID == 1) TiendaManager.payQueueChangeP2 += MoveInQueue;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerFinishPay += updateIfPlayerFinishPay;
+
+            //métodos hora salida tienda 
+            UIManager.schedule.eventTwoHoursLeft += recieverEventTwoHoursLeft;
+            UIManager.schedule.eventTenMinutesLeft += recieverEventTenMinutesLeft;
         }
         private void OnEnable()
         {
@@ -365,6 +369,15 @@ namespace Assets.Scripts.MachineStates.Classes
             //print("cajero acaba pagar");
             setHayCajeroEnCaja(false);
         }
+        public void recieverEventTwoHoursLeft(object s, EventArgs e)
+        {
+            lista.maxCantidadProductos = 2;
+        }        
+        public void recieverEventTenMinutesLeft(object s, EventArgs e)
+        {
+            //irse de la tienda
+        }
+
         #endregion
     }
 }

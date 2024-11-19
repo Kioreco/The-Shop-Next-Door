@@ -6,6 +6,8 @@ public class ListaCompra
     List<char> tipo = new List<char>();
     public Dictionary<string,(char tipo, int cantidad)> lista = new Dictionary<string, (char, int)>();
     int cont = 0;
+    public int maxCantidadProductos = 5;
+    public int maxCantidadUnidades = 4;
 
 
     public void CrearLista()
@@ -18,12 +20,12 @@ public class ListaCompra
 
         int tipoObjeto = tipo.Count - 1;
         int contTipo = 0;
-        int randCantidadProductos = Random.Range(1, 5);
+        int randCantidadProductos = Random.Range(1, maxCantidadProductos);
         //print($"randCantidadProductos: {randCantidadProductos} \t cont: {cont}");
         while(cont <= randCantidadProductos)
         {
             //print($"contaodr: {cont}");
-            int randUnidades = Random.Range(1, 4);
+            int randUnidades = Random.Range(1, maxCantidadUnidades);
             string producto = TiendaManager.Instance.getRandomProduct(tipo[contTipo]);
             if (producto != "" && !lista.ContainsKey(producto))
             {
@@ -34,7 +36,7 @@ public class ListaCompra
             }
         }
     }
-    //
+    
 
     //public void imprimirLista()
     //{

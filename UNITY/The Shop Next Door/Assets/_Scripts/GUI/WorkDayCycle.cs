@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class WorkDayCycle : MonoBehaviour
@@ -10,7 +9,7 @@ public class WorkDayCycle : MonoBehaviour
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
     private float realTimePerDay = 90f;    // TIEMPO POR DÍA -----> 240
-    private float realTimePerNight = 15f;    // TIEMPO POR DÍA -----> 15 segundos
+    private float realTimePerNight = 15f;    // TIEMPO POR NOCHE -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
     //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
@@ -31,6 +30,11 @@ public class WorkDayCycle : MonoBehaviour
     [SerializeField] private GameObject[] followingDay_Bg;
 
     private bool isNightTime = false;
+
+    //eventos para los clientes
+    public event EventHandler eventTwoHoursLeft;
+    public event EventHandler eventOneHourLeft;
+    public event EventHandler eventTenMinutesLeft;
 
     void Update()
     {
@@ -60,10 +64,6 @@ public class WorkDayCycle : MonoBehaviour
         float timeRatio = realTimePassed / realTimePerDay;
         gameTime = Mathf.Lerp(gameStartTime, gameEndTime, timeRatio);
 
-        //gameTime==10.0f entran clientes el lunes
-        //gameTime==9.3f entran clientes el resto de dias
-
-
         if (gameTime >= 10 && gameTime < 10.05 && currentDay == 0) // Lunes
         {
             npcClientGenerico.isEnable = true;
@@ -77,12 +77,27 @@ public class WorkDayCycle : MonoBehaviour
             npcClientTacanio.isEnable = true;
         }
 
+        if (gameTime >= 13f && gameTime < 13.05)
+        {
+            eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
+        }
+        
         if (gameTime >= 14f && gameTime < 14.05)
         {
+            eventOneHourLeft?.Invoke(this, EventArgs.Empty);
             npcClientGenerico.isEnable = false;
             npcClientKaren.isEnable = false;
             npcClientTacanio.isEnable = false;
         }
+
+        if (gameTime >= 14.05f && gameTime < 14.1)   //ELEFANTE: falta el de los 10 minutos, de forma temporal lo dejo en y media
+        {
+            eventTenMinutesLeft?.Invoke(this, EventArgs.Empty);
+            npcClientGenerico.isEnable = false;
+            npcClientKaren.isEnable = false;
+            npcClientTacanio.isEnable = false;
+        }
+
 
         // Actualizar la UI para mostrar la hora del juego
         UpdateTimeText();
