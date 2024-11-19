@@ -24,7 +24,9 @@ public class WorkDayCycle : MonoBehaviour
     private bool cycleCompleted = false;    // SEMANA COMPLETA
     public bool timeStopped = false;        // TIEMPO PARADO
 
-    public ClientPrototype npcClient;
+    public ClientPrototype npcClientGenerico;
+    public ClientPrototype npcClientKaren;
+    public ClientPrototype npcClientTacanio;
     [SerializeField] private GameObject[] pastDay_Bg;
     [SerializeField] private GameObject[] followingDay_Bg;
 
@@ -62,18 +64,24 @@ public class WorkDayCycle : MonoBehaviour
         //gameTime==9.3f entran clientes el resto de dias
 
 
-        if (gameTime >= 10 && currentDay == 0) // Lunes
+        if (gameTime >= 10 && gameTime < 10.05 && currentDay == 0) // Lunes
         {
-            npcClient.isEnable = true;
+            npcClientGenerico.isEnable = true;
+            npcClientKaren.isEnable = true;
+            npcClientTacanio.isEnable = true;
         }
-        else if (gameTime >= 9.05f && currentDay > 0)
+        else if (gameTime >= 9.05f && gameTime < 9.10f && currentDay > 0)
         {
-            npcClient.isEnable = true;
+            npcClientGenerico.isEnable = true;
+            npcClientKaren.isEnable = true;
+            npcClientTacanio.isEnable = true;
         }
 
-        if (gameTime >= 14f)
+        if (gameTime >= 14f && gameTime < 14.05)
         {
-            npcClient.isEnable = false;
+            npcClientGenerico.isEnable = false;
+            npcClientKaren.isEnable = false;
+            npcClientTacanio.isEnable = false;
         }
 
         // Actualizar la UI para mostrar la hora del juego

@@ -8806,7 +8806,9 @@ MonoBehaviour:
   - Thursday
   - Friday
   timeStopped: 0
-  npcClient: {fileID: 2147462451}
+  npcClientGenerico: {fileID: 2147462451}
+  npcClientKaren: {fileID: 141107474}
+  npcClientTacanio: {fileID: 141107474}
   pastDay_Bg:
   - {fileID: 2129345691}
   - {fileID: 1264737177}
@@ -29992,6 +29994,10 @@ MonoBehaviour:
   - {fileID: 944869920}
   - {fileID: 1713114806}
   - {fileID: 2024251328}
+  weatherState_ntw:
+    m_InternalValue: 0
+  personalState_ntw:
+    m_InternalValue: 0
 --- !u!114 &1542379636
 MonoBehaviour:
   m_ObjectHideFlags: 0

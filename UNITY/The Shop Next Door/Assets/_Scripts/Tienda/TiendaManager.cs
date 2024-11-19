@@ -33,7 +33,6 @@ public class TiendaManager : MonoBehaviour
     public Queue<IContext> npcPayQueueP2 = new Queue<IContext>();
     public event EventHandler payQueueChangeP2;
 
-
     [Header("NPC Instanciate P2")]
     public Transform npcPositionInitialP2;
 

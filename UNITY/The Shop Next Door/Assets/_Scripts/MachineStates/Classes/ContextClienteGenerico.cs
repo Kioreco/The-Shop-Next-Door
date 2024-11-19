@@ -56,7 +56,6 @@ namespace Assets.Scripts.MachineStates.Classes
         bool canMakeShow = false;
         public float presupuestoTacanio;
 
-        
 
         #region MetodosGenerales
         private void Start()
@@ -68,7 +67,8 @@ namespace Assets.Scripts.MachineStates.Classes
 
             inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-            TiendaManager.payQueueChangeP1 += MoveInQueue;
+            if(TiendaManager.ID == 0) TiendaManager.payQueueChangeP1 += MoveInQueue;
+            if(TiendaManager.ID == 1) TiendaManager.payQueueChangeP2 += MoveInQueue;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerFinishPay += updateIfPlayerFinishPay;
         }
@@ -109,7 +109,7 @@ namespace Assets.Scripts.MachineStates.Classes
                     productoDuda = null;
                 }
             }
-            if(isTacanio & !isKaren)
+            if (isTacanio & !isKaren)
             {
                 //establecer presupuesto
                 presupuestoTacanio = UnityEngine.Random.Range(80.0f,250.0f);
