@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : NetworkBehaviour
+public class UIManager : MonoBehaviour
 {
     //[Header("TITLE SCENE")]
 
@@ -82,10 +82,6 @@ public class UIManager : NetworkBehaviour
     private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
-    public NetworkVariable<int> weatherState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<int> personalState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
-
     public static UIManager Instance { get; private set; }
 
     void Awake()
@@ -108,35 +104,6 @@ public class UIManager : NetworkBehaviour
         gameVolume.profile.TryGet(out colorAdjustments);
         gameVolume.profile.TryGet(out vignette);
         gameVolume.profile.TryGet(out depthOfField);
-
-        telephone.calendar.RandomizeStates();
-
-        weatherState_ntw.OnValueChanged += OnWeatherStateChange;
-        personalState_ntw.OnValueChanged += OnPersonalStateChange;
-    }
-
-    public void OnWeatherStateChange(int previousValue, int newValue)
-    {
-        if (!IsServer)
-        {
-            telephone.calendar.currentWeatherState = newValue;
-
-            telephone.calendar.weatherStates[previousValue].gameObject.SetActive(false);
-            telephone.calendar.weatherStates[newValue].gameObject.SetActive(true);
-        }
-    }
-
-    public void OnPersonalStateChange(int previousValue, int newValue)
-    {
-        if (!IsServer)
-        {
-            telephone.calendar.currentPersonalState = newValue;
-
-            telephone.calendar.personalStates[previousValue].gameObject.SetActive(false);
-            telephone.calendar.personalStates[newValue].gameObject.SetActive(true);
-
-            vigor.SetNewFaceEmma(newValue);
-        }
     }
 
     public void ExitGame()

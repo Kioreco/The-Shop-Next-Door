@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CalendarController : MonoBehaviour
+public class CalendarController : NetworkBehaviour
 {
     [Header("Basic Info")]
     [SerializeField] private TextMeshProUGUI weekDay_text;
@@ -16,6 +17,7 @@ public class CalendarController : MonoBehaviour
     [Header("Activities Objects")]
     [SerializeField] private GameObject[] activities_daily = new GameObject[6];
     [SerializeField] public Activity[] activities_selected = new Activity[3];
+    [SerializeField] private Activity[] activities_selected_BLANK;
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
     [HideInInspector] public ActivityInfo[] activities_mixed;
@@ -43,15 +45,15 @@ public class CalendarController : MonoBehaviour
         RandomizeActivities(activities_romantic);
         RandomizeActivities(activities_partner);
 
+        activities_selected_BLANK = activities_selected.ToArray();
+
         WriteDailyActivities();
 
-        //RandomizeStates(weatherStates);
-        //RandomizeStates(personalStates);
-
-        //ChooseNewState();
-
-        //weatherState_ntw.OnValueChanged += OnWeatherStateChange;
-        //personalState_ntw.OnValueChanged += OnPersonalStateChange;
+        if (IsServer)
+        {
+            RandomizeStates();
+            ChooseNewState();
+        }
     }
 
     private void RandomizeActivities(ActivityInfo[] list)
@@ -105,67 +107,37 @@ public class CalendarController : MonoBehaviour
 
             playerVigor.SetNewFaceGemma(currentPersonalState);
 
-            UIManager.Instance.weatherState_ntw.Value = currentWeatherState;
-            UIManager.Instance.personalState_ntw.Value = currentPersonalState;
-
-            //SendNewStateClientRpc(currentWeatherState, currentPersonalState);
+            SendNewStateClientRpc(currentWeatherState, currentPersonalState);
         }
     }
 
-    //public NetworkVariable<int> weatherState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    //public NetworkVariable<int> personalState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-    //public void OnWeatherStateChange(int previousValue, int newValue)
-    //{
-    //    if (IsClient)
-    //    {
-    //        currentWeatherState = newValue;
+    [ClientRpc]
+    private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
+    {
+        if (!NetworkManager.Singleton.IsServer)
+        {
+            ChoseNewStateByNumber(numberWeather, numberPersonal);
+        }
+    }
 
-    //        weatherStates[previousValue].gameObject.SetActive(false);
-    //        weatherStates[newValue].gameObject.SetActive(true);
-    //    }
-    //}
+    public void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
+    {
+        currentWeatherState = numberWeather;
+        currentPersonalState = numberPersonal;
+        foreach (var state in weatherStates)
+        {
+            if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
+        foreach (var state in personalStates)
+        {
+            if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
+            else { state.gameObject.SetActive(false); }
+        }
 
-    //public void OnPersonalStateChange(int previousValue, int newValue)
-    //{
-    //    if (IsClient)
-    //    {
-    //        currentPersonalState = newValue;
-
-    //        personalStates[previousValue].gameObject.SetActive(false);
-    //        personalStates[newValue].gameObject.SetActive(true);
-
-    //        playerVigor.SetNewFaceEmma(currentPersonalState);
-    //    }
-    //}
-
-
-    //[ClientRpc]
-    //private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
-    //{
-    //    if (!NetworkManager.Singleton.IsServer)
-    //    {
-    //        ChoseNewStateByNumber(numberWeather, numberPersonal);
-    //    }
-    //}
-
-    //private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
-    //{
-    //    currentWeatherState = numberWeather;
-    //    currentPersonalState = numberPersonal;
-    //    foreach (var state in weatherStates)
-    //    {
-    //        if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
-    //        else { state.gameObject.SetActive(false); }
-    //    }
-    //    foreach (var state in personalStates)
-    //    {
-    //        if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
-    //        else { state.gameObject.SetActive(false); }
-    //    }
-
-    //    playerVigor.SetNewFaceEmma(currentPersonalState);
-    //}
+        playerVigor.SetNewFaceEmma(currentPersonalState);
+    }
 
     private int mixedActivitiesUsed = 0;
     private int romanticActivitiesUsed = 0;
@@ -174,12 +146,12 @@ public class CalendarController : MonoBehaviour
     private void WriteDailyActivities()
     {
         // Mixed Actions
-        for (int i = mixedActivitiesUsed; i < mixedActivitiesUsed + 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            activities_text[i].SetText(activities_mixed[i].activityName);
-            activities_daily[i].GetComponent<Activity>().CopyActivity(activities_mixed[i]);
+            activities_text[i].SetText(activities_mixed[mixedActivitiesUsed].activityName);
+            activities_daily[i].GetComponent<Activity>().CopyActivity(activities_mixed[mixedActivitiesUsed]);
+            mixedActivitiesUsed++;
         }
-        mixedActivitiesUsed += 5;
 
         // Romantic Action
         if (VidaPersonalManager.Instance.hasPartner)
@@ -243,7 +215,7 @@ public class CalendarController : MonoBehaviour
             float randomizer = Random.Range(0, 1);
 
             int outcomeWeighted = Mathf.RoundToInt(
-                (activities_selected[i].activityInfo.ClimateStateLuck[currentWeatherState] * 0.45f + activities_selected[currentPersonalState].activityInfo.PersonalStateLuck[0] * 0.55f) * 1.75f
+                (activities_selected[i].activityInfo.ClimateStateLuck[currentWeatherState] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[currentPersonalState] * 0.55f) * 1.75f
                 + randomizer * 0.25f);
 
 
@@ -331,7 +303,7 @@ public class CalendarController : MonoBehaviour
             actDaily.GetComponent<DraggingItems>().ActivateActivity();
         }
 
-        activities_selected = new Activity[3];
+        activities_selected = activities_selected_BLANK.ToArray();
 
         UIManager.Instance.ResetEndDayActivities();
 

@@ -11323,8 +11323,8 @@ MonoBehaviour:
   facesEmma:
   - {fileID: 1844540303}
   - {fileID: 145875257}
-  - {fileID: 302358918}
   - {fileID: 23372274}
+  - {fileID: 302358918}
   - {fileID: 1829836422}
   vigorEnabled: 1
   vigorFill: 0
@@ -18337,7 +18337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_zone: {fileID: 1663390011}
   dropZoneNumber: 0
-  calendarController: {fileID: 1542379635}
+  calendarController: {fileID: 1618253347}
 --- !u!1 &946238368
 GameObject:
   m_ObjectHideFlags: 0
@@ -22908,7 +22908,7 @@ MonoBehaviour:
   - {fileID: 2012542562}
   - {fileID: 198701060}
   - {fileID: 1457319728}
-  calendar: {fileID: 1542379635}
+  calendar: {fileID: 1618253347}
   lifeApp_name: {fileID: 1108951531}
   lifeRadar: {fileID: 1094759884}
 --- !u!1 &1184324814
@@ -29749,8 +29749,8 @@ RectTransform:
   m_Children:
   - {fileID: 1844540304}
   - {fileID: 145875258}
-  - {fileID: 302358919}
   - {fileID: 23372275}
+  - {fileID: 302358919}
   - {fileID: 1829836423}
   m_Father: {fileID: 2067156329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29904,8 +29904,6 @@ GameObject:
   - component: {fileID: 1542379634}
   - component: {fileID: 1542379637}
   - component: {fileID: 1542379636}
-  - component: {fileID: 1542379638}
-  - component: {fileID: 1542379635}
   m_Layer: 5
   m_Name: CalendarApp
   m_TagString: Untagged
@@ -29939,65 +29937,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 128.9}
   m_SizeDelta: {x: -87.33334, y: -530.7827}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1542379635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542379633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83258627b5dd34949b96f22dc04416dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weekDay_text: {fileID: 958305169}
-  hour1_text: {fileID: 1663390009}
-  hour2_text: {fileID: 1420220051}
-  hour3_text: {fileID: 1010969870}
-  final_outcomes: []
-  activities_daily:
-  - {fileID: 2008551831}
-  - {fileID: 1439410476}
-  - {fileID: 593255878}
-  - {fileID: 2116855221}
-  - {fileID: 2103929785}
-  - {fileID: 1586628469}
-  activities_selected:
-  - {fileID: 1663390013}
-  - {fileID: 1420220055}
-  - {fileID: 1010969874}
-  activities_text:
-  - {fileID: 919328999}
-  - {fileID: 1313975392}
-  - {fileID: 1696647290}
-  - {fileID: 810263912}
-  - {fileID: 1610124783}
-  - {fileID: 1957116117}
-  activities_mixed: []
-  activities_romantic: []
-  activities_partner: []
-  weatherStates:
-  - {fileID: 209459824}
-  - {fileID: 645575373}
-  - {fileID: 1497741843}
-  - {fileID: 1144476998}
-  - {fileID: 1957417195}
-  personalStates:
-  - {fileID: 1432948935}
-  - {fileID: 387249950}
-  - {fileID: 5788941}
-  - {fileID: 1120152309}
-  - {fileID: 2638578}
-  playerVigor: {fileID: 618420071}
-  dropZones:
-  - {fileID: 944869920}
-  - {fileID: 1713114806}
-  - {fileID: 2024251328}
-  weatherState_ntw:
-    m_InternalValue: 0
-  personalState_ntw:
-    m_InternalValue: 0
 --- !u!114 &1542379636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30036,27 +29975,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542379633}
   m_CullTransparentMesh: 1
---- !u!114 &1542379638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542379633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2130337865
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &1547926853
 GameObject:
   m_ObjectHideFlags: 0
@@ -31643,6 +31561,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1618253345}
+  - component: {fileID: 1618253346}
+  - component: {fileID: 1618253347}
   - component: {fileID: 1618253344}
   m_Layer: 0
   m_Name: '@UIManager'
@@ -31715,6 +31635,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1618253346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618253343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4121200830
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &1618253347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618253343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83258627b5dd34949b96f22dc04416dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weekDay_text: {fileID: 958305169}
+  hour1_text: {fileID: 1663390009}
+  hour2_text: {fileID: 1420220051}
+  hour3_text: {fileID: 1010969870}
+  final_outcomes: []
+  activities_daily:
+  - {fileID: 2008551831}
+  - {fileID: 1439410476}
+  - {fileID: 593255878}
+  - {fileID: 2116855221}
+  - {fileID: 2103929785}
+  - {fileID: 1586628469}
+  activities_selected:
+  - {fileID: 1663390013}
+  - {fileID: 1420220055}
+  - {fileID: 1010969874}
+  activities_text:
+  - {fileID: 919328999}
+  - {fileID: 1313975392}
+  - {fileID: 1696647290}
+  - {fileID: 810263912}
+  - {fileID: 1610124783}
+  - {fileID: 1957116117}
+  activities_mixed: []
+  activities_romantic: []
+  activities_partner: []
+  weatherStates:
+  - {fileID: 209459824}
+  - {fileID: 645575373}
+  - {fileID: 1497741843}
+  - {fileID: 1144476998}
+  - {fileID: 1957417195}
+  personalStates:
+  - {fileID: 1432948935}
+  - {fileID: 387249950}
+  - {fileID: 5788941}
+  - {fileID: 1120152309}
+  - {fileID: 2638578}
+  currentWeatherState: 0
+  currentPersonalState: 0
+  playerVigor: {fileID: 618420071}
+  dropZones:
+  - {fileID: 944869920}
+  - {fileID: 1713114806}
+  - {fileID: 2024251328}
 --- !u!1 &1628192934
 GameObject:
   m_ObjectHideFlags: 0
@@ -33678,7 +33676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_zone: {fileID: 1420220053}
   dropZoneNumber: 1
-  calendarController: {fileID: 1542379635}
+  calendarController: {fileID: 1618253347}
 --- !u!1 &1719519445
 GameObject:
   m_ObjectHideFlags: 0
@@ -40208,7 +40206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_zone: {fileID: 1010969872}
   dropZoneNumber: 2
-  calendarController: {fileID: 1542379635}
+  calendarController: {fileID: 1618253347}
 --- !u!1 &2029163890
 GameObject:
   m_ObjectHideFlags: 0
