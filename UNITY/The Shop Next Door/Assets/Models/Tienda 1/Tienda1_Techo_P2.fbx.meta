@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 6663bbe419c74d24db8cbcd4eb8a3bf5
+guid: 20b1f2ff1e195bb4f87f1b5c4b5e6238
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paredes Exteriores Amarillas
+    second: {fileID: 2100000, guid: 11ad9d9f518a51546ab6a7ed631423f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Techo
+    second: {fileID: 2100000, guid: b21af48f27df88642ac5efa78da5db4b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.03
+    globalScale: 3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -175,7 +175,7 @@ public class RelayManager : NetworkBehaviour
         {
             if (NetworkManager.Singleton.ConnectedClients.Count == MAXPLAYERS)
             {
-                NetworkManager.Singleton.SceneManager.LoadScene("PrototypeScene", LoadSceneMode.Single);
+                NetworkManager.Singleton.SceneManager.LoadScene("4 - Game Scene 1", LoadSceneMode.Single);
             }
         }
 

@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 6663bbe419c74d24db8cbcd4eb8a3bf5
+guid: a0ae12b9ac00a1e4c88cb99f838ab2dd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paredes Exteriores Amarillas
+    second: {fileID: 2100000, guid: 11ad9d9f518a51546ab6a7ed631423f4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.03
+    globalScale: 3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -862,10 +862,6 @@ MonoBehaviour:
   hour_EndDay_Text: {fileID: 0}
   player1Reputation: {fileID: 0}
   player2Reputation: {fileID: 0}
-  weatherState_ntw:
-    m_InternalValue: 0
-  personalState_ntw:
-    m_InternalValue: 0
   cajaPlayerPosition: {fileID: 0}
 --- !u!4 &300335086
 Transform:
@@ -1058,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &388933149
 MonoBehaviour:
   m_ObjectHideFlags: 0
