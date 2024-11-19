@@ -106,6 +106,7 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.canvasInteractable.worldCamera = GameManager.Instance.activeCamera;
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
+                Debug.Log("Camara de P2");
             }
             initialiceVariables();
             isInitialized = true;

@@ -77,7 +77,7 @@ public class TiendaManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             InicializarComida();
             InicializarOcio();
             InicializarPapeleria();

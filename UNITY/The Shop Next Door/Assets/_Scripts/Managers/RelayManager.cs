@@ -9,6 +9,7 @@ using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class RelayManager : NetworkBehaviour
@@ -166,8 +167,11 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientConnected(ulong obj)
     {
-        Debug.Log($"Cliente conectedo: {obj}");
+        //if (obj != 0) obj = 1; //Sale lo del dictionary
+        if (IsOwner)
+            Debug.Log($"Cliente conectedo: {obj}");
 
+        Debug.Log("El indice es: " + connectedPlayers + "El obj es " + obj);
         _obj[connectedPlayers] = obj;
         connectedPlayers++;
 
@@ -197,19 +201,33 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientDisconnect(ulong obj)
     {
-        connectedPlayers--;
+        //connectedPlayers--;
         //NetworkManager.Singleton.Shutdown();
         if (_connect)
         {
             //CancelMatch();
+            //Destroy(GameManager.Instance);
+            Destroy(GameObject.FindWithTag("GameManager"));
+            //Destroy(GameObject.Find("@RelayManager"));
+            //Destroy(GameObject.Find("@NetWorkManager"));
             SceneManager.LoadScene("2 - Matchmaking");
-            if (IsOwner)
+            Debug.Log("Host se ha ido");
+            Debug.Log("Cliente desconectado, jugador " + obj);
+
+            if (NetworkManager.Singleton.IsHost)
             {
-                Debug.Log("Host se ha ido");
-                Debug.Log("Cliente desconectado, jugador " + obj);
+                Debug.Log("Ha entrado eb OnClient el host");
+                joinCode = null;
+                //connectedPlayers = 0;
+                _obj = new ulong[15];
+                Invoke("ClearNetworkState", 0.5f);
             }
 
+            //GameManager.Destroy(gameObject);
+            //TiendaManager.Destroy(gameObject);
+
             _connect = false;
+            Debug.Log("connec a false");
         }
     }
 

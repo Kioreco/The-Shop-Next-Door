@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine;
@@ -74,17 +75,18 @@ public class GameManager : MonoBehaviour
         InstantiatePlayers();
     }
 
-    void Update()
-    {
-        if (NetworkManager.Singleton.IsServer)
-        {
-            if (NetworkManager.Singleton.ConnectedClients.Count < 2)
-            {
-                //SceneManager.LoadScene("2 - Matchmaking");
-                NetworkManager.Singleton.Shutdown();
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    //if (NetworkManager.Singleton.IsServer)
+    //    //{
+    //    //    if (NetworkManager.Singleton.ConnectedClients.Count < 2)
+    //    //    {
+    //    //        //SceneManager.LoadScene("2 - Matchmaking");
+    //    //        //NetworkManager.Singleton.Shutdown();
+    //    //        Debug.Log("Hace shut");
+    //    //    }
+    //    //}
+    //}
 
     private void InstantiatePlayers()
     {
