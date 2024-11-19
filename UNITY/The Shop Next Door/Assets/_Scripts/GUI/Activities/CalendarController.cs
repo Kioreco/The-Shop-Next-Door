@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CalendarController : NetworkBehaviour
+public class CalendarController : MonoBehaviour
 {
     [Header("Basic Info")]
     [SerializeField] private TextMeshProUGUI weekDay_text;
@@ -23,11 +23,11 @@ public class CalendarController : NetworkBehaviour
     [HideInInspector] public ActivityInfo[] activities_partner;
 
     [Header("States")]
-    [SerializeField] private CalendarState[] weatherStates;
-    [SerializeField] private CalendarState[] personalStates;
+    [SerializeField] public CalendarState[] weatherStates;
+    [SerializeField] public CalendarState[] personalStates;
 
-    private int currentWeatherState;
-    private int currentPersonalState;
+    public int currentWeatherState;
+    public int currentPersonalState;
 
     [SerializeField] private PlayerVigor playerVigor;
 
@@ -50,8 +50,8 @@ public class CalendarController : NetworkBehaviour
 
         //ChooseNewState();
 
-        weatherState_ntw.OnValueChanged += OnWeatherStateChange;
-        personalState_ntw.OnValueChanged += OnPersonalStateChange;
+        //weatherState_ntw.OnValueChanged += OnWeatherStateChange;
+        //personalState_ntw.OnValueChanged += OnPersonalStateChange;
     }
 
     private void RandomizeActivities(ActivityInfo[] list)
@@ -105,39 +105,39 @@ public class CalendarController : NetworkBehaviour
 
             playerVigor.SetNewFaceGemma(currentPersonalState);
 
-            weatherState_ntw.Value = currentWeatherState;
-            personalState_ntw.Value = currentPersonalState;
+            UIManager.Instance.weatherState_ntw.Value = currentWeatherState;
+            UIManager.Instance.personalState_ntw.Value = currentPersonalState;
 
             //SendNewStateClientRpc(currentWeatherState, currentPersonalState);
         }
     }
 
-    public NetworkVariable<int> weatherState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<int> personalState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    //public NetworkVariable<int> weatherState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    //public NetworkVariable<int> personalState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-    public void OnWeatherStateChange(int previousValue, int newValue)
-    {
-        if (IsClient)
-        {
-            currentWeatherState = newValue;
+    //public void OnWeatherStateChange(int previousValue, int newValue)
+    //{
+    //    if (IsClient)
+    //    {
+    //        currentWeatherState = newValue;
 
-            weatherStates[previousValue].gameObject.SetActive(false);
-            weatherStates[newValue].gameObject.SetActive(true);
-        }
-    }
+    //        weatherStates[previousValue].gameObject.SetActive(false);
+    //        weatherStates[newValue].gameObject.SetActive(true);
+    //    }
+    //}
 
-    public void OnPersonalStateChange(int previousValue, int newValue)
-    {
-        if (IsClient)
-        {
-            currentPersonalState = newValue;
+    //public void OnPersonalStateChange(int previousValue, int newValue)
+    //{
+    //    if (IsClient)
+    //    {
+    //        currentPersonalState = newValue;
 
-            personalStates[previousValue].gameObject.SetActive(false);
-            personalStates[newValue].gameObject.SetActive(true);
+    //        personalStates[previousValue].gameObject.SetActive(false);
+    //        personalStates[newValue].gameObject.SetActive(true);
 
-            playerVigor.SetNewFaceEmma(currentPersonalState);
-        }
-    }
+    //        playerVigor.SetNewFaceEmma(currentPersonalState);
+    //    }
+    //}
 
 
     //[ClientRpc]
