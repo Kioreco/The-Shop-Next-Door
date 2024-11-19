@@ -68,7 +68,6 @@ public class PlayerVigor : MonoBehaviour
 
     private void DiminishVigor()
     {
-
         if (stressLevel == 0)
         {
             if (stressLevelChanged) 

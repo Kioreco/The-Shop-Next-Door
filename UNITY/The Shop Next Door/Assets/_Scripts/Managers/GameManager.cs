@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float maxEspacioAlmacen;
     [HideInInspector] public float reputation;
     [HideInInspector] public float playerVigor;
+    [HideInInspector] public double playerResult;
+    [HideInInspector] public double playerResultRival;
+
 
     [Header("Network Game Manager")]
     public PlayerControler _player;
@@ -69,6 +73,18 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.Start_UnityFalse();
 
         InstantiatePlayers();
+    }
+
+    void Update()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.Count < 2)
+            {
+                //SceneManager.LoadScene("2 - Matchmaking");
+                NetworkManager.Singleton.Shutdown();
+            }
+        }
     }
 
     private void InstantiatePlayers()
@@ -135,6 +151,29 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.vigor.enabled = false;
 
         StartCoroutine(nameof(ContinueDay));
+    }
+
+    public void FinalResult()
+    {
+        double workLife;
+        double privateLife;
+
+        if (NetworkManager.Singleton.IsServer)
+        {
+            workLife = dineroJugador * 0.30 + TiendaManager.Instance.workersP1.Count * 0.15 + reputation * 0.35 + 1 * 0.2; //el último 1 son las mejoras de los estantes
+        }
+        else
+        {
+            workLife = dineroJugador * 0.30 + TiendaManager.Instance.workersP2.Count * 0.15 + reputation * 0.35 + 1 * 0.2; //el último 1 son las mejoras de los estantes
+        }
+
+        privateLife = VidaPersonalManager.Instance.restProgress * 0.18 +
+                      VidaPersonalManager.Instance.happinessProgress * 0.18 +
+                      VidaPersonalManager.Instance.friendshipProgress * 0.14 +
+                      VidaPersonalManager.Instance.developmentProgress * 0.2 +
+                      VidaPersonalManager.Instance.romanticProgress * 0.3;
+
+        playerResult =  workLife * 0.5 + privateLife * 0.5;
     }
 
 

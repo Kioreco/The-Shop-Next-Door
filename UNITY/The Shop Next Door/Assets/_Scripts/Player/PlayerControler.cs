@@ -44,6 +44,8 @@ public class PlayerControler : NetworkBehaviour
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
 
     //variables caja pago:
@@ -67,8 +69,12 @@ public class PlayerControler : NetworkBehaviour
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom;
         }
+
         hostMoney.OnValueChanged += OnHostMoneyChange;
         clientMoney.OnValueChanged += OnClientMoneyChange;
+
+        hostResult.OnValueChanged += OnHostResultChange;
+        clientResult.OnValueChanged += OnClientResultChange;
     }
 
     public override void OnNetworkSpawn()
@@ -258,6 +264,7 @@ public class PlayerControler : NetworkBehaviour
             UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
     }    
+
     void OnClientMoneyChange(float previous, float newM) 
     {
         //print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
@@ -268,6 +275,38 @@ public class PlayerControler : NetworkBehaviour
 
             GameManager.Instance.dineroRival = newM;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+        }
+    }
+
+    public void FinalResult()
+    {
+        if (ID == 0 && IsOwner)
+        {
+            hostResult.Value = GameManager.Instance.playerResult;
+            //Para UI si queremos
+        }
+        if (ID == 1 && IsOwner)
+        {
+            clientResult.Value = GameManager.Instance.playerResult;
+            //Para UI si queremos
+        }
+    }
+
+    private void OnHostResultChange(double previousValue, double newValue)
+    {
+        if (IsClient)
+        {
+            GameManager.Instance.playerResultRival = newValue;
+            //Para UI si queremos
+        }
+    }
+
+    private void OnClientResultChange(double previousValue, double newValue)
+    {
+        if (IsServer)
+        {
+            GameManager.Instance.playerResultRival = newValue;
+            //Para UI si queremos
         }
     }
 

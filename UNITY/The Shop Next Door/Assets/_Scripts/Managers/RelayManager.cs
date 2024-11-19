@@ -20,6 +20,7 @@ public class RelayManager : NetworkBehaviour
     public GameObject _playerPrefabClient;
     public GameObject _playerPrefabHost;
     public ulong[] _obj;
+    private bool _connect = false;
 
     private const int MAXPLAYERS = 2;
 
@@ -54,11 +55,14 @@ public class RelayManager : NetworkBehaviour
 
     public async void StartHost()
     {
+        _connect = false;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
         {
             NetworkManager.Singleton.Shutdown();
             await Task.Delay(500);
         }
+
+        _connect = true;
 
         await UnityServices.InitializeAsync();
 
@@ -83,11 +87,14 @@ public class RelayManager : NetworkBehaviour
 
     public async void StartClient(string joinCodeInput)
     {
+        _connect = false;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
         {
             NetworkManager.Singleton.Shutdown();
             await Task.Delay(500);
         }
+
+        _connect = true;
 
         await UnityServices.InitializeAsync();
         if (!AuthenticationService.Instance.IsSignedIn)
@@ -191,6 +198,19 @@ public class RelayManager : NetworkBehaviour
     private void OnClientDisconnect(ulong obj)
     {
         connectedPlayers--;
+        //NetworkManager.Singleton.Shutdown();
+        if (_connect)
+        {
+            //CancelMatch();
+            SceneManager.LoadScene("2 - Matchmaking");
+            if (IsOwner)
+            {
+                Debug.Log("Host se ha ido");
+                Debug.Log("Cliente desconectado, jugador " + obj);
+            }
+
+            _connect = false;
+        }
     }
 
     private void OnServerStarted()
