@@ -148,7 +148,8 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         NetworkManager.Singleton.ConnectionApprovalCallback -= ApproveConnection;
 
-        joinCode = "Room code";
+        joinCode = null;
+        //joinCode = "Room code";
 
         connectedPlayers = 0;
         _obj = new ulong[15];
@@ -167,15 +168,10 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientConnected(ulong obj)
     {
-        //if (obj != 0) obj = 1; //Sale lo del dictionary
-        if (IsOwner)
-            Debug.Log($"Cliente conectedo: {obj}");
-
-        Debug.Log("El indice es: " + connectedPlayers + "El obj es " + obj);
         _obj[connectedPlayers] = obj;
         connectedPlayers++;
 
-        if (IsServer)
+        if (NetworkManager.Singleton.IsServer)
         {
             if (NetworkManager.Singleton.ConnectedClients.Count == MAXPLAYERS)
             {
@@ -201,33 +197,25 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientDisconnect(ulong obj)
     {
-        //connectedPlayers--;
         //NetworkManager.Singleton.Shutdown();
         if (_connect)
         {
             //CancelMatch();
-            //Destroy(GameManager.Instance);
             Destroy(GameObject.FindWithTag("GameManager"));
-            //Destroy(GameObject.Find("@RelayManager"));
-            //Destroy(GameObject.Find("@NetWorkManager"));
             SceneManager.LoadScene("2 - Matchmaking");
-            Debug.Log("Host se ha ido");
-            Debug.Log("Cliente desconectado, jugador " + obj);
+            //Debug.Log("Host se ha ido");
+            //Debug.Log("Cliente desconectado, jugador " + obj);
 
             if (NetworkManager.Singleton.IsHost)
             {
                 Debug.Log("Ha entrado eb OnClient el host");
                 joinCode = null;
-                //connectedPlayers = 0;
                 _obj = new ulong[15];
                 Invoke("ClearNetworkState", 0.5f);
             }
 
-            //GameManager.Destroy(gameObject);
-            //TiendaManager.Destroy(gameObject);
-
             _connect = false;
-            Debug.Log("connec a false");
+            //Debug.Log("connec a false");
         }
     }
 

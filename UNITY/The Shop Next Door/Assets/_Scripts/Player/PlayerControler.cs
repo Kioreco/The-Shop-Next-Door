@@ -88,12 +88,13 @@ public class PlayerControler : NetworkBehaviour
             TiendaManager.Instance.player = this;
             GameManager.Instance._player = this;
 
-            ID = (int)OwnerClientId;
+            if ((int)OwnerClientId == 0) ID = (int)OwnerClientId;
+            else ID = 1;
+
             print(ID);
 
             if (ID == 0) 
             {
-                //initialiceVariables();
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance.activeCamera = GameManager.Instance.cameraP1.transform.GetChild(0).GetComponent<Camera>();
             }
