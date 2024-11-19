@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Volume gameVolume;
 
     private ColorAdjustments colorAdjustments;
+    private Vignette vignette;
     private DepthOfField depthOfField;
 
     private Color volumeColorNeutral = new Color(1f, 1f, 1f);
@@ -102,7 +103,13 @@ public class UIManager : MonoBehaviour
         UpdateInventorySpace_UI();
 
         gameVolume.profile.TryGet(out colorAdjustments);
+        gameVolume.profile.TryGet(out vignette);
         gameVolume.profile.TryGet(out depthOfField);
+
+        telephone.calendar.Awake();
+
+        telephone.calendar.weatherState_ntw.OnValueChanged += telephone.calendar.OnWeatherStateChange;
+        telephone.calendar.personalState_ntw.OnValueChanged += telephone.calendar.OnPersonalStateChange;
     }
 
     public void ExitGame()
@@ -187,7 +194,7 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-    public void ChangeVolumeEffects(bool isTelephone)
+    public void ChangeVolumeEffects_Telephone(bool isTelephone)
     {
         if (isTelephone)
         {
@@ -198,6 +205,23 @@ public class UIManager : MonoBehaviour
         {
             colorAdjustments.colorFilter.value = volumeColorNeutral;
             depthOfField.active = false;
+        }
+    }
+
+    private ClampedFloatParameter vignetteIntensityHigh = new ClampedFloatParameter(0.502f, 0f, 1f);
+    private ClampedFloatParameter vignetteIntensityLow = new ClampedFloatParameter(0.366f, 0f, 1f);
+
+    public void ChangeVolumeEffects_Vigor(bool vigorIsDown)
+    {
+        if (vigorIsDown)
+        {
+            vignette.color.overrideState = true;
+            vignette.intensity = vignetteIntensityHigh;
+        }
+        else
+        {
+            vignette.color.overrideState = false;
+            vignette.intensity = vignetteIntensityLow;
         }
     }
 
@@ -273,6 +297,7 @@ public class UIManager : MonoBehaviour
     public void UpdateDay_UI(string day, string dayNight)
     {
         day_text.SetText(day);
+        telephone.calendar.UpdateDayCalendar(day);
         day_EndDay_Text.SetText(dayNight);
         player1Day.SetText(dayNight);
         player2Day.SetText(dayNight);
@@ -297,5 +322,12 @@ public class UIManager : MonoBehaviour
     public void OpenURL(string url)
     {
         Application.OpenURL(url);
+    }
+
+    public void ResetEndDayActivities()
+    {
+        activity1_outcome_text.SetText("");
+        activity2_outcome_text.SetText("");
+        activity3_outcome_text.SetText("");
     }
 }

@@ -29902,8 +29902,8 @@ GameObject:
   - component: {fileID: 1542379634}
   - component: {fileID: 1542379637}
   - component: {fileID: 1542379636}
-  - component: {fileID: 1542379635}
   - component: {fileID: 1542379638}
+  - component: {fileID: 1542379635}
   m_Layer: 5
   m_Name: CalendarApp
   m_TagString: Untagged
@@ -32850,6 +32850,8 @@ MonoBehaviour:
   maxEspacioAlmacen: 0
   reputation: 0
   playerVigor: 0
+  playerResult: 0
+  playerResultRival: 0
   _player: {fileID: 0}
   canvasInteractable: {fileID: 1741027476}
   cajero_1_Bar: {fileID: 1129796866}

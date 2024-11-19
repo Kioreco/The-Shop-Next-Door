@@ -36,5 +36,6 @@ public class DropItem : MonoBehaviour, IDropHandler
     public void ResetDropZone()
     {
         text_zone.SetText("");
+        draggingItems[dropZoneNumber] = null;
     }
 }

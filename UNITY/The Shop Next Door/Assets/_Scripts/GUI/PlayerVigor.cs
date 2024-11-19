@@ -60,6 +60,7 @@ public class PlayerVigor : MonoBehaviour
                     GameManager.Instance._player.enableMovement(false);
                     stressLevelMAX = false;
                     vigorDiminish = true;
+                    UIManager.Instance.ChangeVolumeEffects_Vigor(false);
                 }
             }
         }
@@ -113,6 +114,7 @@ public class PlayerVigor : MonoBehaviour
             if (vigor_bar.fillAmount <= 0.05f)
             {
                 stressLevelMAX = true;
+                UIManager.Instance.ChangeVolumeEffects_Vigor(true);
             }
         }
     }
@@ -164,6 +166,7 @@ public class PlayerVigor : MonoBehaviour
         stressLevelChanged = false;
 
         vigorEnabled = true;
+        vigorDiminish = true;
     }
 
 }

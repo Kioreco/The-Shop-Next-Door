@@ -137,7 +137,6 @@ public class WorkDayCycle : MonoBehaviour
         string dayNameNight = dayNames[(currentDay-1) % dayNames.Length];
 
         UIManager.Instance.UpdateDay_UI(dayName, dayNameNight);
-        UIManager.Instance.telephone.calendar.UpdateDayCalendar(dayNameNight);
     }
 
 }

@@ -31,8 +31,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public double playerResult;
     [HideInInspector] public double playerResultRival;
 
-
-    [Header("Network Game Manager")]
+    [Header("Network Things")]
     public PlayerControler _player;
 
     [Header("Other Objects")]

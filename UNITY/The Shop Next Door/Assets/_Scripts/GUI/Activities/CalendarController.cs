@@ -34,7 +34,7 @@ public class CalendarController : NetworkBehaviour
     [Header("Drop Zones")]
     [SerializeField] private DropItem[] dropZones;
 
-    private void Awake()
+    public void Awake()
     {
         ActivityLoader loader = new ActivityLoader();
         loader.LoadActivities();
@@ -49,6 +49,9 @@ public class CalendarController : NetworkBehaviour
         //RandomizeStates(personalStates);
 
         //ChooseNewState();
+
+        weatherState_ntw.OnValueChanged += OnWeatherStateChange;
+        personalState_ntw.OnValueChanged += OnPersonalStateChange;
     }
 
     private void RandomizeActivities(ActivityInfo[] list)
@@ -102,36 +105,67 @@ public class CalendarController : NetworkBehaviour
 
             playerVigor.SetNewFaceGemma(currentPersonalState);
 
-            SendNewStateClientRpc(currentWeatherState, currentPersonalState);
+            weatherState_ntw.Value = currentWeatherState;
+            personalState_ntw.Value = currentPersonalState;
+
+            //SendNewStateClientRpc(currentWeatherState, currentPersonalState);
         }
     }
 
-    [ClientRpc]
-    private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
+    public NetworkVariable<int> weatherState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> personalState_ntw = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    public void OnWeatherStateChange(int previousValue, int newValue)
     {
-        if (!NetworkManager.Singleton.IsServer)
+        if (IsClient)
         {
-            ChoseNewStateByNumber(numberWeather, numberPersonal);
+            currentWeatherState = newValue;
+
+            weatherStates[previousValue].gameObject.SetActive(false);
+            weatherStates[newValue].gameObject.SetActive(true);
         }
     }
 
-    private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
+    public void OnPersonalStateChange(int previousValue, int newValue)
     {
-        currentWeatherState = numberWeather;
-        currentPersonalState = numberPersonal;
-        foreach (var state in weatherStates)
+        if (IsClient)
         {
-            if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
-            else { state.gameObject.SetActive(false); }
-        }
-        foreach (var state in personalStates)
-        {
-            if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
-            else { state.gameObject.SetActive(false); }
-        }
+            currentPersonalState = newValue;
 
-        playerVigor.SetNewFaceEmma(currentPersonalState);
+            personalStates[previousValue].gameObject.SetActive(false);
+            personalStates[newValue].gameObject.SetActive(true);
+
+            playerVigor.SetNewFaceEmma(currentPersonalState);
+        }
     }
+
+
+    //[ClientRpc]
+    //private void SendNewStateClientRpc(int numberWeather, int numberPersonal)
+    //{
+    //    if (!NetworkManager.Singleton.IsServer)
+    //    {
+    //        ChoseNewStateByNumber(numberWeather, numberPersonal);
+    //    }
+    //}
+
+    //private void ChoseNewStateByNumber(int numberWeather, int numberPersonal)
+    //{
+    //    currentWeatherState = numberWeather;
+    //    currentPersonalState = numberPersonal;
+    //    foreach (var state in weatherStates)
+    //    {
+    //        if (state.numberState.Equals(numberWeather)) { state.gameObject.SetActive(true); }
+    //        else { state.gameObject.SetActive(false); }
+    //    }
+    //    foreach (var state in personalStates)
+    //    {
+    //        if (state.numberState.Equals(numberPersonal)) { state.gameObject.SetActive(true); }
+    //        else { state.gameObject.SetActive(false); }
+    //    }
+
+    //    playerVigor.SetNewFaceEmma(currentPersonalState);
+    //}
 
     private int mixedActivitiesUsed = 0;
     private int romanticActivitiesUsed = 0;
@@ -140,7 +174,7 @@ public class CalendarController : NetworkBehaviour
     private void WriteDailyActivities()
     {
         // Mixed Actions
-        for (int i = mixedActivitiesUsed; i < 5; i++)
+        for (int i = mixedActivitiesUsed; i < mixedActivitiesUsed + 5; i++)
         {
             activities_text[i].SetText(activities_mixed[i].activityName);
             activities_daily[i].GetComponent<Activity>().CopyActivity(activities_mixed[i]);
@@ -297,9 +331,9 @@ public class CalendarController : NetworkBehaviour
             actDaily.GetComponent<DraggingItems>().ActivateActivity();
         }
 
-        activities_selected[0].activityInfo = null;
-        activities_selected[1].activityInfo = null;
-        activities_selected[2].activityInfo = null;
+        activities_selected = new Activity[3];
+
+        UIManager.Instance.ResetEndDayActivities();
 
         //Nuevas actividades y nuevos estados
         WriteDailyActivities();

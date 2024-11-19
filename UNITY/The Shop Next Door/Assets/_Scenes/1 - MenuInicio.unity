@@ -2575,16 +2575,19 @@ MonoBehaviour:
   messageMatch_wrong: {fileID: 0}
   canvasIngame: {fileID: 0}
   telephone: {fileID: 0}
+  vigor: {fileID: 0}
   dineroJugador_text: {fileID: 0}
+  newMoney_text: {fileID: 0}
   nombreTienda_text: {fileID: 0}
   inventory_text: {fileID: 0}
   maxInventory_text: {fileID: 0}
-  timeReference: {fileID: 0}
+  schedule: {fileID: 0}
   day_text: {fileID: 0}
   hour_text: {fileID: 0}
   reputation_Bar: {fileID: 0}
-  playerVigor_Bar: {fileID: 0}
   cajero_Bar: {fileID: 0}
+  cajero_Canvas: {fileID: 0}
+  gameVolume: {fileID: 0}
   canvasDayEnd: {fileID: 0}
   activity1_outcome_text: {fileID: 0}
   activity2_outcome_text: {fileID: 0}
@@ -2593,10 +2596,13 @@ MonoBehaviour:
   player2ShopName: {fileID: 0}
   player1Money: {fileID: 0}
   player2Money: {fileID: 0}
+  player1Day: {fileID: 0}
+  player2Day: {fileID: 0}
   day_EndDay_Text: {fileID: 0}
   hour_EndDay_Text: {fileID: 0}
   player1Reputation: {fileID: 0}
   player2Reputation: {fileID: 0}
+  cajaPlayerPosition: {fileID: 0}
 --- !u!4 &1113313945
 Transform:
   m_ObjectHideFlags: 0
@@ -4275,7 +4281,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: https://www.instagram.com/pablo_prior/
+          m_StringArgument: https://pabloprior.github.io/
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2054042925
