@@ -81,6 +81,10 @@ public class UIManager : MonoBehaviour
     private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
+
+    [SerializeField] public Button readyButton;
+    [SerializeField] public TextMeshProUGUI waitingText;
+
     public static UIManager Instance { get; private set; }
 
     void Awake()

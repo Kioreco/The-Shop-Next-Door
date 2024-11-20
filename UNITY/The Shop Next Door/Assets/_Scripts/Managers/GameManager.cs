@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //CountdownManager.Instance.StartCountdown();
         dineroJugador = 500.0f;
         espacioAlmacen = 0;
         maxEspacioAlmacen = 100;
