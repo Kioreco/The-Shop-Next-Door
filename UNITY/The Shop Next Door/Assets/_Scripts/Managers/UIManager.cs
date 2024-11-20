@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cashRegister_Text;
     int[] numeros = new int[4] { 0, 0, 0, 0 };
     [SerializeField] private GameObject canvas_menu;
-    [SerializeField] private GameObject canvas_credits;
 
 
     [Header("MATCHMAKING SCENE")]
@@ -131,10 +130,10 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
-    public void OpenCloseCredits()
+    public void OpenCloseCanvas(GameObject canvas)
     {
         canvas_menu.SetActive(!canvas_menu.activeSelf);
-        canvas_credits.SetActive(!canvas_credits.activeSelf);
+        canvas.SetActive(!canvas.activeSelf);
     }
 
     public void StartHost_Button()
