@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ClientPrototype : MonoBehaviour
@@ -10,19 +11,23 @@ public class ClientPrototype : MonoBehaviour
     private ObjectPoolClient npcBasicObjectPool;
     public bool isEnable;
 
+    //instanciar con delay:
+    bool isSpawning = false;
+    float delay = 1.5f;
+
     private void Start()
     {
         npcBasicObjectPool = new ObjectPoolClient((IContext) npcPrototype, maxNumberNPC, allowAddNew);
     }
     private void Update()
     {
-        if (isEnable)
+        if (isEnable & isCreated & !isSpawning)
         {
-            if (isCreated && npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
+            if (npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
             {
-                IContext npcBasic = createNpcBasic();
+                StartCoroutine(ActivateWithDelay());
             }
-            if (isCreated && allowAddNew)
+            if (allowAddNew)
             {
                 for (int i = npcBasicObjectPool.GetActive(); i < npcBasicObjectPool.GetCount(); i++)
                 {
@@ -41,7 +46,17 @@ public class ClientPrototype : MonoBehaviour
         {
             npcBasic.setObjectPool(npcBasicObjectPool);
         }
-
         return npcBasic;
+    }
+
+    IEnumerator ActivateWithDelay()
+    {
+        isSpawning = true;
+        while (npcBasicObjectPool.GetActive() < maxActiveInScene)
+        {
+            createNpcBasic();
+            yield return new WaitForSeconds(delay); // Espera el delay
+        }
+        isSpawning = false;
     }
 }

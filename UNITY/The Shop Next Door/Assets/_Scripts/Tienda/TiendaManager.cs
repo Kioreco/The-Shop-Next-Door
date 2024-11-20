@@ -427,6 +427,8 @@ public class TiendaManager : MonoBehaviour
 
         bag.moneyShop = money;
         bag.fillCoroutine = StartCoroutine(UIManager.Instance.VaciarImagen(bag.progressImage, bag.secondsToSeek - 1));
+        //print($"corrutine: {bag.fillCoroutine}");
+        //bag.fillCoroutine = StartCoroutine();
     }
     public void InstanceGarbage(Transform position)
     {

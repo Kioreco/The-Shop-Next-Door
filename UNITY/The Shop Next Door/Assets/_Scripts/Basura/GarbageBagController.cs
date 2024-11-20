@@ -24,7 +24,7 @@ public class GarbageBagController : MonoBehaviour
         {
             lastSeek = 0f;
             TiendaManager.Instance.InstanceGarbage(transform);
-            
+
             Destroy(gameObject);//CAMBIARLO POR DEVOLVER AL OBJECT POOL
         }
     }
@@ -35,6 +35,8 @@ public class GarbageBagController : MonoBehaviour
         {
             isCollected = true;
 
+            Debug.Log($"fillcoroutine: {fillCoroutine}");
+            
             if (fillCoroutine != null)
             {
                 StopCoroutine(fillCoroutine);

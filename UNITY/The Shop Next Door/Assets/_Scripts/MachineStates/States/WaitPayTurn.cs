@@ -31,11 +31,13 @@ public class WaitPayTurn : AStateNPC
 
     public override void Update()
     {
-        if (contexto.getIsKaren() && contexto.getIsInPayQueue() && contexto.getCanComplain())
-        {
-            contexto.getPilaState().Push(this);
-            contexto.SetState(new TalkToAWorker(contexto)); //comprobar que funciona
-        }
+        //if (contexto.getIfShopIsClosed()) contexto.SetState(new LeaveAngry(contexto));
+
+        //if (contexto.getIsKaren() && !contexto.getIsInPayQueue() && contexto.getCanComplain())
+        //{
+        //    contexto.getPilaState().Push(this);
+        //    contexto.SetState(new TalkToAWorker(contexto)); //comprobar que funciona
+        //}
         if (contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
         if (contexto.getNavMesh().remainingDistance <= 0.5f && contexto.getIsInColliderCajaPago() && !isInQueue)
@@ -52,8 +54,9 @@ public class WaitPayTurn : AStateNPC
             }
         }
 
-        if (actualPosQueue > contexto.getPositionPay() && isInQueue)
+        if (actualPosQueue > 0 && actualPosQueue > contexto.getPositionPay() && isInQueue)
         {
+            //Debug.Log($"poscola: {actualPosQueue}    la que ha cambiado: {contexto.getPositionPay()}");
             actualPosQueue = contexto.getPositionPay();
             contexto.getNavMesh().SetDestination(posCheckpoints[actualPosQueue].position);
             //Debug.Log($"posicion: {actualPosQueue}");

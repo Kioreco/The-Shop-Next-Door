@@ -12,13 +12,15 @@ public class LeaveAngry : AStateNPC
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
-        if (contexto.getIsKaren())
+        if (!contexto.getIfShopIsClosed())
         {
-            contexto.getPilaState().Push(this);
-            contexto.SetState(new TalkToAWorker(contexto));
+            if (contexto.getIsKaren())
+            {
+                contexto.getPilaState().Push(this);
+                contexto.SetState(new TalkToAWorker(contexto));
+            }
         }
-        contexto.getTiendaManager().clientesTotales += 1;
-        //Debug.Log("leave angry");
+
         if (contexto.getTiendaManager().ID == 0)
         {
             exitPos = contexto.getTiendaManager().outDoorShopP1;
@@ -35,12 +37,19 @@ public class LeaveAngry : AStateNPC
         random = Random.Range(0f, 1f);
         spawnPosition = Vector3.Lerp(actualPos.position, doorPos.position, random);
 
+        if (contexto.getIsInPayQueue()) 
+        { 
+            contexto.getTiendaManager().avanzarLaCola();
+            if (contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().npcPayQueueP1.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
+            else if (contexto.getTiendaManager().ID == 1 && contexto.getTiendaManager().npcPayQueueP2.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
+        }
+
         //se va por la puerta
+        contexto.getNavMesh().speed += 0.15f;
         contexto.getNavMesh().SetDestination(exitPos.position);
 
-        if(contexto.getIsInPayQueue()) contexto.getTiendaManager().avanzarLaCola();
-
         contexto.getGameManager().UpdateClientHappiness(contexto.calcularFelicidadCliente());
+
     }
     public override void FixedUpdate()
     {
@@ -48,17 +57,11 @@ public class LeaveAngry : AStateNPC
 
     public override void Update()
     {
-        //Debug.Log($"pos cliente: {contexto.GetTransform().position.x} spawnposition: {spawnPosition.x}");
         if(contexto.GetTransform().position.z - spawnPosition.z < 0.1 & notInstance)
         {
-            //Debug.Log("iguales");
             notInstance = false;
-            //Debug.Log($"ANTES: spawnposition: {spawnPosition}    posicion npc: {contexto.GetTransform().position}");
-            //spawnPosition.x = contexto.GetTransform().position.x;
-            //Debug.Log($"DESPUÉS: spawnposition: {spawnPosition}    posicion npc: {contexto.GetTransform().position}");
-            //Debug.Log($"posicion npc: {contexto.GetTransform().position}");
             spawnPosition = new Vector3(contexto.GetTransform().position.x, spawnPosition.y, contexto.GetTransform().position.z);
-            contexto.getTiendaManager().InstanceBag(spawnPosition, contexto.getDineroCompra());
+            //contexto.getTiendaManager().InstanceBag(spawnPosition, contexto.getDineroCompra());
         }
 
         if (contexto.getNavMesh().remainingDistance == 0)

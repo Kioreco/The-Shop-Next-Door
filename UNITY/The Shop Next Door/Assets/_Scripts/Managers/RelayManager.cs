@@ -175,7 +175,7 @@ public class RelayManager : NetworkBehaviour
         {
             if (NetworkManager.Singleton.ConnectedClients.Count == MAXPLAYERS)
             {
-                NetworkManager.Singleton.SceneManager.LoadScene("4 - Game Scene 1", LoadSceneMode.Single);
+                NetworkManager.Singleton.SceneManager.LoadScene("4 - GameScene 1", LoadSceneMode.Single);
             }
         }
 
@@ -208,7 +208,7 @@ public class RelayManager : NetworkBehaviour
 
             if (NetworkManager.Singleton.IsHost)
             {
-                Debug.Log("Ha entrado eb OnClient el host");
+                //Debug.Log("Ha entrado eb OnClient el host");
                 joinCode = null;
                 _obj = new ulong[15];
                 Invoke("ClearNetworkState", 0.5f);

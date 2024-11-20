@@ -252,7 +252,7 @@ public class UIManager : MonoBehaviour
 
         imageToFill.fillAmount = 1f;
         
-        if (isCajero) { cajero_Canvas.SetActive(false); imageToFill.fillAmount = 0f; }
+        if (isCajero) { imageToFill.fillAmount = 0f; }
         if (isRubbish) { rubbish.Destruir(); }
     }
 

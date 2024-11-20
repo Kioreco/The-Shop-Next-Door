@@ -17,9 +17,8 @@ public class Pay : AStateNPC
     public Pay(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        //Debug.Log("enter pay state");
         UIManager.Instance.cajero_Canvas.SetActive(true);
-
-        contexto.getTiendaManager().clientesTotales += 1;
 
         if (contexto.getTiendaManager().ID == 0)
         {
@@ -48,12 +47,18 @@ public class Pay : AStateNPC
 
     public override void Update()
     {
+        //if (contexto.getIfShopIsClosed()) contexto.SetState(new LeaveAngry(contexto));
+
         //está ya en la caja
-        if(contexto.getHayCajeroEnCaja() & propinaTacanio == -1) contexto.SetState(new MakeShowInPay(contexto));
+        if (contexto.getHayCajeroEnCaja() & propinaTacanio == -1) contexto.SetState(new MakeShowInPay(contexto));
+
         if (!isFinish & contexto.getHayCajeroEnCaja()) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
+            if (contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().npcPayQueueP1.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
+            else if (contexto.getTiendaManager().ID == 1 && contexto.getTiendaManager().npcPayQueueP2.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
+
             float dinero = contexto.getDineroCompra();
             lastSeek = 0f;
             contexto.getTiendaManager().avanzarLaCola();

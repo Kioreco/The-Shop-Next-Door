@@ -57,6 +57,10 @@ namespace Assets.Scripts.MachineStates.Classes
         public float presupuestoTacanio;
 
 
+        //cierre tienda
+        bool shopIsClosed = false;
+
+
         #region MetodosGenerales
         private void Start()
         {
@@ -118,6 +122,8 @@ namespace Assets.Scripts.MachineStates.Classes
                 //establecer presupuesto
                 presupuestoTacanio = UnityEngine.Random.Range(80.0f,250.0f);
             }
+
+            TiendaManager.clientesTotales += 1;
 
             SetState(new SearchShelf(this));
         }
@@ -358,6 +364,14 @@ namespace Assets.Scripts.MachineStates.Classes
 
         #endregion
 
+        #region cierre de tienda
+        public bool getIfShopIsClosed()
+        {
+            return shopIsClosed;
+        }
+
+        #endregion
+
         #region events
         public void updateIfExistCajero(object s, EventArgs e)
         {
@@ -371,13 +385,18 @@ namespace Assets.Scripts.MachineStates.Classes
         }
         public void recieverEventTwoHoursLeft(object s, EventArgs e)
         {
+            //print($"two hours left       maxcantidad productos antes: {lista.maxCantidadProductos}");
             lista.maxCantidadProductos = 2;
-        }        
+            //print($"maxcantidad productos despues: {lista.maxCantidadProductos}");
+
+        }
         public void recieverEventTenMinutesLeft(object s, EventArgs e)
         {
             //irse de la tienda
+            //print("ten minutes left");
+            shopIsClosed = true;
+            if(isActiveAndEnabled) SetState(new LeaveAngry(this));
         }
-
         #endregion
     }
 }

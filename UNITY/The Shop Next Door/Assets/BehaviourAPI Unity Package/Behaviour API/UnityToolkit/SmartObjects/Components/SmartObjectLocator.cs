@@ -76,17 +76,30 @@ namespace BehaviourAPI.UnityToolkit
         /// <returns>The list of available smart objects</returns>
         public List<SmartObject> GetSmartObjects() => _availableSmartObjects;
 
+        //private void OnDrawGizmosSelected()
+        //{
+        //    UnityEditor.Handles.color = gizmoColor;
+        //    UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, maxDistance);
+        //}
+
+        //private void OnDrawGizmos()
+        //{
+        //    if (!drawAlways) return;
+
+        //    OnDrawGizmosSelected();
+        //}
+        #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             UnityEditor.Handles.color = gizmoColor;
+
             UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, maxDistance);
         }
-
         private void OnDrawGizmos()
         {
             if (!drawAlways) return;
-
             OnDrawGizmosSelected();
         }
+        #endif
     }
 }

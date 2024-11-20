@@ -49,4 +49,5 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public bool getCanMakeShow();
     public void setCanMakeShow(bool b);
     public float getPresupuesto();
+    public bool getIfShopIsClosed();
 }

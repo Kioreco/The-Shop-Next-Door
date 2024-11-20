@@ -70,19 +70,19 @@ public class WorkDayCycle : MonoBehaviour
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
         }
-        else if (gameTime >= 9.05f && gameTime < 9.10f && currentDay > 0)
+        else if (gameTime >= 9.3f && gameTime < 9.35f && currentDay > 0)
         {
             npcClientGenerico.isEnable = true;
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
         }
 
-        if (gameTime >= 13f && gameTime < 13.05)
+        if (gameTime >= 13f && gameTime < 13.02)
         {
             eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
         }
         
-        if (gameTime >= 14f && gameTime < 14.05)
+        if (gameTime >= 14f && gameTime < 14.02)
         {
             eventOneHourLeft?.Invoke(this, EventArgs.Empty);
             npcClientGenerico.isEnable = false;
@@ -90,12 +90,10 @@ public class WorkDayCycle : MonoBehaviour
             npcClientTacanio.isEnable = false;
         }
 
-        if (gameTime >= 14.05f && gameTime < 14.1)   //ELEFANTE: falta el de los 10 minutos, de forma temporal lo dejo en y media
+        if (gameTime >= 14.75f && gameTime < 14.77)
         {
+            //print("quedan 10 minutos");
             eventTenMinutesLeft?.Invoke(this, EventArgs.Empty);
-            npcClientGenerico.isEnable = false;
-            npcClientKaren.isEnable = false;
-            npcClientTacanio.isEnable = false;
         }
 
 
