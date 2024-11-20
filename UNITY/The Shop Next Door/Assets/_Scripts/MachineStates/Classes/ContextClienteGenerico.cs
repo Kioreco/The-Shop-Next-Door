@@ -23,7 +23,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public bool isInPayQueue = false;
 
         //dudas:
-        int porcentajeDuda = 20; //20
+        int porcentajeDuda = 10; //20
         bool tieneDuda = false;
         string productoDuda;
 
@@ -120,7 +120,7 @@ namespace Assets.Scripts.MachineStates.Classes
             if (isTacanio & !isKaren)
             {
                 //establecer presupuesto
-                presupuestoTacanio = UnityEngine.Random.Range(80.0f,250.0f);
+                presupuestoTacanio = UnityEngine.Random.Range(60.0f, 175.0f);
             }
 
             TiendaManager.clientesTotales += 1;

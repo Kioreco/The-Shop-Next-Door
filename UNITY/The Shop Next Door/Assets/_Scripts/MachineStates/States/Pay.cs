@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Pay : AStateNPC
@@ -31,12 +32,13 @@ public class Pay : AStateNPC
 
         if (contexto.getIsTacanio()) 
         {
-            diferencia = contexto.getDineroCompra() - contexto.getPresupuesto(); 
+            diferencia = contexto.getDineroCompra() - contexto.getPresupuesto();
             //si la resta es negativa: sobra dinero
             //si la resta es positiva: falta dinero
-            if(diferencia <= 40) { propinaTacanio = diferencia; } //da propina
+            Debug.Log($"dinero: {contexto.getDineroCompra()}   limite presupuesto: {contexto.getPresupuesto()}    sobrante: {propinaTacanio}");
+            if (diferencia <= 40) { propinaTacanio = Math.Abs(diferencia); } //da propina
             else if(diferencia > 40 & diferencia <= 80) { propinaTacanio = 0; } //se queja pero paga
-            else if(diferencia > 80) { propinaTacanio = -1; } //se va enfadado
+            else if(diferencia > 80) { contexto.SetState(new MakeShowInPay(contexto)); } //se va enfadado
         }
         //Debug.Log($"PAGANDO    hay cajero: {contexto.getHayCajeroEnCaja()}");
     }
@@ -50,7 +52,7 @@ public class Pay : AStateNPC
         //if (contexto.getIfShopIsClosed()) contexto.SetState(new LeaveAngry(contexto));
 
         //está ya en la caja
-        if (contexto.getHayCajeroEnCaja() & propinaTacanio == -1) contexto.SetState(new MakeShowInPay(contexto));
+        //if (contexto.getHayCajeroEnCaja() & propinaTacanio == -1) contexto.SetState(new MakeShowInPay(contexto));
 
         if (!isFinish & contexto.getHayCajeroEnCaja()) lastSeek += Time.deltaTime;
 

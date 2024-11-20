@@ -82,7 +82,7 @@ public class WorkDayCycle : MonoBehaviour
             eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
         }
         
-        if (gameTime >= 14f && gameTime < 14.02)
+        if (gameTime >= 13.5f && gameTime < 13.52)
         {
             eventOneHourLeft?.Invoke(this, EventArgs.Empty);
             npcClientGenerico.isEnable = false;

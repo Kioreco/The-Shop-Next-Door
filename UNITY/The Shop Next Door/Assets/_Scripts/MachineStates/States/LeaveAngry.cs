@@ -45,7 +45,7 @@ public class LeaveAngry : AStateNPC
         }
 
         //se va por la puerta
-        contexto.getNavMesh().speed += 0.15f;
+        contexto.getNavMesh().speed += 0.07f;
         contexto.getNavMesh().SetDestination(exitPos.position);
 
         contexto.getGameManager().UpdateClientHappiness(contexto.calcularFelicidadCliente());
