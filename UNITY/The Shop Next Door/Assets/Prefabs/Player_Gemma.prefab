@@ -363,7 +363,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3365088233014281664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a467ccba9d8c56743b65a6c7e66b9d1f, type: 3}
   m_Name: 
@@ -377,6 +377,8 @@ MonoBehaviour:
   maxZ: 10
   client: {fileID: 0}
   clientRubbish: {fileID: 0}
+  clientKaren: {fileID: 0}
+  clientTacanio: {fileID: 0}
 --- !u!195 &970489322068613802
 NavMeshAgent:
   m_ObjectHideFlags: 0

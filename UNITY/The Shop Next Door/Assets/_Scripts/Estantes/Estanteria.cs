@@ -24,9 +24,12 @@ public class Estanteria : MonoBehaviour
 
     [SerializeField] private GameObject[] shelveLevelObjects;
     [SerializeField] public GameObject canvasInteractable;
+    [SerializeField] public GameObject canvasAlert;
+
+    public bool playerIsHere;
 
 
-    private void Awake()
+    private void Start()
     {
         listaProductosEstanteria = TiendaManager.Instance.getDictionaryAccType(tipoObj);
         upgrade_text.SetText(upgradeCosts[0] + " €");
@@ -45,17 +48,27 @@ public class Estanteria : MonoBehaviour
             other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(true);
         }
 
+        if (other.CompareTag("Player"))
+        {
+            playerIsHere = true;
+        }
+
         if (other.CompareTag("Player") && isRestocking)
         {
-            ReponerProductoEstanteria(productRestocking);
-            //Animacion reponer
-            product_UI.UpdateQuantityFillImage();
-            product_UI.UpdateShelvesQuantityProduct_UI();
-            productRestocking = null;
-            product_UI = null;
-            isRestocking = false;
-            TiendaManager.Instance.player.enableMovement(false);
+            AccionReponerProducto();   
         }
+    }
+
+    public void AccionReponerProducto()
+    {
+        ReponerProductoEstanteria(productRestocking);
+        //Animacion reponer
+        product_UI.UpdateQuantityFillImage();
+        product_UI.UpdateShelvesQuantityProduct_UI();
+        productRestocking = null;
+        product_UI = null;
+        isRestocking = false;
+        TiendaManager.Instance.player.enableMovement(false);
     }
 
     private void OnTriggerExit(Collider other)
@@ -65,21 +78,33 @@ public class Estanteria : MonoBehaviour
             other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(false);
         }
 
-        //if (other.CompareTag("Player"))
-        //{
-        //    //desactivar interfaz de acciones en la estantería
-        //}
+        if (other.CompareTag("Player"))
+        {
+            playerIsHere = false;
+        }
     }
 
     public int CheckQuantityProduct(string nombreProducto)
     {
-        //print("Cantidad de producto " + TiendaManager.Instance.GetEstanteriaQuantityOfProduct(nombreProducto, tipoObj));
         return TiendaManager.Instance.GetEstanteriaQuantityOfProduct(nombreProducto, tipoObj);
     }
 
     private void ReponerProductoEstanteria(string nombreProducto)
     {
         listaProductosEstanteria[nombreProducto].gestionarStockEstanteriaYAlmacen(maxSpacePerProduct);
+        if (listaProductosEstanteria[nombreProducto].stockEstanteria == 0)
+        {
+            //Asegurarse y mantener si no se ha restockeado nada
+            canvasInteractable.SetActive(false);
+            product_UI.emptyProduct = true;
+            UIManager.Instance.alertTelephone.SetActive(true);
+        }
+        else
+        {
+            canvasAlert.SetActive(false);
+            product_UI.emptyProduct = false;
+            UIManager.Instance.alertTelephone.SetActive(false);
+        }
     }
 
     private void UpgradeShelve()

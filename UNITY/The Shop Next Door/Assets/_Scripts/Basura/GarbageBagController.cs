@@ -14,16 +14,23 @@ public class GarbageBagController : MonoBehaviour
     bool isCollected = false;
 
     public Image progressImage;
-    public Coroutine fillCoroutine;
+    //public Coroutine fillCoroutine;
+
+
 
     private void Update()
     {
-        if (!isCollected) lastSeek += Time.deltaTime;
+        if (!isCollected)
+        {
+            lastSeek += Time.deltaTime;
+            progressImage.fillAmount = 1f - (lastSeek / secondsToSeek);
+        }
 
         if (lastSeek >= secondsToSeek)
         {
             lastSeek = 0f;
             TiendaManager.Instance.InstanceGarbage(transform);
+            progressImage.fillAmount = 1f;
 
             Destroy(gameObject);//CAMBIARLO POR DEVOLVER AL OBJECT POOL
         }
@@ -35,13 +42,13 @@ public class GarbageBagController : MonoBehaviour
         {
             isCollected = true;
 
-            Debug.Log($"fillcoroutine: {fillCoroutine}");
+            //Debug.Log($"fillcoroutine: {fillCoroutine}");
             
-            if (fillCoroutine != null)
-            {
-                StopCoroutine(fillCoroutine);
-                fillCoroutine = null;
-            }
+            //if (fillCoroutine != null)
+            //{
+            //    StopCoroutine(fillCoroutine);
+            //    fillCoroutine = null;
+            //}
 
             if (lastSeek < 1) GameManager.Instance.dineroJugador += moneyShop * maxShop;
             else
@@ -56,5 +63,10 @@ public class GarbageBagController : MonoBehaviour
             Destroy(gameObject);
             //HABRÍA QUE PONER QUE SE DEVUELVA AL OBJECT POOL
         }
+    }
+
+    public void WalkToBag()
+    {
+        GameManager.Instance._player.WalkToPosition(transform.position, false);
     }
 }

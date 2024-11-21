@@ -828,13 +828,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cashRegister_Text: {fileID: 0}
   canvas_menu: {fileID: 0}
-  canvas_credits: {fileID: 0}
   matchCodeMatchMaking_Text: {fileID: 124384687}
   joinCode_Input: {fileID: 65241094}
   messageMatch_waiting: {fileID: 78213285}
   messageMatch_wrong: {fileID: 1290701186}
   canvasIngame: {fileID: 0}
   telephone: {fileID: 0}
+  alertTelephone: {fileID: 0}
   vigor: {fileID: 0}
   dineroJugador_text: {fileID: 0}
   newMoney_text: {fileID: 0}

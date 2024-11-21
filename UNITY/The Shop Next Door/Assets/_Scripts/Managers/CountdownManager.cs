@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 public class CountdownManager : NetworkBehaviour
 {
@@ -16,6 +14,10 @@ public class CountdownManager : NetworkBehaviour
     public NetworkVariable<bool> player1Ready = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> player2Ready = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    [SerializeField] private GameObject canvasCountdown;
+    [SerializeField] private Button readyButton;
+    [SerializeField] private TextMeshProUGUI waitingText;
+
     public static CountdownManager Instance { get; private set; }
 
     void Awake()
@@ -23,7 +25,6 @@ public class CountdownManager : NetworkBehaviour
         if (Instance == null)
         {
             Instance = this;
-
         }
         else
         {
@@ -39,7 +40,6 @@ public class CountdownManager : NetworkBehaviour
         currentTime = countdownTime;
         networkTime.Value = countdownTime;
         InvokeRepeating("UpdateCountdown", 1.0f, 1.0f);
-
     }
 
     [ClientRpc]
@@ -85,6 +85,11 @@ public class CountdownManager : NetworkBehaviour
     void StartRaceClientRpc()
     {
         countdownText.gameObject.SetActive(false);
+
+        canvasCountdown.SetActive(false);
+        UIManager.Instance.canvasIngame.SetActive(true);
+        GameManager.Instance._player.enabled = true;
+        //GameManager.Instance._player.enableMovement(false);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -117,6 +122,6 @@ public class CountdownManager : NetworkBehaviour
         ulong id = NetworkManager.Singleton.LocalClientId;
         Debug.Log("Entra en el OnReady el cliente " + id);
         SetPlayerReadyServerRpc(id);
-        UIManager.Instance.readyButton.gameObject.SetActive(false);
+        readyButton.gameObject.SetActive(false);
     }
 }

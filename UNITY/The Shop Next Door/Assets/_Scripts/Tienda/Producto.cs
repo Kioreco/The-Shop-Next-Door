@@ -26,12 +26,13 @@ public class Producto
         return $"precio: {precio}\nstockAlmacen: {stockAlmacen}\nstockEstanteria: {stockEstanteria}\ntipo: {tipo}\ndiposnible: {disponible}";
     }
 
-    public void gestionarStockEstanteriaYAlmacen(int a)
+    public void gestionarStockEstanteriaYAlmacen(int cantidadMaxima)
     {
-        if (stockAlmacen - a >= 0)
+        int cantidadAReponer = cantidadMaxima - stockEstanteria;
+        if (stockAlmacen - cantidadAReponer >= 0)
         {
-            stockEstanteria += a;
-            stockAlmacen -= a;
+            stockEstanteria += cantidadAReponer;
+            stockAlmacen -= cantidadAReponer;
         }
         else
         {

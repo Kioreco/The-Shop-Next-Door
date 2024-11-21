@@ -126,7 +126,7 @@ public class PlayerControler : NetworkBehaviour
         clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
         clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
 
-        TiendaManager.Instance.reponerEstanteria(10); //COMENTAR ELEFANTE
+        //TiendaManager.Instance.reponerEstanteria(10); //COMENTAR ELEFANTE
         TiendaManager.Instance.updateAlmacenQuantity();
         UIManager.Instance.UpdateInventorySpace_UI();
     }

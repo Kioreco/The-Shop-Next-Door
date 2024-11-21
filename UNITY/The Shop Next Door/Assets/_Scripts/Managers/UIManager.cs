@@ -25,9 +25,10 @@ public class UIManager : MonoBehaviour
 
     //[SerializeField] private bool telephoneMini;
     [Header("INGAME SCENE")]
-    [SerializeField] private GameObject canvasIngame;
+    [SerializeField] public GameObject canvasIngame;
 
     [SerializeField] public TelephoneController telephone;
+    [SerializeField] public GameObject alertTelephone;
     [SerializeField] public PlayerVigor vigor;
 
     [SerializeField] private TextMeshProUGUI dineroJugador_text;
@@ -81,9 +82,6 @@ public class UIManager : MonoBehaviour
     private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
-
-    [SerializeField] public Button readyButton;
-    [SerializeField] public TextMeshProUGUI waitingText;
 
     public static UIManager Instance { get; private set; }
 
@@ -205,8 +203,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private ClampedFloatParameter vignetteIntensityHigh = new ClampedFloatParameter(0.502f, 0f, 1f);
-    private ClampedFloatParameter vignetteIntensityLow = new ClampedFloatParameter(0.366f, 0f, 1f);
+    private ClampedFloatParameter vignetteIntensityHigh = new ClampedFloatParameter(0.536f, 0f, 1f);
+    private ClampedFloatParameter vignetteIntensityLow = new ClampedFloatParameter(0.307f, 0f, 1f);
 
     public void ChangeVolumeEffects_Vigor(bool vigorIsDown)
     {

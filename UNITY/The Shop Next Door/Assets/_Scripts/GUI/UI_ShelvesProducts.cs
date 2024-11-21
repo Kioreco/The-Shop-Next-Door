@@ -32,6 +32,8 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
     private Color colorDarkRed = new Color(0.55f, 0.0f, 0.18f);
     private Color colorDarkBlue = new Color(0.14f, 0.45f, 0.51f);
 
+    [HideInInspector] public bool emptyProduct = false; 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         ShowQuantities();
@@ -50,6 +52,10 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
         shelve.productRestocking = productName;
         shelve.product_UI = this;
         shelve.canvasInteractable.SetActive(false);
+        if (shelve.playerIsHere)
+        {
+            shelve.AccionReponerProducto();
+        }
     }
 
     private void ShowQuantities()
@@ -96,6 +102,10 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
             gameObject.GetComponent<Button>().spriteState = spriteState;
 
             quantity_text.color = colorDarkRed;
+
+            emptyProduct = true;
+            UIManager.Instance.alertTelephone.SetActive(true);
+            shelve.canvasAlert.SetActive(true);
         }
     }
 
