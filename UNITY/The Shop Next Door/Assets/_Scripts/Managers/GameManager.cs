@@ -130,12 +130,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateReputationIngame_UI();
     }
 
-    //public void UpdatePlayerVigor(float value)
-    //{
-    //    playerVigor += value; //ELEFANTE - por hacer
-    //    UIManager.Instance.UpdatePlayerVigor_UI();
-    //}
-
     public void UpdateAlmacenQuantity()
     {
         TiendaManager.Instance.updateAlmacenQuantity();
@@ -190,4 +184,5 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.vigor.RestoreVigor();
     }
+
 }

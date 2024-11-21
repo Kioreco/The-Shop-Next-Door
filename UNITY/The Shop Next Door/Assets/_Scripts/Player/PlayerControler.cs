@@ -108,7 +108,7 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
                 Debug.Log("Camara de P2");
             }
-            initialiceVariables();
+            initializeVariables();
             isInitialized = true;
             minX = Camera.main.transform.position.x - 30f; //20
             maxX = Camera.main.transform.position.x + 10f; //20
@@ -117,7 +117,7 @@ public class PlayerControler : NetworkBehaviour
         }
     }
 
-    void initialiceVariables()
+    void initializeVariables()
     {
         ActivateObjectPoolClient(client.GetComponent<ClientPrototype>());
         ActivateObjectPoolClient(clientKaren.GetComponent<ClientPrototype>());
@@ -126,7 +126,7 @@ public class PlayerControler : NetworkBehaviour
         clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
         clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
 
-        TiendaManager.Instance.reponerEstanteria(20);
+        TiendaManager.Instance.reponerEstanteria(10); //COMENTAR ELEFANTE
         TiendaManager.Instance.updateAlmacenQuantity();
         UIManager.Instance.UpdateInventorySpace_UI();
     }

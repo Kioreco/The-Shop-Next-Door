@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
+public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Estanteria shelve;
 
@@ -11,13 +11,12 @@ public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
 
     //[SerializeField] private Image bubbleBackground;
 
+    [Header("Quantity UI")]
     [SerializeField] private Image quantityBackground;
     [SerializeField] private GameObject quantityOverlay;
     [SerializeField] private TextMeshProUGUI quantity_text;
 
-    //[SerializeField] private TextMeshProUGUI upgrade_text;
-    //[SerializeField] private GameObject upgrade_button;
-
+    [Header("Sprites")]
     [SerializeField] private Sprite normalBackground;
     [SerializeField] private Sprite normalOverlay;
     [SerializeField] private Sprite normalPress;
@@ -33,16 +32,30 @@ public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
     private Color colorDarkRed = new Color(0.55f, 0.0f, 0.18f);
     private Color colorDarkBlue = new Color(0.14f, 0.45f, 0.51f);
 
-    public void OnDeselect(BaseEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ShowQuantities();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
     {
         quantityOverlay.SetActive(false);
     }
 
-
-    public void ShowQuantities()
+    public void RestockProduct_Button()
     {
-        quantityOverlay.SetActive(true);
+        TiendaManager.Instance.player.disableMovement();
+        TiendaManager.Instance.player.WalkToPosition(shelve.transform.position, false);
+        shelve.isRestocking = true;
+        shelve.productRestocking = productName;
+        shelve.product_UI = this;
+        shelve.canvasInteractable.SetActive(false);
+    }
+
+    private void ShowQuantities()
+    {
         UpdateShelvesQuantityProduct_UI();
+        quantityOverlay.SetActive(true);
     }
 
     public void UpdateShelvesQuantityProduct_UI()
@@ -66,7 +79,7 @@ public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
 
                 spriteChanged = false;
             }
-            quantity_text.SetText(quantity.ToString() + "/" + shelve.CheckMaxQuantityProduct(productName).ToString());
+            quantity_text.SetText(quantity.ToString() + "/" + shelve.maxSpacePerProduct);
         }
         else
         {
@@ -88,7 +101,7 @@ public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
 
     public void UpdateQuantityFillImage()
     {
-        quantityBackground.fillAmount = shelve.CheckQuantityProduct(productName) / shelve.CheckMaxQuantityProduct(productName);
+        quantityBackground.fillAmount = shelve.CheckQuantityProduct(productName) / shelve.maxSpacePerProduct;
 
         if (quantityBackground.fillAmount >= 0.5f)
         {
@@ -103,4 +116,7 @@ public class UI_ShelvesProducts : MonoBehaviour, IDeselectHandler
             quantityBackground.color = colorRed;
         }
     }
+
+    
+    
 }

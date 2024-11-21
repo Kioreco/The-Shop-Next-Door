@@ -167,6 +167,7 @@ public class PlayerVigor : MonoBehaviour
 
         vigorEnabled = true;
         vigorDiminish = true;
+        vigorFill = false;
     }
 
 }

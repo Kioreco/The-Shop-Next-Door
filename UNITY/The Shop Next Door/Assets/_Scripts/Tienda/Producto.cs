@@ -7,17 +7,15 @@ public class Producto
     public float precio { get; set; }
     public int stockAlmacen { get; set; } 
     public int stockEstanteria { get; set; }
-    public int maxStockEstanteria { get; set; }
     public char tipo {  get; set; }
     public bool disponible { get; set; }   
 
 
-    public Producto(float p, int sa, int se, int maxSE, char t, bool b) 
+    public Producto(float p, int sa, int se, char t, bool b) 
     {
         precio = p;
         stockAlmacen = sa;
         stockEstanteria = se;
-        maxStockEstanteria = maxSE;
         tipo = t;
         disponible = b;
         //if(b && (t == 'r' || t == 'c')) Debug.Log($"stockAlmacen: {sa}   stockEstanteria: {se}     tipo: {t}");
@@ -30,23 +28,15 @@ public class Producto
 
     public void gestionarStockEstanteriaYAlmacen(int a)
     {
-        //Debug.Log($"stockAlmacen: {stockAlmacen}  stockEstanteria: {stockEstanteria}  cantidad: {a}  resta: {stockAlmacen - a}");
         if (stockAlmacen - a >= 0)
         {
-            //Debug.Log("almacen con cantidad");
             stockEstanteria += a;
             stockAlmacen -= a;
-            //Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
-
         }
         else
         {
-            //Debug.Log("almacen sin cantidad");
-
             stockEstanteria += stockAlmacen;
             stockAlmacen = 0;
-            //Debug.Log($"stockAlmacen: {stockAlmacen}   stockEstanteria: {stockEstanteria}");
-
         }
     }
 

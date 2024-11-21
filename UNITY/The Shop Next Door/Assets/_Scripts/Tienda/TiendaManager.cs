@@ -92,46 +92,46 @@ public class TiendaManager : MonoBehaviour
     #region inicializacion Objetos
     void InicializarRopa()
     {
-        RopaYCalzado.Add("camisa", new Producto(19.99f, 25, 0, 10, 'r', true));
-        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 22, 0, 10, 'r', true));
-        RopaYCalzado.Add("vestidos", new Producto( 30.00f, 0, 0, 10, 'r', false));
-        RopaYCalzado.Add("pantalones", new Producto(25.99f, 22, 0, 10, 'r', true));
-        RopaYCalzado.Add("faldas", new Producto(20.00f, 20, 0, 10, 'r', true));
-        RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 10, 'r', false));
-        RopaYCalzado.Add("deportivas", new Producto(55.00f, 20, 0, 10, 'r', true));
-        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, 0, 10, 'r', true));
+        RopaYCalzado.Add("camisa", new Producto(19.99f, 25, 0, 'r', true));
+        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 22, 0, 'r', true));
+        RopaYCalzado.Add("vestidos", new Producto( 30.00f, 0, 0, 'r', false));
+        RopaYCalzado.Add("pantalones", new Producto(25.99f, 22, 0, 'r', true));
+        RopaYCalzado.Add("faldas", new Producto(20.00f, 20, 0, 'r', true));
+        RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 'r', false));
+        RopaYCalzado.Add("deportivas", new Producto(55.00f, 20, 0, 'r', true));
+        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, 0, 'r', true));
     }
     void InicializarPapeleria()
     {
-        PapeleriaYArte.Add("libro fantasia", new Producto( 19.99f, 50, 0, 10, 'p', false));
-        PapeleriaYArte.Add("libro romance", new Producto(24.99f, 50, 0, 10, 'p', false));
-        PapeleriaYArte.Add("libro historia", new Producto(29.99f, 50, 0, 10, 'p', false));
-        PapeleriaYArte.Add("pinturas", new Producto(14.99f, 50, 0, 10, 'p', false));
-        PapeleriaYArte.Add("rotuladores", new Producto(20.99f, 50, 0, 10, 'p', false));
-        PapeleriaYArte.Add("lienzos", new Producto(12.50f, 50, 0, 10, 'p', false));
+        PapeleriaYArte.Add("libro fantasia", new Producto( 19.99f, 50, 0, 'p', false));
+        PapeleriaYArte.Add("libro romance", new Producto(24.99f, 50, 0, 'p', false));
+        PapeleriaYArte.Add("libro historia", new Producto(29.99f, 50, 0, 'p', false));
+        PapeleriaYArte.Add("pinturas", new Producto(14.99f, 50, 0, 'p', false));
+        PapeleriaYArte.Add("rotuladores", new Producto(20.99f, 50, 0, 'p', false));
+        PapeleriaYArte.Add("lienzos", new Producto(12.50f, 50, 0, 'p', false));
     }
     void InicializarComida()
     {
-        Comida.Add("manzana", new Producto(0.85f, 22, 0, 10, 'c', true));
-        Comida.Add("sandia", new Producto(2.75f, 20, 0, 10, 'c', true));
-        Comida.Add("melon", new Producto(2.15f, 0, 0, 10, 'c', false));
-        Comida.Add("pizza", new Producto(3.45f, 21, 0, 10, 'c', true));
-        Comida.Add("croquetas", new Producto(4.60f, 0, 0, 10, 'c', false));
-        Comida.Add("calabaza", new Producto(5.00f, 25, 0, 10, 'c', true));
-        Comida.Add("carne", new Producto(12.50f, 21, 0, 10, 'c', true));
-        Comida.Add("pescado", new Producto(12.50f, 21, 0, 10, 'c', true));
+        Comida.Add("manzana", new Producto(0.85f, 22, 0, 'c', true));
+        Comida.Add("sandia", new Producto(2.75f, 20, 0, 'c', true));
+        Comida.Add("melon", new Producto(2.15f, 0, 0, 'c', false));
+        Comida.Add("pizza", new Producto(3.45f, 21, 0, 'c', true));
+        Comida.Add("croquetas", new Producto(4.60f, 0, 0, 'c', false));
+        Comida.Add("calabaza", new Producto(5.00f, 25, 0, 'c', true));
+        Comida.Add("carne", new Producto(12.50f, 21, 0, 'c', true));
+        Comida.Add("pescado", new Producto(12.50f, 21, 0, 'c', true));
     }
     void InicializarOcio()
     {
-        JuegosPeliculasMusica.Add("Hasta que la noche nos separe", new Producto(7.60f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("Decor Dilemma", new Producto(5.60f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("Virtual Velocity", new Producto(5.60f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 1", new Producto(4.75f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 2", new Producto(4.75f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 3", new Producto(4.75f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("CD-TaylorSwift", new Producto(12.00f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("CD-DAMN", new Producto(12.00f, 50, 0, 10, 'o', false));
-        JuegosPeliculasMusica.Add("CD-NombreDireccion", new Producto(12.00f, 50, 0, 10, 'o', false));
+        JuegosPeliculasMusica.Add("Hasta que la noche nos separe", new Producto(7.60f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Decor Dilemma", new Producto(5.60f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Virtual Velocity", new Producto(5.60f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Shrek 1", new Producto(4.75f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Shrek 2", new Producto(4.75f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Shrek 3", new Producto(4.75f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("CD-TaylorSwift", new Producto(12.00f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("CD-DAMN", new Producto(12.00f, 50, 0, 'o', false));
+        JuegosPeliculasMusica.Add("CD-NombreDireccion", new Producto(12.00f, 50, 0, 'o', false));
     }
 
     public Dictionary<string,Producto> getDictionaryAccType(char tipo)
@@ -346,15 +346,6 @@ public class TiendaManager : MonoBehaviour
         return 0;
     }
 
-    public int GetEstanteriaMaxQuantityOfProduct(string nombreProducto, char tipo)
-    {
-        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
-        {
-            return result.maxStockEstanteria;
-        }
-        return 0;
-    }
-
     public bool CheckIfCanBuyProduct(string nombreProducto, char tipo)
     {
         if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
@@ -404,19 +395,19 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
-    public void refillStock(string producto, int cantidad, char tipo)
+    public void FillStockWithSupplies(string producto, int cantidad, char tipo)
     {
         if (ID == 0 && player.IsOwner)
         {
             Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
             aux[producto].stockAlmacen += cantidad;
-            aux[producto].gestionarStockEstanteriaYAlmacen(20);
+            //aux[producto].gestionarStockEstanteriaYAlmacen(20);
         }
         else if (ID == 1 && player.IsOwner)
         {
             Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
             aux[producto].stockAlmacen += cantidad;
-            aux[producto].gestionarStockEstanteriaYAlmacen(20);
+            //aux[producto].gestionarStockEstanteriaYAlmacen(20);
         }
     }
 

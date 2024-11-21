@@ -459,7 +459,20 @@ MonoBehaviour:
   - carne
   - pescado
   - pizza
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 1161949187}
+  upgrade_button: {fileID: 912195065}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 1620310554}
+  - {fileID: 560167674}
+  - {fileID: 1802002030}
+  canvasInteractable: {fileID: 538823922}
 --- !u!65 &4742755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -842,7 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1043,15 +1056,15 @@ RectTransform:
   m_GameObject: {fileID: 26462467}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.8871169, y: 0.8871169, z: 0.8871169}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1007941175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 4.4, y: 2.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &26462469
 MonoBehaviour:
@@ -1073,7 +1086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61b904a2abe09c44fab796b65735806f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1425,7 +1438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 29132187}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1585,7 +1598,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 31579706}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2397,7 +2410,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 56832271}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3016,7 +3029,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 81741373}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3733,7 +3746,20 @@ MonoBehaviour:
   - camisa
   - edgy
   - faldas
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 1198181143}
+  upgrade_button: {fileID: 1055680941}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 711840216}
+  - {fileID: 465810432}
+  - {fileID: 934915376}
+  canvasInteractable: {fileID: 1997121686}
 --- !u!65 &130640033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3909,7 +3935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &137802721
 Transform:
   m_ObjectHideFlags: 0
@@ -4450,7 +4476,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 163343348}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905531870}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &163343348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4541,7 +4579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4985,15 +5023,15 @@ RectTransform:
   m_GameObject: {fileID: 199753249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.6948977, y: 0.6948977, z: 0.6948977}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1660458574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 1.8}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199753251
 MonoBehaviour:
@@ -5015,7 +5053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af8a37b069c104541bb91ca49b2faf33, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5520,7 +5558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5596,7 +5634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6526,7 +6564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7707,7 +7745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &345439148
 Transform:
   m_ObjectHideFlags: 0
@@ -7739,7 +7777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &345599391
 Transform:
   m_ObjectHideFlags: 0
@@ -7840,7 +7878,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 347545246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1898382238}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &347545246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8510,7 +8560,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 355548470}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9012,7 +9062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11417,6 +11467,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 465810430}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &465810432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c22bce1d7f103654b8313d5442fe95ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 465810430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &470400855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11542,15 +11598,15 @@ RectTransform:
   m_GameObject: {fileID: 472954308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.67251426, y: 0.67251426, z: 0.67251426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 56832267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 1.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472954310
 MonoBehaviour:
@@ -11572,7 +11628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af8a37b069c104541bb91ca49b2faf33, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11717,7 +11773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11867,7 +11923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12089,7 +12145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &504342012
 Transform:
   m_ObjectHideFlags: 0
@@ -12122,7 +12178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &506835933
 Transform:
   m_ObjectHideFlags: 0
@@ -13109,7 +13165,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 541913365}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14362,7 +14418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -14401,7 +14457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &592650388
 Transform:
   m_ObjectHideFlags: 0
@@ -15841,14 +15897,14 @@ RectTransform:
   m_GameObject: {fileID: 633210807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1666, y: 2.1666, z: 2.1666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 770954194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.17721, y: -1.8}
+  m_AnchoredPosition: {x: -90.17721, y: -2.4}
   m_SizeDelta: {x: 50.88889, y: 44.444443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633210809
@@ -15871,7 +15927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c26bdb79550df124786ddece7cd25bf5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -16715,7 +16771,20 @@ MonoBehaviour:
   - manzana
   - sandia
   - calabaza
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 1060423106}
+  upgrade_button: {fileID: 651237086}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 592650387}
+  - {fileID: 219852808}
+  - {fileID: 345599390}
+  canvasInteractable: {fileID: 1708472352}
 --- !u!65 &644509145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17066,7 +17135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 651237089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 644509144}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &651237089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17157,7 +17238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17300,7 +17381,20 @@ MonoBehaviour:
   - jerseis
   - pantalones
   - deportivas
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 734261525}
+  upgrade_button: {fileID: 1411686113}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 345439147}
+  - {fileID: 512470056}
+  - {fileID: 1108465854}
+  canvasInteractable: {fileID: 1741027475}
 --- !u!1001 &662611528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17565,7 +17659,20 @@ MonoBehaviour:
   - carne
   - pescado
   - pizza
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 832837555}
+  upgrade_button: {fileID: 1281238869}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 1135659434}
+  - {fileID: 191003023}
+  - {fileID: 1476625953}
+  canvasInteractable: {fileID: 1768490110}
 --- !u!65 &663696202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17659,7 +17766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19333,7 +19440,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
         type: 3}
@@ -19373,6 +19480,12 @@ PrefabInstance:
 --- !u!4 &711840215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 95b3364c15d8a9b45a686b1a65bc3644,
+    type: 3}
+  m_PrefabInstance: {fileID: 711840214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &711840216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
     type: 3}
   m_PrefabInstance: {fileID: 711840214}
   m_PrefabAsset: {fileID: 0}
@@ -19795,7 +19908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -20717,7 +20830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -21695,7 +21808,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 738503426}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21940,7 +22053,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 753401552}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22417,7 +22530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -23017,15 +23130,15 @@ RectTransform:
   m_GameObject: {fileID: 791131900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.8960956, y: 0.8960956, z: 0.8960956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 738503422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 4.7, y: 2.5}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791131902
 MonoBehaviour:
@@ -23047,7 +23160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61b904a2abe09c44fab796b65735806f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -23868,7 +23981,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 818100477}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24706,7 +24819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -26159,7 +26272,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 912195068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4742754}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &912195068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26993,7 +27118,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
         type: 3}
@@ -27103,6 +27228,12 @@ PrefabInstance:
 --- !u!4 &934915375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 964bcc14c0d5a0a42b77290d5ec89743,
+    type: 3}
+  m_PrefabInstance: {fileID: 934915374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &934915376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
     type: 3}
   m_PrefabInstance: {fileID: 934915374}
   m_PrefabAsset: {fileID: 0}
@@ -27366,7 +27497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936145101}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28250,7 +28381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -29200,7 +29331,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1007941178}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30582,7 +30713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30934,7 +31065,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1055680944}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 130640032}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1055680944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31160,7 +31303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -31361,14 +31504,14 @@ RectTransform:
   m_GameObject: {fileID: 1081886127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0748, y: 2.0748, z: 2.0748}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1248261677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.17721, y: -1.8}
+  m_AnchoredPosition: {x: -84.1, y: 4.8}
   m_SizeDelta: {x: 50.88889, y: 44.444443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081886129
@@ -31391,7 +31534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a964672b8674f974d9ee414d6ea6b546, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -31686,7 +31829,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1083163451}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32133,7 +32276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1108465855
 Transform:
   m_ObjectHideFlags: 0
@@ -32801,7 +32944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1135659435
 Transform:
   m_ObjectHideFlags: 0
@@ -33348,7 +33491,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1149581845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1796585868}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1149581845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34151,15 +34306,15 @@ RectTransform:
   m_GameObject: {fileID: 1180388292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.8424133, y: 0.8424133, z: 0.8424133}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1989681216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 3.5, y: 8}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1180388294
 MonoBehaviour:
@@ -34181,7 +34336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a964672b8674f974d9ee414d6ea6b546, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -34633,7 +34788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1187707617}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35997,7 +36152,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
         type: 3}
@@ -36107,6 +36262,12 @@ PrefabInstance:
 --- !u!4 &1247182730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 964bcc14c0d5a0a42b77290d5ec89743,
+    type: 3}
+  m_PrefabInstance: {fileID: 1247182729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247182731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 964bcc14c0d5a0a42b77290d5ec89743,
     type: 3}
   m_PrefabInstance: {fileID: 1247182729}
   m_PrefabAsset: {fileID: 0}
@@ -37834,7 +37995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1281238872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 663696201}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1281238872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38338,14 +38511,14 @@ RectTransform:
   m_GameObject: {fileID: 1303126058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6152, y: 1.6152, z: 1.6152}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1719519446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.17721, y: -1.8}
+  m_AnchoredPosition: {x: -90.6, y: -1.8}
   m_SizeDelta: {x: 50.88889, y: 44.444443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303126060
@@ -38368,7 +38541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af8a37b069c104541bb91ca49b2faf33, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -38475,7 +38648,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1312836539}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39798,7 +39971,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1375776169}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40813,14 +40986,14 @@ RectTransform:
   m_GameObject: {fileID: 1397572835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.969, y: 1.969, z: 1.969}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148636457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.17721, y: -1.8}
+  m_AnchoredPosition: {x: -87.4, y: 1}
   m_SizeDelta: {x: 50.88889, y: 44.444443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397572837
@@ -40843,7 +41016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61b904a2abe09c44fab796b65735806f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -41251,7 +41424,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1411686115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 660419328}
+        m_TargetAssemblyTypeName: Estanteria, Assembly-CSharp
+        m_MethodName: UpgradeShelve_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1413409750
 GameObject:
   m_ObjectHideFlags: 0
@@ -41304,7 +41489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -41825,7 +42010,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1431260909}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42857,7 +43042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1476625954
 Transform:
   m_ObjectHideFlags: 0
@@ -44124,7 +44309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -44470,7 +44655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -45049,7 +45234,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1553431327}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47126,7 +47311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1620310555
 Transform:
   m_ObjectHideFlags: 0
@@ -47839,7 +48024,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1660458577}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47970,7 +48155,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
         type: 3}
@@ -48010,6 +48195,12 @@ PrefabInstance:
 --- !u!4 &1661144661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 95b3364c15d8a9b45a686b1a65bc3644,
+    type: 3}
+  m_PrefabInstance: {fileID: 1661144660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1661144662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95b3364c15d8a9b45a686b1a65bc3644,
     type: 3}
   m_PrefabInstance: {fileID: 1661144660}
   m_PrefabAsset: {fileID: 0}
@@ -48720,7 +48911,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1689317025}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -49453,10 +49644,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1083163452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706358908
 MonoBehaviour:
@@ -50236,14 +50427,14 @@ RectTransform:
   m_GameObject: {fileID: 1731208427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8556, y: 1.8556, z: 1.8556}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 319919105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.17721, y: -1.8}
+  m_AnchoredPosition: {x: -89.3, y: 1.2}
   m_SizeDelta: {x: 50.88889, y: 44.444443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731208429
@@ -50266,7 +50457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1370bafb5be1f4f418c3c10680314b2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -50564,7 +50755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -51449,7 +51640,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790229090}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -51596,7 +51787,20 @@ MonoBehaviour:
   - manzana
   - sandia
   - calabaza
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 0}
+  upgrade_button: {fileID: 0}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 504342011}
+  - {fileID: 1276188375}
+  - {fileID: 137802720}
+  canvasInteractable: {fileID: 991681261}
 --- !u!1 &1798577802
 GameObject:
   m_ObjectHideFlags: 0
@@ -51747,7 +51951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1802002031
 Transform:
   m_ObjectHideFlags: 0
@@ -52033,7 +52237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -52146,7 +52350,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813830962}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -53997,15 +54201,15 @@ RectTransform:
   m_GameObject: {fileID: 1868046494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.8424133, y: 0.8424133, z: 0.8424133}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1187707614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 4.5, y: 7.3}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868046496
 MonoBehaviour:
@@ -54027,7 +54231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a964672b8674f974d9ee414d6ea6b546, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -54279,6 +54483,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1883146315}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883146317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c22bce1d7f103654b8313d5442fe95ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1883146315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1885230716
 GameObject:
   m_ObjectHideFlags: 0
@@ -54306,15 +54516,15 @@ RectTransform:
   m_GameObject: {fileID: 1885230716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.90950036, y: 0.90950036, z: 0.90950036}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1375776170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1885230718
 MonoBehaviour:
@@ -54336,7 +54546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c26bdb79550df124786ddece7cd25bf5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -54729,7 +54939,20 @@ MonoBehaviour:
   - jerseis
   - pantalones
   - deportivas
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 1666560562}
+  upgrade_button: {fileID: 347545243}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 506835932}
+  - {fileID: 853160154}
+  - {fileID: 2094061890}
+  canvasInteractable: {fileID: 45782137}
 --- !u!65 &1898382239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55091,7 +55314,20 @@ MonoBehaviour:
   - camisa
   - edgy
   - faldas
-  maxElem: 10
+  maxSpacePerProduct: 10
+  isRestocking: 0
+  productRestocking: 
+  product_UI: {fileID: 0}
+  upgrade_text: {fileID: 721372453}
+  upgrade_button: {fileID: 163343345}
+  shelveLevel: 1
+  maxShelveLevels: 3
+  upgradeCosts: f401000020030000e8030000
+  shelveLevelObjects:
+  - {fileID: 1661144662}
+  - {fileID: 1883146317}
+  - {fileID: 1247182731}
+  canvasInteractable: {fileID: 1349512226}
 --- !u!65 &1905531871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55357,7 +55593,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1906829342}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57735,7 +57971,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1979224267}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -58580,7 +58816,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1989681220}
         m_TargetAssemblyTypeName: UI_ShelvesProducts, Assembly-CSharp
-        m_MethodName: ShowQuantities
+        m_MethodName: RestockProduct_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -60401,7 +60637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -60847,15 +61083,15 @@ RectTransform:
   m_GameObject: {fileID: 2065125750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6323, y: 0.6323, z: 0.6323}
+  m_LocalScale: {x: 0.90501106, y: 0.90501106, z: 0.90501106}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 936145098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.2999992, y: 0.099998474}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065125752
 MonoBehaviour:
@@ -60877,7 +61113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2095ef4f51878841be53776720c30a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c26bdb79550df124786ddece7cd25bf5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -61646,7 +61882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2094061891
 Transform:
   m_ObjectHideFlags: 0
