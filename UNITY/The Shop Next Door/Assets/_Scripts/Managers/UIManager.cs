@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI joinCode_Text;
-    [SerializeField] public TextMeshProUGUI joinCode_Button;
+    [SerializeField] public GameObject joinCode_Button;
     [SerializeField] public TMP_InputField joinCode_Input;
     [SerializeField] public GameObject messageMatch_waiting;
     [SerializeField] public GameObject messageMatch_wrong;
@@ -142,6 +142,7 @@ public class UIManager : MonoBehaviour
     public void StartHost_Button()
     {
         RelayManager.Instance.StartHost();
+        
         messageMatch_waiting.SetActive(true);
     }
 
@@ -152,7 +153,7 @@ public class UIManager : MonoBehaviour
 
     public void CopyJoinCode()
     {
-        GUIUtility.systemCopyBuffer = joinCode_Input.text;
+        GUIUtility.systemCopyBuffer = joinCode_Text.text;
     }
 
     public void Cancel_Button()

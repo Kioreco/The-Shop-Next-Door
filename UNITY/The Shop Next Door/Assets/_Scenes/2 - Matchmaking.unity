@@ -828,8 +828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cashRegister_Text: {fileID: 0}
   canvas_menu: {fileID: 0}
-  joinCode_Text: {fileID: 0}
-  joinCode_Button: {fileID: 0}
+  joinCode_Text: {fileID: 1317588519}
+  joinCode_Button: {fileID: 438797642}
   joinCode_Input: {fileID: 65241094}
   messageMatch_waiting: {fileID: 1833581002}
   messageMatch_wrong: {fileID: 1290701186}
@@ -3132,7 +3132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.8235016, y: 67}
+  m_AnchoredPosition: {x: 3.8234863, y: 67}
   m_SizeDelta: {x: -70.0529, y: -181.2129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625182754
@@ -3265,7 +3265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.2577069, y: -191}
+  m_AnchoredPosition: {x: -1.2575684, y: -191}
   m_SizeDelta: {x: 0, y: -165.05212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638766241

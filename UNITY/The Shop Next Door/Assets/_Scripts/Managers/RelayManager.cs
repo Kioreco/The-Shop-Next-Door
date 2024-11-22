@@ -56,6 +56,7 @@ public class RelayManager : NetworkBehaviour
 
     public async void StartHost()
     {
+        UIManager.Instance.joinCode_Input.gameObject.SetActive(false);
         _connect = false;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
         {
@@ -76,6 +77,8 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
         joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
+        UIManager.Instance.joinCode_Button.SetActive(false);
+        Debug.Log(joinCode);
         UIManager.Instance.joinCode_Text.SetText(joinCode);
 
         NetworkManager.Singleton.StartHost();
