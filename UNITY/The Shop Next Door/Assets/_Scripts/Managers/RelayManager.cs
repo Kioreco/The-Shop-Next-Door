@@ -76,14 +76,14 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
         joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-        UIManager.Instance.matchCodeMatchMaking_Text.SetText(joinCode);
+        UIManager.Instance.joinCode_Text.SetText(joinCode);
 
         NetworkManager.Singleton.StartHost();
 
-        if (IsServer)
-        {
-            Debug.Log("El server dice que hay estos clientes " + NetworkManager.Singleton.ConnectedClients.Count);
-        }
+        //if (IsServer)
+        //{
+        //    Debug.Log("El server dice que hay estos clientes " + NetworkManager.Singleton.ConnectedClients.Count);
+        //}
     }
 
     public async void StartClient(string joinCodeInput)
@@ -131,7 +131,7 @@ public class RelayManager : NetworkBehaviour
             joinCode = null;
             //connectedPlayers = 0;
             _obj = new ulong[15];
-            UIManager.Instance.matchCodeMatchMaking_Text.SetText("Partida cancelada");
+            UIManager.Instance.joinCode_Text.SetText("Partida cancelada");
 
             Invoke("ClearNetworkState", 0.5f);
         }

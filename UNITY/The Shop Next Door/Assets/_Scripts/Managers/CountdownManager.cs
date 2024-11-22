@@ -15,8 +15,13 @@ public class CountdownManager : NetworkBehaviour
     public NetworkVariable<bool> player2Ready = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [SerializeField] private GameObject canvasCountdown;
-    [SerializeField] private Button readyButton;
-    [SerializeField] private TextMeshProUGUI waitingText;
+    private Button readyButton;
+    private GameObject playerReady_image;
+
+    [SerializeField] private Button readyButton_P1;
+    [SerializeField] private Button readyButton_P2;
+    [SerializeField] private GameObject player1Ready_image;
+    [SerializeField] private GameObject player2Ready_image;
 
     public static CountdownManager Instance { get; private set; }
 
@@ -25,6 +30,18 @@ public class CountdownManager : NetworkBehaviour
         if (Instance == null)
         {
             Instance = this;
+            ulong id = NetworkManager.Singleton.LocalClientId;
+            if (id == 0)
+            {
+                readyButton = readyButton_P1;
+                playerReady_image = player1Ready_image;
+            }
+            else
+            {
+                readyButton = readyButton_P2;
+                playerReady_image = player2Ready_image;
+            }
+            readyButton.gameObject.SetActive(true);
         }
         else
         {
@@ -45,6 +62,7 @@ public class CountdownManager : NetworkBehaviour
     [ClientRpc]
     public void StartCountdownClientRpc()
     {
+        playerReady_image.SetActive(false);
         countdownText.gameObject.SetActive(true);
     }
 
@@ -89,7 +107,6 @@ public class CountdownManager : NetworkBehaviour
         canvasCountdown.SetActive(false);
         UIManager.Instance.canvasIngame.SetActive(true);
         GameManager.Instance._player.enabled = true;
-        //GameManager.Instance._player.enableMovement(false);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -123,5 +140,6 @@ public class CountdownManager : NetworkBehaviour
         Debug.Log("Entra en el OnReady el cliente " + id);
         SetPlayerReadyServerRpc(id);
         readyButton.gameObject.SetActive(false);
+        playerReady_image.SetActive(true);
     }
 }
