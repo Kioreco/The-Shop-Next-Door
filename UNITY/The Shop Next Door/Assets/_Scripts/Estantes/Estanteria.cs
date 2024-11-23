@@ -18,8 +18,8 @@ public class Estanteria : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgrade_text;
     [SerializeField] private GameObject upgrade_button;
 
-    [HideInInspector] public int shelveLevel = 0;
-    public int maxShelveLevels;
+    private int shelveLevel = 0;
+    private int maxShelveLevels;
     public int[] upgradeCosts = new int[3] { 500, 800, 1000 };
 
     [SerializeField] private GameObject[] shelveLevelObjects;
@@ -34,6 +34,7 @@ public class Estanteria : MonoBehaviour
     {
         listaProductosEstanteria = TiendaManager.Instance.getDictionaryAccType(tipoObj);
         upgrade_text.SetText(upgradeCosts[0] + " €");
+        shelveLevel = 0;
     }
 
     public bool TieneElemento(string s)
@@ -116,7 +117,7 @@ public class Estanteria : MonoBehaviour
 
         canvasInteractable.SetActive(false);
         shelveLevelObjects[shelveLevel].SetActive(false);
-        shelveLevel++;
+        shelveLevel += 1;
         shelveLevelObjects[shelveLevel].SetActive(true);
         maxSpacePerProduct += 20;
     }
