@@ -475,6 +475,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 538823922}
   canvasAlert: {fileID: 793599946}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 1166667148}
 --- !u!65 &4742755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3687,6 +3688,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 1997121686}
   canvasAlert: {fileID: 447260548}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 401708573}
 --- !u!65 &130640033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17483,6 +17485,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 1708472352}
   canvasAlert: {fileID: 1858074691}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 257477724}
 --- !u!65 &644509145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18097,6 +18100,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 1741027475}
   canvasAlert: {fileID: 2079308323}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 353393603}
 --- !u!1001 &662611528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18377,6 +18381,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 1768490110}
   canvasAlert: {fileID: 1513362894}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 828718798}
 --- !u!65 &663696202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48512,6 +48517,10 @@ MonoBehaviour:
   hour_EndDay_Text: {fileID: 1025352560}
   player1Reputation: {fileID: 447655828}
   player2Reputation: {fileID: 608663277}
+  player1Result_text: {fileID: 0}
+  player2Result_text: {fileID: 0}
+  winnerName_text: {fileID: 0}
+  inheritance_text: {fileID: 0}
   cajaPlayerPosition: {fileID: 0}
 --- !u!4 &1618253345
 Transform:
@@ -50236,14 +50245,16 @@ MonoBehaviour:
   techoPlayer1: {fileID: 1918945526}
   techoPlayer2: {fileID: 1024312318}
   dineroJugador: 500
-  dineroRival: 0
+  inheritance: 0
   espacioAlmacen: 0
   maxEspacioAlmacen: 0
   reputation: 0
   playerVigor: 0
+  dineroRival: 0
   playerResult: 0
   playerResultRival: 0
   _player: {fileID: 0}
+  playerID: 0
   canvasInteractable: {fileID: 1741027476}
   cajero_1_Bar: {fileID: 1129796866}
   cajero_2_Bar: {fileID: 1693768158}
@@ -53492,6 +53503,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 991681261}
   canvasAlert: {fileID: 804981101}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 1479989138}
 --- !u!1 &1798577802
 GameObject:
   m_ObjectHideFlags: 0
@@ -56854,6 +56866,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 45782137}
   canvasAlert: {fileID: 710884423}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 564233929}
 --- !u!65 &1898382239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57232,6 +57245,7 @@ MonoBehaviour:
   canvasInteractable: {fileID: 1349512226}
   canvasAlert: {fileID: 1321751298}
   playerIsHere: 0
+  worldObjectInteractable: {fileID: 784231918}
 --- !u!65 &1905531871
 BoxCollider:
   m_ObjectHideFlags: 0

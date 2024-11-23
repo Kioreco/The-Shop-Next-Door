@@ -27,6 +27,7 @@ public class Estanteria : MonoBehaviour
     [SerializeField] public GameObject canvasAlert;
 
     public bool playerIsHere;
+    public WorldObject_UI_Interable worldObjectInteractable;
 
 
     private void Start()

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RubbishClientPrototype : MonoBehaviour
@@ -10,19 +11,23 @@ public class RubbishClientPrototype : MonoBehaviour
     private ObjectPoolRubish rubbishInstanciatorPool;
     public bool isEnable;
 
+    //instanciar con delay:
+    bool isSpawning = false;
+    float delay = 15f;
+
     private void Start()
     {
         rubbishInstanciatorPool = new ObjectPoolRubish((RubbishController)rubishPrototype, maxManchas, allowAddNew);
     }
     private void Update()
     {
-        if (isEnable)
+        if (isEnable & isCreated & !isSpawning)
         {
-            if (isCreated && rubbishInstanciatorPool.GetActive() < maxActiveInScene && !allowAddNew)
+            if (rubbishInstanciatorPool.GetActive() < maxActiveInScene && !allowAddNew)
             {
-                RubbishController npcBasic = createRubishInstance();
+                StartCoroutine(ActivateWithDelay());
             }
-            if (isCreated && allowAddNew)
+            if (allowAddNew)
             {
                 for (int i = rubbishInstanciatorPool.GetActive(); i < rubbishInstanciatorPool.GetCount(); i++)
                 {
@@ -45,5 +50,16 @@ public class RubbishClientPrototype : MonoBehaviour
         }
 
         return rubishInstance;
+    }
+
+    IEnumerator ActivateWithDelay()
+    {
+        isSpawning = true;
+        while (rubbishInstanciatorPool.GetActive() < maxActiveInScene)
+        {
+            createRubishInstance();
+            yield return new WaitForSeconds(delay); // Espera el delay
+        }
+        isSpawning = false;
     }
 }

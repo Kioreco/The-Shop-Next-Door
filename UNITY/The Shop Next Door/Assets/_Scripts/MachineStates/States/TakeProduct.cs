@@ -9,6 +9,7 @@ public class TakeProduct : AStateNPC
     float lastSeek = 0f;
     string nombreProducto;
     int cantidadProductos;
+    bool checkpoint = true;
     #region metodos
     public override void Enter() 
     {
@@ -37,10 +38,11 @@ public class TakeProduct : AStateNPC
 
         if (contexto.getFelicidad() <= contexto.getMaxEnfado()) contexto.SetState(new LeaveAngry(contexto));
 
-        lastSeek += Time.deltaTime;
+        if(checkpoint) lastSeek += Time.deltaTime;
 
         if (lastSeek >= secondsToSeek)
         {
+            checkpoint = false;
             lastSeek = 0f;
             if (contexto.getIsInColliderShelf())
             {
@@ -51,7 +53,7 @@ public class TakeProduct : AStateNPC
 
             if(cantidadProductos == -1)
             {
-                Debug.Log($"no hay suficientes productos");
+                //Debug.Log($"no hay suficientes productos");
                 if(!contexto.getIsKaren()) contexto.reducirFelicidad(15);
                 else contexto.reducirFelicidad(25);
             }

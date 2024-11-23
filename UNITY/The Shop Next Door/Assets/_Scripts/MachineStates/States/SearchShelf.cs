@@ -9,7 +9,7 @@ public class SearchShelf : AStateNPC
     public override void Enter()
     {
         //Debug.Log($"searching next shelf\tElementosRestantes: {contexto.getLista().lista.Count}");
-        contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First()));
+        contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First(), false));
         contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);
         contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
     }

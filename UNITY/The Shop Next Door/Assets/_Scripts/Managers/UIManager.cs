@@ -125,8 +125,13 @@ public class UIManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        if (sceneName == "1 - MenuInicio") { Cancel_Button(); }
+        //if (sceneName == "1 - MenuInicio") { Cancel_Button(); }
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void RestartToMenu()
+    {
+        Cancel_Button();
     }
 
     public void OpenMenu(GameObject menu)

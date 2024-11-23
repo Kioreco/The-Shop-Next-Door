@@ -11,9 +11,6 @@ public class CountdownManager : NetworkBehaviour
 
     private NetworkVariable<float> networkTime = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Server);
 
-    public NetworkVariable<bool> player1Ready = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<bool> player2Ready = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
     [SerializeField] private GameObject canvasCountdown;
     private Button readyButton;
     private GameObject playerReady_image;
@@ -23,6 +20,8 @@ public class CountdownManager : NetworkBehaviour
     [SerializeField] private GameObject player1Ready_image;
     [SerializeField] private GameObject player2Ready_image;
 
+    int contReady = 0;
+
     public static CountdownManager Instance { get; private set; }
 
     void Awake()
@@ -31,7 +30,7 @@ public class CountdownManager : NetworkBehaviour
         {
             Instance = this;
             ulong id = NetworkManager.Singleton.LocalClientId;
-            if (id == 0)
+            if ((int)id == 0)
             {
                 readyButton = readyButton_P1;
                 playerReady_image = player1Ready_image;
@@ -48,30 +47,12 @@ public class CountdownManager : NetworkBehaviour
             Destroy(gameObject);
         }
     }
-
-    [ServerRpc]
-    public void StartCountdownServerRpc()
-    {
-        StartCountdownClientRpc();
-
-        currentTime = countdownTime;
-        networkTime.Value = countdownTime;
-        InvokeRepeating("UpdateCountdown", 1.0f, 1.0f);
-    }
-
     [ClientRpc]
     public void StartCountdownClientRpc()
     {
+        print("desactivo imagen");
         playerReady_image.SetActive(false);
         countdownText.gameObject.SetActive(true);
-    }
-
-    public void StartCountdown()
-    {
-        if (IsServer)
-        {
-            StartCountdownServerRpc();
-        }
     }
 
     [ClientRpc]
@@ -96,7 +77,6 @@ public class CountdownManager : NetworkBehaviour
 
         currentTime -= 1f;
         networkTime.Value = currentTime;
-
     }
 
     [ClientRpc]
@@ -110,35 +90,29 @@ public class CountdownManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void SetPlayerReadyServerRpc(ulong clientId)
+    public void SetPlayerReadyServerRpc()
     {
-        Debug.Log("Entra en el server");
-        if (clientId == 0) 
-        {
-            player1Ready.Value = true;
-        }
-        else 
-        {
-            Debug.Log("Entra en cliente");
-            player2Ready.Value = true;
-        }
+        contReady++;
 
-        CheckReadyStatus();
-    }
-
-    private void CheckReadyStatus()
-    {
-        if (player1Ready.Value && player2Ready.Value)
+        if (contReady == 2)
         {
-            StartCountdown();
+            print("host en todos listos");
+            player1Ready_image.SetActive(false);
+            print($"player ready nombre: {playerReady_image.name}     está activa? {player1Ready_image.activeInHierarchy}");
+            countdownText.gameObject.SetActive(true);
+            StartCountdownClientRpc();
+
+            currentTime = countdownTime;
+            networkTime.Value = countdownTime;
+            InvokeRepeating("UpdateCountdown", 1.0f, 1.0f);
         }
     }
-
     public void OnReadyButtonClicked()
     {
         ulong id = NetworkManager.Singleton.LocalClientId;
-        Debug.Log("Entra en el OnReady el cliente " + id);
-        SetPlayerReadyServerRpc(id);
+        Debug.Log("Entra en el OnReady  " + (int)id);
+
+        SetPlayerReadyServerRpc();
         readyButton.gameObject.SetActive(false);
         playerReady_image.SetActive(true);
     }

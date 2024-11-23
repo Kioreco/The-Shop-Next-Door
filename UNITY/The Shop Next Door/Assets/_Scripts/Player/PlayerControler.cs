@@ -68,13 +68,15 @@ public class PlayerControler : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom;
+
+            print("start player");
+
+            hostMoney.OnValueChanged += OnHostMoneyChange;
+            clientMoney.OnValueChanged += OnClientMoneyChange;
+
+            hostResult.OnValueChanged += OnHostResultChange;
+            clientResult.OnValueChanged += OnClientResultChange;
         }
-
-        hostMoney.OnValueChanged += OnHostMoneyChange;
-        clientMoney.OnValueChanged += OnClientMoneyChange;
-
-        hostResult.OnValueChanged += OnHostResultChange;
-        clientResult.OnValueChanged += OnClientResultChange;
     }
 
     public override void OnNetworkSpawn()
@@ -126,6 +128,7 @@ public class PlayerControler : NetworkBehaviour
 
         clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
         clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
+        clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
 
         //TiendaManager.Instance.reponerEstanteria(10); //COMENTAR ELEFANTE
         TiendaManager.Instance.updateAlmacenQuantity();
@@ -240,25 +243,66 @@ public class PlayerControler : NetworkBehaviour
     {
         if (ID == 0 && IsOwner)
         {
-            hostMoney.Value = GameManager.Instance.dineroJugador;
-            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            //print("final resume cambiando dinero el host");
+            //hostMoney.Value = GameManager.Instance.dineroJugador;
+            //UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
+            UpdateHostMoneyServerRpc(GameManager.Instance.dineroJugador);
         }
         if (ID == 1 && IsOwner)
         {
-            clientMoney.Value = GameManager.Instance.dineroJugador;
-            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador);
+
+            //print("final resume cambiando dinero el client");
+            //clientMoney.Value = GameManager.Instance.dineroJugador;
+            //UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
             //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
-        }       
+        }
     }
+
+
+    [ServerRpc]
+    public void UpdateHostMoneyServerRpc(float newV)
+    {
+        print("host server rpc");
+        UpdateHostMoneyForClientRpc(newV);
+    }
+
+    [ServerRpc]
+    public void UpdateClientMoneyServerRpc(float newV)
+    {
+        print("client server rpc");
+        UpdateClientMoneyForClientRpc(newV);
+    }
+    [ClientRpc]
+    public void UpdateHostMoneyForClientRpc(float newV)
+    {
+        print("update money host");
+        if (IsOwner & ID == 1)
+        {
+            GameManager.Instance.dineroRival = newV;
+            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+        }
+    }    
+    [ClientRpc]
+    public void UpdateClientMoneyForClientRpc(float newV)
+    {
+        print("update client money");
+        if (IsOwner & ID == 0)
+        {
+            GameManager.Instance.dineroRival = newV;
+            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+        }
+    }
+
 
     void OnHostMoneyChange(float previous, float newM) 
     {
-        //print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+        print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
 
         if (IsClient)
         {
-            //print($"on host money change if");
+            print($"on host money change if");
             GameManager.Instance.dineroRival = newM;
             UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
@@ -266,11 +310,11 @@ public class PlayerControler : NetworkBehaviour
 
     void OnClientMoneyChange(float previous, float newM) 
     {
-        //print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+        print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
 
         if (IsServer)
         {
-            //print($"on client money change if");
+            print($"on client money change if");
 
             GameManager.Instance.dineroRival = newM;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());

@@ -863,6 +863,10 @@ MonoBehaviour:
   hour_EndDay_Text: {fileID: 0}
   player1Reputation: {fileID: 0}
   player2Reputation: {fileID: 0}
+  player1Result_text: {fileID: 0}
+  player2Result_text: {fileID: 0}
+  winnerName_text: {fileID: 0}
+  inheritance_text: {fileID: 0}
   cajaPlayerPosition: {fileID: 0}
 --- !u!4 &300335086
 Transform:
@@ -2793,8 +2797,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 300335085}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+        m_MethodName: RestartToMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

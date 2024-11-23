@@ -34,7 +34,7 @@ Material:
     - _DstBlendAlpha: 10
     m_Colors:
     - _BaseColor: {r: 0.92, g: 0.47, b: 0, a: 1}
-    - _Color: {r: 0.049999982, g: 0.78, b: 0.28999996, a: 1}
+    - _Color: {r: 0.74, g: 0.68, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 0.10196079, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5005830327247877169

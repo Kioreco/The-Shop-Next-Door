@@ -156,28 +156,33 @@ public class TiendaManager : MonoBehaviour
     }
     #endregion
 
-    public Vector3 buscarEstanteria(string producto)
+    public Vector3 buscarEstanteria(string producto, bool isEmpty)
     {
-        //print(GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID);
         if (ID == 0 && player.IsOwner)
-        //if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            //print("host");
             foreach (var item in shelfsP1)
             {
-                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
+                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true)
+                {
+                    if (isEmpty)
+                    {
+                        item.GetComponent<Estanteria>().worldObjectInteractable.UpdateUIProducts();
+                    }
+                    return item.transform.position;
+                }
             }
         }
         else if (ID == 1 && player.IsOwner)
-        //else if(GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 1 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
-            //print("cliente");
             foreach (var item in shelfsP2)
             {
-                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true) return item.transform.position;
+                if (item.GetComponent<Estanteria>().TieneElemento(producto) == true)
+                {
+                    if (isEmpty) item.GetComponent<Estanteria>().product_UI.UpdateShelvesQuantityProduct_UI();
+                    return item.transform.position;
+                }
             }
         }
-
         return new Vector3(0, 0, 0);
     }
 
@@ -230,29 +235,30 @@ public class TiendaManager : MonoBehaviour
 
     public int cogerDeEstanteria(string s, char tipo, int cantidad)
     {
+        int productsRemaining;
         if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
         {
-            //print($"antes: {result}");
-            return result.cogerProducto(cantidad);
-            //print($"despues: {result}");
+            productsRemaining = result.cogerProducto(cantidad);
+
+            if (productsRemaining == -1) //producto vacio
+            {
+                buscarEstanteria(s, true);
+            }
+
+            return productsRemaining;
         }
         return -1;
+
     }
 
     public int cogerSitioCola(IContext npc)
     {
-        //print($"cojo sitio antes: {cajaPago.transform.position}");
-        //posicionEnLaCola.transform.position += new Vector3 (0, 0, 1.2f);
-        //print($"cojo sitio despues: {cajaPago.transform.position}");
-        //print($"npc añadido en la cola, pos: {npcPayQueue.Count}, max checkpoints: {posPayCheckpoints.Count}");
         if (ID == 0 && player.IsOwner)
-        //if (GameObject.FindWithTag("Player").GetComponent<PlayerControler>().ID == 0 && GameObject.FindWithTag("Player").GetComponent<PlayerControler>().IsOwner)
         {
             if (npcPayQueueP1.Count == 5) return -1;
 
             npcPayQueueP1.Enqueue(npc);
             payQueueChangeP1?.Invoke(this, EventArgs.Empty);
-            //print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
             return npcPayQueueP1.Count;
         }
         else if (ID == 1 && player.IsOwner)
@@ -263,16 +269,12 @@ public class TiendaManager : MonoBehaviour
             payQueueChangeP2?.Invoke(this, EventArgs.Empty);
             return npcPayQueueP2.Count;
         }
-        //print($"npc añadido en la cola, pos: {npcPayQueueP1.Count}, max checkpoints: {posPayCheckpointsP1.Count}");
 
         return -1;
     }
 
     public void avanzarLaCola()
     {
-        //print($"dejo sitio antes: {cajaPago.transform.position}");
-        //print($"dejo sitio despues: {cajaPago.transform.position}");
-        //print($"npc quitado de la cola: {npcPayQueue.Count}");
         if (ID == 0 && player.IsOwner)
         {
             if (npcPayQueueP1.Count == 0) return;

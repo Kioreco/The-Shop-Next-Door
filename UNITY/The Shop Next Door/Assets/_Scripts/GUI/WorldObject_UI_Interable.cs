@@ -11,8 +11,13 @@ public class WorldObject_UI_Interable : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        foreach (var product in products) 
-        { 
+        UpdateUIProducts();
+    }
+
+    public void UpdateUIProducts()
+    {
+        foreach (var product in products)
+        {
             product.UpdateQuantityFillImage();
             product.UpdateShelvesQuantityProduct_UI();
         }
