@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorkDayCycle : MonoBehaviour
 {
@@ -49,6 +50,8 @@ public class WorkDayCycle : MonoBehaviour
         if (cycleCompleted)
         {
             gameObject.SetActive(false);
+            GameManager.Instance.FinalResult();
+            SceneManager.LoadScene("4 - FinalScene");
             // ACTIVAR FINAL
         }
 

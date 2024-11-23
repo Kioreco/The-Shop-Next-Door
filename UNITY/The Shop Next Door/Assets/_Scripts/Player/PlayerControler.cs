@@ -43,6 +43,7 @@ public class PlayerControler : NetworkBehaviour
     [Header("Network Variables")]
     NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -235,7 +236,7 @@ public class PlayerControler : NetworkBehaviour
 
     #region network
 
-    public void FinalResume()
+    public void FinalDayResume()
     {
         if (ID == 0 && IsOwner)
         {
@@ -276,7 +277,7 @@ public class PlayerControler : NetworkBehaviour
         }
     }
 
-    public void FinalResult()
+    public void FinalWeekResult()
     {
         if (ID == 0 && IsOwner)
         {
@@ -349,4 +350,5 @@ public class PlayerControler : NetworkBehaviour
         moveSpeed = value;
     }
     #endregion
+
 }

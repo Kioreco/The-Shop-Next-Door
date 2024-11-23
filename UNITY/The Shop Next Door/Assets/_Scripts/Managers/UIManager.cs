@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI joinCode_Text;
-    [SerializeField] public GameObject joinCode_Button;
+    [SerializeField] public GameObject joinMatch_Button;
     [SerializeField] public TMP_InputField joinCode_Input;
     [SerializeField] public GameObject messageMatch_waiting;
     [SerializeField] public GameObject messageMatch_wrong;
@@ -83,6 +83,11 @@ public class UIManager : MonoBehaviour
     private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
+    [Header("THE END")]
+    [SerializeField] private TextMeshProUGUI player1Result_text;
+    [SerializeField] private TextMeshProUGUI player2Result_text;
+    [SerializeField] private TextMeshProUGUI winnerName_text;
+    [SerializeField] private TextMeshProUGUI inheritance_text;
 
     public static UIManager Instance { get; private set; }
 
@@ -120,6 +125,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
+        if (sceneName == "1 - MenuInicio") { Cancel_Button(); }
         SceneManager.LoadScene(sceneName);
     }
 
@@ -144,6 +150,7 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.StartHost();
         
         messageMatch_waiting.SetActive(true);
+        joinMatch_Button.SetActive(false);
     }
 
     public void StartClient_Button()
@@ -332,4 +339,45 @@ public class UIManager : MonoBehaviour
         activity2_outcome_text.SetText("");
         activity3_outcome_text.SetText("");
     }
+
+    public void UpdateFinalWeekTexts(int playerID)
+    {
+        double player1Points;
+        double player2Points;
+        if (playerID == 0)
+        {
+            player1Result_text.SetText(GameManager.Instance.playerResult + " points");
+            player2Result_text.SetText(GameManager.Instance.playerResultRival + " points");
+            player1Points = GameManager.Instance.playerResult;
+            player2Points = GameManager.Instance.playerResultRival;
+        }
+        else
+        {
+            player1Result_text.SetText(GameManager.Instance.playerResultRival + " points");
+            player2Result_text.SetText(GameManager.Instance.playerResult + " points");
+            player1Points = GameManager.Instance.playerResultRival;
+            player2Points = GameManager.Instance.playerResult;
+        }
+
+        if (player1Points > player2Points)
+        {
+            winnerName_text.SetText("GEMMA!");
+        }
+        else
+        {
+            winnerName_text.SetText("EMMA!");
+        }
+
+        if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
+        {
+            GameManager.Instance.inheritance = 10;
+            inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
+        }
+        else
+        {
+            GameManager.Instance.inheritance = 2;
+            inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
+        }
+    }
+
 }

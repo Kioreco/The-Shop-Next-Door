@@ -24,16 +24,19 @@ public class GameManager : MonoBehaviour
 
     [Header("Individual Player References")]
     [HideInInspector] public float dineroJugador;
-    [HideInInspector] public float dineroRival;
+    [HideInInspector] public int inheritance;
     [HideInInspector] public float espacioAlmacen;
     [HideInInspector] public float maxEspacioAlmacen;
     [HideInInspector] public float reputation;
     [HideInInspector] public float playerVigor;
+
+    [HideInInspector] public float dineroRival;
     [HideInInspector] public double playerResult;
     [HideInInspector] public double playerResultRival;
 
     [Header("Network Things")]
     public PlayerControler _player;
+    public int playerID;
 
     [Header("Other Objects")]
     public Canvas canvasInteractable;
@@ -54,7 +57,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
@@ -111,6 +113,7 @@ public class GameManager : MonoBehaviour
 
             UIManager.Instance.telephone.calendar.RandomizeStates();
             UIManager.Instance.telephone.calendar.ChooseNewState();
+            playerID = 0;
         }
         else
         {
@@ -120,6 +123,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.cajero_Bar = cajero_2_Bar;
             UIManager.Instance.cajero_Canvas = cajero_2_Canvas;
             UIManager.Instance.cajaPlayerPosition = cajaPositionP2;
+            playerID = 1;
         }
     }
 
@@ -138,7 +142,7 @@ public class GameManager : MonoBehaviour
     public void EndDay()
     {
         //LLAMADA A server rpc
-        _player.FinalResume();
+        _player.FinalDayResume();
 
         //Time.timeScale = 0;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using Random = UnityEngine.Random;
 
-public class AdManager : MonoBehaviour
+public class AdvertManager : MonoBehaviour
 {
     public GameObject panelPublicity;     
     public VideoPlayer videoPlayer;        

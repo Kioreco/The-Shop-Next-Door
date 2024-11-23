@@ -8,6 +8,7 @@ public class TelephoneController : MonoBehaviour
 {
     [Header("Telephone Parts")]
     [SerializeField] private GameObject MiniTelephone;
+    [SerializeField] private GameObject EmptyCloseButton;
     [SerializeField] private TextMeshProUGUI hour_telephone_text;
     [SerializeField] private GameObject LockedScreen;
     [SerializeField] private Image LockedScreen_bg;
@@ -73,12 +74,11 @@ public class TelephoneController : MonoBehaviour
         {
             gameObject.SetActive(false);
             MiniTelephone.SetActive(true);
-
         }
         else
         {
             if(ShopApp.activeSelf) ShopApp.SetActive(false);
-            if(CalendarApp.activeSelf) CalendarApp.SetActive(false);
+            if(CalendarApp.activeSelf) CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true);
             if(HireApp.activeSelf) HireApp.SetActive(false);
             if(LifeApp.activeSelf) LifeApp.SetActive(false);
             LockedScreen.SetActive(true);
@@ -106,6 +106,7 @@ public class TelephoneController : MonoBehaviour
     {
         app.SetActive(true);
         if(LockedScreen.activeSelf) LockedScreen.SetActive(false);
+        if(CalendarApp.activeSelf) EmptyCloseButton.SetActive(false);
     }
 
     public void OpenShopCategory(GameObject content)

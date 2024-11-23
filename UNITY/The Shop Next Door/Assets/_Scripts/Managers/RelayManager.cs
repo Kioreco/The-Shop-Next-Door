@@ -77,8 +77,7 @@ public class RelayManager : NetworkBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
         joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-        UIManager.Instance.joinCode_Button.SetActive(false);
-        Debug.Log(joinCode);
+        //UIManager.Instance.joinCode_Button.SetActive(false);
         UIManager.Instance.joinCode_Text.SetText(joinCode);
 
         NetworkManager.Singleton.StartHost();
