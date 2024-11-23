@@ -104,8 +104,11 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
             quantity_text.color = colorDarkRed;
 
             emptyProduct = true;
-            if (shelve.canvasInteractable.activeSelf) { UIManager.Instance.alertTelephone.SetActive(true); }
-            shelve.canvasAlert.SetActive(true);
+            if (shelve.canvasInteractable.activeSelf) { shelve.canvasAlert.SetActive(false); }
+            else shelve.canvasAlert.SetActive(true);
+
+            UIManager.Instance.alertTelephone.SetActive(true);
+            
         }
     }
 
