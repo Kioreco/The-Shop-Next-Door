@@ -623,6 +623,27 @@ Los clientes deberán ser diferenciables entre sí según los distintos arquetip
 
 ![imagen](https://github.com/user-attachments/assets/f70b8aad-840d-47c2-b63f-f28ac0a04ee3)
 
+
+Modelo de señora mayor sin texturizar:
+
+![](./ReadmeImgs/Abuela.png)
+
+Modelo del camionero sin texturizar:
+
+![](./ReadmeImgs/Camionero.png)
+
+Modelo de Karen sin texturizar:
+
+![](./ReadmeImgs/Karen.png)
+
+Modelo de niño sin texturizar:
+
+![](./ReadmeImgs/Niño.png)
+
+Modelo de tacaño sin texturizar:
+
+![](./ReadmeImgs/Viejo.png)
+
 ### <a name="_toc180924173"></a>**7.3.3. Escenarios**
 El primer modelo de tienda simple que permitirá vender comida y ropa sería:
 
