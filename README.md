@@ -92,7 +92,7 @@ ___
 
 [**7.2.4.**	**Escenarios**](#_toc180924169)
 
-[**7.2.5.**	**Iconos**](#_toc180924169)
+[**7.2.5.**	**Iconos**](#_toc180924194)
 
 [**7.3.**	**Modelos 3D**](#_toc180924170)
 
@@ -603,7 +603,7 @@ Un boceto de la primera tienda es el siguiente:
 
 ![imagen](https://github.com/user-attachments/assets/a2c354ec-82f7-4bb1-ac0e-ad99d7aaaf95)
 
-### <a name="_toc180924173"></a>**7.3.5. Iconos**
+### <a name="_toc180924194"></a>**7.3.5. Iconos**
 Los iconos se han creado para que el jugador, al elegir que comprar dentro de la tienda, pueda tener una imagen de lo que está comprando. Es decir, son imágenes 2D orientativas. Dentro de la tienda encontramos varias secciones de productos, los iconos para estas secciones son:
 
 Sección de Arte:
