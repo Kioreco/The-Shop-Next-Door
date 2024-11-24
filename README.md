@@ -547,11 +547,15 @@ Primeros bocetos:
 
 ![imagen](https://github.com/user-attachments/assets/d411e5ea-f83c-453c-9d91-73fa1dc6d53d)
 
+Las expresiones ha sufrido un gran cambio respecto al inicio, para que coincida más con el estilo del juego, además se han añadido expresiones dependiendo de los posibles estados que tenga el jugador. Por esta razón las expresiones creadas para ambas hermanas son Cansada, Feliz, Irascible/Enfadada, Miedosa, Extrovertida/Habladora y Coqueta.
 
 Hoja de expresiones de Gemma:
 
-![imagen](https://github.com/user-attachments/assets/7eb49c29-8cf2-40b8-b835-0ee1cb15147f)
+![Expresiones 1](https://github.com/user-attachments/assets/0570dee4-37c8-47c6-92bd-52938e6c55bf)
 
+Hoja de expresiones de Emma:
+
+![Expresiones 2](https://github.com/user-attachments/assets/f45f2e4f-b74f-45ad-808c-811024443505)
 
 Concepts de los modelos ingame de las hermanas:
 
@@ -572,7 +576,12 @@ Hoja de Expresiones:
 
 ![imagen](https://github.com/user-attachments/assets/52505e14-d128-4eb1-8eb1-b2f753862a57)
 
-No haría falta crear el modelo 3D ya que no va a aparecer dentro de este hasta el final y su aparición será en escenas dibujadas.
+Inicialmente no se iba a realizar un concept ni un modelo de Telma ya que no se veía necesario, pero con el paso del tiempo se ha decidido añadir un modelo de la madre. 
+
+Concept Modelo Telma: 
+
+![TELMAConceptS](https://github.com/user-attachments/assets/883b80d1-8a23-4859-a631-0d7ea7368eec)
+
 ___
 ### <a name="_toc180924168"></a>**7.2.3. Clientes**
 Para los clientes se ha decidido crear unos modelos generales para agilizar el proceso y añadir algún tipo de característica distintiva en alguno de ellos que cuentan con una mecánica única. 
@@ -635,11 +644,12 @@ ___
 
 Diseños finales para la beta:
 
-![](./ReadmeImgs/FondoInicio.jpg)
+![Title_Screen_NoLogo](https://github.com/user-attachments/assets/76324680-c4ae-4136-94d8-fb20b12a884d)
 
 Menú de inicio de sesión:
 
-![](./ReadmeImgs/PantallaInicio.jpg)
+![Title_Screen](https://github.com/user-attachments/assets/b27aaff8-4000-4ede-8064-3ea54203a33a)
+
 
 
 ___
