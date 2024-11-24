@@ -602,6 +602,11 @@ Los modelos sin texturizar son los siguientes (Emma y Gemma):
 
 ![imagen](https://github.com/user-attachments/assets/9bd00e39-6afb-4a0b-9961-6d8bb2d90b41)
 
+Los modelos texturizados de las hermanas son los siguientes:
+
+![](./ReadmeImgs/EmmaTexturizada.png)
+![](./ReadmeImgs/GemmaTexturizada.png)
+
 
 ___
 ### <a name="_toc180924172"></a>**7.3.2. Clientes**
@@ -628,16 +633,21 @@ El diagrama de flujo entre pantallas y durante una partida quedaría de la sigui
 ___
 ## <a name="_toc180924175"></a>**8.2. Menú de título e inicio de sesión**
 
-Un boceto de como irían los distintos menús sería:
+Diseños finales para la beta:
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.040.png)
+![](./ReadmeImgs/FondoInicio.jpg)
+
+Menú de inicio de sesión:
+
+![](./ReadmeImgs/PantallaInicio.jpg)
+
 
 ___
 ## <a name="_toc180924176"></a>**8.3. Menú de inicio**
 
-Un boceto de cómo sería el menú de inicio sería: 
+Mejora del dibujado y disposición de elementos para el menú de inicio de la beta: 
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.041.png)
+![](./ReadmeImgs/PantallaInicio2.jpg)
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
 
@@ -645,48 +655,75 @@ Concepto por realizar.
 ___
 ## <a name="_toc180924178"></a>**8.5. MatchMaking**
 
-Un boceto de cómo sería la escena de matchmaking sería el siguiente:
+Diseño para la beta de la escena de matchmaking sería el siguiente
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.042.png)
+![](./ReadmeImgs/Matchmaking1.jpg)
+![](./ReadmeImgs/Matchmaking2.jpg)
+![](./ReadmeImgs/Matchmaking3.jpg)
+
+Disposición de varias opciones tanto para crear partida como para unirse a una. Inclusión de copiar el código de la partida y cancelar el emparejamiento.
 ___
 ## <a name="_toc180924179"></a>**8.6. InGame**
 
-Un boceto de cómo se vería la escena de juego con la interfaz ingame sería:
+El diseño final para la beta de la escena de juego con la interfaz ingame sería:
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.043.png)
+![](./ReadmeImgs/Juego1.jpg)
+![](./ReadmeImgs/Juego2.jpg)
+
+Disposición de interfaz con botón de abrir tienda (ready) antes de comenzar la partida y de waiting players para que estén los dos jugadores preparados.
+
+![](./ReadmeImgs/Juego3.jpg)
+
+Interfaz por defecto al comienzo de la partida con el cómputo de dinero acumulado, felicidad de los clientes, almacenaje, día y hora de la semana, energía del personaje y móvil personal.
+
+![](./ReadmeImgs/Juego4.jpg)
+
+![](./ReadmeImgs/Juego5.jpg)
+
+![](./ReadmeImgs/Juego6.jpg)
+
+![](./ReadmeImgs/Juego7.jpg)
+
+![](./ReadmeImgs/Juego8.jpg)
+
+Distintas interfaces del móvil según la sección que se vaya consultando: actividades, compras, contrataciones y vida personal.
 ___
-## <a name="_toc180924180"></a>**8.7. GameOver**
+## <a name="_toc180924180"></a>**8.7. DayOver**
 
-Un boceto de cómo se vería la escena Game Over sería:
+Interfaz para la finalización de un día laborable:
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.044.png)
+![](./ReadmeImgs/DayOver.jpg)
 ___
 ## <a name="_toc180924181"></a>**8.8. Menú de Pausa**
 
 Concepto por realizar.
 ___
 ## <a name="_toc180924182"></a>**8.9. Menú de Personalización**
+Interfaz para el prototipo del menú de elección de cosméticos disponibles.
 
-Concepto por realizar.
+![](./ReadmeImgs/Personalizacion.jpg)
 ___
 ## <a name="_toc180924183"></a>**8.10. Tienda**
 
-Concepto por realizar.
+Interfaz de tienda para la beta
+
+![](./ReadmeImgs/Tienda.jpg)
 
 ___
 # <a name="_toc180924184"></a>**9. Sonido**
 ___
 ## <a name="_toc180924185"></a>**9.1. Sonido ambiente y música**
 
-Hay dos temas diferenciados, uno para la parte de menú y otra *ingame*. El primero se caracteriza por ser una música tranquila que incite a jugar, el segundo es un poco más animado para no perder el objetivo del juego: una competición.
-
+Hay dos temas diferenciados, uno para la parte de menú y otra ingame. El primero se caracteriza por ser una música tranquila que incite a jugar, el segundo es un poco más animado para no perder el objetivo del juego: una competición.
 Música por concretar: sin derechos de distribución ni uso.
+
 ___
 ## <a name="_toc180924186"></a>**9.2. Efectos de sonido**
 
 Los efectos de sonidos servirían como feedback auditivo para el jugador, sobre todo en ocasiones importantes, como puede ser: Que un cliente entra en la tienda, que los clientes empiezan a molestarse y a murmurar que se van a ir de la tienda, comprar un empleado nuevo.
 
 Sin concretar: sin derechos de distribución ni uso.
+
 ___
 ## <a name="_toc180924187"></a>**9.3. Lista de sonidos**
 
