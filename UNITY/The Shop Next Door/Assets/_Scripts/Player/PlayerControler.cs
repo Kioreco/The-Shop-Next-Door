@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class PlayerControler : NetworkBehaviour
     bool canMove = true;
 
     [Header("Camera Movement Limits")]
-    public float minX; /* = -10f;*/  
+    public float minX; /* = -10f;*/
     public float maxX; /* = 10f;*/
     public float minZ; /* = -10f;*/
     public float maxZ; /* = 10f;*/
@@ -41,12 +42,12 @@ public class PlayerControler : NetworkBehaviour
     public GameObject clientTacanio;
 
 
-    [Header("Network Variables")]
-    NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //[Header("Network Variables")]
+    //NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public double hostResultFinal;
     public double clientResultFinal;
@@ -58,6 +59,9 @@ public class PlayerControler : NetworkBehaviour
     public event EventHandler eventPlayerIsInRubbish;
     bool isPaying = false;
 
+    //control resultado final:
+    public bool HostReady = false;
+    public bool clientReady = false;
 
 
     #endregion
@@ -105,7 +109,7 @@ public class PlayerControler : NetworkBehaviour
 
             print(ID);
 
-            if (ID == 0) 
+            if (ID == 0)
             {
                 TiendaManager.Instance.ID = 0;
                 GameManager.Instance.activeCamera = GameManager.Instance.cameraP1.transform.GetChild(0).GetComponent<Camera>();
@@ -183,14 +187,14 @@ public class PlayerControler : NetworkBehaviour
             Camera.main.transform.position = newPosition;
         }
 
-        if(IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
+        if (IsOwner) Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, amountZoom, Time.deltaTime * zoomSpeed);
 
-        if(IsOwner && isMoving && GetComponent<NavMeshAgent>().remainingDistance == 0)
+        if (IsOwner && isMoving && GetComponent<NavMeshAgent>().remainingDistance == 0)
         {
             isMoving = false;
-            if (isPaying) 
+            if (isPaying)
             {
-                eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty); 
+                eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
                 //print("está en la caja"); 
                 UIManager.Instance.UpdatePayingBar_UI();
 
@@ -225,7 +229,7 @@ public class PlayerControler : NetworkBehaviour
     public void MoveCamera(InputAction.CallbackContext context)
     {
         //print(context.ReadValue<float>());
-        if (context.ReadValue<float>() > 0 && IsOwner) 
+        if (context.ReadValue<float>() > 0 && IsOwner)
         {
             isDrag = true;
             lastPosition = Input.mousePosition;
@@ -241,7 +245,7 @@ public class PlayerControler : NetworkBehaviour
         {
             amountZoom -= 5;
             amountZoom = Mathf.Clamp(amountZoom, fovZoom, fovSinZoom);
-        }        
+        }
         if (context.ReadValue<float>() < 0 && IsOwner)
         {
             amountZoom += 5;
@@ -264,10 +268,9 @@ public class PlayerControler : NetworkBehaviour
         }
         if (ID == 1)
         {
-            UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
             UIManager.Instance.player2Reputation.fillAmount = UIManager.Instance.reputation_Bar.fillAmount;
-
+            UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
         }
     }
 
@@ -297,7 +300,7 @@ public class PlayerControler : NetworkBehaviour
             UIManager.Instance.player1Reputation.fillAmount = UIManager.Instance.reputation_Rival;
 
         }
-    }    
+    }
     [ClientRpc]
     public void UpdateClientMoneyForClientRpc(float newV, float newR)
     {
@@ -314,10 +317,14 @@ public class PlayerControler : NetworkBehaviour
     {
         if (ID == 0)
         {
+            HostReady = true;
+            //print($"cambios host ready: {HostReady}");
             UpdateHostFinalResultServerRpc(GameManager.Instance.playerResult);
         }
         if (ID == 1)
         {
+            clientReady = true;
+            //print($"cambios client ready: {clientReady}");
             UpdateClientFinalResultServerRpc(GameManager.Instance.playerResult);
         }
     }
@@ -338,11 +345,19 @@ public class PlayerControler : NetworkBehaviour
     [ClientRpc]
     public void UpdateHostResultFinalForClientRpc(double newV)
     {
-        if (IsClient)
+        if (IsClient & !IsServer)
         {
-            print($"update resultado host: {newV}");
+            //print($"update resultado host: {newV}");
+            HostReady = true;
+            //print($"cambios host ready client rpc: {HostReady}");
 
             GameManager.Instance.playerResultRival = newV;
+            UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
+            print($"client actualizate: {ID}");
+            UIManager.Instance.UpdateFinalWeekTexts(0);
+
+            //canContinue();
         }
     }
     [ClientRpc]
@@ -350,11 +365,19 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsServer)
         {
-            print("update resultado cliente");
+            //print($"update resultado cliente: {newV}");
+            clientReady = true;
+            //print($"cambios client ready client rpc: {clientReady}");
 
             GameManager.Instance.playerResultRival = newV;
+            UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
+            UIManager.Instance.UpdateFinalWeekTexts(1);
+
+            //canContinue();
         }
     }
+
 
     public void DestroyClient()
     {

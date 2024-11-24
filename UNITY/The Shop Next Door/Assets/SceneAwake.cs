@@ -4,6 +4,6 @@ public class SceneAwake : MonoBehaviour
 {
     private void Start()
     {
-        UIManager.Instance.UpdateFinalWeekTexts(GameManager.Instance.playerID);
+        GameManager.Instance.FinalResult();
     }
 }

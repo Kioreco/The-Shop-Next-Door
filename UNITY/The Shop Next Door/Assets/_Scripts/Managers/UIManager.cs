@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     private Color volumeColorDarkened = new Color(0.5f, 0.5f, 0.5f);
 
 
-    [Header("DAY-END MENU")] 
+    [Header("DAY-END MENU")]
     public GameObject canvasDayEnd;
 
     [SerializeField] private TextMeshProUGUI activity1_outcome_text;
@@ -85,8 +85,8 @@ public class UIManager : MonoBehaviour
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
     [Header("THE END")]
-    [SerializeField] private GameObject player1Result_text;
-    [SerializeField] private GameObject player2Result_text;
+    [SerializeField] public GameObject player1Result_text;
+    [SerializeField] public GameObject player2Result_text;
     [SerializeField] private TextMeshProUGUI winnerName_text;
     [SerializeField] private TextMeshProUGUI inheritance_text;
     public GameObject ButtonDuplicateReward;
@@ -122,7 +122,7 @@ public class UIManager : MonoBehaviour
         //print("alerta salir tienda");
         avisoSalidaTienda.SetActive(true);
         StartCoroutine(DelayAlert(delay, avisoSalidaTienda));
-    }    
+    }
     public void ActivateAlertThirtyMinutesLeft(float delay)
     {
         //print("alerta 30minutos");
@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviour
     public void StartHost_Button()
     {
         RelayManager.Instance.StartHost();
-        
+
         messageMatch_waiting.SetActive(true);
         joinMatch_Button.SetActive(false);
     }
@@ -304,7 +304,7 @@ public class UIManager : MonoBehaviour
         }
 
         imageToFill.fillAmount = 1f;
-        
+
         if (isCajero) { imageToFill.fillAmount = 0f; }
         if (isRubbish) { rubbish.Destruir(); }
     }
@@ -383,35 +383,30 @@ public class UIManager : MonoBehaviour
         double player2Points;
         if (playerID == 0)
         {
-            //print($"result test: {player1Result_text.gameObject}");
-            //print($"result test: {player1Result_text.name}");
-            //print($"result test: {player1Result_text.gameObject.name}");
-            //print($"game manager test: {GameManager.Instance}");
-            //print($"result: {GameManager.Instance.playerResult}");
-            player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
-            player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
-            player1Points = GameManager.Instance.playerResult;
-            player2Points = GameManager.Instance.playerResultRival;
+            print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
+            if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
+            else winnerName_text.SetText("GEMMA!");
+            //player1Points = GameManager.Instance.playerResult;
+            //player2Points = GameManager.Instance.playerResultRival;
         }
         else
         {
-            //print($"result test: {player1Result_text}");
-            //print($"game manager test: {GameManager.Instance}");
-            //print($"result: {GameManager.Instance.playerResult}");
-            player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
-            player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
-            player1Points = GameManager.Instance.playerResultRival;
-            player2Points = GameManager.Instance.playerResult;
+            print($"menor? {GameManager.Instance.playerResult < GameManager.Instance.playerResultRival}");
+            if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
+            else winnerName_text.SetText("GEMMA!");
+            //player1Points = GameManager.Instance.playerResultRival;
+            //player2Points = GameManager.Instance.playerResult;
         }
+        //print($"player1: {player1Points}  player2: {player2Points}");
 
-        if (player1Points > player2Points)
-        {
-            winnerName_text.SetText("GEMMA!");
-        }
-        else
-        {
-            winnerName_text.SetText("EMMA!");
-        }
+        //if (player1Points > player2Points)
+        //{
+
+        //}
+        //else
+        //{
+
+        //}
 
         if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
         {

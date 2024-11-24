@@ -64,8 +64,8 @@ public class WorkDayCycle : MonoBehaviour
         // SEMANA COMPLETADA
         if (cycleCompleted)
         {
+
             gameObject.SetActive(false);
-            GameManager.Instance.FinalResult();
             SceneManager.LoadScene("4 - FinalScene");
             // ACTIVAR FINAL
         }
@@ -102,7 +102,7 @@ public class WorkDayCycle : MonoBehaviour
             eventLanzadoTwoHours = true;
             eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
         }
-        
+
         if (gameTime >= 13.5f && !eventLanzadoOneHours)
         {
             eventLanzadoOneHours = true;
@@ -111,7 +111,7 @@ public class WorkDayCycle : MonoBehaviour
             npcClientKaren.isEnable = false;
             npcClientTacanio.isEnable = false;
         }
-        if (gameTime>= 14.5f && !eventLanzadoThirtyMinutes)
+        if (gameTime >= 14.5f && !eventLanzadoThirtyMinutes)
         {
             //print("evento 30 minutos");
             eventLanzadoThirtyMinutes = true;
@@ -155,8 +155,8 @@ public class WorkDayCycle : MonoBehaviour
                 isNightTime = true;
                 GameManager.Instance.EndDay();
 
-                pastDay_Bg[currentDay-1].SetActive(true);
-                followingDay_Bg[currentDay-1].SetActive(false);
+                pastDay_Bg[currentDay - 1].SetActive(true);
+                followingDay_Bg[currentDay - 1].SetActive(false);
             }
         }
     }
@@ -192,7 +192,7 @@ public class WorkDayCycle : MonoBehaviour
     void UpdateDayText()
     {
         string dayName = dayNames[(currentDay) % dayNames.Length];
-        string dayNameNight = dayNames[(currentDay-1) % dayNames.Length];
+        string dayNameNight = dayNames[(currentDay - 1) % dayNames.Length];
 
         UIManager.Instance.UpdateDay_UI(dayName, dayNameNight);
     }

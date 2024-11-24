@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         double workLife;
         double privateLife;
 
-        if (NetworkManager.Singleton.IsServer)
+        if (_player.ID == 0)
         {
             workLife = dineroJugador * 0.30 + TiendaManager.Instance.workersP1.Count * 0.15 + reputation * 0.35 + 1 * 0.2; //el último 1 son las mejoras de los estantes
         }
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
                       VidaPersonalManager.Instance.developmentProgress * 0.2 +
                       VidaPersonalManager.Instance.romanticProgress * 0.3;
 
-        playerResult =  workLife * 0.5 + privateLife * 0.5;
+        playerResult = workLife * 0.5 + privateLife * 0.5;
         _player.FinalWeekResult();
     }
 
