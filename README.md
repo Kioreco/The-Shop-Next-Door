@@ -92,6 +92,8 @@ ___
 
 [**7.2.4.**	**Escenarios**](#_toc180924169)
 
+[**7.2.5.**	**Iconos**](#_toc180924169)
+
 [**7.3.**	**Modelos 3D**](#_toc180924170)
 
 [**7.3.1.**	**Hermanas**](#_toc180924171)
@@ -600,6 +602,27 @@ El escenario en el que se jugará deberá ser amplio y representar una tienda. A
 Un boceto de la primera tienda es el siguiente:
 
 ![imagen](https://github.com/user-attachments/assets/a2c354ec-82f7-4bb1-ac0e-ad99d7aaaf95)
+
+### <a name="_toc180924173"></a>**7.3.5. Iconos**
+Los iconos se han creado para que el jugador, al elegir que comprar dentro de la tienda, pueda tener una imagen de lo que está comprando. Es decir, son imágenes 2D orientativas. Dentro de la tienda encontramos varias secciones de productos, los iconos para estas secciones son:
+
+Sección de Arte:
+
+![IconosARTE](https://github.com/user-attachments/assets/4fb0aec6-0ceb-402a-945f-fc8d7c5c2df0)
+
+Sección de Comida:
+
+![IconosCOMIDA](https://github.com/user-attachments/assets/16335e23-c1b8-4038-a79d-91863d16438b)
+
+Sección de Entretenimiento:
+
+![IconosENTRETENIMIENTO](https://github.com/user-attachments/assets/42a33876-0f1d-453c-af6d-0eaacf048957)
+
+Sección de Ropa:
+
+![IconosROPA](https://github.com/user-attachments/assets/755990f8-28dd-4b3a-9ed8-36a028667966)
+
+
 ___
 ## <a name="_toc180924170"></a>**7.3. Modelos 3D**
 
