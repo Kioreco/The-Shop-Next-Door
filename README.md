@@ -649,6 +649,22 @@ El primer modelo de tienda simple que permitirá vender comida y ropa sería:
 
 ![imagen](https://github.com/user-attachments/assets/3eec3748-cb44-49fb-bf06-3e7ab5ac8f7b)
 
+La tienda texturizada:
+![](./ReadmeImgs/TiendaTexturizada.png)
+
+Además, se han creado 3 sets jugables para la tienda. 
+
+Set de Música:
+![](./ReadmeImgs/Musica.png)
+
+Set de Frutería: 
+![](./ReadmeImgs/Fruteria.png)
+
+Set de Bebidas:
+![](./ReadmeImgs/Bebidas.png)
+
+Set de Ropa:
+![](./ReadmeImgs/Ropa.png)
 
 ___
 # **8. Interfaces**
