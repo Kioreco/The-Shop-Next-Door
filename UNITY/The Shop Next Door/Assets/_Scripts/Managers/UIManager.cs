@@ -85,8 +85,8 @@ public class UIManager : MonoBehaviour
     private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
     [Header("THE END")]
-    [SerializeField] private TextMeshProUGUI player1Result_text;
-    [SerializeField] private TextMeshProUGUI player2Result_text;
+    [SerializeField] private GameObject player1Result_text;
+    [SerializeField] private GameObject player2Result_text;
     [SerializeField] private TextMeshProUGUI winnerName_text;
     [SerializeField] private TextMeshProUGUI inheritance_text;
 
@@ -384,10 +384,12 @@ public class UIManager : MonoBehaviour
         if (playerID == 0)
         {
             print($"result test: {player1Result_text.gameObject}");
+            print($"result test: {player1Result_text.name}");
+            print($"result test: {player1Result_text.gameObject.name}");
             print($"game manager test: {GameManager.Instance}");
             print($"result: {GameManager.Instance.playerResult}");
-            player1Result_text.SetText(GameManager.Instance.playerResult + " points");
-            player2Result_text.SetText(GameManager.Instance.playerResultRival + " points");
+            player1Result_text.GetComponent < TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
             player1Points = GameManager.Instance.playerResult;
             player2Points = GameManager.Instance.playerResultRival;
         }
@@ -396,8 +398,8 @@ public class UIManager : MonoBehaviour
             print($"result test: {player1Result_text}");
             print($"game manager test: {GameManager.Instance}");
             print($"result: {GameManager.Instance.playerResult}");
-            player1Result_text.SetText(GameManager.Instance.playerResultRival + " points");
-            player2Result_text.SetText(GameManager.Instance.playerResult + " points");
+            player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
+            player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
             player1Points = GameManager.Instance.playerResultRival;
             player2Points = GameManager.Instance.playerResult;
         }
@@ -422,7 +424,8 @@ public class UIManager : MonoBehaviour
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
 
-        Destroy(GameManager.Instance._player.gameObject);
+        //Destroy(.gameObject);
+        GameManager.Instance._player.DestroyClient();
     }
 
 }

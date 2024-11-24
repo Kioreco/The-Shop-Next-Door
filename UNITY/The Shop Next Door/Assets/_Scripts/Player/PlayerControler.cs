@@ -65,6 +65,7 @@ public class PlayerControler : NetworkBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        print("awake");
     }
 
     void Start()
@@ -255,24 +256,16 @@ public class PlayerControler : NetworkBehaviour
 
         if (ID == 0)
         {
-            print("final resume cambiando dinero el host");
-            //hostMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
             UIManager.Instance.player1Reputation.fillAmount = UIManager.Instance.reputation_Bar.fillAmount;
-            //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
             UpdateHostMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
         }
         if (ID == 1)
         {
-            print("final resume cambiando dinero el client");
-
             UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
-
-            //clientMoney.Value = GameManager.Instance.dineroJugador;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
             UIManager.Instance.player2Reputation.fillAmount = UIManager.Instance.reputation_Bar.fillAmount;
 
-            //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
         }
     }
 
@@ -280,20 +273,20 @@ public class PlayerControler : NetworkBehaviour
     [ServerRpc]
     public void UpdateHostMoneyServerRpc(float newV, float newR)
     {
-        print("host server rpc");
+        //print("host server rpc");
         UpdateHostMoneyForClientRpc(newV, newR);
     }
 
     [ServerRpc]
     public void UpdateClientMoneyServerRpc(float newV, float newR)
     {
-        print("client server rpc");
+        //print("client server rpc");
         UpdateClientMoneyForClientRpc(newV, newR);
     }
     [ClientRpc]
     public void UpdateHostMoneyForClientRpc(float newV, float newR)
     {
-        print("update money host");
+        //print("update money host");
         if (IsClient)
         {
             GameManager.Instance.dineroRival = newV;
@@ -306,7 +299,7 @@ public class PlayerControler : NetworkBehaviour
     [ClientRpc]
     public void UpdateClientMoneyForClientRpc(float newV, float newR)
     {
-        print("update client money");
+        //print("update client money");
         if (IsServer)
         {
             GameManager.Instance.dineroRival = newV;
@@ -315,33 +308,6 @@ public class PlayerControler : NetworkBehaviour
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
     }
-
-
-    //void OnHostMoneyChange(float previous, float newM) 
-    //{
-    //    print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
-
-    //    if (IsClient)
-    //    {
-    //        print($"on host money change if");
-    //        GameManager.Instance.dineroRival = newM;
-    //        UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
-    //    }
-    //}    
-
-    //void OnClientMoneyChange(float previous, float newM) 
-    //{
-    //    print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
-
-    //    if (IsServer)
-    //    {
-    //        print($"on client money change if");
-
-    //        GameManager.Instance.dineroRival = newM;
-    //        UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
-    //    }
-    //}
-
     public void FinalWeekResult()
     {
         if (ID == 0)
@@ -359,20 +325,20 @@ public class PlayerControler : NetworkBehaviour
     [ServerRpc]
     public void UpdateHostFinalResultServerRpc(double newV)
     {
-        print("host server rpc");
+        //print("host server rpc");
         UpdateHostResultFinalForClientRpc(newV);
     }
 
     [ServerRpc]
     public void UpdateClientFinalResultServerRpc(double newV)
     {
-        print("client server rpc");
+        //print("client server rpc");
         UpdateClientResultFinalClientRpc(newV);
     }
     [ClientRpc]
     public void UpdateHostResultFinalForClientRpc(double newV)
     {
-        print("update money host");
+        //print("update money host");
         if (IsClient)
         {
             GameManager.Instance.playerResultRival = newV;
@@ -381,30 +347,28 @@ public class PlayerControler : NetworkBehaviour
     [ClientRpc]
     public void UpdateClientResultFinalClientRpc(double newV)
     {
-        print("update client money");
+        //print("update client money");
         if (IsServer)
         {
             GameManager.Instance.playerResultRival = newV;
         }
     }
 
-    //private void OnHostResultChange(double previousValue, double newValue)
-    //{
-    //    if (IsClient)
-    //    {
-    //        GameManager.Instance.playerResultRival = newValue;
-    //        //Para UI si queremos
-    //    }
-    //}
+    public void DestroyClient()
+    {
+        if(IsOwner) DestroyClientServerRpc(NetworkObjectId);
+    }
 
-    //private void OnClientResultChange(double previousValue, double newValue)
-    //{
-    //    if (IsServer)
-    //    {
-    //        GameManager.Instance.playerResultRival = newValue;
-    //        //Para UI si queremos
-    //    }
-    //}
+    [ServerRpc]
+    public void DestroyClientServerRpc(ulong clientId)
+    {
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(clientId, out NetworkObject networkObject))
+        {
+            // Destruir el NetworkObject
+            networkObject.Despawn(true); // Destruye el NetworkObject de la red
+        }
+    }
+
 
     #endregion
 
