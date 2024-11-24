@@ -1,6 +1,6 @@
 # **The Shop Next Door** - **un juego por el equipo de Kioreco**
 
-Versión 0.1.0
+Versión 0.8.0
 2022\.3.48f1 -> LTS
 
 ___
