@@ -383,21 +383,21 @@ public class UIManager : MonoBehaviour
         double player2Points;
         if (playerID == 0)
         {
-            print($"result test: {player1Result_text.gameObject}");
-            print($"result test: {player1Result_text.name}");
-            print($"result test: {player1Result_text.gameObject.name}");
-            print($"game manager test: {GameManager.Instance}");
-            print($"result: {GameManager.Instance.playerResult}");
-            player1Result_text.GetComponent < TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            //print($"result test: {player1Result_text.gameObject}");
+            //print($"result test: {player1Result_text.name}");
+            //print($"result test: {player1Result_text.gameObject.name}");
+            //print($"game manager test: {GameManager.Instance}");
+            //print($"result: {GameManager.Instance.playerResult}");
+            player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
             player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
             player1Points = GameManager.Instance.playerResult;
             player2Points = GameManager.Instance.playerResultRival;
         }
         else
         {
-            print($"result test: {player1Result_text}");
-            print($"game manager test: {GameManager.Instance}");
-            print($"result: {GameManager.Instance.playerResult}");
+            //print($"result test: {player1Result_text}");
+            //print($"game manager test: {GameManager.Instance}");
+            //print($"result: {GameManager.Instance.playerResult}");
             player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
             player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
             player1Points = GameManager.Instance.playerResultRival;

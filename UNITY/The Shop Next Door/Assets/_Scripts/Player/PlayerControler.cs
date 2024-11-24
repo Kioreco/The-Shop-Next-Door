@@ -315,12 +315,10 @@ public class PlayerControler : NetworkBehaviour
         if (ID == 0)
         {
             UpdateHostFinalResultServerRpc(GameManager.Instance.playerResult);
-            //Para UI si queremos
         }
         if (ID == 1)
         {
             UpdateClientFinalResultServerRpc(GameManager.Instance.playerResult);
-            //Para UI si queremos
         }
     }
 
@@ -342,7 +340,7 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsClient)
         {
-            print("update resultado host");
+            print($"update resultado host: {newV}");
 
             GameManager.Instance.playerResultRival = newV;
         }
