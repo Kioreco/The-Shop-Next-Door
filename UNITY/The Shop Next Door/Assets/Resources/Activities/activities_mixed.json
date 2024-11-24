@@ -449,6 +449,366 @@
       "isRomanticPartner": false,
       "givesPartner": true,
       "breakPartner": false
+    },
+    {
+      "activityName": "Go to a musical",
+      "outcomes": [
+        "They brought me out on stage to laugh at my appearance! I wasted so much money on this horrible show",
+        "At the entrance they thought I was the leading lady and I entered free... Everything is better when is free!",
+        "I mistook the bathroom for the backstage and I crash into the lead actor! They sang me a ballad and I've never felt more love!'"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.87,
+      "friendshipProbability": 0.36,
+      "personalDevelopmentProbability": 0.45,
+      "happinessProbability": 0.84,
+      "restingProbability": 0.55,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Sell second-hand clothes in Cachipop",
+      "outcomes": [
+        "I waited for hours and NOBODY came! I will never trust again...",
+        "The french person I sold my puked t-shirt gave me three times the price I asked! Sometimes I do like France...",
+        "The lovely old lady that bought my lilac skirt, told me a beautiful story when she was younger... I went back home crying, life is beautiful..."
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.1,
+      "friendshipProbability": 0.11,
+      "personalDevelopmentProbability": 0.79,
+      "happinessProbability": 0.32,
+      "restingProbability": 0.21,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to a Karaoke",
+      "outcomes": [
+        "I can't believe it! They disconnected my microphone and yelled at me!! People are horrible sometimes...",
+        "Went with my friends and have so much fun! They invited us to drinks all night long!",
+        "I started singing 'I Will Always Love You' and a hot looking person climbed to the stage to sing with me. We even shared microphone... and numbers!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.98,
+      "friendshipProbability": 0.92,
+      "personalDevelopmentProbability": 0.62,
+      "happinessProbability": 0.89,
+      "restingProbability": 0.1,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Try to go to an opera without tickets",
+      "outcomes": [
+        "I almost got in, but when they revised the tickets the police arrived and put on a show! I feel very embarrassed",
+        "The opera was the worst thing I've seen in years, but luckily they'd the comfiest armchairs and I slept all the time!",
+        "They sat me next to the composer and they asked me to be their secret lover for the night... That's not all, because later they asked for my number and promised to call!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.75,
+      "friendshipProbability": 0.54,
+      "personalDevelopmentProbability": 0.66,
+      "happinessProbability": 0.88,
+      "restingProbability": 0.79,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Steal from The Bazaar Next Door",
+      "outcomes": [
+        "THEY CAUGHT ME! The lady saw me through the cameras and banned me from ever entering... I guess I deserve it...",
+        "You haven't heard this from me, but everything is better if you didn't pay for it!",
+        "The manager caught me, but when they grabbed my hand I started dancing to distract them... They fell in love with my forbidden steps!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.13,
+      "friendshipProbability": 0.12,
+      "personalDevelopmentProbability": 0.13,
+      "happinessProbability": 0.12,
+      "restingProbability": 0.13,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Have a photo shoot with friends",
+      "outcomes": [
+        "I tried doing a risky tumblr-esque pose, but my friend pulled my braid and almost snitched my wig!",
+        "My friend doesn't know how to take good photos of me, but all I want from them is to spend time together",
+        "Going out with my friends remained me of 2014, when wearing black lipstick and listening to Lorde was my life... My friends are the only ones that persevere over time!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.22,
+      "friendshipProbability": 0.96,
+      "personalDevelopmentProbability": 0.67,
+      "happinessProbability": 0.88,
+      "restingProbability": 0.56,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Gossip Session with friends",
+      "outcomes": [
+        "My best friend revealed she has been dating a 60 year old man! MY GRANDFATHER BROTHER!",
+        "We thought someone in town went missing, and when we thought we had uncovered the true... We saw them go out of my old neighbour house... weird...",
+        "'Whatcha Say' started playing on the aux as all the gossip started intertwining: secret pregnancies, secret lovers and liars uncovered... We are Gossip Girl!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.21,
+      "friendshipProbability": 1.0,
+      "personalDevelopmentProbability": 0.91,
+      "happinessProbability": 0.97,
+      "restingProbability": 0.96,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to the library and act mysterious",
+      "outcomes": [
+        "I was walking through the aisles when a child started throwing me books to my face!! He gave me a bruise!!!",
+        "On the second floor, hidden behind some sofas, I found a strange book that says that if you arrange eight flowers, you can open a portal... Trying it tonight!",
+        "A blond guy from across the table threw me a note inviting me to a secret society party... I couldn't say no!! Maybe he is rich and I can finally live my dream..."
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.75,
+      "friendshipProbability": 0.4,
+      "personalDevelopmentProbability": 0.63,
+      "happinessProbability": 0.75,
+      "restingProbability": 0.94,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Try to go to a movie premiere",
+      "outcomes": [
+        "I tried sneaking in through the cleaning service door... AND THEY PUT ME TO WORK ALL NIGHT LONG!!",
+        "At first it was a bit weird being alone, but I enjoyed the movie a lot! I logged it into my Moviebox right when I arrived home! 4.5 stars and a heart",
+        "I GOT IN! But that's not all, because they sat me next to the lead actor and at the end of the movie he asked me to be his secret partner! Living the Hollywood Life"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.86,
+      "friendshipProbability": 0.44,
+      "personalDevelopmentProbability": 0.92,
+      "happinessProbability": 0.95,
+      "restingProbability": 0.59,
+      "isRomanticPartner": false,
+      "givesPartner": true,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Go to Mueblitex and redecorate the house",
+      "outcomes": [
+        "I wanted to try a bed AND I FELL ASLEEP IMMEDIATELY! I was sleeping for THREE hours until the police had to wake me up! #Embarrassing",
+        "I had to leave behind a wonderful cushion and a bunch of candles, but my pocket was not ready for buying everything!",
+        "I had a magic coupon that save me half the price in everything I bought! My house is looking like those aesthetic Pictiritis boards"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.26,
+      "friendshipProbability": 0.24,
+      "personalDevelopmentProbability": 0.93,
+      "happinessProbability": 0.97,
+      "restingProbability": 0.88,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Watch a rom-com alone",
+      "outcomes": [
+        "WHY NOBODY TOLD ME LA LA LAND WAS A CRYING MOVIE?! I stayed all night crying, this is so unfair!!!",
+        "13 going on 30, 10 Things I Hate About You, (500) Days of Summer, How To Lose a Guy in 10 Days... There's something with rom-coms with numbers in the title",
+        "I watched the Before Sunrise trilogy in one sitting... Best movie ever! Love is walking a city and forgetting planes and trains exist"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.89,
+      "friendshipProbability": 0.52,
+      "personalDevelopmentProbability": 0.79,
+      "happinessProbability": 0.99,
+      "restingProbability": 1.0,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
+    },
+    {
+      "activityName": "Write an article in the Carrie Bradshaw way",
+      "outcomes": [
+        "I don't know when I thought it was a good idea to post it on social media... 100 unfollows in an hour!!! #NeverPuttingMyselfOutThereAgain",
+        "Well, I'm glad I can have hobbies, because writing may not be my thing... But it was fun trying!",
+        "Maybe it was the drink, but I felt shameless enough to send it to a magazine... AND THEY WANTED TO PUBLISH IT!! New York here I come!"
+      ],
+      "ClimateStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "PersonalStateLuck": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "romanticProbability": 0.42,
+      "friendshipProbability": 0.68,
+      "personalDevelopmentProbability": 0.91,
+      "happinessProbability": 0.83,
+      "restingProbability": 0.87,
+      "isRomanticPartner": false,
+      "givesPartner": false,
+      "breakPartner": false
     }
   ]
 }
