@@ -251,8 +251,22 @@ El modelo de lienzo o canvas de The Shop Next Door sería el siguiente:
 
 ![imagen](https://github.com/user-attachments/assets/956c3666-5cae-4e55-a148-8455be47b6f0)
 ___
-## <a name="_toc180924142"></a>**3.7. Tablas de productos y precios**
-Por determinar.**
+## <a name="_toc183355472"></a>**Tablas de productos y precios**
+   ### <a name="_toc183355473"></a>**3.7.1 Compra de gemas con dinero**
+
+|**Cantidad (en gemas)**|**Coste (en €)**|
+| :-: | :-: |
+|20 |5|
+|50 |10|
+|120 |20|
+###
+### <a name="_toc183355474"></a>**3.7.2 Compra de cosméticos con gemas**
+
+|**Tipo**|**Costo (gemas)**|
+| :-: | :-: |
+|Cosmético de móvil|75 |
+|Cosmético de diseño de pared|125 |
+|Cosmético de skin para los personajes|325 |
 ___
 # <a name="_toc180924143"></a>**4. Planificación y Costes**
 ___
