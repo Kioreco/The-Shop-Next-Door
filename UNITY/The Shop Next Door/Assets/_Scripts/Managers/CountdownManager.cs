@@ -110,10 +110,15 @@ public class CountdownManager : NetworkBehaviour
     public void OnReadyButtonClicked()
     {
         ulong id = NetworkManager.Singleton.LocalClientId;
-        Debug.Log("Entra en el OnReady  " + (int)id);
+        //Debug.Log("Entra en el OnReady  " + (int)id);
+
+        readyButton.gameObject.SetActive(false);
+
+        if (contReady == 0)
+            playerReady_image.SetActive(true);
 
         SetPlayerReadyServerRpc();
-        readyButton.gameObject.SetActive(false);
-        playerReady_image.SetActive(true);
+
+        //Debug.Log("Contador de ready: " + contReady);
     }
 }

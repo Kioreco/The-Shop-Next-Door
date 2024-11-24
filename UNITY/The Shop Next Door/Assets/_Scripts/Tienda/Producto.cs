@@ -33,12 +33,15 @@ public class Producto
         {
             stockEstanteria += cantidadAReponer;
             stockAlmacen -= cantidadAReponer;
+            GameManager.Instance.espacioAlmacen -= cantidadAReponer;
         }
         else
         {
+            GameManager.Instance.espacioAlmacen -= stockAlmacen;
             stockEstanteria += stockAlmacen;
             stockAlmacen = 0;
         }
+        UIManager.Instance.UpdateInventorySpace_UI();
     }
 
     public int cogerProducto(int c)

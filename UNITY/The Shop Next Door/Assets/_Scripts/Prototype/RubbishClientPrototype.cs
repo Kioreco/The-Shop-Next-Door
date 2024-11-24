@@ -13,7 +13,7 @@ public class RubbishClientPrototype : MonoBehaviour
 
     //instanciar con delay:
     bool isSpawning = false;
-    float delay = 15f;
+    float delay = 30f;
 
     private void Start()
     {

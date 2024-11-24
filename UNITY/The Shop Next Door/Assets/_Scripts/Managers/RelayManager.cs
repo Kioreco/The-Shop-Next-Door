@@ -200,6 +200,7 @@ public class RelayManager : NetworkBehaviour
 
     private void OnClientDisconnect(ulong obj)
     {
+        if (obj > 1) return;
         //NetworkManager.Singleton.Shutdown();
         if (_connect)
         {

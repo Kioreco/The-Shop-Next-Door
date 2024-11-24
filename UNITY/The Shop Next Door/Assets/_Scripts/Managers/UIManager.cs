@@ -42,7 +42,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI day_text;
     [SerializeField] private TextMeshProUGUI hour_text;
 
-    [SerializeField] private Image reputation_Bar;
+    [SerializeField] public Image reputation_Bar;
+    public float reputation_Rival;
     [HideInInspector] public Image cajero_Bar;
     [HideInInspector] public GameObject cajero_Canvas;
 
@@ -89,6 +90,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerName_text;
     [SerializeField] private TextMeshProUGUI inheritance_text;
 
+    [Header("Avisos")]
+    [SerializeField] private GameObject avisoCierreMediaHora;
+    [SerializeField] private GameObject avisoSalidaTienda;
+    [SerializeField] private GameObject avisoCompraSuministros;
+
+
     public static UIManager Instance { get; private set; }
 
     void Awake()
@@ -101,6 +108,31 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ActivateAlertBuySupplies(float delay)
+    {
+        print("alerta compra suministros");
+        avisoCompraSuministros.SetActive(true);
+        StartCoroutine(DelayAlert(delay, avisoCompraSuministros));
+    }
+    public void ActivateAlertGoOutShop(float delay)
+    {
+        print("alerta salir tienda");
+        avisoSalidaTienda.SetActive(true);
+        StartCoroutine(DelayAlert(delay, avisoSalidaTienda));
+    }    
+    public void ActivateAlertThirtyMinutesLeft(float delay)
+    {
+        print("alerta 30minutos");
+        avisoCierreMediaHora.SetActive(true);
+        StartCoroutine(DelayAlert(delay, avisoCierreMediaHora));
+    }
+
+    IEnumerator DelayAlert(float delay, GameObject obj)
+    {
+        yield return new WaitForSeconds(delay);
+        obj.SetActive(false);
     }
 
     public void Start_UnityFalse()
@@ -351,6 +383,9 @@ public class UIManager : MonoBehaviour
         double player2Points;
         if (playerID == 0)
         {
+            print($"result test: {player1Result_text.gameObject}");
+            print($"game manager test: {GameManager.Instance}");
+            print($"result: {GameManager.Instance.playerResult}");
             player1Result_text.SetText(GameManager.Instance.playerResult + " points");
             player2Result_text.SetText(GameManager.Instance.playerResultRival + " points");
             player1Points = GameManager.Instance.playerResult;
@@ -358,6 +393,9 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            print($"result test: {player1Result_text}");
+            print($"game manager test: {GameManager.Instance}");
+            print($"result: {GameManager.Instance.playerResult}");
             player1Result_text.SetText(GameManager.Instance.playerResultRival + " points");
             player2Result_text.SetText(GameManager.Instance.playerResult + " points");
             player1Points = GameManager.Instance.playerResultRival;
@@ -383,6 +421,8 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.inheritance = 2;
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
+
+        Destroy(GameManager.Instance._player.gameObject);
     }
 
 }

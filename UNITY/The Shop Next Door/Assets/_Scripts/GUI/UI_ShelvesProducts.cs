@@ -102,6 +102,8 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
             gameObject.GetComponent<Button>().spriteState = spriteState;
 
             quantity_text.color = colorDarkRed;
+            quantity_text.SetText(quantity.ToString() + "/" + shelve.maxSpacePerProduct);
+
 
             quantity_text.SetText(quantity.ToString() + "/" + shelve.maxSpacePerProduct);
 

@@ -178,7 +178,7 @@ public class TiendaManager : MonoBehaviour
             {
                 if (item.GetComponent<Estanteria>().TieneElemento(producto) == true)
                 {
-                    if (isEmpty) item.GetComponent<Estanteria>().product_UI.UpdateShelvesQuantityProduct_UI();
+                    if (isEmpty) item.GetComponent<Estanteria>().worldObjectInteractable.UpdateUIProducts();
                     return item.transform.position;
                 }
             }
@@ -195,42 +195,6 @@ public class TiendaManager : MonoBehaviour
             return aux.Keys.ElementAt(rand);
         }
         else return "";
-    }
-
-    public void reponerEstanteria(int cantidad)
-    {
-        if (ID == 0 && player.IsOwner)
-        {
-            foreach (var item in shelfsP1)
-            {
-                for(int i = 0; i < item.GetComponent<Estanteria>().objetosEstanteria.Count; i++)
-                {
-                    char tipo = item.GetComponent<Estanteria>().tipoObj;
-                    string s = item.GetComponent<Estanteria>().objetosEstanteria[i];
-                    if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
-                    {
-                        result.gestionarStockEstanteriaYAlmacen(cantidad);
-                    }
-                }
-                
-            }
-        }
-        else if (ID == 1 && player.IsOwner)
-        {
-            foreach (var item in shelfsP2)
-            {
-                for (int i = 0; i < item.GetComponent<Estanteria>().objetosEstanteria.Count; i++)
-                {
-                    char tipo = item.GetComponent<Estanteria>().tipoObj;
-                    string s = item.GetComponent<Estanteria>().objetosEstanteria[i];
-                    if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
-                    {
-                        result.gestionarStockEstanteriaYAlmacen(cantidad);
-                    }
-                }
-
-            }
-        }
     }
 
     public int cogerDeEstanteria(string s, char tipo, int cantidad)
