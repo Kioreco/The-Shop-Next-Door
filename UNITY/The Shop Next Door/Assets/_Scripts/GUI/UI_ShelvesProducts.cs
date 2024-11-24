@@ -103,6 +103,8 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
 
             quantity_text.color = colorDarkRed;
 
+            quantity_text.SetText(quantity.ToString() + "/" + shelve.maxSpacePerProduct);
+
             emptyProduct = true;
             if (shelve.canvasInteractable.activeSelf) { shelve.canvasAlert.SetActive(false); }
             else shelve.canvasAlert.SetActive(true);

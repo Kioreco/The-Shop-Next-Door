@@ -208,7 +208,8 @@ public class CalendarController : NetworkBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (activities_selected[i].activityInfo.activityName == "" || activities_selected[i].activityInfo == null) return;
+            if (activities_selected[i].activityInfo.activityName == "" || activities_selected[i].activityInfo == null) { final_outcomes[i] = ""; return; }
+        }
 
             activitiesFilled++;
 
