@@ -1925,8 +1925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.7102051, y: -65.07001}
-  m_SizeDelta: {x: 346.6328, y: 343.69}
+  m_AnchoredPosition: {x: 0.00030518, y: -0.000061035}
+  m_SizeDelta: {x: 338.82, y: 190.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628882749
 MonoBehaviour:
@@ -3734,14 +3734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddef4bb575f8544408889f28cad760b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emailLoginField: {fileID: 27611524}
-  _passwordLogin: {fileID: 945997474}
-  _resultReqLogin: {fileID: 1157044309}
-  _userNameRegister: {fileID: 705322866}
-  _emailRegister: {fileID: 1921143942}
-  _passwordRegister: {fileID: 1871698836}
-  _rePasswordRegister: {fileID: 781878479}
-  _resultReqRegister: {fileID: 210647355}
 --- !u!4 &1509258294
 Transform:
   m_ObjectHideFlags: 0
@@ -4211,20 +4203,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313c016e93f0544b25ff31ca8af6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchCodeMatchMaking_Text: {fileID: 0}
+  cashRegister_Text: {fileID: 0}
+  canvas_menu: {fileID: 0}
+  joinCode_Text: {fileID: 0}
+  joinMatch_Button: {fileID: 0}
   joinCode_Input: {fileID: 0}
   messageMatch_waiting: {fileID: 0}
   messageMatch_wrong: {fileID: 0}
   canvasIngame: {fileID: 0}
   telephone: {fileID: 0}
+  alertTelephone: {fileID: 0}
+  vigor: {fileID: 0}
   dineroJugador_text: {fileID: 0}
+  newMoney_text: {fileID: 0}
   nombreTienda_text: {fileID: 0}
-  inventoryInfo_text: {fileID: 0}
-  timeReference: {fileID: 0}
+  inventory_text: {fileID: 0}
+  maxInventory_text: {fileID: 0}
+  schedule: {fileID: 0}
   day_text: {fileID: 0}
   hour_text: {fileID: 0}
-  clientHappiness_Bar: {fileID: 0}
-  playerVigor_Bar: {fileID: 0}
+  reputation_Bar: {fileID: 0}
+  reputation_Rival: 0
+  cajero_Bar: {fileID: 0}
+  cajero_Canvas: {fileID: 0}
+  gameVolume: {fileID: 0}
   canvasDayEnd: {fileID: 0}
   activity1_outcome_text: {fileID: 0}
   activity2_outcome_text: {fileID: 0}
@@ -4233,8 +4235,21 @@ MonoBehaviour:
   player2ShopName: {fileID: 0}
   player1Money: {fileID: 0}
   player2Money: {fileID: 0}
-  player1Clients: {fileID: 0}
-  player2Clients: {fileID: 0}
+  player1Day: {fileID: 0}
+  player2Day: {fileID: 0}
+  day_EndDay_Text: {fileID: 0}
+  hour_EndDay_Text: {fileID: 0}
+  player1Reputation: {fileID: 0}
+  player2Reputation: {fileID: 0}
+  player1Result_text: {fileID: 0}
+  player2Result_text: {fileID: 0}
+  winnerName_text: {fileID: 0}
+  inheritance_text: {fileID: 0}
+  ButtonDuplicateReward: {fileID: 0}
+  avisoCierreMediaHora: {fileID: 0}
+  avisoSalidaTienda: {fileID: 0}
+  avisoCompraSuministros: {fileID: 0}
+  cajaPlayerPosition: {fileID: 0}
 --- !u!4 &1557370208
 Transform:
   m_ObjectHideFlags: 0
@@ -4723,7 +4738,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 0, y: 289.1659}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1771772528
 MonoBehaviour:
@@ -4745,7 +4760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 24aa4b68c71a12844ba68fd0055eeed2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ace98f8cb38d504abc135d07a352679, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4866,7 +4881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035, y: -271}
+  m_AnchoredPosition: {x: 0.000061035, y: -171}
   m_SizeDelta: {x: 1920, y: 496.6514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1830496100
@@ -5272,7 +5287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -59}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 694.4, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897637194
@@ -5323,13 +5338,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.7
-  m_fontSizeBase: 36.7
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5359,7 +5374,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 347.97992, y: -58.57687, z: 344.03485, w: -7.3215466}
+  m_margin: {x: 347.97992, y: -58.57687, z: 344.03485, w: 10.206874}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -16,6 +16,13 @@ public class UIManager : MonoBehaviour
     int[] numeros = new int[4] { 0, 0, 0, 0 };
     [SerializeField] private GameObject canvas_menu;
 
+    [Header("TUTORIAL")]
+    [SerializeField] private GameObject tutorialLayout;
+    [SerializeField] private GameObject[] tutorialSlides;
+    [SerializeField] private GameObject tutorial_NextButton;
+    [SerializeField] private GameObject tutorial_PrevButton;
+    [SerializeField] private GameObject tutorial_PlayButton;
+
 
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI joinCode_Text;
@@ -88,7 +95,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject player1Result_text;
     [SerializeField] public GameObject player2Result_text;
     [SerializeField] private TextMeshProUGUI winnerName_text;
-    [SerializeField] private TextMeshProUGUI inheritance_text;
+    [SerializeField] public TextMeshProUGUI inheritance_text;
     public GameObject ButtonDuplicateReward;
 
     [Header("Avisos")]
@@ -428,4 +435,29 @@ public class UIManager : MonoBehaviour
         GameManager.Instance._player.DestroyClient();
     }
 
+
+    public void OpenCloseModal(GameObject modal)
+    {
+        modal.SetActive(!modal.activeSelf);
+    }
+
+    int currentSlide = 0;
+    
+    public void NextTutorialSlide()
+    {
+        tutorialSlides[currentSlide].SetActive(false);
+        tutorialSlides[currentSlide + 1].SetActive(true);
+        if (!tutorial_PrevButton.activeSelf) { tutorial_PrevButton.SetActive(true); }
+        if (currentSlide + 1 == 3) { tutorial_PlayButton.SetActive(true); tutorial_NextButton.SetActive(false); }
+        currentSlide++;
+    }
+
+    public void PrevTutorialSlide()
+    {
+        tutorialSlides[currentSlide].SetActive(false);
+        tutorialSlides[currentSlide - 1].SetActive(true);
+        if (currentSlide - 1 == 2) { tutorial_PlayButton.SetActive(false); tutorial_NextButton.SetActive(true); }
+        if (currentSlide - 1 == 0) { tutorial_PrevButton.SetActive(false); }
+        currentSlide--;
+    }
 }

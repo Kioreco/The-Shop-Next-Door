@@ -42,7 +42,9 @@ public class AdvertManager : MonoBehaviour
     {
         if (!_isReward)
         {
-            MultiplyReward();      
+            MultiplyReward();
+
+            
             _isReward = true;  
         }
         panelPublicity.SetActive(false);
@@ -53,6 +55,7 @@ public class AdvertManager : MonoBehaviour
     {
         reward *= 2;
         Debug.Log("Recompensa multiplicada: " + reward);
+        UIManager.Instance.inheritance_text.SetText(reward.ToString());
         UIManager.Instance.ButtonDuplicateReward.SetActive(false);
     }
 }

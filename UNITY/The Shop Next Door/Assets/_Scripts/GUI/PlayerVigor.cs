@@ -78,7 +78,7 @@ public class PlayerVigor : MonoBehaviour
                 GameManager.Instance._player.ChangePlayerSpeed(5f);
                 stressLevelChanged = false;
             }
-            vigor_bar.fillAmount -= Time.deltaTime * 0.02f;
+            vigor_bar.fillAmount -= Time.deltaTime * 0.005f;
             if (vigor_bar.fillAmount <= 0.5f)
             {
                 stressLevel = 1;
@@ -94,7 +94,7 @@ public class PlayerVigor : MonoBehaviour
                 GameManager.Instance._player.ChangePlayerSpeed(2.5f);
                 stressLevelChanged = false;
             }
-            vigor_bar.fillAmount -= Time.deltaTime * 0.04f;
+            vigor_bar.fillAmount -= Time.deltaTime * 0.02f;
             if (vigor_bar.fillAmount <= 0.25f)
             {
                 stressLevel = 2;
@@ -111,7 +111,7 @@ public class PlayerVigor : MonoBehaviour
                 stressLevelChanged = false;
             }
 
-            vigor_bar.fillAmount -= Time.deltaTime * 0.06f;
+            vigor_bar.fillAmount -= Time.deltaTime * 0.04f;
             if (vigor_bar.fillAmount <= 0.05f)
             {
                 stressLevelMAX = true;

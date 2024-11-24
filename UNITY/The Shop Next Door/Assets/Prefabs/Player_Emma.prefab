@@ -528,6 +528,10 @@ MonoBehaviour:
   clientRubbish: {fileID: 0}
   clientKaren: {fileID: 0}
   clientTacanio: {fileID: 0}
+  hostResultFinal: 0
+  clientResultFinal: 0
+  HostReady: 0
+  clientReady: 0
 --- !u!54 &1150068293530846704
 Rigidbody:
   m_ObjectHideFlags: 0

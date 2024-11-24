@@ -9,8 +9,8 @@ public class WorkDayCycle : MonoBehaviour
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
-    private float realTimePerDay = 30f;    // TIEMPO POR DÍA -----> 240
-    private float realTimePerNight = 5f;    // TIEMPO POR NOCHE -----> 15 segundos
+    private float realTimePerDay = 240f;    // TIEMPO POR DÍA -----> 240
+    private float realTimePerNight = 15f;    // TIEMPO POR NOCHE -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
     //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
@@ -133,7 +133,6 @@ public class WorkDayCycle : MonoBehaviour
         // SE HA ACABADO EL DÍA
         if (realTimePassed >= realTimePerDay)
         {
-            cycleCompleted = true; //QUITAR
             eventLanzadoTwoHours = false;
             eventLanzadoOneHours = false;
             eventLanzadoTenMinutes = false;
