@@ -184,11 +184,11 @@ Objetivos deseados para el próximo hito:
 
 <a name="_toc180924129"></a>**1.2. Revisión 2: Beta**
 
-Cosas revisión 2
+Por hacer el 25 de noviembre
 
 <a name="_toc180924130"></a>**1.3. Revisión 3: Gold Master**
 
-Cosas revisión 3
+Por hacer el 10 de diciembre
 
 ___
 # <a name="_toc180924131"></a>**2. Introducción: The Shop Next Door**
@@ -236,13 +236,13 @@ Entre los productos que se ofrecen, aparte de un sistema de donaciones y canales
 Para potenciar la fidelización de los usuarios y su permanencia en el juego se ofrecerían retos semanales donde el jugador deberá completar ciertas misiones, obteniendo objetos o dinero que mejoren la experiencia.
 ___
 ## <a name="_toc180924139"></a>**3.4. Mapa de empatía**
-El mapa de empatía de los usuarios de The Shop Next Door sería el siguiente:
+El mapa de empatía de los usuarios de The Shop Next Door sería el siguiente, poniendo enfásis en jugadores con una base de cultura pop importante que entiendan las referencias que el juego contiene. De igual modo, el jugador destaca por su gusto por la cultura y por relacionarse con sus amistades, buscando relaciones fuertes y complejas.
 
 ![Mapa De Empatia](https://github.com/user-attachments/assets/3a949d3e-2b39-416e-8064-e27099005948)
 
 ___
 ## <a name="_toc180924140"></a>**3.5. Caja de herramientas**
-La caja de herramientas de Kioreco sería la siguiente:
+La caja de herramientas de Kioreco tiene como base ofrecer productos gratuitos con microtransacciones. Además, se da la opción de que el jugador pueda ver anuncios para duplicar los beneficios obtenidos en las partidas. Por otro lado, también se realizarán colaboraciones con marcas para cosméticos especiales, y se alentará a los jugadores a que realicen donaciones a cambio de beneficios.
 
 ![imagen](https://github.com/user-attachments/assets/9fc62e88-f0e7-46d5-b8f4-4ba09aa94c47)
 ___
@@ -661,7 +661,8 @@ Mejora del dibujado y disposición de elementos para el menú de inicio de la be
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
 
-Concepto por realizar.
+![imagen](https://github.com/user-attachments/assets/56116768-3ffc-445e-960f-3f3130996b25)
+
 ___
 ## <a name="_toc180924178"></a>**8.5. MatchMaking**
 
@@ -737,7 +738,25 @@ Sin concretar: sin derechos de distribución ni uso.
 ___
 ## <a name="_toc180924187"></a>**9.3. Lista de sonidos**
 
-Por concretar.
+-	Música de juego
+-	Música de menús
+-	Música de la escena final
+-	Sonido botones de los menús
+-	Sonido de caja registradora
+-	Sonido de compra en la tienda de cosméticos
+-	Sonido cuando se abre la tienda
+-	Sonido despertador para cuando comienza el trabajo
+-	Sonido tick-tack para la tienda llegando al cierre
+-	Sonido de botones de las estanterías
+-	Sonido de acción errónea
+-	Sonido de cobrar
+-	Sonido de limpiar
+-	Sonido de abrir y cerrar el móvil
+-	Sonido de gastar dinero
+-	Sonido del vigor bajo
+-	Sonido alerta del vigor
+-	Sonido de alerta de estanterías
+-	Sonido de mejorar las estanterías
 ___
 # <a name="_toc180924188"></a>**10. Hoja de ruta del desarrollo**
 
