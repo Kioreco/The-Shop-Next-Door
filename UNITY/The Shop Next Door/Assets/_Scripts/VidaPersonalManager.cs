@@ -43,10 +43,10 @@ public class VidaPersonalManager : MonoBehaviour
 
     public void UpdateLifeProgress(int totalAct, float rom, float friend, float grow, float happy, float rest)
     {
-        romanticProgress    += (rom / totalAct) * 20.0f;
-        friendshipProgress  += (friend / totalAct) * 20.0f;
-        developmentProgress += (grow / totalAct) * 20.0f;
-        happinessProgress   += (happy / totalAct) * 20.0f;
-        restProgress        += (rest / totalAct) * 20.0f;
+        romanticProgress    += (rom / totalAct) * 25.0f;
+        friendshipProgress  += (friend / totalAct) * 25.0f;
+        developmentProgress += (grow / totalAct) * 25.0f;
+        happinessProgress   += (happy / totalAct) * 25.0f;
+        restProgress        += (rest / totalAct) * 25.0f;
     }
 }
