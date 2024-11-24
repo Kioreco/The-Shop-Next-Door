@@ -64,8 +64,7 @@ public class PlayerControler : NetworkBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        print("awake");
+
     }
 
     void Start()
@@ -128,7 +127,10 @@ public class PlayerControler : NetworkBehaviour
             maxX = Camera.main.transform.position.x + 10f; //20
             minZ = Camera.main.transform.position.z - 15f;
             maxZ = Camera.main.transform.position.z + 45f; //30
+            //print("awake");
         }
+        DontDestroyOnLoad(this);
+
     }
 
     void initializeVariables()
@@ -338,35 +340,44 @@ public class PlayerControler : NetworkBehaviour
     [ClientRpc]
     public void UpdateHostResultFinalForClientRpc(double newV)
     {
-        //print("update money host");
         if (IsClient)
         {
+            print("update resultado host");
+
             GameManager.Instance.playerResultRival = newV;
         }
     }
     [ClientRpc]
     public void UpdateClientResultFinalClientRpc(double newV)
     {
-        //print("update client money");
         if (IsServer)
         {
+            print("update resultado cliente");
+
             GameManager.Instance.playerResultRival = newV;
         }
     }
 
     public void DestroyClient()
     {
-        if(IsOwner) DestroyClientServerRpc(NetworkObjectId);
+        print("destroy client");
+        DestroyClientServerRpc(OwnerClientId);
     }
 
     [ServerRpc]
     public void DestroyClientServerRpc(ulong clientId)
     {
-        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(clientId, out NetworkObject networkObject))
+        //Debug.Log($"Intentando desconectar cliente con ID: {clientId}");
+        if (clientId == 0)
         {
-            // Destruir el NetworkObject
-            networkObject.Despawn(true); // Destruye el NetworkObject de la red
+            NetworkManager.Singleton.Shutdown();
         }
+        else
+        {
+            NetworkManager.Singleton.DisconnectClient(clientId);
+        }
+        // Desconectar al cliente
+        //Debug.Log($"Cliente {clientId} desconectado.");
     }
 
 

@@ -92,14 +92,14 @@ public class TiendaManager : MonoBehaviour
     #region inicializacion Objetos
     void InicializarRopa()
     {
-        RopaYCalzado.Add("camisa", new Producto(19.99f, 5, 5, 'r', true));
-        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 0, 2, 'r', true));
+        RopaYCalzado.Add("camisa", new Producto(19.99f, 5, UnityEngine.Random.Range(0,5), 'r', true));
+        RopaYCalzado.Add("jerseis", new Producto( 24.99f, 0, UnityEngine.Random.Range(0, 5), 'r', true));
         RopaYCalzado.Add("vestidos", new Producto( 30.00f, 0, 0, 'r', false));
-        RopaYCalzado.Add("pantalones", new Producto(25.99f, 0, 0, 'r', true));
-        RopaYCalzado.Add("faldas", new Producto(20.00f, 0, 0, 'r', true));
+        RopaYCalzado.Add("pantalones", new Producto(25.99f, 0, UnityEngine.Random.Range(0, 5), 'r', true));
+        RopaYCalzado.Add("faldas", new Producto(20.00f, 0, UnityEngine.Random.Range(0, 5), 'r', true));
         RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 'r', false));
-        RopaYCalzado.Add("deportivas", new Producto(55.00f, 0, 0, 'r', true));
-        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, 0, 'r', true));
+        RopaYCalzado.Add("deportivas", new Producto(55.00f, UnityEngine.Random.Range(0, 5), 0, 'r', true));
+        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, UnityEngine.Random.Range(0, 5), 'r', true));
     }
     void InicializarPapeleria()
     {
@@ -112,14 +112,14 @@ public class TiendaManager : MonoBehaviour
     }
     void InicializarComida()
     {
-        Comida.Add("manzana", new Producto(0.85f, 10, 5, 'c', true));
-        Comida.Add("sandia", new Producto(2.75f, 2, 3, 'c', true));
+        Comida.Add("manzana", new Producto(0.85f, 10, UnityEngine.Random.Range(0, 5), 'c', true));
+        Comida.Add("sandia", new Producto(2.75f, 2, UnityEngine.Random.Range(0, 5), 'c', true));
         Comida.Add("melon", new Producto(2.15f, 0, 0, 'c', false));
-        Comida.Add("pizza", new Producto(3.45f, 0, 0, 'c', true));
+        Comida.Add("pizza", new Producto(3.45f, 0, UnityEngine.Random.Range(0, 5), 'c', true));
         Comida.Add("croquetas", new Producto(4.60f, 0, 0, 'c', false));
-        Comida.Add("calabaza", new Producto(5.00f, 0, 0, 'c', true));
-        Comida.Add("carne", new Producto(12.50f, 0, 5, 'c', true));
-        Comida.Add("pescado", new Producto(12.50f, 0, 2, 'c', true));
+        Comida.Add("calabaza", new Producto(5.00f, 0, UnityEngine.Random.Range(0, 5), 'c', true));
+        Comida.Add("carne", new Producto(12.50f, 0, UnityEngine.Random.Range(0,5), 'c', true));
+        Comida.Add("pescado", new Producto(12.50f, 0, UnityEngine.Random.Range(0,5), 'c', true));
     }
     void InicializarOcio()
     {

@@ -846,6 +846,7 @@ MonoBehaviour:
   day_text: {fileID: 0}
   hour_text: {fileID: 0}
   reputation_Bar: {fileID: 0}
+  reputation_Rival: 0
   cajero_Bar: {fileID: 0}
   cajero_Canvas: {fileID: 0}
   gameVolume: {fileID: 0}
@@ -867,6 +868,10 @@ MonoBehaviour:
   player2Result_text: {fileID: 0}
   winnerName_text: {fileID: 0}
   inheritance_text: {fileID: 0}
+  ButtonDuplicateReward: {fileID: 0}
+  avisoCierreMediaHora: {fileID: 0}
+  avisoSalidaTienda: {fileID: 0}
+  avisoCompraSuministros: {fileID: 0}
   cajaPlayerPosition: {fileID: 0}
 --- !u!4 &300335086
 Transform:
@@ -1835,6 +1840,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600945961}
   m_CullTransparentMesh: 1
+--- !u!1 &854152015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854152017}
+  - component: {fileID: 854152016}
+  m_Layer: 0
+  m_Name: AudioActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &854152016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854152015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071f62cc6d04ca44ca3a96b3073cdc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMenuInicio: 1
+--- !u!4 &854152017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854152015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1280, y: 720, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937262453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,3 +3919,4 @@ SceneRoots:
   - {fileID: 300335086}
   - {fileID: 1163272537}
   - {fileID: 234148449}
+  - {fileID: 854152017}

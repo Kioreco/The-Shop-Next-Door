@@ -89,6 +89,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject player2Result_text;
     [SerializeField] private TextMeshProUGUI winnerName_text;
     [SerializeField] private TextMeshProUGUI inheritance_text;
+    public GameObject ButtonDuplicateReward;
 
     [Header("Avisos")]
     [SerializeField] private GameObject avisoCierreMediaHora;
@@ -112,19 +113,19 @@ public class UIManager : MonoBehaviour
 
     public void ActivateAlertBuySupplies(float delay)
     {
-        print("alerta compra suministros");
+        //print("alerta compra suministros");
         avisoCompraSuministros.SetActive(true);
         StartCoroutine(DelayAlert(delay, avisoCompraSuministros));
     }
     public void ActivateAlertGoOutShop(float delay)
     {
-        print("alerta salir tienda");
+        //print("alerta salir tienda");
         avisoSalidaTienda.SetActive(true);
         StartCoroutine(DelayAlert(delay, avisoSalidaTienda));
     }    
     public void ActivateAlertThirtyMinutesLeft(float delay)
     {
-        print("alerta 30minutos");
+        //print("alerta 30minutos");
         avisoCierreMediaHora.SetActive(true);
         StartCoroutine(DelayAlert(delay, avisoCierreMediaHora));
     }
@@ -157,7 +158,6 @@ public class UIManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        //if (sceneName == "1 - MenuInicio") { Cancel_Button(); }
         SceneManager.LoadScene(sceneName);
     }
 
@@ -425,6 +425,11 @@ public class UIManager : MonoBehaviour
         }
 
         //Destroy(.gameObject);
+    }
+
+    public void FinishGame()
+    {
+        print("finishing game");
         GameManager.Instance._player.DestroyClient();
     }
 

@@ -11,23 +11,24 @@ public class AdvertManager : MonoBehaviour
     public VideoPlayer videoPlayer;        
     public List<VideoClip> trailerVideos;       
     private bool _isReward;
-    public int reward = 100;
+    public int reward;
     private int _random;
 
     void Start()
     {
-        Debug.Log("Recompensa inicial: " + reward);
+        //Debug.Log("Recompensa inicial: " + reward);
+        reward = GameManager.Instance.inheritance;
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
-    public void ShowSimulatedAdd()
+    public void ShowAdd()
     {
         if (trailerVideos.Count == 0)
         {
-            Debug.LogWarning("No hay vídeos"); //Por si acaso se nos olvida meter o se cambian nombres de variables y nos rayamos
+            Debug.LogWarning("No hay vídeos");
             return;
         }
-
+        AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
         _isReward = false;          
         panelPublicity.SetActive(true); 
 
@@ -45,11 +46,13 @@ public class AdvertManager : MonoBehaviour
             _isReward = true;  
         }
         panelPublicity.SetActive(false);
+        AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
     }
 
     private void MultiplyReward()
     {
         reward *= 2;
         Debug.Log("Recompensa multiplicada: " + reward);
+        UIManager.Instance.ButtonDuplicateReward.SetActive(false);
     }
 }

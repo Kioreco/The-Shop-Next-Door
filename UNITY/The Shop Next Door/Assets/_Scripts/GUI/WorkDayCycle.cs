@@ -50,7 +50,7 @@ public class WorkDayCycle : MonoBehaviour
         if (!eventLanzadoInicioDia)
         {
             dayFinish?.Invoke(this, EventArgs.Empty);
-            print("alerta inciial");
+            //print("alerta inciial");
             eventLanzadoInicioDia = true;
             UIManager.Instance.ActivateAlertBuySupplies(5f);
         }
@@ -113,14 +113,14 @@ public class WorkDayCycle : MonoBehaviour
         }
         if (gameTime>= 14.5f && !eventLanzadoThirtyMinutes)
         {
-            print("evento 30 minutos");
+            //print("evento 30 minutos");
             eventLanzadoThirtyMinutes = true;
             UIManager.Instance.ActivateAlertThirtyMinutesLeft(5f);
         }
 
         if (gameTime >= 14.75f && !eventLanzadoTenMinutes)
         {
-            print("quedan 10 minutos");
+            //print("quedan 10 minutos");
             UIManager.Instance.ActivateAlertGoOutShop(5f);
             eventLanzadoTenMinutes = true;
             eventTenMinutesLeft?.Invoke(this, EventArgs.Empty);
