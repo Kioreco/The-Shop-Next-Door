@@ -77,7 +77,7 @@ public class Estanteria : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(false);
+            if(other.gameObject.activeInHierarchy) other.gameObject.GetComponent<ContextClienteGenerico>().setIsInColliderShelf(false);
         }
 
         if (other.CompareTag("Player"))

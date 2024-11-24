@@ -1,4 +1,5 @@
 using System;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
@@ -47,6 +48,8 @@ public class PlayerControler : NetworkBehaviour
     NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    public double hostResultFinal;
+    public double clientResultFinal;
 
     //variables caja pago:
     bool isMoving = false;
@@ -55,9 +58,14 @@ public class PlayerControler : NetworkBehaviour
     public event EventHandler eventPlayerIsInRubbish;
     bool isPaying = false;
 
-   
+
 
     #endregion
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     void Start()
     {
@@ -71,12 +79,14 @@ public class PlayerControler : NetworkBehaviour
 
             print("start player");
 
-            hostMoney.OnValueChanged += OnHostMoneyChange;
-            clientMoney.OnValueChanged += OnClientMoneyChange;
+            //hostMoney.OnValueChanged += OnHostMoneyChange;
+            //clientMoney.OnValueChanged += OnClientMoneyChange;
 
-            hostResult.OnValueChanged += OnHostResultChange;
-            clientResult.OnValueChanged += OnClientResultChange;
+            //hostResult.OnValueChanged += OnHostResultChange;
+            //clientResult.OnValueChanged += OnClientResultChange;
         }
+        GetComponent<NavMeshAgent>().avoidancePriority = UnityEngine.Random.Range(30, 50);
+        GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
     }
 
     public override void OnNetworkSpawn()
@@ -241,117 +251,160 @@ public class PlayerControler : NetworkBehaviour
 
     public void FinalDayResume()
     {
-        if (ID == 0 && IsOwner)
-        {
-            //print("final resume cambiando dinero el host");
-            //hostMoney.Value = GameManager.Instance.dineroJugador;
-            //UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
-            //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
-            UpdateHostMoneyServerRpc(GameManager.Instance.dineroJugador);
-        }
-        if (ID == 1 && IsOwner)
-        {
-            UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador);
+        //dayFinish?.Invoke(this, EventArgs.Empty);
 
-            //print("final resume cambiando dinero el client");
+        if (ID == 0)
+        {
+            print("final resume cambiando dinero el host");
+            //hostMoney.Value = GameManager.Instance.dineroJugador;
+            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            UIManager.Instance.player1Reputation.fillAmount = UIManager.Instance.reputation_Bar.fillAmount;
+            //OnHostMoneyChange(GameManager.Instance.dineroJugador, hostMoney.Value);
+            UpdateHostMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
+        }
+        if (ID == 1)
+        {
+            print("final resume cambiando dinero el client");
+
+            UpdateClientMoneyServerRpc(GameManager.Instance.dineroJugador, UIManager.Instance.reputation_Bar.fillAmount);
+
             //clientMoney.Value = GameManager.Instance.dineroJugador;
-            //UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroJugador.ToString());
+            UIManager.Instance.player2Reputation.fillAmount = UIManager.Instance.reputation_Bar.fillAmount;
+
             //OnClientMoneyChange(GameManager.Instance.dineroJugador, clientMoney.Value);
         }
     }
 
 
     [ServerRpc]
-    public void UpdateHostMoneyServerRpc(float newV)
+    public void UpdateHostMoneyServerRpc(float newV, float newR)
     {
         print("host server rpc");
-        UpdateHostMoneyForClientRpc(newV);
+        UpdateHostMoneyForClientRpc(newV, newR);
     }
 
     [ServerRpc]
-    public void UpdateClientMoneyServerRpc(float newV)
+    public void UpdateClientMoneyServerRpc(float newV, float newR)
     {
         print("client server rpc");
-        UpdateClientMoneyForClientRpc(newV);
+        UpdateClientMoneyForClientRpc(newV, newR);
     }
     [ClientRpc]
-    public void UpdateHostMoneyForClientRpc(float newV)
+    public void UpdateHostMoneyForClientRpc(float newV, float newR)
     {
         print("update money host");
-        if (IsOwner & ID == 1)
+        if (IsClient)
         {
             GameManager.Instance.dineroRival = newV;
-            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+            UIManager.Instance.reputation_Rival = newR;
+            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
+            UIManager.Instance.player1Reputation.fillAmount = UIManager.Instance.reputation_Rival;
+
         }
     }    
     [ClientRpc]
-    public void UpdateClientMoneyForClientRpc(float newV)
+    public void UpdateClientMoneyForClientRpc(float newV, float newR)
     {
         print("update client money");
-        if (IsOwner & ID == 0)
-        {
-            GameManager.Instance.dineroRival = newV;
-            UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
-        }
-    }
-
-
-    void OnHostMoneyChange(float previous, float newM) 
-    {
-        print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
-
-        if (IsClient)
-        {
-            print($"on host money change if");
-            GameManager.Instance.dineroRival = newM;
-            UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
-        }
-    }    
-
-    void OnClientMoneyChange(float previous, float newM) 
-    {
-        print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
-
         if (IsServer)
         {
-            print($"on client money change if");
-
-            GameManager.Instance.dineroRival = newM;
+            GameManager.Instance.dineroRival = newV;
+            UIManager.Instance.reputation_Rival = newR;
+            UIManager.Instance.player2Reputation.fillAmount = UIManager.Instance.reputation_Rival;
             UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
         }
     }
+
+
+    //void OnHostMoneyChange(float previous, float newM) 
+    //{
+    //    print($"on host money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+
+    //    if (IsClient)
+    //    {
+    //        print($"on host money change if");
+    //        GameManager.Instance.dineroRival = newM;
+    //        UIManager.Instance.player1Money.SetText(GameManager.Instance.dineroRival.ToString());
+    //    }
+    //}    
+
+    //void OnClientMoneyChange(float previous, float newM) 
+    //{
+    //    print($"on client money change: id: {ID}  isclient{IsClient}  ishost: {IsServer}");
+
+    //    if (IsServer)
+    //    {
+    //        print($"on client money change if");
+
+    //        GameManager.Instance.dineroRival = newM;
+    //        UIManager.Instance.player2Money.SetText(GameManager.Instance.dineroRival.ToString());
+    //    }
+    //}
 
     public void FinalWeekResult()
     {
-        if (ID == 0 && IsOwner)
+        if (ID == 0)
         {
-            hostResult.Value = GameManager.Instance.playerResult;
+            UpdateHostFinalResultServerRpc(GameManager.Instance.playerResult);
             //Para UI si queremos
         }
-        if (ID == 1 && IsOwner)
+        if (ID == 1)
         {
-            clientResult.Value = GameManager.Instance.playerResult;
+            UpdateClientFinalResultServerRpc(GameManager.Instance.playerResult);
             //Para UI si queremos
         }
     }
 
-    private void OnHostResultChange(double previousValue, double newValue)
+    [ServerRpc]
+    public void UpdateHostFinalResultServerRpc(double newV)
     {
+        print("host server rpc");
+        UpdateHostResultFinalForClientRpc(newV);
+    }
+
+    [ServerRpc]
+    public void UpdateClientFinalResultServerRpc(double newV)
+    {
+        print("client server rpc");
+        UpdateClientResultFinalClientRpc(newV);
+    }
+    [ClientRpc]
+    public void UpdateHostResultFinalForClientRpc(double newV)
+    {
+        print("update money host");
         if (IsClient)
         {
-            GameManager.Instance.playerResultRival = newValue;
-            //Para UI si queremos
+            GameManager.Instance.playerResultRival = newV;
+        }
+    }
+    [ClientRpc]
+    public void UpdateClientResultFinalClientRpc(double newV)
+    {
+        print("update client money");
+        if (IsServer)
+        {
+            GameManager.Instance.playerResultRival = newV;
         }
     }
 
-    private void OnClientResultChange(double previousValue, double newValue)
-    {
-        if (IsServer)
-        {
-            GameManager.Instance.playerResultRival = newValue;
-            //Para UI si queremos
-        }
-    }
+    //private void OnHostResultChange(double previousValue, double newValue)
+    //{
+    //    if (IsClient)
+    //    {
+    //        GameManager.Instance.playerResultRival = newValue;
+    //        //Para UI si queremos
+    //    }
+    //}
+
+    //private void OnClientResultChange(double previousValue, double newValue)
+    //{
+    //    if (IsServer)
+    //    {
+    //        GameManager.Instance.playerResultRival = newValue;
+    //        //Para UI si queremos
+    //    }
+    //}
 
     #endregion
 

@@ -14,7 +14,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public int maxX;
     public int minZ;
     public int maxZ;
-    public float maxDistanceNavMesh = 1;
+    public float maxDistanceNavMesh = 1.5f;
     [Header("Object Pool")]
     public IObjectPool<RubbishController> objectPool;
     bool isReset;

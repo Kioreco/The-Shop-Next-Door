@@ -7,8 +7,7 @@ namespace Assets.Scripts.MachineStates.Classes
 {
     public class ContextClienteGenerico : MonoBehaviour, IContext
     {
-        private IState currentState;
-        [SerializeField] float speed;
+        public IState currentState;
         ListaCompra lista = new ListaCompra();
         [SerializeField] TiendaManager TiendaManager;
         [SerializeField] UIManager UIManager;
@@ -18,7 +17,7 @@ namespace Assets.Scripts.MachineStates.Classes
         //caja pago:
         public float dineroCompra = 0;
         bool stopedInShelf = false;
-        bool stopedInCajaPago = false;
+        public bool stopedInCajaPago = false;
         public int positionPayQueue;
         public bool isInPayQueue = false;
 
@@ -45,7 +44,7 @@ namespace Assets.Scripts.MachineStates.Classes
         bool isReset;
 
         //variables control pagar si hay cajero
-        bool hayCajeroEnCaja = false;
+        public bool hayCajeroEnCaja = false;
 
         //variables tipo de cliente
         public bool isKaren;
@@ -79,6 +78,7 @@ namespace Assets.Scripts.MachineStates.Classes
             //métodos hora salida tienda 
             UIManager.schedule.eventTwoHoursLeft += recieverEventTwoHoursLeft;
             UIManager.schedule.eventTenMinutesLeft += recieverEventTenMinutesLeft;
+            UIManager.Instance.schedule.dayFinish += destruirClientesRestantes;
         }
         private void OnEnable()
         {
@@ -395,7 +395,15 @@ namespace Assets.Scripts.MachineStates.Classes
             //irse de la tienda
             //print("ten minutes left");
             shopIsClosed = true;
-            if(isActiveAndEnabled) SetState(new LeaveAngry(this));
+            if (isActiveAndEnabled) SetState(new LeaveAngry(this));
+        }
+
+        public void destruirClientesRestantes(object s, EventArgs e)
+        {
+            if (isActiveAndEnabled)
+            {
+                Destruir();
+            }
         }
         #endregion
     }

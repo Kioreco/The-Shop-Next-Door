@@ -48,6 +48,7 @@ public class PlayerVigor : MonoBehaviour
         if (vigorFill)
         {
             ReplenishVigor();
+            if (stressLevelMAX & vigor_bar.fillAmount >= 0.5) GameManager.Instance._player.enableMovement(false); ;
             if (vigor_bar.fillAmount == 1)
             {
                 vigorFill = false;

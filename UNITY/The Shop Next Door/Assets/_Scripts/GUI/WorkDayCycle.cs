@@ -9,8 +9,8 @@ public class WorkDayCycle : MonoBehaviour
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
-    private float realTimePerDay = 90f;    // TIEMPO POR DÍA -----> 240
-    private float realTimePerNight = 15f;    // TIEMPO POR NOCHE -----> 15 segundos
+    private float realTimePerDay = 30f;    // TIEMPO POR DÍA -----> 240
+    private float realTimePerNight = 5f;    // TIEMPO POR NOCHE -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
     //private float gameClientTime = 10f;     // HORA EN LA QUE ENTRAN LOS CLIENTES
@@ -34,11 +34,26 @@ public class WorkDayCycle : MonoBehaviour
 
     //eventos para los clientes
     public event EventHandler eventTwoHoursLeft;
-    public event EventHandler eventOneHourLeft;
+    public event EventHandler eventThirtyMinutesLeft;
     public event EventHandler eventTenMinutesLeft;
+    bool eventLanzadoTwoHours = false;
+    bool eventLanzadoOneHours = false;
+    bool eventLanzadoTenMinutes = false;
+    bool eventLanzadoInicioDia = false;
+    bool eventLanzadoThirtyMinutes = false;
+
+    public event EventHandler dayFinish;
+
 
     void Update()
     {
+        if (!eventLanzadoInicioDia)
+        {
+            dayFinish?.Invoke(this, EventArgs.Empty);
+            print("alerta inciial");
+            eventLanzadoInicioDia = true;
+            UIManager.Instance.ActivateAlertBuySupplies(5f);
+        }
         if (isNightTime)
         {
             NightTimer();
@@ -80,22 +95,34 @@ public class WorkDayCycle : MonoBehaviour
             npcClientTacanio.isEnable = true;
         }
 
-        if (gameTime >= 13f && gameTime < 13.02)
+        if (gameTime >= 13f && !eventLanzadoTwoHours)
         {
+            print("evento 2 horas");
+
+            eventLanzadoTwoHours = true;
             eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
         }
         
-        if (gameTime >= 13.5f && gameTime < 13.52)
+        if (gameTime >= 13.5f && !eventLanzadoOneHours)
         {
-            eventOneHourLeft?.Invoke(this, EventArgs.Empty);
+            eventLanzadoOneHours = true;
+            //eventThirtyMinutesLeft?.Invoke(this, EventArgs.Empty);
             npcClientGenerico.isEnable = false;
             npcClientKaren.isEnable = false;
             npcClientTacanio.isEnable = false;
         }
-
-        if (gameTime >= 14.75f && gameTime < 14.77)
+        if (gameTime>= 14.5f && !eventLanzadoThirtyMinutes)
         {
-            //print("quedan 10 minutos");
+            print("evento 30 minutos");
+            eventLanzadoThirtyMinutes = true;
+            UIManager.Instance.ActivateAlertThirtyMinutesLeft(5f);
+        }
+
+        if (gameTime >= 14.75f && !eventLanzadoTenMinutes)
+        {
+            print("quedan 10 minutos");
+            UIManager.Instance.ActivateAlertGoOutShop(5f);
+            eventLanzadoTenMinutes = true;
             eventTenMinutesLeft?.Invoke(this, EventArgs.Empty);
         }
 
@@ -106,6 +133,13 @@ public class WorkDayCycle : MonoBehaviour
         // SE HA ACABADO EL DÍA
         if (realTimePassed >= realTimePerDay)
         {
+            cycleCompleted = true; //QUITAR
+            eventLanzadoTwoHours = false;
+            eventLanzadoOneHours = false;
+            eventLanzadoTenMinutes = false;
+            eventLanzadoInicioDia = false;
+            eventLanzadoThirtyMinutes = false;
+
             realTimePassed = 0f; // Reiniciar el tiempo real para el próximo día
             currentDay++; // Pasar al siguiente día
 

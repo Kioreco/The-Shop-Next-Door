@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float playerVigor;
 
     [HideInInspector] public float dineroRival;
-    [HideInInspector] public double playerResult;
-    [HideInInspector] public double playerResultRival;
+    public double playerResult;
+    public double playerResultRival;
 
     [Header("Network Things")]
     public PlayerControler _player;
@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
                       VidaPersonalManager.Instance.romanticProgress * 0.3;
 
         playerResult =  workLife * 0.5 + privateLife * 0.5;
+        _player.FinalWeekResult();
     }
 
 
