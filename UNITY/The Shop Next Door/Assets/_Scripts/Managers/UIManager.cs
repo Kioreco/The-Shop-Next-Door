@@ -356,11 +356,18 @@ public class UIManager : MonoBehaviour
         player2Day.SetText(dayNight);
     }
 
-    public void WriteActivityOutcomes_UI(string[] final_outcomes)
+    public void WriteActivityOutcomesEndDay_UI(string[] final_outcomes)
     {
         activity1_outcome_text.SetText(final_outcomes[0]);
         activity2_outcome_text.SetText(final_outcomes[1]);
         activity3_outcome_text.SetText(final_outcomes[2]);
+    }
+
+    public void ResetActivitiesEndDay_UI()
+    {
+        activity1_outcome_text.SetText("...");
+        activity2_outcome_text.SetText("...");
+        activity3_outcome_text.SetText("...");
     }
 
     public void WriteCashRegister(int numero)
@@ -377,12 +384,6 @@ public class UIManager : MonoBehaviour
         Application.OpenURL(url);
     }
 
-    public void ResetEndDayActivities()
-    {
-        activity1_outcome_text.SetText("");
-        activity2_outcome_text.SetText("");
-        activity3_outcome_text.SetText("");
-    }
 
     public void UpdateFinalWeekTexts(int playerID)
     {

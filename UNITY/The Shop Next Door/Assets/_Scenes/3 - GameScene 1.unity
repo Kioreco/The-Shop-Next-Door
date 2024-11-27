@@ -49013,7 +49013,6 @@ MonoBehaviour:
   - {fileID: 1663390013}
   - {fileID: 1420220055}
   - {fileID: 1010969874}
-  activities_selected_BLANK: []
   activities_text:
   - {fileID: 919328999}
   - {fileID: 1313975392}
@@ -49043,6 +49042,7 @@ MonoBehaviour:
   - {fileID: 944869920}
   - {fileID: 1713114806}
   - {fileID: 2024251328}
+  hasChosenActivities: 0
 --- !u!114 &1618253348
 MonoBehaviour:
   m_ObjectHideFlags: 0

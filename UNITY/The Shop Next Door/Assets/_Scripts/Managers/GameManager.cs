@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 30;
+            Application.runInBackground = true;
+
             DontDestroyOnLoad(gameObject);
         }
         else

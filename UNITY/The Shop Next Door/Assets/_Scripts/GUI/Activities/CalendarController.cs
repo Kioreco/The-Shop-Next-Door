@@ -17,7 +17,7 @@ public class CalendarController : NetworkBehaviour
     [Header("Activities Objects")]
     [SerializeField] private GameObject[] activities_daily = new GameObject[6];
     [SerializeField] public Activity[] activities_selected = new Activity[3];
-    [SerializeField] private Activity[] activities_selected_BLANK;
+    //[SerializeField] public Activity[] activities_selected_BLANK = new Activity[3];
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
     [HideInInspector] public ActivityInfo[] activities_mixed;
@@ -45,7 +45,7 @@ public class CalendarController : NetworkBehaviour
         RandomizeActivities(activities_romantic);
         RandomizeActivities(activities_partner);
 
-        activities_selected_BLANK = activities_selected.ToArray();
+        hasChosenActivities = false;
 
         WriteDailyActivities();
 
@@ -174,11 +174,14 @@ public class CalendarController : NetworkBehaviour
     private float Daily_DevelopmentProgress;
     private float Daily_HappinessProgress;
     private float Daily_RestProgress;
+    public bool hasChosenActivities = false;
 
     public void ActivitiesOutcomes()
     {
         final_outcomes = new string[3];
         int activitiesFilled = 0;
+
+        UIManager.Instance.ResetActivitiesEndDay_UI();
 
         bool partnerGiven = VidaPersonalManager.Instance.hasPartner;
         Daily_RomanticProgress = 0.0f;
@@ -205,73 +208,78 @@ public class CalendarController : NetworkBehaviour
         // 1. Si se tiene pareja:
         //      1.1. Si es una acción de pareja: Poner el valor de la pareja al CONTRARIO de breakPartner
         // 2. En cualquier otro caso se mantiene el outcome negativo
-
-        for (int i = 0; i < 3; i++)
+        if (hasChosenActivities)
         {
-            if (activities_selected[i].activityInfo.activityName == "" || activities_selected[i].activityInfo == null) { final_outcomes[i] = ""; return; }
-
-            activitiesFilled++;
-
-            float randomizer = Random.Range(0, 1);
-
-            int outcomeWeighted = Mathf.RoundToInt(
-                (activities_selected[i].activityInfo.ClimateStateLuck[currentWeatherState] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[currentPersonalState] * 0.55f) * 1.75f
-                + randomizer * 0.25f);
-
-
-            if (outcomeWeighted == 2)
+            for (int i = 0; i < 3; i++)
             {
-                if (partnerGiven)
+                if (activities_selected[i].activityInfo.activityName == "" || activities_selected[i].activityInfo == null) { final_outcomes[i] = "..."; }
+                else
                 {
-                    if (activities_selected[i].activityInfo.isRomanticPartner)
+                    activitiesFilled++;
+
+                    float randomizer = Random.Range(0, 1);
+
+                    int outcomeWeighted = Mathf.RoundToInt(
+                        (activities_selected[i].activityInfo.ClimateStateLuck[currentWeatherState] * 0.45f + activities_selected[i].activityInfo.PersonalStateLuck[currentPersonalState] * 0.55f) * 1.75f
+                        + randomizer * 0.25f);
+
+
+                    if (outcomeWeighted == 2)
                     {
-                        VidaPersonalManager.Instance.hasPartner = true;
-                        partnerGiven = true;
-                        outcomeWeighted = 2;
-                    }
-                    else
-                    {
-                        if (activities_selected[i].activityInfo.givesPartner)
+                        if (partnerGiven)
                         {
-                            outcomeWeighted = 1;
+                            if (activities_selected[i].activityInfo.isRomanticPartner)
+                            {
+                                VidaPersonalManager.Instance.hasPartner = true;
+                                partnerGiven = true;
+                                outcomeWeighted = 2;
+                            }
+                            else
+                            {
+                                if (activities_selected[i].activityInfo.givesPartner)
+                                {
+                                    outcomeWeighted = 1;
+                                }
+                                else
+                                {
+                                    outcomeWeighted = 2;
+                                }
+                            }
                         }
                         else
                         {
-                            outcomeWeighted = 2;
+                            if (activities_selected[i].activityInfo.givesPartner)
+                            {
+                                VidaPersonalManager.Instance.hasPartner = true;
+                                partnerGiven = true;
+                                outcomeWeighted = 2;
+                            }
+                            else
+                            {
+                                outcomeWeighted = 2;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    if (activities_selected[i].activityInfo.givesPartner)
+                    else if (outcomeWeighted == 0)
                     {
-                        VidaPersonalManager.Instance.hasPartner = true;
-                        partnerGiven = true;
-                        outcomeWeighted = 2;
+                        if (partnerGiven && activities_selected[i].activityInfo.isRomanticPartner)
+                        {
+                            VidaPersonalManager.Instance.hasPartner = !activities_selected[i].activityInfo.breakPartner;
+                            partnerGiven = VidaPersonalManager.Instance.hasPartner;
+                        }
                     }
-                    else
-                    {
-                        outcomeWeighted = 2;
-                    }
-                }
-            }
-            else if (outcomeWeighted == 0)
-            {
-                if (partnerGiven && activities_selected[i].activityInfo.isRomanticPartner)
-                {
-                    VidaPersonalManager.Instance.hasPartner = !activities_selected[i].activityInfo.breakPartner;
-                    partnerGiven = VidaPersonalManager.Instance.hasPartner;
+
+                    CalculateDailyPartialActivityProgress(i, outcomeWeighted);
+
+                    final_outcomes[i] = activities_selected[i].activityInfo.outcomes[outcomeWeighted];
                 }
             }
 
-            CalculateDailyPartialActivityProgress(i, outcomeWeighted);
-
-            final_outcomes[i] = activities_selected[i].activityInfo.outcomes[outcomeWeighted];
+            VidaPersonalManager.Instance.UpdateLifeProgress(activitiesFilled, Daily_RomanticProgress, Daily_FriendshipProgress, Daily_DevelopmentProgress, Daily_HappinessProgress, Daily_RestProgress);
+            UIManager.Instance.WriteActivityOutcomesEndDay_UI(final_outcomes);
+            UIManager.Instance.telephone.lifeRadar.UpdateStatsRadar();
         }
-
-        VidaPersonalManager.Instance.UpdateLifeProgress(activitiesFilled, Daily_RomanticProgress, Daily_FriendshipProgress, Daily_DevelopmentProgress, Daily_HappinessProgress, Daily_RestProgress);
-        UIManager.Instance.WriteActivityOutcomes_UI(final_outcomes);
-        UIManager.Instance.telephone.lifeRadar.UpdateStatsRadar();
+        hasChosenActivities = false;
     }
 
     float discountValue = 0f;
@@ -303,9 +311,9 @@ public class CalendarController : NetworkBehaviour
             actDaily.GetComponent<DraggingItems>().ActivateActivity();
         }
 
-        activities_selected = activities_selected_BLANK.ToArray();
-
-        UIManager.Instance.ResetEndDayActivities();
+        activities_selected[0].ResetActivity();
+        activities_selected[1].ResetActivity();
+        activities_selected[2].ResetActivity();
 
         //Nuevas actividades y nuevos estados
         WriteDailyActivities();

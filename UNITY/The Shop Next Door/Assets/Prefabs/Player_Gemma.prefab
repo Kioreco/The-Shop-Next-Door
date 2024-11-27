@@ -128,6 +128,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8996021495921455304, guid: d92a89de8aa88424fa39c2bd50a92c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f97f0d2b2eb60ed48963fff7f69bec38, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -383,6 +388,10 @@ MonoBehaviour:
   clientRubbish: {fileID: 0}
   clientKaren: {fileID: 0}
   clientTacanio: {fileID: 0}
+  hostResultFinal: 0
+  clientResultFinal: 0
+  HostReady: 0
+  clientReady: 0
 --- !u!195 &970489322068613802
 NavMeshAgent:
   m_ObjectHideFlags: 0

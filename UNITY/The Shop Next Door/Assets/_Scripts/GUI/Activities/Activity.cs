@@ -16,4 +16,9 @@ public class Activity : MonoBehaviour
         activityInfo.happinessProbability = act.happinessProbability;
         activityInfo.restingProbability = act.restingProbability;
     }
+
+    public void ResetActivity()
+    {
+        activityInfo = new ActivityInfo();
+    }
 }
