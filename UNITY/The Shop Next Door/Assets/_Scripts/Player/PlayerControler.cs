@@ -11,12 +11,12 @@ public class PlayerControler : NetworkBehaviour
     #region variables
     Vector2 _movement;
     Transform _playerTransform;
+    Animator _playerAnimator;
     public NavMeshAgent _agent;
     public int ID;
     public bool isInitialized = false;
 
     [Header("Camera Movement")]
-    //public GameObject camController;
     float moveSpeed = 4f;
     Vector3 lastPosition;
     bool isDrag = false;
@@ -41,14 +41,6 @@ public class PlayerControler : NetworkBehaviour
     public GameObject clientKaren;
     public GameObject clientTacanio;
 
-
-    //[Header("Network Variables")]
-    //NetworkVariable<float> hostMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //NetworkVariable<float> clientMoney = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
-    //NetworkVariable<double> hostResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //NetworkVariable<double> clientResult = new NetworkVariable<double>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
     public double hostResultFinal;
     public double clientResultFinal;
 
@@ -66,28 +58,17 @@ public class PlayerControler : NetworkBehaviour
 
     #endregion
 
-    private void Awake()
-    {
-
-    }
 
     void Start()
     {
         _playerTransform = transform;
+        _playerAnimator = GetComponent<Animator>();
 
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
             amountZoom = fovSinZoom;
-
-            print("start player");
-
-            //hostMoney.OnValueChanged += OnHostMoneyChange;
-            //clientMoney.OnValueChanged += OnClientMoneyChange;
-
-            //hostResult.OnValueChanged += OnHostResultChange;
-            //clientResult.OnValueChanged += OnClientResultChange;
         }
         GetComponent<NavMeshAgent>().avoidancePriority = UnityEngine.Random.Range(30, 50);
         GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
@@ -123,7 +104,6 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.canvasInteractable.worldCamera = GameManager.Instance.activeCamera;
                 TiendaManager.Instance.ID = 1;
                 GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
-                Debug.Log("Camara de P2");
             }
             initializeVariables();
             isInitialized = true;
@@ -131,7 +111,6 @@ public class PlayerControler : NetworkBehaviour
             maxX = Camera.main.transform.position.x + 10f; //20
             minZ = Camera.main.transform.position.z - 15f;
             maxZ = Camera.main.transform.position.z + 45f; //30
-            //print("awake");
         }
         DontDestroyOnLoad(this);
 
@@ -147,9 +126,8 @@ public class PlayerControler : NetworkBehaviour
         clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
         clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
 
-        //TiendaManager.Instance.reponerEstanteria(10); //COMENTAR ELEFANTE
-        TiendaManager.Instance.updateAlmacenQuantity();
-        UIManager.Instance.UpdateInventorySpace_UI();
+        TiendaManager.Instance.InitializeAlmacenSpace();
+        UIManager.Instance.UpdateAlmacenSpace_UI();
     }
     void ActivateObjectPoolClient(ClientPrototype e)
     {
@@ -195,6 +173,7 @@ public class PlayerControler : NetworkBehaviour
             if (isPaying)
             {
                 eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
+                _playerAnimator.SetBool("playerIsPaying", true);
                 //print("está en la caja"); 
                 UIManager.Instance.UpdatePayingBar_UI();
 

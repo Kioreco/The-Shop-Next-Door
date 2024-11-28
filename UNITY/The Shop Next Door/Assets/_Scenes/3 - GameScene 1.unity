@@ -465,6 +465,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 1161949187}
   upgrade_button: {fileID: 912195065}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 1620310554}
@@ -3677,6 +3678,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 1198181143}
   upgrade_button: {fileID: 1055680941}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 711840216}
@@ -13172,6 +13174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 521426536}
   - component: {fileID: 521426537}
+  - component: {fileID: 521426538}
   m_Layer: 0
   m_Name: '@TiendaManager'
   m_TagString: TiendaManager
@@ -13258,6 +13261,19 @@ MonoBehaviour:
   maxXP2: {fileID: 1585567074}
   minZP2: {fileID: 1361093954}
   maxZP2: {fileID: 1033560632}
+--- !u!114 &521426538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521426535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcfb03ff5eb1374181d7eee6947625f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espacioUsado: 0
 --- !u!1 &528381785
 GameObject:
   m_ObjectHideFlags: 0
@@ -14118,13 +14134,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
         type: 3}
@@ -14165,6 +14196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad297b1e0a9f6f540b940f20e894d9b4,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ad297b1e0a9f6f540b940f20e894d9b4,
         type: 3}
@@ -17611,6 +17647,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 1060423106}
   upgrade_button: {fileID: 651237086}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 592650387}
@@ -18359,6 +18396,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 734261525}
   upgrade_button: {fileID: 1411686113}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 345439147}
@@ -18638,6 +18676,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 832837555}
   upgrade_button: {fileID: 1281238869}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 1135659434}
@@ -50695,8 +50734,6 @@ MonoBehaviour:
   techoPlayer2: {fileID: 1024312318}
   dineroJugador: 500
   inheritance: 0
-  espacioAlmacen: 0
-  maxEspacioAlmacen: 0
   reputation: 0
   playerVigor: 0
   dineroRival: 0
@@ -53942,6 +53979,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 1010699042}
   upgrade_button: {fileID: 1149581842}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 504342011}
@@ -57303,6 +57341,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 1666560562}
   upgrade_button: {fileID: 347545243}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 506835932}
@@ -57680,6 +57719,7 @@ MonoBehaviour:
   product_UI: {fileID: 0}
   upgrade_text: {fileID: 721372453}
   upgrade_button: {fileID: 163343345}
+  maxShelveLevels: 3
   upgradeCosts: f401000020030000e8030000
   shelveLevelObjects:
   - {fileID: 1661144662}

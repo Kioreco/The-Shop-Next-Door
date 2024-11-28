@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
     public void Start_UnityFalse()
     {
         UpdateReputationIngame_UI();
-        UpdateInventorySpace_UI();
+        UpdateAlmacenSpace_UI();
 
         gameVolume.profile.TryGet(out colorAdjustments);
         gameVolume.profile.TryGet(out vignette);
@@ -234,11 +234,11 @@ public class UIManager : MonoBehaviour
         newMoney_text.SetText("");
     }
 
-    public void UpdateInventorySpace_UI()
+    public void UpdateAlmacenSpace_UI()
     {
-        inventory_text.SetText(GameManager.Instance.espacioAlmacen.ToString());
-        maxInventory_text.SetText(GameManager.Instance.maxEspacioAlmacen.ToString());
-        if (GameManager.Instance.espacioAlmacen == GameManager.Instance.maxEspacioAlmacen) { inventory_text.color = redColor; }
+        inventory_text.SetText(AlmacenManager.Instance.espacioUsado.ToString());
+        maxInventory_text.SetText(AlmacenManager.Instance.maxEspacio.ToString());
+        if (AlmacenManager.Instance.espacioUsado == AlmacenManager.Instance.maxEspacio) { inventory_text.color = redColor; }
         else { inventory_text.color = whiteTextColor; }
     }
 

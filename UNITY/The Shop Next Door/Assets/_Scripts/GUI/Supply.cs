@@ -49,14 +49,12 @@ public class Supply : MonoBehaviour
     private void SetPrecio()
     {
         precio = (int)(TiendaManager.Instance.GetPrecioProductoIndividual(producto, categoria) * quantityToBuy * descuentoEmpresa);
-
         precioToBuy_text.SetText(precio.ToString() + " €");
     }
 
     private void SetQuantityOwned()
     {
-        quantityOwned = TiendaManager.Instance.GetAlmacenQuantityOfProduct(producto, categoria);
-        //print($"cantidad de producto: {quantityOwned}  producto: {producto}  categoria: {categoria}");
+        quantityOwned = TiendaManager.Instance.GetAlmacenQuantityOfProduct(producto, categoria) + TiendaManager.Instance.GetEstanteriaQuantityOfProduct(producto, categoria);
         quantityAlmacen_text.SetText(quantityOwned.ToString());
     }
 
@@ -85,19 +83,22 @@ public class Supply : MonoBehaviour
 
     public void Buy()
     {
-        TiendaManager.Instance.UpdateProductQuantity(producto, categoria, quantityToBuy);
+        AlmacenManager.Instance.SaveSupplyInAlmacen(producto, categoria, quantityToBuy);
+        //TiendaManager.Instance.UpdateProductQuantity(producto, categoria, quantityToBuy);
+
         SetQuantityOwned();
 
-        GameManager.Instance.espacioAlmacen += quantityToBuy;
-        UIManager.Instance.UpdateInventorySpace_UI();
+        //GameManager.Instance.espacioAlmacen += quantityToBuy;
+        UIManager.Instance.UpdateAlmacenSpace_UI();
     }
 
     public bool CheckIfCanBuy()
     {
         if (TiendaManager.Instance.CheckIfCanBuyProduct(producto, categoria))
         {
-            if ((GameManager.Instance.espacioAlmacen + quantityToBuy) <= GameManager.Instance.maxEspacioAlmacen)
+            if ((AlmacenManager.Instance.espacioUsado + quantityToBuy) <= AlmacenManager.Instance.maxEspacio)
             {
+                buyButton.interactable = true;
                 return true;
             }
         }

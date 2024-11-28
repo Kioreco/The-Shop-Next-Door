@@ -329,52 +329,54 @@ public class TiendaManager : MonoBehaviour
         }
     }
 
-    public void updateAlmacenQuantity()
+    public void InitializeAlmacenSpace()
     {
         if (sellClothes)
         {
             foreach(var key in RopaYCalzado)
             {
-                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
             }
         }
         if (sellFood)
         {
             foreach (var key in Comida)
             {
-                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
             }
         }
         if (sellLeisure)
         {
             foreach (var key in JuegosPeliculasMusica)
             {
-                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
             }
         }
         if (sellStationery)
         {
             foreach (var key in PapeleriaYArte)
             {
-                if(key.Value.disponible) GameManager.Instance.espacioAlmacen += key.Value.stockAlmacen;
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
             }
         }
     }
 
-    public void FillStockWithSupplies(string producto, int cantidad, char tipo)
+    public void UpdateSupplyStockAlmacen(string producto, int cantidad, char tipo)
     {
-        if (ID == 0 && player.IsOwner)
-        {
-            Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-            aux[producto].stockAlmacen += cantidad;
-            //aux[producto].gestionarStockEstanteriaYAlmacen(20);
-        }
-        else if (ID == 1 && player.IsOwner)
-        {
-            Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-            aux[producto].stockAlmacen += cantidad;
-            //aux[producto].gestionarStockEstanteriaYAlmacen(20);
-        }
+        Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+        aux[producto].stockAlmacen += cantidad;
+        //if (ID == 0 && player.IsOwner)
+        //{
+        //    Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+        //    aux[producto].stockAlmacen += cantidad;
+        //    //aux[producto].gestionarStockEstanteriaYAlmacen(20);
+        //}
+        //else if (ID == 1 && player.IsOwner)
+        //{
+        //    Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
+        //    aux[producto].stockAlmacen += cantidad;
+        //    //aux[producto].gestionarStockEstanteriaYAlmacen(20);
+        //}
     }
 
     public void InstanceBag(Vector3 position, float money)

@@ -29,19 +29,20 @@ public class Producto
     public void gestionarStockEstanteriaYAlmacen(int cantidadMaxima)
     {
         int cantidadAReponer = cantidadMaxima - stockEstanteria;
+
         if (stockAlmacen - cantidadAReponer >= 0)
         {
             stockEstanteria += cantidadAReponer;
             stockAlmacen -= cantidadAReponer;
-            GameManager.Instance.espacioAlmacen -= cantidadAReponer;
+            AlmacenManager.Instance.espacioUsado -= cantidadAReponer;
         }
         else
         {
-            GameManager.Instance.espacioAlmacen -= stockAlmacen;
+            AlmacenManager.Instance.espacioUsado -= stockAlmacen;
             stockEstanteria += stockAlmacen;
             stockAlmacen = 0;
         }
-        UIManager.Instance.UpdateInventorySpace_UI();
+        UIManager.Instance.UpdateAlmacenSpace_UI();
     }
 
     public int cogerProducto(int c)

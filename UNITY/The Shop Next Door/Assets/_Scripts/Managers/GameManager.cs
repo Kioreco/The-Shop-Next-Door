@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     [Header("Individual Player References")]
     [HideInInspector] public float dineroJugador;
     [HideInInspector] public int inheritance;
-    [HideInInspector] public float espacioAlmacen;
-    [HideInInspector] public float maxEspacioAlmacen;
+    //[HideInInspector] public float espacioAlmacen;
+    //[HideInInspector] public float maxEspacioAlmacen;
     [HideInInspector] public float reputation;
     [HideInInspector] public float playerVigor;
 
@@ -71,10 +71,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //CountdownManager.Instance.StartCountdown();
         dineroJugador = 500.0f;
-        espacioAlmacen = 0;
-        maxEspacioAlmacen = 100;
+        //espacioAlmacen = 0;
+        //maxEspacioAlmacen = 100;
         reputation = 0;
         playerVigor = 100;
 
@@ -82,19 +81,6 @@ public class GameManager : MonoBehaviour
 
         InstantiatePlayers();
     }
-
-    //void Update()
-    //{
-    //    //if (NetworkManager.Singleton.IsServer)
-    //    //{
-    //    //    if (NetworkManager.Singleton.ConnectedClients.Count < 2)
-    //    //    {
-    //    //        //SceneManager.LoadScene("2 - Matchmaking");
-    //    //        //NetworkManager.Singleton.Shutdown();
-    //    //        Debug.Log("Hace shut");
-    //    //    }
-    //    //}
-    //}
 
     private void InstantiatePlayers()
     {
@@ -139,17 +125,10 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateReputationIngame_UI();
     }
 
-    public void UpdateAlmacenQuantity()
-    {
-        TiendaManager.Instance.updateAlmacenQuantity();
-    }
-
     public void EndDay()
     {
         //LLAMADA A server rpc
         _player.FinalDayResume();
-
-        //Time.timeScale = 0;
 
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
@@ -186,7 +165,6 @@ public class GameManager : MonoBehaviour
     IEnumerator ContinueDay()
     {
         yield return new WaitForSeconds(15f);
-        //Time.timeScale = 1;
 
         UIManager.Instance.schedule.timeStopped = false;
         UIManager.Instance.canvasDayEnd.SetActive(false);

@@ -19,7 +19,7 @@ public class Estanteria : MonoBehaviour
     [SerializeField] private GameObject upgrade_button;
 
     private int shelveLevel = 0;
-    private int maxShelveLevels;
+    [SerializeField] private int maxShelveLevels;
     public int[] upgradeCosts = new int[3] { 500, 800, 1000 };
 
     [SerializeField] private GameObject[] shelveLevelObjects;
@@ -109,6 +109,7 @@ public class Estanteria : MonoBehaviour
         }
     }
 
+
     private void UpgradeShelve()
     {
         GameManager.Instance.dineroJugador -= upgradeCosts[shelveLevel];
@@ -128,7 +129,7 @@ public class Estanteria : MonoBehaviour
         {
             UpgradeShelve();
             upgrade_text.SetText(upgradeCosts[shelveLevel] + " €");
-            if (shelveLevel + 1 == maxShelveLevels - 1)
+            if (shelveLevel + 1 == maxShelveLevels)
             {
                 upgrade_button.SetActive(false);
             }
