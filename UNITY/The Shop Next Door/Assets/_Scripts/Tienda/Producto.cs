@@ -42,6 +42,7 @@ public class Producto
             stockEstanteria += stockAlmacen;
             stockAlmacen = 0;
         }
+
         UIManager.Instance.UpdateAlmacenSpace_UI();
     }
 

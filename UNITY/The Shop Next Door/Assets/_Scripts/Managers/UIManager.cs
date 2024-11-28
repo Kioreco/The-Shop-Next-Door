@@ -221,10 +221,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateNewMoney_UI(float money, bool increase)
     {
-        if (increase) { newMoney_text.color = greenColor; }
-        else { newMoney_text.color = redColor; }
+        if (increase) { newMoney_text.color = greenColor; newMoney_text.SetText("+" + money.ToString("F2")); }
+        else { newMoney_text.color = redColor; newMoney_text.SetText("-" + money.ToString("F2")); }
 
-        newMoney_text.SetText("+" + money.ToString("F2"));
         StartCoroutine(WaitSecondsToHide());
     }
 

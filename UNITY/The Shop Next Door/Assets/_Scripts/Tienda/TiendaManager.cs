@@ -99,7 +99,7 @@ public class TiendaManager : MonoBehaviour
         RopaYCalzado.Add("faldas", new Producto(20.00f, 0, UnityEngine.Random.Range(0, 5), 'r', true));
         RopaYCalzado.Add("pijamas", new Producto(7.50f, 0, 0, 'r', false));
         RopaYCalzado.Add("deportivas", new Producto(55.00f, UnityEngine.Random.Range(0, 5), 0, 'r', true));
-        RopaYCalzado.Add("edgy", new Producto(69.00f, 21, UnityEngine.Random.Range(0, 5), 'r', true));
+        RopaYCalzado.Add("edgy", new Producto(69.00f, 3, UnityEngine.Random.Range(0, 5), 'r', true));
     }
     void InicializarPapeleria()
     {
@@ -335,49 +335,34 @@ public class TiendaManager : MonoBehaviour
         {
             foreach(var key in RopaYCalzado)
             {
-                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; 
             }
         }
         if (sellFood)
         {
             foreach (var key in Comida)
             {
-                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen;
             }
         }
         if (sellLeisure)
         {
             foreach (var key in JuegosPeliculasMusica)
             {
-                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; 
             }
         }
         if (sellStationery)
         {
             foreach (var key in PapeleriaYArte)
             {
-                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; UIManager.Instance.UpdateAlmacenSpace_UI();
+                if(key.Value.disponible) AlmacenManager.Instance.espacioUsado += key.Value.stockAlmacen; 
             }
         }
+
+        UIManager.Instance.UpdateAlmacenSpace_UI();
     }
 
-    public void UpdateSupplyStockAlmacen(string producto, int cantidad, char tipo)
-    {
-        Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-        aux[producto].stockAlmacen += cantidad;
-        //if (ID == 0 && player.IsOwner)
-        //{
-        //    Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-        //    aux[producto].stockAlmacen += cantidad;
-        //    //aux[producto].gestionarStockEstanteriaYAlmacen(20);
-        //}
-        //else if (ID == 1 && player.IsOwner)
-        //{
-        //    Dictionary<string, Producto> aux = getDictionaryAccType(tipo);
-        //    aux[producto].stockAlmacen += cantidad;
-        //    //aux[producto].gestionarStockEstanteriaYAlmacen(20);
-        //}
-    }
 
     public void InstanceBag(Vector3 position, float money)
     {

@@ -52,7 +52,7 @@ public class Supply : MonoBehaviour
         precioToBuy_text.SetText(precio.ToString() + " €");
     }
 
-    private void SetQuantityOwned()
+    public void SetQuantityOwned()
     {
         quantityOwned = TiendaManager.Instance.GetAlmacenQuantityOfProduct(producto, categoria) + TiendaManager.Instance.GetEstanteriaQuantityOfProduct(producto, categoria);
         quantityAlmacen_text.SetText(quantityOwned.ToString());
@@ -89,7 +89,7 @@ public class Supply : MonoBehaviour
         SetQuantityOwned();
 
         //GameManager.Instance.espacioAlmacen += quantityToBuy;
-        UIManager.Instance.UpdateAlmacenSpace_UI();
+        //UIManager.Instance.UpdateAlmacenSpace_UI();
     }
 
     public bool CheckIfCanBuy()

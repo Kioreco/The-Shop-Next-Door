@@ -74,6 +74,7 @@ public class TelephoneController : MonoBehaviour
         {
             gameObject.SetActive(false);
             MiniTelephone.SetActive(true);
+            CheckAlmacenSpaceForBuying();
         }
         else
         {
@@ -129,8 +130,6 @@ public class TelephoneController : MonoBehaviour
         UIManager.Instance.UpdatePlayerMoney_UI();
         UIManager.Instance.UpdateNewMoney_UI(producto.precio, false);
 
-        TiendaManager.Instance.UpdateSupplyStockAlmacen(producto.producto, producto.quantityToBuy, producto.categoria);
-
         CheckAlmacenSpaceForBuying() ;
     }
 
@@ -139,6 +138,7 @@ public class TelephoneController : MonoBehaviour
         foreach(Supply supply in supplies)
         {
             supply.CheckIfCanBuy();
+            supply.SetQuantityOwned();
         }
     }
 }
