@@ -173,7 +173,7 @@ public class PlayerControler : NetworkBehaviour
             if (isPaying)
             {
                 eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
-                _playerAnimator.SetBool("playerIsPaying", true);
+                //_playerAnimator.SetBool("playerIsPaying", true);
                 //print("está en la caja"); 
                 UIManager.Instance.UpdatePayingBar_UI();
 
