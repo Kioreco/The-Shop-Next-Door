@@ -34,6 +34,9 @@ public class TelephoneController : MonoBehaviour
 
     [Header("Shop App - Supplies")]
     [SerializeField] private Supply[] supplies;
+    [SerializeField] private GameObject Warehouse;
+    public Sprite warehouseItemBG_base;
+    public Sprite warehouseItemBG_low;
 
 
     [Header("Calendar App")]
@@ -78,7 +81,7 @@ public class TelephoneController : MonoBehaviour
         }
         else
         {
-            if(ShopApp.activeSelf) ShopApp.SetActive(false);
+            if (ShopApp.activeSelf) ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true);
             if(CalendarApp.activeSelf) CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true);
             if(HireApp.activeSelf) HireApp.SetActive(false);
             if(LifeApp.activeSelf) LifeApp.SetActive(false);
@@ -108,6 +111,7 @@ public class TelephoneController : MonoBehaviour
         app.SetActive(true);
         if(LockedScreen.activeSelf) LockedScreen.SetActive(false);
         if(CalendarApp.activeSelf) EmptyCloseButton.SetActive(false);
+        if(ShopApp.activeSelf) EmptyCloseButton.SetActive(false); Warehouse.SetActive(true);
     }
 
     public void OpenShopCategory(GameObject content)

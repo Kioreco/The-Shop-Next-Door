@@ -87,9 +87,9 @@ public class UIManager : MonoBehaviour
     public Image player1Reputation;
     public Image player2Reputation;
 
-    private Color redColor = new Color(0.80f, 0.02f, 0.27f);
+    public Color redColor = new Color(0.80f, 0.02f, 0.27f);
     private Color greenColor = new Color(0.13f, 0.65f, 0.33f);
-    private Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
+    public Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
     [Header("THE END")]
     [SerializeField] public GameObject player1Result_text;
@@ -237,6 +237,7 @@ public class UIManager : MonoBehaviour
     {
         inventory_text.SetText(AlmacenManager.Instance.espacioUsado.ToString());
         maxInventory_text.SetText(AlmacenManager.Instance.maxEspacio.ToString());
+        AlmacenManager.Instance.UpdateWarehouseCapacity_UI();
         if (AlmacenManager.Instance.espacioUsado == AlmacenManager.Instance.maxEspacio) { inventory_text.color = redColor; }
         else { inventory_text.color = whiteTextColor; }
     }

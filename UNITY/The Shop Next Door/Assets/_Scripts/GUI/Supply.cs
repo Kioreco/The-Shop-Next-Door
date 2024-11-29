@@ -17,9 +17,15 @@ public class Supply : MonoBehaviour
 
     [Header("UI")]
     public Button buyButton;
+    public Image warehouseItemBG;
     public TextMeshProUGUI quantityAlmacen_text;
     public TextMeshProUGUI quantityToBuy_text;
     public TextMeshProUGUI precioToBuy_text;
+
+    [Header("Other")]
+    [SerializeField] private TelephoneController telephone;
+    private bool spriteChanged = false;
+    public Color blueColor = new Color(0.23f, 0.33f, 0.82f);
 
     private void Awake()
     {
@@ -34,15 +40,15 @@ public class Supply : MonoBehaviour
     {
         if (rarity == 1)
         {
-            descuentoEmpresa = Random.Range(0.60f, 0.75f);
+            descuentoEmpresa = Random.Range(0.50f, 0.60f);
         }
         else if (rarity == 2)
         {
-            descuentoEmpresa = Random.Range(0.75f, 0.85f);
+            descuentoEmpresa = Random.Range(0.60f, 0.70f);
         }
         else
         {
-            descuentoEmpresa = Random.Range(0.90f, 0.95f);
+            descuentoEmpresa = Random.Range(0.70f, 0.80f);
         }
     }
 
@@ -52,10 +58,14 @@ public class Supply : MonoBehaviour
         precioToBuy_text.SetText(precio.ToString() + " €");
     }
 
+    
+
     public void SetQuantityOwned()
     {
         quantityOwned = TiendaManager.Instance.GetAlmacenQuantityOfProduct(producto, categoria) + TiendaManager.Instance.GetEstanteriaQuantityOfProduct(producto, categoria);
         quantityAlmacen_text.SetText(quantityOwned.ToString());
+        if(quantityOwned == 0) { quantityAlmacen_text.color = UIManager.Instance.redColor;  warehouseItemBG.sprite = telephone.warehouseItemBG_low; spriteChanged = true; }
+        else if(spriteChanged) { warehouseItemBG.sprite = telephone.warehouseItemBG_base; quantityAlmacen_text.color = blueColor; spriteChanged = false; }
     }
 
     private void SetQuantityToBuy()
@@ -67,15 +77,14 @@ public class Supply : MonoBehaviour
         if (rarity == 1)
         {
             quantityToBuy = Random.Range(1, 6);
-            quantityToBuy_text.SetText(quantityToBuy + " items");
         }
         else if (rarity == 2)
         {
-            quantityToBuy = Random.Range(6, 16);
+            quantityToBuy = Random.Range(5, 11);
         }
         else
         {
-            quantityToBuy = Random.Range(16, 26);
+            quantityToBuy = Random.Range(10, 15);
         }
 
         quantityToBuy_text.SetText(quantityToBuy + " items");
