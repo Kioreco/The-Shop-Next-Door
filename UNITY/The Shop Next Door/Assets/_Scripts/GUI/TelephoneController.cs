@@ -81,10 +81,10 @@ public class TelephoneController : MonoBehaviour
         }
         else
         {
-            if (ShopApp.activeSelf) ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true);
-            if(CalendarApp.activeSelf) CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true);
-            if(HireApp.activeSelf) HireApp.SetActive(false);
-            if(LifeApp.activeSelf) LifeApp.SetActive(false);
+            if (ShopApp.activeSelf) { ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true); }
+            if (CalendarApp.activeSelf) { CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true); }
+            if (HireApp.activeSelf) { HireApp.SetActive(false); }
+            if (LifeApp.activeSelf) { LifeApp.SetActive(false); }
             LockedScreen.SetActive(true);
         }
     }
@@ -109,9 +109,9 @@ public class TelephoneController : MonoBehaviour
     public void OpenApp(GameObject app)
     {
         app.SetActive(true);
-        if(LockedScreen.activeSelf) LockedScreen.SetActive(false);
-        if(CalendarApp.activeSelf) EmptyCloseButton.SetActive(false);
-        if(ShopApp.activeSelf) EmptyCloseButton.SetActive(false); Warehouse.SetActive(true);
+        if (LockedScreen.activeInHierarchy) { LockedScreen.SetActive(false); }
+        if (CalendarApp.activeInHierarchy) { EmptyCloseButton.SetActive(false); }
+        if (ShopApp.activeInHierarchy) { EmptyCloseButton.SetActive(false); Warehouse.SetActive(true); }
     }
 
     public void OpenShopCategory(GameObject content)
