@@ -52,7 +52,7 @@ public class WorkDayCycle : MonoBehaviour
             dayFinish?.Invoke(this, EventArgs.Empty);
             //print("alerta inciial");
             eventLanzadoInicioDia = true;
-            UIManager.Instance.ActivateAlertBuySupplies(5f);
+            UIManager.Instance.MessageAlert(0);
         }
         if (isNightTime)
         {
@@ -84,12 +84,14 @@ public class WorkDayCycle : MonoBehaviour
 
         if (gameTime >= 10 && gameTime < 10.05 && currentDay == 0) // Lunes
         {
+            UIManager.Instance.ChangeSignShop(true);
             npcClientGenerico.isEnable = true;
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
         }
         else if (gameTime >= 9.3f && gameTime < 9.35f && currentDay > 0)
         {
+            UIManager.Instance.ChangeSignShop(true);
             npcClientGenerico.isEnable = true;
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
@@ -97,7 +99,7 @@ public class WorkDayCycle : MonoBehaviour
 
         if (gameTime >= 13f && !eventLanzadoTwoHours)
         {
-            print("evento 2 horas");
+            //print("evento 2 horas");
 
             eventLanzadoTwoHours = true;
             eventTwoHoursLeft?.Invoke(this, EventArgs.Empty);
@@ -115,13 +117,14 @@ public class WorkDayCycle : MonoBehaviour
         {
             //print("evento 30 minutos");
             eventLanzadoThirtyMinutes = true;
-            UIManager.Instance.ActivateAlertThirtyMinutesLeft(5f);
+            UIManager.Instance.MessageAlert(1);
         }
 
         if (gameTime >= 14.75f && !eventLanzadoTenMinutes)
         {
             //print("quedan 10 minutos");
-            UIManager.Instance.ActivateAlertGoOutShop(5f);
+            UIManager.Instance.MessageAlert(2);
+            UIManager.Instance.ChangeSignShop(false);
             eventLanzadoTenMinutes = true;
             eventTenMinutesLeft?.Invoke(this, EventArgs.Empty);
         }

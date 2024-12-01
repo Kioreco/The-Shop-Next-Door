@@ -99,9 +99,10 @@ public class UIManager : MonoBehaviour
     public GameObject ButtonDuplicateReward;
 
     [Header("Avisos")]
-    [SerializeField] private GameObject avisoCierreMediaHora;
-    [SerializeField] private GameObject avisoSalidaTienda;
-    [SerializeField] private GameObject avisoCompraSuministros;
+    [SerializeField] private GameObject OpenSign;
+    [SerializeField] private GameObject ClosedSign;
+    [SerializeField] private GameObject messageTelephone;
+    [SerializeField] private TextMeshProUGUI messageTelephone_text;
 
 
     public static UIManager Instance { get; private set; }
@@ -118,26 +119,34 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ActivateAlertBuySupplies(float delay)
+    public void ChangeSignShop(bool shopOpen)
     {
-        //print("alerta compra suministros");
-        avisoCompraSuministros.SetActive(true);
-        StartCoroutine(DelayAlert(delay, avisoCompraSuministros));
-    }
-    public void ActivateAlertGoOutShop(float delay)
-    {
-        //print("alerta salir tienda");
-        avisoSalidaTienda.SetActive(true);
-        StartCoroutine(DelayAlert(delay, avisoSalidaTienda));
-    }
-    public void ActivateAlertThirtyMinutesLeft(float delay)
-    {
-        //print("alerta 30minutos");
-        avisoCierreMediaHora.SetActive(true);
-        StartCoroutine(DelayAlert(delay, avisoCierreMediaHora));
+        if (shopOpen) { OpenSign.SetActive(true); StartCoroutine(DelayDisableObject(6f, OpenSign)); }
+        else { ClosedSign.SetActive(true); StartCoroutine(DelayDisableObject(10f, ClosedSign)); }
     }
 
-    IEnumerator DelayAlert(float delay, GameObject obj)
+    public void MessageAlert(int messageNumber)
+    {
+        
+        if (messageNumber == 0) //Compra suministros
+        {
+            messageTelephone_text.SetText("Buy supplies\r\nbefore clients arrive!");
+        }
+        else if (messageNumber == 1) 
+        {
+            messageTelephone_text.SetText("The clock is ticking, closing time is half an hour away!");
+        }
+        else if (messageNumber == 2)
+        {
+            messageTelephone_text.SetText("Attention!\r\nClients must go now!");
+        }
+        
+        messageTelephone.SetActive(true);
+
+        StartCoroutine(DelayDisableObject(4f, messageTelephone));
+    }
+
+    IEnumerator DelayDisableObject(float delay, GameObject obj)
     {
         yield return new WaitForSeconds(delay);
         obj.SetActive(false);
