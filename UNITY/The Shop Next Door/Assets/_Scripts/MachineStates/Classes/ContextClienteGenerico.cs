@@ -22,7 +22,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public bool isInPayQueue = false;
 
         //dudas:
-        int porcentajeDuda = 10; //20
+        int porcentajeDuda = 30; //20
         bool tieneDuda = false;
         string productoDuda;
 
@@ -33,6 +33,7 @@ namespace Assets.Scripts.MachineStates.Classes
         int felicidad = 100;
         int maxEnfado = 0;
         int umbralPropinaFelicidad = 65;
+
         /*
          por producto -> 15
          por mancha -> 3
@@ -215,9 +216,28 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             stopedInShelf = b;
         }
+
+        public Vector3 randomPositionShelf(Vector3 positionShelf)
+        {
+            Vector3 position = new Vector3();
+
+            position = positionShelf + new Vector3(UnityEngine.Random.Range(-1, 1), 0, UnityEngine.Random.Range(-1, 1));
+
+            if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1, NavMesh.AllAreas))
+            {
+                position = hit.position;
+            }
+
+            return position;
+        }
         #endregion
 
         #region metodosEspecificos
+        public IContext GetContext()
+        {
+            return this;
+        }
+
         public NavMeshAgent getNavMesh()
         {
             return gameObject.GetComponent<NavMeshAgent>();

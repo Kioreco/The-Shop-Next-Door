@@ -71,6 +71,12 @@ public class TiendaManager : MonoBehaviour
     public Transform minZP2;
     public Transform maxZP2;
 
+    [Header("Dudas")]
+    public bool yaHayDuda = false;
+    public string productoDuda;
+    private static readonly object _lockDuda = new object();
+
+
     public static TiendaManager Instance { get; private set; }
     void Awake()
     {
@@ -156,6 +162,7 @@ public class TiendaManager : MonoBehaviour
     }
     #endregion
 
+    #region estanterias y productos random
     public Vector3 buscarEstanteria(string producto, bool isEmpty)
     {
         if (ID == 0 && player.IsOwner)
@@ -214,7 +221,9 @@ public class TiendaManager : MonoBehaviour
         return -1;
 
     }
+    #endregion
 
+    #region cola
     public int cogerSitioCola(IContext npc)
     {
         if (ID == 0 && player.IsOwner)
@@ -275,7 +284,9 @@ public class TiendaManager : MonoBehaviour
 
         return -1;
     }
+    #endregion
 
+    #region precios
     public float getPrecioProducto(string s, char tipo, int cantidad)
     {
         if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
@@ -293,7 +304,9 @@ public class TiendaManager : MonoBehaviour
         }
         return 0;
     }
+    #endregion
 
+    #region cantidades almacén y productos
     public int GetAlmacenQuantityOfProduct(string nombreProducto, char tipo)
     {
         if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
@@ -311,7 +324,16 @@ public class TiendaManager : MonoBehaviour
         }
         return 0;
     }
+    public void UpdateProductQuantity(string nombreProducto, char tipo, int quantity)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
+        {
+            result.stockAlmacen += quantity;
+        }
+    }
+    #endregion
 
+    #region almacén y compras producto
     public bool CheckIfCanBuyProduct(string nombreProducto, char tipo)
     {
         if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
@@ -319,14 +341,6 @@ public class TiendaManager : MonoBehaviour
             return result.disponible;
         }
         return false;
-    }
-
-    public void UpdateProductQuantity(string nombreProducto, char tipo, int quantity)
-    {
-        if (getDictionaryAccType(tipo).TryGetValue(nombreProducto, out var result))
-        {
-            result.stockAlmacen += quantity;
-        }
     }
 
     public void InitializeAlmacenSpace()
@@ -362,8 +376,9 @@ public class TiendaManager : MonoBehaviour
 
         UIManager.Instance.UpdateAlmacenSpace_UI();
     }
+    #endregion
 
-
+    #region basura
     public void InstanceBag(Vector3 position, float money)
     {
         var obj = Instantiate(bolsaBasura, position, bolsaBasura.transform.rotation);
@@ -378,4 +393,23 @@ public class TiendaManager : MonoBehaviour
     {
         Instantiate(basura, position.position, basura.transform.rotation);
     }
+    #endregion
+
+    #region dudas clientes
+    public void updateDudasClientes(IContext contx, string prodDuda)
+    {
+        //print("update dudas");
+        lock (_lockDuda)
+        {
+            //print("dentro del lock");
+            if (yaHayDuda) contx.setTieneDuda(false);
+            else
+            {
+                //print("no hay duda ");
+                yaHayDuda = true;
+                productoDuda = prodDuda;
+            }
+        }
+    }
+    #endregion
 }

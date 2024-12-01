@@ -11,7 +11,8 @@ public class SearchShelf : AStateNPC
         //Debug.Log($"searching next shelf\tElementosRestantes: {contexto.getLista().lista.Count}");
         contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First(), false));
         contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);
-        contexto.getNavMesh().SetDestination(contexto.getCurrentEstanteria());
+        Vector3 pos = contexto.randomPositionShelf(contexto.getCurrentEstanteria());
+        contexto.getNavMesh().SetDestination(pos);
     }
     public override void FixedUpdate()
     {

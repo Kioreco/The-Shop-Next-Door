@@ -50,4 +50,6 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public void setCanMakeShow(bool b);
     public float getPresupuesto();
     public bool getIfShopIsClosed();
+    public IContext GetContext();
+    public Vector3 randomPositionShelf(Vector3 positionShelf);
 }

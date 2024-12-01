@@ -15,6 +15,7 @@ public class TakeProduct : AStateNPC
     {
         //contexto.getLista().lista.ToList();
         nombreProducto = contexto.getLista().lista.Keys.First();
+        if (contexto.getTieneDuda()) TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), contexto.getProductoDuda());
         if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda())
         {
             //Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
