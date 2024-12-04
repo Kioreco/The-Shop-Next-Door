@@ -98,11 +98,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI inheritance_text;
     public GameObject ButtonDuplicateReward;
 
-    [Header("Avisos")]
+    [Header("AVISOS")]
     [SerializeField] private GameObject OpenSign;
     [SerializeField] private GameObject ClosedSign;
     [SerializeField] private GameObject messageTelephone;
     [SerializeField] private TextMeshProUGUI messageTelephone_text;
+
+    [Header("DUDAS")]
+    [SerializeField] private DudaController dudaController;
+    [SerializeField] private GameObject duda_gameObject;
+    [SerializeField] private Image duda_productImage;
+    [SerializeField] private TextMeshProUGUI duda_text;
+    [SerializeField] private TextMeshProUGUI yesAnswer_text;
+    [SerializeField] private TextMeshProUGUI noAnswer_text;
+    [SerializeField] private GameObject[] questionTimer;
+
+
 
 
     public static UIManager Instance { get; private set; }
@@ -256,9 +267,9 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-    public void ChangeVolumeEffects_Telephone(bool isTelephone)
+    public void ChangeVolumeEffects_Telephone(bool isActive)
     {
-        if (isTelephone)
+        if (isActive)
         {
             colorAdjustments.colorFilter.value = volumeColorDarkened;
             depthOfField.active = true;
@@ -470,4 +481,21 @@ public class UIManager : MonoBehaviour
         if (currentSlide - 1 == 0) { tutorial_PrevButton.SetActive(false); }
         currentSlide--;
     }
+
+    #region DudasCreator
+
+    public void CreateDuda_UI()
+    {
+        dudaController.CreateDuda();
+
+        duda_text.SetText(dudaController.dudaText);
+        yesAnswer_text.SetText(dudaController.dudaAnswerYes);
+        noAnswer_text.SetText(dudaController.dudaAnswerNo);
+
+        ChangeVolumeEffects_Telephone(true);
+        telephone.MiniTelephone.SetActive(false);
+        duda_gameObject.SetActive(true);
+    }
+
+    #endregion
 }

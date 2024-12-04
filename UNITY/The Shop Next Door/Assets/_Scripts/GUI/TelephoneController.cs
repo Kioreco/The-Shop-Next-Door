@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TelephoneController : MonoBehaviour
 {
     [Header("Telephone Parts")]
-    [SerializeField] private GameObject MiniTelephone;
+    [SerializeField] public GameObject MiniTelephone;
     [SerializeField] private GameObject EmptyCloseButton;
     [SerializeField] private TextMeshProUGUI hour_telephone_text;
     [SerializeField] private GameObject LockedScreen;
