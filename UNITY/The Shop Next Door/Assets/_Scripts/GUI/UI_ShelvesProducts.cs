@@ -7,12 +7,11 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
 {
     [SerializeField] private Estanteria shelve;
 
-    [SerializeField] private string productName;
+    [SerializeField] public string productName;
 
-    //[SerializeField] private Image bubbleBackground;
 
     [Header("Quantity UI")]
-    [SerializeField] private Image quantityBackground;
+    //[SerializeField] private Image quantityBackground;
     [SerializeField] private GameObject quantityOverlay;
     [SerializeField] private TextMeshProUGUI quantity_text;
 
@@ -26,13 +25,16 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private bool spriteChanged = false;
 
-    private Color colorGreen = new Color(0.05f, 0.78f, 0.29f);
-    private Color colorOrange = new Color(0.78f, 0.78f, 0.78f);
-    private Color colorRed = new Color(0.85f, 0.06f, 0.32f);
     private Color colorDarkRed = new Color(0.55f, 0.0f, 0.18f);
     private Color colorDarkBlue = new Color(0.14f, 0.45f, 0.51f);
 
-    [HideInInspector] public bool emptyProduct = false; 
+    [HideInInspector] public bool emptyProduct = false;
+    [HideInInspector] public bool unlocked = false;
+
+    private void OnEnable()
+    {
+        unlocked = true;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -116,23 +118,23 @@ public class UI_ShelvesProducts : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
     }
 
-    public void UpdateQuantityFillImage()
-    {
-        quantityBackground.fillAmount = shelve.CheckQuantityProduct(productName) / shelve.maxSpacePerProduct;
+    //public void UpdateQuantityFillImage()
+    //{
+    //    quantityBackground.fillAmount = shelve.CheckQuantityProduct(productName) / shelve.maxSpacePerProduct;
 
-        if (quantityBackground.fillAmount >= 0.5f)
-        {
-            quantityBackground.color = colorGreen;
-        }
-        else if (quantityBackground.fillAmount < 0.5f && quantityBackground.fillAmount > 0.2)
-        {
-            quantityBackground.color = colorOrange;
-        }
-        else
-        {
-            quantityBackground.color = colorRed;
-        }
-    }
+    //    if (quantityBackground.fillAmount >= 0.5f)
+    //    {
+    //        quantityBackground.color = colorGreen;
+    //    }
+    //    else if (quantityBackground.fillAmount < 0.5f && quantityBackground.fillAmount > 0.2)
+    //    {
+    //        quantityBackground.color = colorOrange;
+    //    }
+    //    else
+    //    {
+    //        quantityBackground.color = colorRed;
+    //    }
+    //}
 
     
     

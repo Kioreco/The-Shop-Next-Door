@@ -219,7 +219,14 @@ public class TiendaManager : MonoBehaviour
             return productsRemaining;
         }
         return -1;
+    }
 
+    public void UnlockProduct(string s, char tipo)
+    {
+        if (getDictionaryAccType(tipo).TryGetValue(s, out var result))
+        {
+            result.disponible = true;
+        }
     }
     #endregion
 

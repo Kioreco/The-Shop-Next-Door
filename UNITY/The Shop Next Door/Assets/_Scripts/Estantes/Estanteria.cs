@@ -17,6 +17,10 @@ public class Estanteria : MonoBehaviour
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI upgrade_text;
     [SerializeField] private GameObject upgrade_button;
+    [SerializeField] private GameObject unlockableProduct;
+    [SerializeField] private GameObject SellingObjectsUI;
+    private bool hasProductToUnlock;
+
 
     private int shelveLevel = 0;
     [SerializeField] private int maxShelveLevels;
@@ -35,6 +39,7 @@ public class Estanteria : MonoBehaviour
         listaProductosEstanteria = TiendaManager.Instance.getDictionaryAccType(tipoObj);
         upgrade_text.SetText(upgradeCosts[0] + " €");
         shelveLevel = 0;
+        if (unlockableProduct != null) { hasProductToUnlock = true; }
     }
 
     public bool TieneElemento(string s)
@@ -65,7 +70,7 @@ public class Estanteria : MonoBehaviour
     {
         ReponerProductoEstanteria(productRestocking);
         //Animacion reponer
-        product_UI.UpdateQuantityFillImage();
+        //product_UI.UpdateQuantityFillImage();
         product_UI.UpdateShelvesQuantityProduct_UI();
         productRestocking = null;
         product_UI = null;
@@ -121,6 +126,16 @@ public class Estanteria : MonoBehaviour
         shelveLevel += 1;
         shelveLevelObjects[shelveLevel].SetActive(true);
         maxSpacePerProduct += 20;
+
+        if (hasProductToUnlock)
+        {
+            unlockableProduct.SetActive(true);
+            TiendaManager.Instance.UnlockProduct(unlockableProduct.GetComponent<UI_ShelvesProducts>().productName, tipoObj);
+            unlockableProduct.GetComponent<UI_ShelvesProducts>().UpdateShelvesQuantityProduct_UI();
+
+            SellingObjectsUI.transform.position = new Vector3(-2.55f, SellingObjectsUI.transform.position.y, SellingObjectsUI.transform.position.z);
+            hasProductToUnlock = false;
+        }
     }
 
     public void UpgradeShelve_Button()
