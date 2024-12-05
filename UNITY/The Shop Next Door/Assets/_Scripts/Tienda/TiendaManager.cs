@@ -398,14 +398,11 @@ public class TiendaManager : MonoBehaviour
     #region dudas clientes
     public void updateDudasClientes(IContext contx, string prodDuda)
     {
-        //print("update dudas");
         lock (_lockDuda)
         {
-            //print("dentro del lock");
             if (yaHayDuda) contx.setTieneDuda(false);
             else
             {
-                //print("no hay duda ");
                 yaHayDuda = true;
                 productoDuda = prodDuda;
             }

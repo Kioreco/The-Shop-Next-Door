@@ -1,43 +1,41 @@
-using System.Collections;
+
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class DudaController : MonoBehaviour
 {
-    private bool isAvailable;
-    private bool isGoodProduct;
-    private bool isGossipTalk;
-    private bool isComplaint;
-    private bool isFlirting;
+    [HideInInspector] public string dudaText;
+    [HideInInspector] public string dudaAnswerYes;
+    [HideInInspector] public string dudaAnswerNo;
+    [HideInInspector] public Sprite dudaImage;
+    [HideInInspector] public bool givesPartner;
 
-    public string dudaText;
-    public string dudaAnswerYes;
-    public string dudaAnswerNo;
-    
+    [SerializeField] private List<ProductImage> productsImage;
 
-    //1. Duda de stock (se que no te gusta la idea paula, pero por meter diferentes tipos)
-    //2. Duda de si el producto sale bien
-    //3. Duda de chachara/cotillear(un texto y que quizás tengas que decir aham y no se que?)
-    //4. Duda de queja de basura o falta de productos
-    //4. Duda de ligar(si da tiempo a controlarlas
+    [SerializeField] private Sprite complaintImage;
+    [SerializeField] private Sprite gossipImage;
+    [SerializeField] private Sprite flirtyImage;
 
+    private void Start()
+    {
+        givesPartner = false;
+    }
 
-    public void CreateDuda()
+    public void CreateDuda(string productName)
     {
         int tipoDuda = 0;
 
-        if (VidaPersonalManager.Instance.hasPartner) { tipoDuda = Random.Range(0, 4); }
-        else { tipoDuda = Random.Range(0, 5); }
+        if (VidaPersonalManager.Instance.hasPartner) { tipoDuda = UnityEngine.Random.Range(0, 4); }
+        else { tipoDuda = UnityEngine.Random.Range(0, 5); }
 
         switch (tipoDuda)
         {
             case 0:
-                CreateProductAvailableDuda();
+                CreateProductAvailableDuda(productName);
                 break;
             case 1:
-                CreateQualityProductDuda();
+                CreateQualityProductDuda(productName);
                 break;
             case 2:
                 CreateGossipDuda();
@@ -49,8 +47,10 @@ public class DudaController : MonoBehaviour
                 CreateFlirtingDuda();
                 break;
         }
+        
     }
 
+    #region Texts
     private string[] productAvailableTexts = 
     {
         "Excuse me, superstar!\r\nDo you happen to have <i>this</i>?\r\n\r\nMy life kinda depends on it",
@@ -62,7 +62,6 @@ public class DudaController : MonoBehaviour
         "Pardon me!\r\nI’m hunting for <i>this</i>.\r\n\r\nDo you have it or should I go to The Shop Next Door?",
         "Hey hey hey beautiful lady,\r\ndo you have this product that is something like <i>this</i>?\r\n\r\nI've been searching and I can't seem to find it..."
     };
-
     private string[] productAvailableYesAnswersTexts =
     {
         "Yes, of course!\r\nIt's right here...",
@@ -80,14 +79,6 @@ public class DudaController : MonoBehaviour
         "Not this time, unfortunately!"
     };
 
-
-    private void CreateProductAvailableDuda()
-    {
-        dudaText = productAvailableTexts[Random.Range(0, productAvailableTexts.Length)];
-        dudaAnswerYes = productAvailableYesAnswersTexts[Random.Range(0, productAvailableYesAnswersTexts.Length)];
-        dudaAnswerNo = productAvailableNoAnswersTexts[Random.Range(0, productAvailableNoAnswersTexts.Length)];
-    }
-
     private string[] productQualityTexts =
     {
         "Be honest...\r\nWill <i>this product</i> last longer than Jess after saying <i>I love you</i> to Rory?",
@@ -99,7 +90,6 @@ public class DudaController : MonoBehaviour
         "How would you rate <i>this product</i>:\r\ncowboy’s kiss or horse’s disappointment?",
         "Hi...\r\nWill <i>this product</i> be good for a try-hard swiftie?\r\nAsking for… a friend"
     };
-
     private string[] productQualityYesAnswersTexts =
     {
         "Definitely! Like a cowboy’s kiss moment",
@@ -117,13 +107,6 @@ public class DudaController : MonoBehaviour
         "I wouldn't even gift it to my enemy..."
     };
 
-    private void CreateQualityProductDuda()
-    {
-        dudaText = productQualityTexts[Random.Range(0, productQualityTexts.Length)];
-        dudaAnswerYes = productQualityYesAnswersTexts[Random.Range(0, productQualityYesAnswersTexts.Length)];
-        dudaAnswerNo = productQualityNoAnswersTexts[Random.Range(0, productQualityNoAnswersTexts.Length)];
-    }
-
     private string[] GossipTexts =
     {
         "Did you hear about Mariana from down the street?\r\nShe bought three of those fancy coffee machines, but I swear,\r\nshe still gets her latte from the gas station every morning.\r\nGiving major Lorelai vibes, don’t you think?",
@@ -139,7 +122,6 @@ public class DudaController : MonoBehaviour
         "You know those cowboy romance novels\r\nwith the overly dramatic covers?\r\nI thought they were silly until I saw Jake Gyllenhaal in Brokeback Mountain.\r\nNow I get it",
         "I swear, there’s just something about a man\r\nwho knows how to saddle a horse. It’s like,\r\n'Yes, sir, you can also saddle <i>my emotions</i>'"
     };
-
     private string[] GossipYesAnswersTexts =
     {
         "I knew something was up! You always have the best tea",
@@ -157,13 +139,6 @@ public class DudaController : MonoBehaviour
         "Do you ever think about not distracting people?"
     };
 
-    private void CreateGossipDuda()
-    {
-        dudaText = GossipTexts[Random.Range(0, GossipTexts.Length)];
-        dudaAnswerYes = GossipYesAnswersTexts[Random.Range(0, GossipYesAnswersTexts.Length)];
-        dudaAnswerNo = GossipNoAnswersTexts[Random.Range(0, GossipNoAnswersTexts.Length)];
-    }
-
     private string[] ComplaintTexts =
     {
         "I swear, your store’s been stuck in 2006,\r\nlike, are you even trying to keep up with trends like\r\nTaylor Swift’s new album?",
@@ -175,7 +150,6 @@ public class DudaController : MonoBehaviour
         "This store is a joke.\r\nI don't even remember why I came...\r\nI’m leaving and never returning again.\r\nYou can count on that!",
         "Your hair is horrible!\r\nI can't even look at it.\r\nI want to talk to the manager have them force you\r\nto change that broom hair!"
     };
-
     private string[] ComplaintYesAnswersTexts =
     {
         "Sorry for that! I’ll fix it now",
@@ -193,16 +167,98 @@ public class DudaController : MonoBehaviour
         "Complaining doesn't suit you very well"
     };
 
+    private string[] FlirtingTexts =
+    {
+        "You’re giving off serious Fleabag energy.\r\nSarcastic, mysterious, and way too attractive for this place.\r\nWant to grab dinner and discuss your trauma?",
+        "On a scale of ‘Normal People’ to ‘Fleabag,’\r\nhow complicated is your love life?\r\nAsking for our future",
+        "Have we met?\r\nI heard this night will be sparkling, we should not let it go...\r\nI have to say I'm wonderstruck, blushing when I think of you...\r\nAnd I have to ask, who do you love?\r\nCan that be me?",
+        "So, you’re telling me you can run this whole store,\r\njuggle impatient customers, and still look perfect\r\nlike Fleabag in the funeral of her mother?\r\nThat’s impressive.\r\nCare to share your secret over coffee?",
+        "I heard this place has all the essentials,\r\nbut no one told me they had cute employees with great taste in music\r\nand a charming smile. I think I just hit the jackpot...\r\nWhat’s your schedule like after work?",
+        "You know?\r\nI've never met a girl who had as many James Taylor records as me...\r\nBut by the look on your face I can see you do.\r\nHow about we go someday to a cafe to watch it begin again?",
+        "I remember that time in highschool I asked you to dance,\r\nand you said that 'Dancing is a dangerous game'.\r\nI've got some tricks up my sleeve, and I know you never wanted love, but I believe you are a cowboy like me...\r\nMind going out on a date with me sometime?",
+        "For once I'm going to let my fears and my ghosts go...\r\nI've known you for a while and now I understand why everyone\r\nlost their minds and fought the wars...\r\nThey were in love, and so I am...\r\nWould you like to have coffee someday?"
+    };
+    private string[] FlirtingYesAnswersTexts =
+    {
+        "What the hell, sure!",
+        "Bold move. I might just say yes.",
+        "Cute. Here’s my number... Don’t abuse it.",
+        "Fine, but you’re paying for the coffee.",
+        "Flattering. Coffee after my shift?",
+        "Alright, smooth talker",
+        "Let’s see where this goes..."
+    };
+    private string[] FlirtingNoAnswersTexts =
+    {
+        "Funny. Still no.",
+        "I’m here to work, not date",
+        "I don't do dating, sorry",
+        "Go away, you are ugly",
+        "I only date cowboys... Sorry",
+        "I only date pretentious people...",
+        "I won't give you a discount...",
+        "Keep shopping and leave me alone"
+    };
+    #endregion
+
+
+    private void CreateProductAvailableDuda(string productName)
+    {
+        SearchProductImage(productName);
+        dudaText = productAvailableTexts[UnityEngine.Random.Range(0, productAvailableTexts.Length)];
+        dudaAnswerYes = productAvailableYesAnswersTexts[UnityEngine.Random.Range(0, productAvailableYesAnswersTexts.Length)];
+        dudaAnswerNo = productAvailableNoAnswersTexts[UnityEngine.Random.Range(0, productAvailableNoAnswersTexts.Length)];
+    }
+
+    private void CreateQualityProductDuda(string productName)
+    {
+        SearchProductImage(productName);
+        dudaText = productQualityTexts[UnityEngine.Random.Range(0, productQualityTexts.Length)];
+        dudaAnswerYes = productQualityYesAnswersTexts[UnityEngine.Random.Range(0, productQualityYesAnswersTexts.Length)];
+        dudaAnswerNo = productQualityNoAnswersTexts[UnityEngine.Random.Range(0, productQualityNoAnswersTexts.Length)];
+    }
+
+    private void CreateGossipDuda()
+    {
+        dudaImage = gossipImage;
+        dudaText = GossipTexts[UnityEngine.Random.Range(0, GossipTexts.Length)];
+        dudaAnswerYes = GossipYesAnswersTexts[UnityEngine.Random.Range(0, GossipYesAnswersTexts.Length)];
+        dudaAnswerNo = GossipNoAnswersTexts[UnityEngine.Random.Range(0, GossipNoAnswersTexts.Length)];
+    }
+
     private void CreateComplaintDuda()
     {
-        dudaText = productAvailableTexts[Random.Range(0, productAvailableTexts.Length)];
-        dudaAnswerYes = productAvailableYesAnswersTexts[Random.Range(0, productAvailableYesAnswersTexts.Length)];
-        dudaAnswerNo = GossipNoAnswersTexts[Random.Range(0, GossipNoAnswersTexts.Length)];
+        dudaImage = complaintImage;
+        dudaText = ComplaintTexts[UnityEngine.Random.Range(0, ComplaintTexts.Length)];
+        dudaAnswerYes = ComplaintYesAnswersTexts[UnityEngine.Random.Range(0, ComplaintYesAnswersTexts.Length)];
+        dudaAnswerNo = ComplaintNoAnswersTexts[UnityEngine.Random.Range(0, ComplaintNoAnswersTexts.Length)];
     }
+
     private void CreateFlirtingDuda()
     {
-        dudaText = productAvailableTexts[Random.Range(0, productAvailableTexts.Length)];
-        dudaAnswerYes = productAvailableYesAnswersTexts[Random.Range(0, productAvailableYesAnswersTexts.Length)];
-        dudaAnswerNo = productAvailableNoAnswersTexts[Random.Range(0, productAvailableNoAnswersTexts.Length)];
+        dudaImage = flirtyImage;
+        dudaText = FlirtingTexts[UnityEngine.Random.Range(0, FlirtingTexts.Length)];
+        dudaAnswerYes = FlirtingYesAnswersTexts[UnityEngine.Random.Range(0, FlirtingYesAnswersTexts.Length)];
+        dudaAnswerNo = FlirtingNoAnswersTexts[UnityEngine.Random.Range(0, FlirtingNoAnswersTexts.Length)];
+        givesPartner = true;
     }
+
+    private void SearchProductImage(string productName)
+    {
+        foreach (ProductImage product in productsImage)
+        {
+            if (product.name == productName)
+            {
+                dudaImage = product.image;
+                break;
+            }
+        }
+    }
+}
+
+[Serializable]
+public struct ProductImage
+{
+    public string name;
+    public Sprite image;
 }

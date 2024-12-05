@@ -50,7 +50,6 @@ public class CountdownManager : NetworkBehaviour
     [ClientRpc]
     public void StartCountdownClientRpc()
     {
-        print("desactivo imagen");
         playerReady_image.SetActive(false);
         countdownText.gameObject.SetActive(true);
     }
@@ -69,8 +68,6 @@ public class CountdownManager : NetworkBehaviour
 
         if (currentTime <= 0)
         {
-            //Debug.Log("Countdown finished");
-
             CancelInvoke("UpdateCountdown");
             StartRaceClientRpc();
         }
@@ -96,21 +93,18 @@ public class CountdownManager : NetworkBehaviour
 
         if (contReady == 2)
         {
-            print("host en todos listos");
             player1Ready_image.SetActive(false);
-            print($"player ready nombre: {playerReady_image.name}     está activa? {player1Ready_image.activeInHierarchy}");
             countdownText.gameObject.SetActive(true);
             StartCountdownClientRpc();
 
             currentTime = countdownTime;
             networkTime.Value = countdownTime;
-            InvokeRepeating("UpdateCountdown", 1.0f, 1.0f);
+            InvokeRepeating("UpdateCountdown", 0.2f, 1.0f);
         }
     }
     public void OnReadyButtonClicked()
     {
         ulong id = NetworkManager.Singleton.LocalClientId;
-        //Debug.Log("Entra en el OnReady  " + (int)id);
 
         readyButton.gameObject.SetActive(false);
 
@@ -118,7 +112,5 @@ public class CountdownManager : NetworkBehaviour
             playerReady_image.SetActive(true);
 
         SetPlayerReadyServerRpc();
-
-        //Debug.Log("Contador de ready: " + contReady);
     }
 }

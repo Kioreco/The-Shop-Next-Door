@@ -10980,7 +10980,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376373766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1618253344}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: AnswerDuda_NO
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376373766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11338,7 +11350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &398213810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12142,13 +12154,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hey hey hey beautiful lady,
-
-    do you have this product that is something
-    like <i>this</i>?
-
-
-    I''ve been searching and I can''t seem to find it...
+  m_text: 'I remember that time in highschool I asked you to dance,\r\nand you said
+    that ''Dancing is a dangerous game''.\r\nI''ve got some tricks up my sleeve,
+    and I know you never wanted love, but I believe you are a cowboy like me...\r\nMind
+    going out on a date with me sometime?
 
 '
   m_isRightToLeft: 0
@@ -16344,7 +16353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.1578064, y: 10.695}
+  m_AnchoredPosition: {x: -6.157837, y: 10.695007}
   m_SizeDelta: {x: -62.4703, y: -30.6832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &583197881
@@ -20252,7 +20261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 652350838}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1618253344}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: AnswerDuda_YES
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &652350838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27787,6 +27808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 825040153}
+  - component: {fileID: 825040154}
   m_Layer: 5
   m_Name: Duda
   m_TagString: Untagged
@@ -27818,6 +27840,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &825040154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825040152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86844eb5c10f72b40bb26783d188709d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dudaText: 
+  dudaAnswerYes: 
+  dudaAnswerNo: 
+  dudaImage: {fileID: 0}
+  givesPartner: 0
+  productsImage:
+  - name: camisa
+    image: {fileID: 21300000, guid: 61b904a2abe09c44fab796b65735806f, type: 3}
+  - name: falda
+    image: {fileID: 21300000, guid: c26bdb79550df124786ddece7cd25bf5, type: 3}
+  - name: jerseis
+    image: {fileID: 21300000, guid: af8a37b069c104541bb91ca49b2faf33, type: 3}
+  - name: pantalones
+    image: {fileID: 21300000, guid: a964672b8674f974d9ee414d6ea6b546, type: 3}
+  - name: edgy
+    image: {fileID: 21300000, guid: 1e19408bb336b6b4fa08b4870024378c, type: 3}
+  - name: deportivas
+    image: {fileID: 21300000, guid: d853853d845cd884bbddae244bab5e4a, type: 3}
+  - name: manzana
+    image: {fileID: 21300000, guid: 000b9b780505e9a4682791e71be567ae, type: 3}
+  - name: sandia
+    image: {fileID: 21300000, guid: 62903e5f793b57347a0652b5302606a7, type: 3}
+  - name: calabaza
+    image: {fileID: 21300000, guid: 7802fa1f18595c14fb67d37a169a46db, type: 3}
+  - name: carne
+    image: {fileID: 21300000, guid: 83483d8a7497b4e4197ef94812a639bb, type: 3}
+  - name: pescado
+    image: {fileID: 21300000, guid: 0c0c271a8705c9143a53dac339538ffc, type: 3}
+  - name: pizza
+    image: {fileID: 21300000, guid: 180056332e260f64695dfea39ab796d2, type: 3}
+  - name: melon
+    image: {fileID: 21300000, guid: 50b69dde1b1c89448a224a1ffb042c2f, type: 3}
+  - name: croquetas
+    image: {fileID: 21300000, guid: a3f13866708d6eb4ca57b8cb3b1f5025, type: 3}
+  - name: pijamas
+    image: {fileID: 21300000, guid: 9a22ada2459f099418700a9d0a7551b1, type: 3}
+  - name: vestidos
+    image: {fileID: 21300000, guid: 1370bafb5be1f4f418c3c10680314b2e, type: 3}
+  complaintImage: {fileID: 21300000, guid: fba3da47786ff49439158abaca6077cd, type: 3}
+  gossipImage: {fileID: 21300000, guid: 016821b1a9f7aa04ea4b7d4e244332d0, type: 3}
+  flirtyImage: {fileID: 21300000, guid: 1f953588f7f914a458f90506008e1665, type: 3}
 --- !u!1 &825507163
 GameObject:
   m_ObjectHideFlags: 0
@@ -52673,13 +52748,19 @@ MonoBehaviour:
   ClosedSign: {fileID: 2133607301}
   messageTelephone: {fileID: 1207951703}
   messageTelephone_text: {fileID: 1043753084}
-  dudaController: {fileID: 0}
-  duda_gameObject: {fileID: 0}
-  duda_productImage: {fileID: 0}
-  duda_text: {fileID: 0}
-  yesAnswer_text: {fileID: 0}
-  noAnswer_text: {fileID: 0}
-  questionTimer: []
+  dudaController: {fileID: 825040154}
+  duda_gameObject: {fileID: 825040152}
+  duda_Image: {fileID: 1702091258}
+  duda_text: {fileID: 418710716}
+  yesAnswer_text: {fileID: 1621349722}
+  noAnswer_text: {fileID: 583197881}
+  questionTimer:
+  - {fileID: 1348873592}
+  - {fileID: 601711661}
+  - {fileID: 891882070}
+  - {fileID: 64409298}
+  - {fileID: 2099367227}
+  - {fileID: 321960516}
   cajaPlayerPosition: {fileID: 0}
 --- !u!4 &1618253345
 Transform:
@@ -52861,7 +52942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.6459045, y: 6.8166}
+  m_AnchoredPosition: {x: -2.645874, y: 6.8165894}
   m_SizeDelta: {x: -42.4651, y: -38.5343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621349722
@@ -55458,7 +55539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50b69dde1b1c89448a224a1ffb042c2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 016821b1a9f7aa04ea4b7d4e244332d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

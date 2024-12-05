@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
     [Header("DUDAS")]
     [SerializeField] private DudaController dudaController;
     [SerializeField] private GameObject duda_gameObject;
-    [SerializeField] private Image duda_productImage;
+    [SerializeField] private Image duda_Image;
     [SerializeField] private TextMeshProUGUI duda_text;
     [SerializeField] private TextMeshProUGUI yesAnswer_text;
     [SerializeField] private TextMeshProUGUI noAnswer_text;
@@ -484,17 +484,52 @@ public class UIManager : MonoBehaviour
 
     #region DudasCreator
 
-    public void CreateDuda_UI()
+    public void CreateDuda_UI(string productoName)
     {
-        dudaController.CreateDuda();
+        dudaController.CreateDuda(productoName);
 
         duda_text.SetText(dudaController.dudaText);
         yesAnswer_text.SetText(dudaController.dudaAnswerYes);
         noAnswer_text.SetText(dudaController.dudaAnswerNo);
+        duda_Image.sprite = dudaController.dudaImage;
 
         ChangeVolumeEffects_Telephone(true);
         telephone.MiniTelephone.SetActive(false);
+        if (telephone.gameObject.activeInHierarchy) { telephone.gameObject.SetActive(false); }
         duda_gameObject.SetActive(true);
+
+        InvokeRepeating(nameof(TimerDuda), 1.66f, 1.66f);
+    }
+
+    private int timerCountdown = 0;
+
+    private void TimerDuda()
+    {
+        if (timerCountdown == questionTimer.Length) { DesactivateDuda(); }
+        questionTimer[timerCountdown].SetActive(false);
+        timerCountdown++;
+    }
+
+    private void DesactivateDuda()
+    {
+        ChangeVolumeEffects_Telephone(false);
+        telephone.MiniTelephone.SetActive(true);
+        duda_gameObject.SetActive(false);
+
+        timerCountdown = 0;
+        CancelInvoke(nameof(TimerDuda));
+    }
+
+    public void AnswerDuda_YES()
+    {
+        if (dudaController.givesPartner) { VidaPersonalManager.Instance.hasPartner = true; }
+
+        DesactivateDuda();
+    }
+
+    public void AnswerDuda_NO()
+    {
+        DesactivateDuda();
     }
 
     #endregion
