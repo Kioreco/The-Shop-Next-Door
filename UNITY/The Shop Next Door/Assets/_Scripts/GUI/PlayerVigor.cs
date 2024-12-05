@@ -7,7 +7,7 @@ public class PlayerVigor : MonoBehaviour
     [Header("Vigor UI")]
     [SerializeField] private Image vigor_bar;
     [SerializeField] private Image vigor_background;
-    [SerializeField] private Material plumbobMaterial;
+    //[SerializeField] private Material plumbobMaterial;
 
     [Header("Faces - Gemma")]
     [SerializeField] private GameObject[] facesGemma;
@@ -108,12 +108,14 @@ public class PlayerVigor : MonoBehaviour
             {
                 ChangeVigorColor(stressLevel);
                 GameManager.Instance._player.ChangePlayerSpeed(1.5f);
+                GameManager.Instance._player._playerAnimator.SetTrigger("playerVigorLow");
                 stressLevelChanged = false;
             }
 
             vigor_bar.fillAmount -= Time.deltaTime * 0.04f;
             if (vigor_bar.fillAmount <= 0.05f)
             {
+                GameManager.Instance._player._playerAnimator.SetTrigger("playerVigorLow");
                 stressLevelMAX = true;
                 UIManager.Instance.ChangeVolumeEffects_Vigor(true);
             }
@@ -126,19 +128,19 @@ public class PlayerVigor : MonoBehaviour
         if (level == 0)
         {
             vigor_background.color = greenColor;
-            plumbobMaterial.color = greenColor;
+            //plumbobMaterial.color = greenColor;
         }
         // Amarillo
         else if (level == 1)
         {
             vigor_background.color = yellowColor;
-            plumbobMaterial.color = yellowColor;
+            //plumbobMaterial.color = yellowColor;
         }
         //Naranja
         else if (level == 2)
         {
             vigor_background.color = orangeColor;
-            plumbobMaterial.color = orangeColor;
+            //plumbobMaterial.color = orangeColor;
         }
     }
 

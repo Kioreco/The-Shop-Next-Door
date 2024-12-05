@@ -69,8 +69,8 @@ public class Estanteria : MonoBehaviour
     public void AccionReponerProducto()
     {
         ReponerProductoEstanteria(productRestocking);
-        //Animacion reponer
-        //product_UI.UpdateQuantityFillImage();
+        GameManager.Instance._player._playerAnimator.SetTrigger("playerRestocking");
+
         product_UI.UpdateShelvesQuantityProduct_UI();
         productRestocking = null;
         product_UI = null;

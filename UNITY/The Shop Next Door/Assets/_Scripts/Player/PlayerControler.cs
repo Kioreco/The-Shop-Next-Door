@@ -11,7 +11,7 @@ public class PlayerControler : NetworkBehaviour
     #region variables
     Vector2 _movement;
     Transform _playerTransform;
-    Animator _playerAnimator;
+    public Animator _playerAnimator;
     public NavMeshAgent _agent;
     public int ID;
     public bool isInitialized = false;
@@ -46,6 +46,7 @@ public class PlayerControler : NetworkBehaviour
 
     //variables caja pago:
     bool isMoving = false;
+    bool isWalkingAnim = false;
     public event EventHandler eventPlayerIsInPayBox;
     public event EventHandler eventPlayerFinishPay;
     public event EventHandler eventPlayerIsInRubbish;
@@ -170,10 +171,14 @@ public class PlayerControler : NetworkBehaviour
         if (IsOwner && isMoving && GetComponent<NavMeshAgent>().remainingDistance == 0)
         {
             isMoving = false;
+            if (isWalkingAnim)
+            {
+                _playerAnimator.SetBool("playerWalking", false);
+                isWalkingAnim = false;
+            }
             if (isPaying)
             {
                 eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
-                //_playerAnimator.SetBool("playerIsPaying", true);
                 //print("está en la caja"); 
                 UIManager.Instance.UpdatePayingBar_UI();
 
@@ -201,6 +206,8 @@ public class PlayerControler : NetworkBehaviour
                 //print($"if dentro\t destination: {hit.point}");
                 _agent.SetDestination(hit.point);
                 _playerTransform.LookAt(hit.point);
+                _playerAnimator.SetBool("playerWalking", true);
+                isWalkingAnim = true;
             }
         }
     }

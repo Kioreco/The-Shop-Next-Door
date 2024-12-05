@@ -114,8 +114,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] questionTimer;
 
 
-
-
     public static UIManager Instance { get; private set; }
 
     void Awake()
@@ -128,39 +126,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void ChangeSignShop(bool shopOpen)
-    {
-        if (shopOpen) { OpenSign.SetActive(true); StartCoroutine(DelayDisableObject(6f, OpenSign)); }
-        else { ClosedSign.SetActive(true); StartCoroutine(DelayDisableObject(10f, ClosedSign)); }
-    }
-
-    public void MessageAlert(int messageNumber)
-    {
-        
-        if (messageNumber == 0) //Compra suministros
-        {
-            messageTelephone_text.SetText("Buy supplies\r\nbefore clients arrive!");
-        }
-        else if (messageNumber == 1) 
-        {
-            messageTelephone_text.SetText("The clock is ticking, closing time is half an hour away!");
-        }
-        else if (messageNumber == 2)
-        {
-            messageTelephone_text.SetText("Attention!\r\nClients must go now!");
-        }
-        
-        messageTelephone.SetActive(true);
-
-        StartCoroutine(DelayDisableObject(4f, messageTelephone));
-    }
-
-    IEnumerator DelayDisableObject(float delay, GameObject obj)
-    {
-        yield return new WaitForSeconds(delay);
-        obj.SetActive(false);
     }
 
     public void Start_UnityFalse()
@@ -187,6 +152,8 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    #region Menus
 
     public void RestartToMenu()
     {
@@ -232,6 +199,85 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.CancelMatch();
     }
 
+    public void WriteCashRegister(int numero)
+    {
+        numeros[0] = numeros[1];
+        numeros[1] = numeros[2];
+        numeros[2] = numeros[3];
+        numeros[3] = numero;
+        cashRegister_Text.SetText(numeros[0].ToString() + " " + numeros[1].ToString() + " " + numeros[2].ToString() + " " + numeros[3].ToString());
+    }
+
+    public void OpenURL(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+    public void OpenCloseModal(GameObject modal)
+    {
+        modal.SetActive(!modal.activeSelf);
+    }
+
+    int currentSlide = 0;
+
+    public void NextTutorialSlide()
+    {
+        tutorialSlides[currentSlide].SetActive(false);
+        tutorialSlides[currentSlide + 1].SetActive(true);
+        if (!tutorial_PrevButton.activeSelf) { tutorial_PrevButton.SetActive(true); }
+        if (currentSlide + 1 == 3) { tutorial_PlayButton.SetActive(true); tutorial_NextButton.SetActive(false); }
+        currentSlide++;
+    }
+
+    public void PrevTutorialSlide()
+    {
+        tutorialSlides[currentSlide].SetActive(false);
+        tutorialSlides[currentSlide - 1].SetActive(true);
+        if (currentSlide - 1 == 2) { tutorial_PlayButton.SetActive(false); tutorial_NextButton.SetActive(true); }
+        if (currentSlide - 1 == 0) { tutorial_PrevButton.SetActive(false); }
+        currentSlide--;
+    }
+
+    #endregion
+
+    IEnumerator DelayDisableObject(float delay, GameObject obj)
+    {
+        yield return new WaitForSeconds(delay);
+        obj.SetActive(false);
+    }
+
+    #region Mensajes Alerta
+    public void ChangeSignShop(bool shopOpen)
+    {
+        if (shopOpen) { OpenSign.SetActive(true); StartCoroutine(DelayDisableObject(6f, OpenSign)); }
+        else { ClosedSign.SetActive(true); StartCoroutine(DelayDisableObject(10f, ClosedSign)); }
+    }
+
+
+    public void MessageAlert(int messageNumber)
+    {
+
+        if (messageNumber == 0) //Compra suministros
+        {
+            messageTelephone_text.SetText("Buy supplies\r\nbefore clients arrive!");
+        }
+        else if (messageNumber == 1)
+        {
+            messageTelephone_text.SetText("The clock is ticking, closing time is half an hour away!");
+        }
+        else if (messageNumber == 2)
+        {
+            messageTelephone_text.SetText("Attention!\r\nClients must go now!");
+        }
+
+        messageTelephone.SetActive(true);
+
+        StartCoroutine(DelayDisableObject(4f, messageTelephone));
+    }
+
+    #endregion
+
+    #region Money Ingame
     public void UpdatePlayerMoney_UI()
     {
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
@@ -253,6 +299,9 @@ public class UIManager : MonoBehaviour
         newMoney_text.SetText("");
     }
 
+    #endregion
+
+    #region InGame UI: Almacen, Reputation, Days, Pay & Clean
     public void UpdateAlmacenSpace_UI()
     {
         inventory_text.SetText(AlmacenManager.Instance.espacioUsado.ToString());
@@ -267,37 +316,6 @@ public class UIManager : MonoBehaviour
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
     }
 
-    public void ChangeVolumeEffects_Telephone(bool isActive)
-    {
-        if (isActive)
-        {
-            colorAdjustments.colorFilter.value = volumeColorDarkened;
-            depthOfField.active = true;
-        }
-        else
-        {
-            colorAdjustments.colorFilter.value = volumeColorNeutral;
-            depthOfField.active = false;
-        }
-    }
-
-    private ClampedFloatParameter vignetteIntensityHigh = new ClampedFloatParameter(0.536f, 0f, 1f);
-    private ClampedFloatParameter vignetteIntensityLow = new ClampedFloatParameter(0.307f, 0f, 1f);
-
-    public void ChangeVolumeEffects_Vigor(bool vigorIsDown)
-    {
-        if (vigorIsDown)
-        {
-            vignette.color.overrideState = true;
-            vignette.intensity = vignetteIntensityHigh;
-        }
-        else
-        {
-            vignette.color.overrideState = false;
-            vignette.intensity = vignetteIntensityLow;
-        }
-    }
-
     [HideInInspector] public Transform cajaPlayerPosition;
 
     public void GoToPay_Button()
@@ -307,11 +325,13 @@ public class UIManager : MonoBehaviour
 
     public void UpdatePayingBar_UI()
     {
+        GameManager.Instance._player._playerAnimator.SetTrigger("playerPaying");
         StartCoroutine(RellenarImagen(cajero_Bar, 2.8f, true, false, null));
     }
 
     public void UpdateCleaning_UI(Image progressImage, RubbishController rubbish)
     {
+        GameManager.Instance._player._playerAnimator.SetTrigger("playerCleaning");
         StartCoroutine(RellenarImagen(progressImage, 3f, false, true, rubbish));
     }
 
@@ -376,6 +396,42 @@ public class UIManager : MonoBehaviour
         player2Day.SetText(dayNight);
     }
 
+    #endregion
+
+    #region Volumes
+    public void ChangeVolumeEffects_Telephone(bool isActive)
+    {
+        if (isActive)
+        {
+            colorAdjustments.colorFilter.value = volumeColorDarkened;
+            depthOfField.active = true;
+        }
+        else
+        {
+            colorAdjustments.colorFilter.value = volumeColorNeutral;
+            depthOfField.active = false;
+        }
+    }
+
+    private ClampedFloatParameter vignetteIntensityHigh = new ClampedFloatParameter(0.536f, 0f, 1f);
+    private ClampedFloatParameter vignetteIntensityLow = new ClampedFloatParameter(0.307f, 0f, 1f);
+
+    public void ChangeVolumeEffects_Vigor(bool vigorIsDown)
+    {
+        if (vigorIsDown)
+        {
+            vignette.color.overrideState = true;
+            vignette.intensity = vignetteIntensityHigh;
+        }
+        else
+        {
+            vignette.color.overrideState = false;
+            vignette.intensity = vignetteIntensityLow;
+        }
+    }
+    #endregion
+
+    #region Actividades
     public void WriteActivityOutcomesEndDay_UI(string[] final_outcomes)
     {
         activity1_outcome_text.SetText(final_outcomes[0]);
@@ -389,21 +445,7 @@ public class UIManager : MonoBehaviour
         activity2_outcome_text.SetText("...");
         activity3_outcome_text.SetText("...");
     }
-
-    public void WriteCashRegister(int numero)
-    {
-        numeros[0] = numeros[1];
-        numeros[1] = numeros[2];
-        numeros[2] = numeros[3];
-        numeros[3] = numero;
-        cashRegister_Text.SetText(numeros[0].ToString() + " " + numeros[1].ToString() + " " + numeros[2].ToString() + " " + numeros[3].ToString());
-    }
-
-    public void OpenURL(string url)
-    {
-        Application.OpenURL(url);
-    }
-
+    #endregion
 
     public void UpdateFinalWeekTexts(int playerID)
     {
@@ -414,27 +456,13 @@ public class UIManager : MonoBehaviour
             print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
             if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
             else winnerName_text.SetText("GEMMA!");
-            //player1Points = GameManager.Instance.playerResult;
-            //player2Points = GameManager.Instance.playerResultRival;
         }
         else
         {
             print($"menor? {GameManager.Instance.playerResult < GameManager.Instance.playerResultRival}");
             if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
             else winnerName_text.SetText("GEMMA!");
-            //player1Points = GameManager.Instance.playerResultRival;
-            //player2Points = GameManager.Instance.playerResult;
         }
-        //print($"player1: {player1Points}  player2: {player2Points}");
-
-        //if (player1Points > player2Points)
-        //{
-
-        //}
-        //else
-        //{
-
-        //}
 
         if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
         {
@@ -446,43 +474,14 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.inheritance = 2;
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
-
-        //Destroy(.gameObject);
     }
 
     public void FinishGame()
     {
-        print("finishing game");
         GameManager.Instance._player.DestroyClient();
     }
 
-
-    public void OpenCloseModal(GameObject modal)
-    {
-        modal.SetActive(!modal.activeSelf);
-    }
-
-    int currentSlide = 0;
-    
-    public void NextTutorialSlide()
-    {
-        tutorialSlides[currentSlide].SetActive(false);
-        tutorialSlides[currentSlide + 1].SetActive(true);
-        if (!tutorial_PrevButton.activeSelf) { tutorial_PrevButton.SetActive(true); }
-        if (currentSlide + 1 == 3) { tutorial_PlayButton.SetActive(true); tutorial_NextButton.SetActive(false); }
-        currentSlide++;
-    }
-
-    public void PrevTutorialSlide()
-    {
-        tutorialSlides[currentSlide].SetActive(false);
-        tutorialSlides[currentSlide - 1].SetActive(true);
-        if (currentSlide - 1 == 2) { tutorial_PlayButton.SetActive(false); tutorial_NextButton.SetActive(true); }
-        if (currentSlide - 1 == 0) { tutorial_PrevButton.SetActive(false); }
-        currentSlide--;
-    }
-
-    #region DudasCreator
+    #region Dudas
 
     public void CreateDuda_UI(string productoName)
     {
@@ -515,6 +514,8 @@ public class UIManager : MonoBehaviour
         ChangeVolumeEffects_Telephone(false);
         telephone.MiniTelephone.SetActive(true);
         duda_gameObject.SetActive(false);
+
+        GameManager.Instance._player._playerAnimator.SetBool("playerTalking", false);
 
         timerCountdown = 0;
         CancelInvoke(nameof(TimerDuda));
