@@ -511,6 +511,8 @@ public class UIManager : MonoBehaviour
 
     private void DesactivateDuda()
     {
+        CancelInvoke(nameof(TimerDuda));
+
         ChangeVolumeEffects_Telephone(false);
         telephone.MiniTelephone.SetActive(true);
         duda_gameObject.SetActive(false);
@@ -518,7 +520,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance._player._playerAnimator.SetBool("playerTalking", false);
 
         timerCountdown = 0;
-        CancelInvoke(nameof(TimerDuda));
+        foreach (GameObject question in questionTimer)
+        {
+            question.SetActive(false);
+        }
     }
 
     public void AnswerDuda_YES()

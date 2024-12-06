@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlumbobPlayer Pink Variant
+  m_Name: PlumbobPlayer Yellow
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 2adaf3bfabf81ab4c812f2afbbc1fbc9, type: 2}
   m_ModifiedSerializedProperties: 2
@@ -40,9 +40,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _Metallic: 1
     - _Smoothness: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.9476305, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.94763047, b: 0, a: 1}
-    - _EmissionColor: {r: 1, g: 0, b: 0.017440319, a: 1}
+    - _BaseColor: {r: 0.97504044, g: 1, b: 0, a: 1}
+    - _Color: {r: 0.9750404, g: 1, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 0.15351723, b: 0, a: 1}
   m_BuildTextureStacks: []
