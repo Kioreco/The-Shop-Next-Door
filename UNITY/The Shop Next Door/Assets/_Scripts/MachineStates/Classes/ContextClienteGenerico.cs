@@ -63,6 +63,8 @@ namespace Assets.Scripts.MachineStates.Classes
         //cierre tienda
         bool shopIsClosed = false;
 
+        //Animator
+        public Animator clientAnimator;
 
         #region MetodosGenerales
         private void Start()
@@ -71,6 +73,8 @@ namespace Assets.Scripts.MachineStates.Classes
             TiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            
+            clientAnimator = GetComponent<Animator>();
 
             inicializar();
             GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
@@ -105,6 +109,12 @@ namespace Assets.Scripts.MachineStates.Classes
             pilaStates.Clear();
             canComplain = false;
             canMakeShow = false;
+
+            //Plumbobs
+            plumbobFelicidadMAX.SetActive(true);
+            plumbobFelicidadMID.SetActive(false);
+            plumbobFelicidadMIN.SetActive(false);
+
 
             if (!isKaren & !isTacanio)
             {

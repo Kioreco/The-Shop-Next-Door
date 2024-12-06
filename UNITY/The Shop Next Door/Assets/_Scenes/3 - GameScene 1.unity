@@ -2513,8 +2513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cc143480d8d774fb44e28cc7125f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrototype: {fileID: 6815518855550218875, guid: db614bac965e54247bc296357b3606b5,
-    type: 3}
+  npcPrototype:
+  - {fileID: 1826059898610968863, guid: 1991631698df5b542849df182e207394, type: 3}
   maxNumberNPC: 1
   maxActiveInScene: 1
   allowAddNew: 0
@@ -4504,8 +4504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cc143480d8d774fb44e28cc7125f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrototype: {fileID: 6815518855550218875, guid: faa6de789aeb1f144b891813a19bb478,
-    type: 3}
+  npcPrototype:
+  - {fileID: 7025949169609306765, guid: f5e42988cff14714d9d863d607654f72, type: 3}
   maxNumberNPC: 1
   maxActiveInScene: 1
   allowAddNew: 0
@@ -39210,8 +39210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 668, y: -241}
-  m_SizeDelta: {x: -1490.4445, y: 303.2229}
+  m_AnchoredPosition: {x: 668, y: -1272.3315}
+  m_SizeDelta: {x: -1490.4445, y: 304.6632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178445534
 MonoBehaviour:
@@ -72911,8 +72911,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cc143480d8d774fb44e28cc7125f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrototype: {fileID: 6815518855550218875, guid: af84dbd0c6fe0c1498d8cec4d3f31b0d,
-    type: 3}
+  npcPrototype:
+  - {fileID: 6726458786137930144, guid: 682eb669e530a8346834787cd1b06af9, type: 3}
+  - {fileID: 8575691603307857958, guid: 367d485079ba50948ad7fd58c3a6fe1a, type: 3}
+  - {fileID: 578142177468687667, guid: c0c1d413eedade447be81f4a20bd1790, type: 3}
   maxNumberNPC: 10
   maxActiveInScene: 10
   allowAddNew: 0

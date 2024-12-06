@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ClientPrototype : MonoBehaviour
 {
-    public MonoBehaviour npcPrototype;
+    public MonoBehaviour[] npcPrototype;
     public int maxNumberNPC;
     public int maxActiveInScene;
     public bool allowAddNew = false;
@@ -17,7 +17,7 @@ public class ClientPrototype : MonoBehaviour
 
     private void Start()
     {
-        npcBasicObjectPool = new ObjectPoolClient((IContext) npcPrototype, maxNumberNPC, allowAddNew);
+        npcBasicObjectPool = new ObjectPoolClient((IContext)npcPrototype[Random.Range(0, npcPrototype.Length)], maxNumberNPC, allowAddNew);
     }
     private void Update()
     {

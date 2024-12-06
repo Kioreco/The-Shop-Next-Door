@@ -56,7 +56,9 @@ public class TelephoneController : MonoBehaviour
 
     private void OnEnable()
     {
-        MiniTelephone.SetActive(false);
+        LeanTween.moveY(MiniTelephone.GetComponent<RectTransform>(), -220.0f, 0.5f).setEaseInOutBounce();
+        LeanTween.moveY(gameObject.GetComponent<RectTransform>(), -250.0f, 0.5f).setEaseInOutBounce();
+        //MiniTelephone.SetActive(false);
         UIManager.Instance.ChangeVolumeEffects_Telephone(true);
         UIManager.Instance.vigor.vigorFill = true;
         UIManager.Instance.vigor.vigorDiminish = false;
@@ -75,8 +77,11 @@ public class TelephoneController : MonoBehaviour
     {
         if (LockedScreen.activeSelf)
         {
-            gameObject.SetActive(false);
-            MiniTelephone.SetActive(true);
+            LeanTween.moveY(MiniTelephone.GetComponent<RectTransform>(), 40.0f, 0.5f).setEaseInOutBounce();
+            LeanTween.moveY(gameObject.GetComponent<RectTransform>(), -1120.0f, 0.5f).setEaseInOutBounce();
+            //gameObject.SetActive(false);
+            //MiniTelephone.SetActive(true);
+            StartCoroutine(WaitToAnimation(0.5f));
             CheckAlmacenSpaceForBuying();
         }
         else
@@ -87,6 +92,13 @@ public class TelephoneController : MonoBehaviour
             if (LifeApp.activeSelf) { LifeApp.SetActive(false); }
             LockedScreen.SetActive(true);
         }
+    }
+
+    IEnumerator WaitToAnimation(float timeAnimation)
+    {
+        yield return new WaitForSeconds(timeAnimation);
+
+        gameObject.SetActive(false);
     }
 
     public void UpdateHourTelephone(string time)
