@@ -30,6 +30,9 @@ namespace Assets.Scripts.MachineStates.Classes
         Stack<IState> pilaStates = new Stack<IState>();
 
         //enfado;
+        [SerializeField] private GameObject plumbobFelicidadMAX;
+        [SerializeField] private GameObject plumbobFelicidadMID;
+        [SerializeField] private GameObject plumbobFelicidadMIN;
         int felicidad = 100;
         int maxEnfado = 0;
         int umbralPropinaFelicidad = 65;
@@ -337,6 +340,9 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
             felicidad -= enfado;
+
+            if (felicidad <= 60 && felicidad > 35) { plumbobFelicidadMAX.SetActive(false); plumbobFelicidadMID.SetActive(true); }
+            if (felicidad <= 35) { plumbobFelicidadMID.SetActive(false); plumbobFelicidadMIN.SetActive(true); }
             //print($"felicidad reducia: {felicidad}");
         }
         public float calcularFelicidadCliente()

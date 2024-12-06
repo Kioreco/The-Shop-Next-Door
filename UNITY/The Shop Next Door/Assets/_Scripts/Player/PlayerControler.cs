@@ -171,11 +171,7 @@ public class PlayerControler : NetworkBehaviour
         if (IsOwner && isMoving && GetComponent<NavMeshAgent>().remainingDistance == 0)
         {
             isMoving = false;
-            if (isWalkingAnim)
-            {
-                _playerAnimator.SetBool("playerWalking", false);
-                isWalkingAnim = false;
-            }
+            
             if (isPaying)
             {
                 eventPlayerIsInPayBox?.Invoke(this, EventArgs.Empty);
@@ -188,6 +184,15 @@ public class PlayerControler : NetworkBehaviour
                 //cleaning
                 eventPlayerIsInRubbish?.Invoke(this, EventArgs.Empty);
                 //print("está en basura");
+            }
+        }
+
+        if (IsOwner && GetComponent<NavMeshAgent>().remainingDistance <= 0.1)
+        {
+            if (isWalkingAnim)
+            {
+                _playerAnimator.SetBool("playerWalking", false);
+                isWalkingAnim = false;
             }
         }
     }

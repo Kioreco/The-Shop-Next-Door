@@ -522,7 +522,7 @@ public class UIManager : MonoBehaviour
         timerCountdown = 0;
         foreach (GameObject question in questionTimer)
         {
-            question.SetActive(false);
+            question.SetActive(true);
         }
     }
 
