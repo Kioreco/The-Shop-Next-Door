@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 196928457942927401}
   - component: {fileID: 8068175107825173313}
   - component: {fileID: 2917915196727810703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Queja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 936757017586043217}
   - component: {fileID: 5048292529454656760}
   - component: {fileID: 8166803623410702170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1634254478269075762}
   - component: {fileID: 6664602992398664040}
   - component: {fileID: 894867940521553240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 6097259250595124689}
   - component: {fileID: 1600013546109404051}
   - component: {fileID: 8181360560846326440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TacaContento
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 5607501924672344802}
   - component: {fileID: 7035539464806514536}
   - component: {fileID: 5246742816026315312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 396233700833716929}
   - component: {fileID: 7740657651849916065}
   - component: {fileID: 1893924944486895193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadAlta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 8042024279132194236}
   - component: {fileID: 3402137420960672751}
   - component: {fileID: 3662545737287031346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadMedia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 7051744496627498111}
   - component: {fileID: 6252276094363335240}
   - component: {fileID: 6757875028866284426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TacaEnfadado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 2848644930703525238}
   - component: {fileID: 100812683885592969}
   - component: {fileID: 8641769011989902879}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadBaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 5440931603905360950}
   - component: {fileID: 2669906626936555977}
   - component: {fileID: 2975045731451479375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,9 +799,9 @@ RectTransform:
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5607501924672344802}
-  - {fileID: 6097259250595124689}
   - {fileID: 7051744496627498111}
+  - {fileID: 6097259250595124689}
+  - {fileID: 5607501924672344802}
   - {fileID: 196928457942927401}
   m_Father: {fileID: 5719288709651622807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -944,10 +944,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5547542145952523856, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1649700702565815504, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1034260968494614360, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 578cceffd0c1e75488a2ff6ee107b945,
         type: 3}
       propertyPath: m_Name
       value: "Cliente_Taca\xF1o"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231482478929081310, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444558461230370346, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274570351632304400, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688777242653529411, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742780737561719692, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487167654232718067, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -993,6 +1048,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1222850717346118121}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 578cceffd0c1e75488a2ff6ee107b945,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2307585758190589576}
   m_SourcePrefab: {fileID: 100100000, guid: 578cceffd0c1e75488a2ff6ee107b945, type: 3}
 --- !u!1 &4905878406591131949 stripped
 GameObject:
@@ -1142,6 +1201,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.001, y: 0.92, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &2307585758190589576
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905878406591131949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7532377, y: 1, z: 4.8573947}
+  m_Center: {x: -0.07891607, y: 0, z: -0.18880677}
 --- !u!4 &5719288709651622807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 578cceffd0c1e75488a2ff6ee107b945,

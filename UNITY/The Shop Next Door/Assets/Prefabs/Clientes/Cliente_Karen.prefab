@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4478004184896019647}
   - component: {fileID: 3929891506843588118}
   - component: {fileID: 1263130314724702655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadAlta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 2070521782812902917}
   - component: {fileID: 1059907917217959329}
   - component: {fileID: 6330549222360183210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 8315964571914157600}
   - component: {fileID: 8761307858030077701}
   - component: {fileID: 7462391469045437295}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 7393080565800106121}
   - component: {fileID: 6457100039846537877}
   - component: {fileID: 5151675858914003504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Queja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 5297793541898365723}
   - component: {fileID: 7143253587390953067}
   - component: {fileID: 7908866954323927815}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadBaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 8282953081684035546}
   - component: {fileID: 8952884302995883206}
   - component: {fileID: 3892726557230186720}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadMedia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 7146518333139650312}
   - component: {fileID: 1294416037333712562}
   - component: {fileID: 1147405292840879105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 7086054088306591228}
   - component: {fileID: 3345438960333870831}
   - component: {fileID: 2861971385259439392}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,10 +792,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5547542145952523856, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1649700702565815504, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 454059340096652617, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 16976429abbab394f90e6c2f8b2fc865,
         type: 3}
       propertyPath: m_Name
       value: Cliente_Karen
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444558461230370346, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742780737561719692, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788697860219768299, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487167654232718067, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -841,6 +886,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2135285952199026193}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16976429abbab394f90e6c2f8b2fc865,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8892502346826821783}
   m_SourcePrefab: {fileID: 100100000, guid: 16976429abbab394f90e6c2f8b2fc865, type: 3}
 --- !u!1 &1655353217295630385 stripped
 GameObject:
@@ -940,7 +989,8 @@ MonoBehaviour:
   emocionDuda: {fileID: 6994923820465680592}
   emocionEnfado: {fileID: 1981385061786587874}
   emocionMalvado: {fileID: 0}
-  emocionDinero: {fileID: 0}
+  emocionTacaEnfadado: {fileID: 0}
+  emocionTacaFeliz: {fileID: 0}
   hayCajeroEnCaja: 0
   isKaren: 1
   isTacanio: 0
@@ -989,6 +1039,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.001, y: 0.92, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &8892502346826821783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655353217295630385}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7532377, y: 1, z: 4.8573947}
+  m_Center: {x: -0.07891607, y: 0, z: -0.18880677}
 --- !u!4 &2140105201611479691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16976429abbab394f90e6c2f8b2fc865,

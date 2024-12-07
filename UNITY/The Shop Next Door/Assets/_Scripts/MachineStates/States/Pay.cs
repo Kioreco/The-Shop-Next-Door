@@ -67,7 +67,14 @@ public class Pay : AStateNPC
             contexto.getNavMesh().SetDestination(exitPos.position);
 
             if (contexto.getFelicidad() >= contexto.getUmbralPropina() & !contexto.getIsTacanio()) dinero += dinero * 0.2f; //propina de un 20%
-            if (contexto.getIsTacanio()) { dinero += propinaTacanio; }
+            if (contexto.getIsTacanio()) 
+            {
+                if (propinaTacanio != 0) contexto.activarCanvasTacanioFeliz();
+                else if (propinaTacanio == 0) contexto.activarCanvasEnfado();
+                
+                dinero += propinaTacanio; 
+            }
+
 
             contexto.getGameManager().dineroJugador += dinero;
 

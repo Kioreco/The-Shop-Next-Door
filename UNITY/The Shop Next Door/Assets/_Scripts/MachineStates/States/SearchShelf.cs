@@ -20,7 +20,7 @@ public class SearchShelf : AStateNPC
 
     public override void Update()
     {
-        if (contexto.getNavMesh().remainingDistance == 0f)
+        if (contexto.getNavMesh().remainingDistance <= 0.7f)
         {
             contexto.SetState(new TakeProduct(contexto));
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.Netcode;
@@ -113,6 +114,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI noAnswer_text;
     [SerializeField] private GameObject[] questionTimer;
 
+    //evento duda resuelta
+    public EventHandler eventoDudaResuelta;
 
     public static UIManager Instance { get; private set; }
 
@@ -449,8 +452,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateFinalWeekTexts(int playerID)
     {
-        double player1Points;
-        double player2Points;
         if (playerID == 0)
         {
             print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
@@ -485,6 +486,7 @@ public class UIManager : MonoBehaviour
 
     public void CreateDuda_UI(string productoName)
     {
+        print("create duda");
         dudaController.CreateDuda(productoName);
 
         duda_text.SetText(dudaController.dudaText);
@@ -518,6 +520,7 @@ public class UIManager : MonoBehaviour
         duda_gameObject.SetActive(false);
 
         GameManager.Instance._player._playerAnimator.SetBool("playerTalking", false);
+        eventoDudaResuelta?.Invoke(this, EventArgs.Empty);
 
         timerCountdown = 0;
         foreach (GameObject question in questionTimer)

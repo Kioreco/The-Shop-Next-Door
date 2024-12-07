@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class TakeProduct : AStateNPC
@@ -15,12 +16,12 @@ public class TakeProduct : AStateNPC
     {
         //contexto.getLista().lista.ToList();
         nombreProducto = contexto.getLista().lista.Keys.First();
-        if (contexto.getTieneDuda()) TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), contexto.getProductoDuda());
+        if (contexto.getTieneDuda() && nombreProducto == contexto.getProductoDuda()) TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), contexto.getProductoDuda());
         if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda())
         {
             //Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
             //Debug.Log($"ANTES pila: {contexto.getPilaState().Count}");
-
+            Debug.Log("va a preguntar dudas");
             contexto.getPilaState().Push(this);
             //Debug.Log($"DESPUES pila: {contexto.getPilaState().Count}    añadido: {contexto.getPilaState().First()}");
             contexto.SetState(new TalkToAWorker(contexto));

@@ -30,7 +30,7 @@ public class PlayerControler : NetworkBehaviour
     public float maxZ; /* = 10f;*/
 
     [Header("Camera Zoom")]
-    int fovSinZoom = 60;
+    int fovSinZoom = 90;
     int fovZoom = 25;
     float amountZoom;
     float zoomSpeed = 5f;
@@ -69,7 +69,8 @@ public class PlayerControler : NetworkBehaviour
         {
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<NavMeshAgent>().enabled = true;
-            amountZoom = fovSinZoom;
+            //amountZoom = fovSinZoom;
+            amountZoom = 60;
         }
         GetComponent<NavMeshAgent>().avoidancePriority = UnityEngine.Random.Range(30, 50);
         GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;

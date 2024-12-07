@@ -410,6 +410,8 @@ public class TiendaManager : MonoBehaviour
             if (yaHayDuda) contx.setTieneDuda(false);
             else
             {
+                print("duda");
+
                 yaHayDuda = true;
                 productoDuda = prodDuda;
             }

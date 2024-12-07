@@ -1,22 +1,28 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class ObjectPoolClient : IObjectPool<IContext>
 {
     private IContext objectPrototype;
+    private List<MonoBehaviour> objectsProto; 
     private readonly bool canAdd;
 
     private List<IContext> npcs;
     Transform instancePos;
     private int countNpcsActive;
 
-    public ObjectPoolClient(IContext ctx, int countNpcMax, bool ca)
+    bool isGenericClient;
+
+    public ObjectPoolClient(List<MonoBehaviour> ctx, int countNpcMax, bool ca, bool isGeneric)
     {
         Debug.Log("creado");
-        objectPrototype = ctx;
+        objectsProto = ctx;
         canAdd = ca;
         npcs = new List<IContext>(countNpcMax);
         countNpcsActive = 0;
+
+        isGenericClient = isGeneric;
 
         for (int i = 0; i < countNpcMax; i++)
         {
@@ -25,6 +31,12 @@ public class ObjectPoolClient : IObjectPool<IContext>
             npcs.Add(npc);
         }
     }
+
+    //public void setPrototype(IContext ctx)
+    //{
+    //    Debug.Log($"cambiando prefab prototype: {ctx}");
+    //    objectPrototype = ctx;
+    //}
 
     public IContext GetPoolableObject()
     {
@@ -63,8 +75,20 @@ public class ObjectPoolClient : IObjectPool<IContext>
     {
         if (TiendaManager.Instance.ID == 0 && TiendaManager.Instance.player.IsOwner) instancePos = TiendaManager.Instance.npcPositionInitialP1;
         else if (TiendaManager.Instance.ID == 1 && TiendaManager.Instance.player.IsOwner) instancePos = TiendaManager.Instance.npcPositionInitialP2;
-        IContext newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
-        return newObj;
+
+        IContext newObj;
+
+        if (isGenericClient)
+        {
+            objectPrototype = (IContext)objectsProto[Random.Range(0, objectsProto.Count)];
+
+            return newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
+        }
+        else
+        {
+            objectPrototype = (IContext)objectsProto[0];
+            return newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
+        }
     }
 
     public int GetCount()

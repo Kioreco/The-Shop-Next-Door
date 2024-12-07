@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.MachineStates.Classes
 {
@@ -22,7 +24,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public bool isInPayQueue = false;
 
         //dudas:
-        int porcentajeDuda = 30; //20
+        int porcentajeDuda = 60; //20
         bool tieneDuda = false;
         string productoDuda;
 
@@ -74,6 +76,10 @@ namespace Assets.Scripts.MachineStates.Classes
         //Animator
         public Animator clientAnimator;
 
+        //si estoy donde el jugador o no
+        bool imInPlayer = false;
+        bool dudaResuelta = false;
+
         #region MetodosGenerales
         private void Start()
         {
@@ -89,6 +95,7 @@ namespace Assets.Scripts.MachineStates.Classes
             if(TiendaManager.ID == 1) TiendaManager.payQueueChangeP2 += MoveInQueue;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerIsInPayBox += updateIfExistCajero;
             GameManager._player.GetComponent<PlayerControler>().eventPlayerFinishPay += updateIfPlayerFinishPay;
+            UIManager.Instance.eventoDudaResuelta += eventUpdateDudaResuelta;
 
             //métodos hora salida tienda 
             UIManager.schedule.eventTwoHoursLeft += recieverEventTwoHoursLeft;
@@ -241,16 +248,17 @@ namespace Assets.Scripts.MachineStates.Classes
 
         public Vector3 randomPositionShelf(Vector3 positionShelf)
         {
-            Vector3 position = new Vector3();
+            float radius = 2;
+            Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-radius, radius), 0, UnityEngine.Random.Range(-radius, radius));
 
-            position = positionShelf + new Vector3(UnityEngine.Random.Range(-1, 1), 0, UnityEngine.Random.Range(-1, 1));
+            Vector3 randomPosition = positionShelf + randomOffset;
 
-            if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, radius, NavMesh.AllAreas))
             {
-                position = hit.position;
+                randomPosition = hit.position;
             }
 
-            return position;
+            return randomPosition;
         }
         #endregion
 
@@ -362,8 +370,20 @@ namespace Assets.Scripts.MachineStates.Classes
             //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
             felicidad -= enfado;
 
-            if (felicidad <= 60 && felicidad > 35 && !plumbobChanged) { plumbobFelicidadMAX.SetActive(false); plumbobFelicidadMID.SetActive(true); plumbobChanged = true; }
-            if (felicidad <= 35 && plumbobChanged) { plumbobFelicidadMID.SetActive(false); plumbobFelicidadMIN.SetActive(true); plumbobChanged = false; }
+            if (felicidad <= 60 && felicidad > 35 && !plumbobChanged) 
+            {
+                activarCanvasEnfado();
+                plumbobFelicidadMAX.SetActive(false); 
+                plumbobFelicidadMID.SetActive(true); 
+                plumbobChanged = true; 
+            }
+            if (felicidad <= 35 && plumbobChanged) 
+            {
+                activarCanvasEnfado();
+                plumbobFelicidadMID.SetActive(false); 
+                plumbobFelicidadMIN.SetActive(true);
+                plumbobChanged = false; 
+            }
             //print($"felicidad reducia: {felicidad}");
         }
         public float calcularFelicidadCliente()
@@ -451,6 +471,91 @@ namespace Assets.Scripts.MachineStates.Classes
             {
                 Destruir();
             }
+        }
+        #endregion
+
+        #region detectar al player
+        public bool getIfImInPlayer()
+        {
+            return imInPlayer;
+        }        
+        public void setIfImInPlayer(bool b)
+        {
+            imInPlayer = b;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            //print("on trigger enter");
+            if (other.CompareTag("Player")) print("player detected");
+            if (other.CompareTag("Player") && tieneDuda)
+            {
+                print("estoy en el player");
+                imInPlayer = true;
+                other.gameObject.GetComponent<PlayerControler>().disableMovement();
+            }
+            if(other.CompareTag("Player") && isKaren && canComplain)//lo que sea
+            {
+
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            //print("on trigger exit");
+            if (other.CompareTag("Player"))
+            {
+                print("se va player");
+                imInPlayer = false;
+                //other.gameObject.GetComponent<PlayerControler>().enableMovement(false);
+            }
+        }
+
+        public void eventUpdateDudaResuelta(object s, EventArgs e)
+        {
+            dudaResuelta = true;
+        }
+
+        public bool getIfDudaResuelta()
+        {
+            return dudaResuelta;
+        }
+        public void setIfDudaResuelta(bool b)
+        {
+            dudaResuelta = b;
+        }
+        #endregion
+
+        #region feedback canvas visual
+        public void activarCanvasDuda()
+        {
+            canvasEmociones.SetActive(true);
+            emocionDuda.SetActive(true);
+            StartCoroutine(delayDesactivar(3f, emocionDuda));
+        }
+        public void activarCanvasEnfado()
+        {
+            canvasEmociones.SetActive(true);
+            emocionEnfado.SetActive(true);
+            StartCoroutine(delayDesactivar(3f, emocionEnfado));
+        }
+        public void activarCanvasTacanioEnfadado()
+        {
+            canvasEmociones.SetActive(true);
+            emocionTacaEnfadado.SetActive(true);
+            StartCoroutine(delayDesactivar(3f, emocionTacaEnfadado));
+        }
+        public void activarCanvasTacanioFeliz()
+        {
+            canvasEmociones.SetActive(true);
+            emocionTacaFeliz.SetActive(true);
+            StartCoroutine(delayDesactivar(3f, emocionTacaFeliz));
+        }
+
+        public IEnumerator delayDesactivar(float delay, GameObject canvas)
+        {
+            yield return new WaitForSeconds(delay);
+            canvas.SetActive(false);
+            canvasEmociones.SetActive(false);
         }
         #endregion
     }

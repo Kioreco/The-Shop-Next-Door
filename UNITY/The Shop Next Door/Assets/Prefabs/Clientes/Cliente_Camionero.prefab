@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4694480972731262700}
   - component: {fileID: 8777924619255443656}
   - component: {fileID: 8906658344547568202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadAlta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 2931717149311083032}
   - component: {fileID: 8265692998269106060}
   - component: {fileID: 6688282568609329007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 1531569404985778423}
   - component: {fileID: 2326117038738718544}
   - component: {fileID: 4904012319603393110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 9192163675841439395}
   - component: {fileID: 1151249990369608330}
   - component: {fileID: 3873644059809360026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Queja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 6770162149050241088}
   - component: {fileID: 4153391390541044740}
   - component: {fileID: 3477772832314338543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 7907827278290391418}
   - component: {fileID: 6727180291606682374}
   - component: {fileID: 6477287346008196994}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadMedia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 2684184973072380360}
   - component: {fileID: 2881544101188424899}
   - component: {fileID: 8012213300173340756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 4935667307618903180}
   - component: {fileID: 1117108344074440504}
   - component: {fileID: 8392405519846378524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlumbobFelicidadBaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,10 +792,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5547542145952523856, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5302506541372151336, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1649700702565815504, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1034260968494614360, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2ae5a287b8067e04c9d57ab995aefe47,
         type: 3}
       propertyPath: m_Name
       value: Cliente_Camionero
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231482478929081310, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444558461230370346, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688777242653529411, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742780737561719692, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487167654232718067, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -841,6 +896,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3537694025707526779}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ae5a287b8067e04c9d57ab995aefe47,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8519334287571615726}
   m_SourcePrefab: {fileID: 100100000, guid: 2ae5a287b8067e04c9d57ab995aefe47, type: 3}
 --- !u!1 &5973466425321541759 stripped
 GameObject:
@@ -940,7 +999,8 @@ MonoBehaviour:
   emocionDuda: {fileID: 4362042132805145931}
   emocionEnfado: {fileID: 4328102958756298156}
   emocionMalvado: {fileID: 0}
-  emocionDinero: {fileID: 0}
+  emocionTacaEnfadado: {fileID: 0}
+  emocionTacaFeliz: {fileID: 0}
   hayCajeroEnCaja: 0
   isKaren: 0
   isTacanio: 0
@@ -989,6 +1049,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &8519334287571615726
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973466425321541759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7532377, y: 1, z: 4.8573947}
+  m_Center: {x: -0.07891607, y: 0, z: -0.18880677}
 --- !u!4 &6462054945300613829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ae5a287b8067e04c9d57ab995aefe47,

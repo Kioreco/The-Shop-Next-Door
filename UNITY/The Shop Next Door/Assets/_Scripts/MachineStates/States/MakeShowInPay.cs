@@ -12,6 +12,7 @@ public class MakeShowInPay : AStateNPC
     public override void Enter()
     {
         Debug.Log("animación enfado máximo");
+        contexto.activarCanvasTacanioEnfadado();
     }
 
     public override void FixedUpdate()

@@ -52,4 +52,14 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public bool getIfShopIsClosed();
     public IContext GetContext();
     public Vector3 randomPositionShelf(Vector3 positionShelf);
+    public bool getIfImInPlayer();
+    public void setIfImInPlayer(bool b);
+    public bool getIfDudaResuelta();
+    public void setIfDudaResuelta(bool b);
+    public void activarCanvasDuda();
+    public void activarCanvasEnfado();
+    public void activarCanvasTacanioEnfadado();
+    public void activarCanvasTacanioFeliz();
+
+
 }
