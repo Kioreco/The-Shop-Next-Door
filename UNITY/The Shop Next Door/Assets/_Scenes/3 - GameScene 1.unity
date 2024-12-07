@@ -662,6 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &8664856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2289,6 +2290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &45782139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12577,6 +12579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &447260550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15194,6 +15197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &538823924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22991,6 +22995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &710884425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27124,6 +27129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &793599948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27321,6 +27327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &804981103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33762,6 +33769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &991681264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44958,6 +44966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1321751300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45477,6 +45486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1349512228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49949,6 +49959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1513362896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56258,6 +56269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1708472354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57799,6 +57811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!1 &1748904016
 GameObject:
   m_ObjectHideFlags: 0
@@ -58702,6 +58715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1768490113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61023,6 +61037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1831177473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61536,6 +61551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1858074693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68208,6 +68224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &1997121689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71116,6 +71133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!114 &2079308325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73087,7 +73105,7 @@ PrefabInstance:
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.58
+      value: -7.5788507
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
@@ -73097,27 +73115,27 @@ PrefabInstance:
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.74
+      value: -1.7341598
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.15534273
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9878607
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
@@ -73127,7 +73145,7 @@ PrefabInstance:
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 917.873
       objectReference: {fileID: 0}
     - target: {fileID: 2140105201611479691, guid: f5e42988cff14714d9d863d607654f72,
         type: 3}
@@ -73604,11 +73622,11 @@ SceneRoots:
   - {fileID: 235795167}
   - {fileID: 627258952}
   - {fileID: 4567932752536360952}
+  - {fileID: 7834517264698259378}
   - {fileID: 6756964157393067502}
   - {fileID: 1659972001066958312}
-  - {fileID: 8885092183427458127}
-  - {fileID: 7834517264698259378}
-  - {fileID: 3889345341149154263}
   - {fileID: 1155715828}
+  - {fileID: 8885092183427458127}
+  - {fileID: 3889345341149154263}
   - {fileID: 4672045408153562946}
   - {fileID: 8429262401792619019}

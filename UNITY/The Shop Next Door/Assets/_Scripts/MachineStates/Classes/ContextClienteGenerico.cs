@@ -30,12 +30,20 @@ namespace Assets.Scripts.MachineStates.Classes
         Stack<IState> pilaStates = new Stack<IState>();
 
         //enfado;
+        [Header("Plumbobs")]
         [SerializeField] private GameObject plumbobFelicidadMAX;
         [SerializeField] private GameObject plumbobFelicidadMID;
         [SerializeField] private GameObject plumbobFelicidadMIN;
         int felicidad = 100;
         int maxEnfado = 0;
         int umbralPropinaFelicidad = 65;
+        [Header("Emociones")]
+        [SerializeField] private GameObject canvasEmociones;
+        [SerializeField] private GameObject emocionDuda;
+        [SerializeField] private GameObject emocionEnfado;
+        [SerializeField] private GameObject emocionMalvado;
+        [SerializeField] private GameObject emocionTacaEnfadado;
+        [SerializeField] private GameObject emocionTacaFeliz;
 
         /*
          por producto -> 15
@@ -69,7 +77,6 @@ namespace Assets.Scripts.MachineStates.Classes
         #region MetodosGenerales
         private void Start()
         {
-            //print("start");
             TiendaManager = GameObject.FindGameObjectWithTag("TiendaManager").GetComponent<TiendaManager>();
             UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -88,6 +95,7 @@ namespace Assets.Scripts.MachineStates.Classes
             UIManager.schedule.eventTenMinutesLeft += recieverEventTenMinutesLeft;
             UIManager.Instance.schedule.dayFinish += destruirClientesRestantes;
         }
+
         private void OnEnable()
         {
             if (isReset)
@@ -114,6 +122,7 @@ namespace Assets.Scripts.MachineStates.Classes
             plumbobFelicidadMAX.SetActive(true);
             plumbobFelicidadMID.SetActive(false);
             plumbobFelicidadMIN.SetActive(false);
+            plumbobChanged = false;
 
 
             if (!isKaren & !isTacanio)
@@ -346,13 +355,15 @@ namespace Assets.Scripts.MachineStates.Classes
         {
             return maxEnfado;
         }
+
+        bool plumbobChanged = false;
         public void reducirFelicidad(int enfado)
         {
             //print($"reduzcfo felicidad, felicidad: {felicidad} enfado: {enfado}");
             felicidad -= enfado;
 
-            if (felicidad <= 60 && felicidad > 35) { plumbobFelicidadMAX.SetActive(false); plumbobFelicidadMID.SetActive(true); }
-            if (felicidad <= 35) { plumbobFelicidadMID.SetActive(false); plumbobFelicidadMIN.SetActive(true); }
+            if (felicidad <= 60 && felicidad > 35 && !plumbobChanged) { plumbobFelicidadMAX.SetActive(false); plumbobFelicidadMID.SetActive(true); plumbobChanged = true; }
+            if (felicidad <= 35 && plumbobChanged) { plumbobFelicidadMID.SetActive(false); plumbobFelicidadMIN.SetActive(true); plumbobChanged = false; }
             //print($"felicidad reducia: {felicidad}");
         }
         public float calcularFelicidadCliente()

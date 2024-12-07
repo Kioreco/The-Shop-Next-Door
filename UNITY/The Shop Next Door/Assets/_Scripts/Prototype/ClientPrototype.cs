@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ClientPrototype : MonoBehaviour
 {
-    public MonoBehaviour[] npcPrototype;
+    public MonoBehaviour[] npcPrefabs;
     public int maxNumberNPC;
     public int maxActiveInScene;
     public bool allowAddNew = false;
@@ -17,8 +17,9 @@ public class ClientPrototype : MonoBehaviour
 
     private void Start()
     {
-        npcBasicObjectPool = new ObjectPoolClient((IContext)npcPrototype[Random.Range(0, npcPrototype.Length)], maxNumberNPC, allowAddNew);
+        npcBasicObjectPool = new ObjectPoolClient((IContext)npcPrefabs[Random.Range(0, npcPrefabs.Length)], maxNumberNPC, allowAddNew);
     }
+
     private void Update()
     {
         if (isEnable & isCreated & !isSpawning)
@@ -37,6 +38,7 @@ public class ClientPrototype : MonoBehaviour
             }
         }
     }
+
     private IContext createNpcBasic()
     {
         IContext npcBasic = (IContext)npcBasicObjectPool.GetPoolableObject();
