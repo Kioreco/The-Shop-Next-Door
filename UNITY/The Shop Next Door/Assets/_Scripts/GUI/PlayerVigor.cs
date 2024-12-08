@@ -120,7 +120,7 @@ public class PlayerVigor : MonoBehaviour
                 stressLevelMAX = true;
                 UIManager.Instance.ChangeVolumeEffects_Vigor(true);
                 vigorLow_Dialogue.SetActive(true);
-                UIManager.Instance.DelayDisableObject(3f, vigorLow_Dialogue);
+                StartCoroutine(UIManager.Instance.DelayDisableObject(3f, vigorLow_Dialogue));
             }
         }
     }

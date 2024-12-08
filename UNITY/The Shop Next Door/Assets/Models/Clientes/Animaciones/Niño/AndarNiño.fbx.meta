@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36b5e2c276f8cf74ca425ce04bacf9aa
+guid: 5100778d5ca70de44bf430260d8fa59b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk_Abuela
+      name: "Walk_Ni\xF1o"
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 80
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

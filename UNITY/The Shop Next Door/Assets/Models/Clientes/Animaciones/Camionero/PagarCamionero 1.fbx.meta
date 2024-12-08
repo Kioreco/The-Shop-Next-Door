@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36b5e2c276f8cf74ca425ce04bacf9aa
+guid: a97824946e42b414eb00b5f7c28f6400
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk_Abuela
+      name: Pagar Camionero
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0

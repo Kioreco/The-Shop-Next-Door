@@ -135,7 +135,8 @@ public class Estanteria : MonoBehaviour
             TiendaManager.Instance.UnlockProduct(unlockableProduct.GetComponent<UI_ShelvesProducts>().productName, tipoObj);
             unlockableProduct.GetComponent<UI_ShelvesProducts>().UpdateShelvesQuantityProduct_UI();
 
-            SellingObjectsUI.transform.position = new Vector3(-2.55f, SellingObjectsUI.transform.position.y, SellingObjectsUI.transform.position.z);
+            //SellingObjectsUI.transform.position = new Vector3(-2.55f, SellingObjectsUI.transform.position.y, SellingObjectsUI.transform.position.z);
+            SellingObjectsUI.GetComponent<RectTransform>().localPosition = new Vector3(-2.55f, SellingObjectsUI.GetComponent<RectTransform>().localPosition.y, SellingObjectsUI.GetComponent<RectTransform>().localPosition.z);
             hasProductToUnlock = false;
         }
     }

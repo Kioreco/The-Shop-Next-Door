@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36b5e2c276f8cf74ca425ce04bacf9aa
+guid: 17b0f4d365291ec44b3cb504601ff133
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk_Abuela
+      name: "Hablar Taca\xF1o"
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 80
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
