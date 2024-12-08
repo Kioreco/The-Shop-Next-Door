@@ -18,6 +18,7 @@ public class TelephoneController : MonoBehaviour
     [SerializeField] private GameObject CalendarApp;
     [SerializeField] private GameObject HireApp;
     [SerializeField] private GameObject LifeApp;
+    [SerializeField] private GameObject SettingsApp;
 
     [Header("Shop App")]
     [SerializeField] private ScrollRect contenedorTienda;
@@ -42,8 +43,8 @@ public class TelephoneController : MonoBehaviour
     [Header("Calendar App")]
     [SerializeField] public CalendarController calendar;
 
-    //[Header("Hire App")]
-    //[SerializeField] public CalendarController calendar;
+    [Header("Hire App")]
+    [SerializeField] public HireApp hirer;
 
     [Header("Life App")]
     [SerializeField] private TextMeshProUGUI lifeApp_name;
@@ -86,6 +87,7 @@ public class TelephoneController : MonoBehaviour
         }
         else
         {
+            if (SettingsApp.activeSelf) { SettingsApp.SetActive(false); }
             if (ShopApp.activeSelf) { ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true); }
             if (CalendarApp.activeSelf) { CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true); }
             if (HireApp.activeSelf) { HireApp.SetActive(false); }

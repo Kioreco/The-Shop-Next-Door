@@ -542,4 +542,75 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+
+    #region SettingsApp
+
+    [Header("Settings App")]
+    [SerializeField] private GameObject settingsMainScreen;
+    [SerializeField] private GameObject settingsMusicApp;
+    [SerializeField] private GameObject settingsTutorialApp;
+    [SerializeField] private GameObject settingsCameraApp;
+
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider soundSlider;
+    [SerializeField] private GameObject[] musicVolumes;
+    [SerializeField] private GameObject[] soundVolumes;
+
+
+    public void OpenSettingsApp(GameObject app)
+    {
+        settingsMainScreen.SetActive(false);
+        app.SetActive(true);
+    }
+
+    public void CloseSettingsApp()
+    {
+        settingsMainScreen.SetActive(true);
+        if (settingsMusicApp.activeInHierarchy) { settingsMusicApp.SetActive(false); }
+        if (settingsTutorialApp.activeInHierarchy) { settingsTutorialApp.SetActive(false); }
+        if (settingsCameraApp.activeInHierarchy) { settingsCameraApp.SetActive(false); }
+    }
+
+    public void ChangeMusicVolume()
+    {
+        if (musicSlider.value == 0)
+        {
+            if (!musicVolumes[0].activeInHierarchy) { musicVolumes[0].SetActive(true); }
+            if (musicVolumes[1].activeInHierarchy) { musicVolumes[1].SetActive(false); }
+        }
+        else if (musicSlider.value > 0 && musicSlider.value < 0.5f)
+        {
+            if (musicVolumes[0].activeInHierarchy) { musicVolumes[0].SetActive(false); }
+            if (!musicVolumes[1].activeInHierarchy) { musicVolumes[1].SetActive(true); }
+            if (musicVolumes[2].activeInHierarchy) { musicVolumes[2].SetActive(false); }
+        }
+        else
+        {
+            if (musicVolumes[1].activeInHierarchy) { musicVolumes[1].SetActive(false); }
+            if (!musicVolumes[2].activeInHierarchy) { musicVolumes[2].SetActive(true); }
+        }
+    }
+
+    public void ChangeSoundVolume()
+    {
+        if (soundSlider.value == 0)
+        {
+            if (!soundVolumes[0].activeInHierarchy) { soundVolumes[0].SetActive(true); }
+            if (soundVolumes[1].activeInHierarchy) { soundVolumes[1].SetActive(false); }
+        }
+        else if (soundSlider.value > 0 && musicSlider.value < 0.5f)
+        {
+            if (soundVolumes[0].activeInHierarchy) { soundVolumes[0].SetActive(false); }
+            if (!soundVolumes[1].activeInHierarchy) { soundVolumes[1].SetActive(true); }
+            if (soundVolumes[2].activeInHierarchy) { soundVolumes[2].SetActive(false); }
+        }
+        else
+        {
+            if (soundVolumes[1].activeInHierarchy) { soundVolumes[1].SetActive(false); }
+            if (!soundVolumes[2].activeInHierarchy) { soundVolumes[2].SetActive(true); }
+        }
+    }
+
+    #endregion
 }

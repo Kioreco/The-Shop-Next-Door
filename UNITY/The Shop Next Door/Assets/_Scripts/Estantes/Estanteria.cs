@@ -130,6 +130,8 @@ public class Estanteria : MonoBehaviour
         if (hasProductToUnlock)
         {
             unlockableProduct.SetActive(true);
+
+            objetosEstanteria.Add(unlockableProduct.GetComponent<UI_ShelvesProducts>().productName);
             TiendaManager.Instance.UnlockProduct(unlockableProduct.GetComponent<UI_ShelvesProducts>().productName, tipoObj);
             unlockableProduct.GetComponent<UI_ShelvesProducts>().UpdateShelvesQuantityProduct_UI();
 

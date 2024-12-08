@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
+        UIManager.Instance.telephone.hirer.GenerateNewWorkers();
         UIManager.Instance.vigor.enabled = false;
 
         StartCoroutine(nameof(ContinueDay));

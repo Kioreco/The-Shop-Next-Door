@@ -119,7 +119,7 @@ public class HireApp : MonoBehaviour
 
     public void HireWorker()
     {
-        if (GameManager.Instance.dineroJugador - workersToHire[currentWorkerToHire].priceToHire <= 0 || (hiredWorkers + 1) == 4) { return; }
+        if (GameManager.Instance.dineroJugador - workersToHire[currentWorkerToHire].priceToHire <= 0 || hiredWorkers == 1) { return; }
 
         int workersIndex = 0;
 
@@ -127,14 +127,14 @@ public class HireApp : MonoBehaviour
         {
             workersIndex = 0;
         }
-        else if (workersHired[1] == null)
-        {
-            workersIndex = 1;
-        }
-        else if (workersHired[2] == null)
-        {
-            workersIndex = 2;
-        }
+        //else if (workersHired[1] == null)
+        //{
+        //    workersIndex = 1;
+        //}
+        //else if (workersHired[2] == null)
+        //{
+        //    workersIndex = 2;
+        //}
 
         workersHired[workersIndex] = workersToHire[currentWorkerToHire];
 
@@ -177,5 +177,67 @@ public class HireApp : MonoBehaviour
 
         hiredWorkers--;
     }
+
+
+    //public void HireWorker()
+    //{
+    //    if (GameManager.Instance.dineroJugador - workersToHire[currentWorkerToHire].priceToHire <= 0 || (hiredWorkers + 1) == 4) { return; }
+
+    //    int workersIndex = 0;
+
+    //    if (workersHired[0] == null)
+    //    {
+    //        workersIndex = 0;
+    //    }
+    //    else if (workersHired[1] == null)
+    //    {
+    //        workersIndex = 1;
+    //    }
+    //    else if (workersHired[2] == null)
+    //    {
+    //        workersIndex = 2;
+    //    }
+
+    //    workersHired[workersIndex] = workersToHire[currentWorkerToHire];
+
+    //    if (workersHired[workersIndex].genre == 0)
+    //    {
+    //        employee_M_salaries[workersIndex].SetText(workersHired[workersIndex].name);
+    //        employee_M_salaries[workersIndex].SetText(workersHired[workersIndex].salary + "€");
+    //        employee_male_buttons[workersIndex].SetActive(true);
+
+    //        GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
+    //        UIManager.Instance.UpdatePlayerMoney_UI();
+
+    //        //Instanciar trabajador chico
+    //    }
+    //    else
+    //    {
+    //        employee_F_salaries[workersIndex].SetText(workersHired[workersIndex].name);
+    //        employee_F_salaries[workersIndex].SetText(workersHired[workersIndex].salary + "€");
+    //        employee_female_buttons[workersIndex].SetActive(true);
+
+    //        GameManager.Instance.dineroJugador -= workersHired[workersIndex].priceToHire;
+    //        UIManager.Instance.UpdatePlayerMoney_UI();
+
+    //        //Instanciar trabajador chica
+    //    }
+
+    //    hireButton.interactable = false;
+    //    workersHired[workersIndex].hired = true;
+    //    workersToHire[currentWorkerToHire].hired = true;
+
+    //    hiredWorkers++;
+    //}
+
+    //public void FireWorker(int workerNumber)
+    //{
+    //    workersHired[workerNumber] = null;
+
+    //    employee_male_buttons[workerNumber].SetActive(false);
+    //    employee_female_buttons[workerNumber].SetActive(false);
+
+    //    hiredWorkers--;
+    //}
 
 }
