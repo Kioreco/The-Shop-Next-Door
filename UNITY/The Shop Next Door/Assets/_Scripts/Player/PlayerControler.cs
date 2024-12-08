@@ -56,6 +56,9 @@ public class PlayerControler : NetworkBehaviour
     public bool HostReady = false;
     public bool clientReady = false;
 
+    //layers collision
+    public int playerLayer;
+    public int npcLayer;
 
     #endregion
 
@@ -105,14 +108,16 @@ public class PlayerControler : NetworkBehaviour
                 GameManager.Instance.activeCamera = GameManager.Instance.cameraP2.transform.GetChild(0).GetComponent<Camera>();
                 GameManager.Instance.canvasInteractable.worldCamera = GameManager.Instance.activeCamera;
                 TiendaManager.Instance.ID = 1;
-                GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             }
+            GameManager.Instance.separador.GetComponent<NavMeshObstacle>().carving = true;
             initializeVariables();
             isInitialized = true;
             minX = Camera.main.transform.position.x - 30f; //20
             maxX = Camera.main.transform.position.x + 10f; //20
             minZ = Camera.main.transform.position.z - 15f;
             maxZ = Camera.main.transform.position.z + 45f; //30
+            playerLayer = LayerMask.NameToLayer("Player");
+            npcLayer = LayerMask.NameToLayer("NPC");
         }
         DontDestroyOnLoad(this);
 
@@ -126,7 +131,7 @@ public class PlayerControler : NetworkBehaviour
 
         clientRubbish.GetComponent<RubbishClientPrototype>().enabled = true;
         clientRubbish.GetComponent<RubbishClientPrototype>().isCreated = true;
-        clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
+        //clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
 
         TiendaManager.Instance.InitializeAlmacenSpace();
         UIManager.Instance.UpdateAlmacenSpace_UI();

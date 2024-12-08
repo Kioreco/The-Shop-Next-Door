@@ -8,6 +8,7 @@ public class SearchShelf : AStateNPC
     
     public override void Enter()
     {
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         //Debug.Log($"searching next shelf\tElementosRestantes: {contexto.getLista().lista.Count}");
         contexto.setCurrentEstanteria(contexto.getTiendaManager().buscarEstanteria(contexto.getLista().lista.Keys.First(), false));
         contexto.getNavMesh().avoidancePriority = Random.Range(0, 100);

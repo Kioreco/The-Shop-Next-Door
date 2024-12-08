@@ -19,6 +19,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public IObjectPool<RubbishController> objectPool;
     bool isReset;
     bool clicked = false;
+    float porcentajeDuda = 0.5f;
 
 
     [SerializeField] private Image progressImage;
@@ -39,6 +40,8 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             }
             else other.gameObject.GetComponent<ContextClienteGenerico>().reducirFelicidad(3);
 
+            other.GetComponent<ContextClienteGenerico>().activarCanvasEnfado();
+
             other.gameObject.GetComponent<NavMeshAgent>().speed -= slowDownAmount;
             StartCoroutine(delaySpeedAgent(other.gameObject));
             
@@ -53,7 +56,12 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
         if (obj.gameObject.GetComponent<ContextClienteGenerico>().getIsKaren())
         {
             //print("se va a ir a quejar...");
-            obj.gameObject.GetComponent<ContextClienteGenerico>().setCanComplain(true);
+            int random = UnityEngine.Random.Range(0, 1);
+            bool canComplain;
+            if(random <= porcentajeDuda) canComplain = true;
+            else canComplain = false;
+
+            obj.gameObject.GetComponent<ContextClienteGenerico>().setCanComplain(canComplain);
         }
     }
     #region object pool
@@ -118,6 +126,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     }
     public void CleanRubbish()
     {
+        Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         clicked = true;
         GameManager.Instance._player.WalkToPosition(transform.position, false);
     }

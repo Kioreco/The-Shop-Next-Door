@@ -60,6 +60,10 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public void activarCanvasEnfado();
     public void activarCanvasTacanioEnfadado();
     public void activarCanvasTacanioFeliz();
-
+    public GameObject getCanvasDuda();
+    public GameObject getCanvasQueja();
+    public void activarDelayDuda();
+    public Animator GetAnimator();
+    public GameObject GetGameObject();
 
 }

@@ -14,6 +14,8 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
     bool isGenericClient;
 
+    int maxActive = 0;
+
     public ObjectPoolClient(List<MonoBehaviour> ctx, int countNpcMax, bool ca, bool isGeneric)
     {
         Debug.Log("creado");
@@ -42,10 +44,18 @@ public class ObjectPoolClient : IObjectPool<IContext>
     {
         for (int i = 0; i < npcs.Count; i++)
         {
+            if (countNpcsActive >= maxActive && isGenericClient)
+            {
+                //Debug.Log("Se alcanzó el máximo de NPCs activos.");
+                return null;
+            }
+
             if (!npcs[i].isActive)
             {
                 npcs[i].isActive = true;
                 countNpcsActive += 1;
+                //Debug.Log($"activando   max active: {maxActive}   count: {countNpcsActive}");
+
                 return npcs[i];
             }
         }
@@ -53,13 +63,22 @@ public class ObjectPoolClient : IObjectPool<IContext>
         if (canAdd)
         {
             IContext newObj = CreateObject();
-            newObj.isActive = true;
-            npcs.Add(newObj);
+            if (newObj != null) // Asegúrate de que el nuevo objeto no sea nulo
+            {
+                //Debug.Log("obj creado no es nulo");
+                newObj.isActive = true;
+                npcs.Add(newObj);
 
-            countNpcsActive += 1;
-            return newObj;
+                countNpcsActive += 1;
+                return newObj;
+            }
+            //newObj.isActive = true;
+            //npcs.Add(newObj);
+
+            //countNpcsActive += 1;
+            //return newObj;
         }
-
+        Debug.Log("devuelve null");
         return null;
     }
 
@@ -80,6 +99,7 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
         if (isGenericClient)
         {
+            Debug.Log("creando cliente generico");
             objectPrototype = (IContext)objectsProto[Random.Range(0, objectsProto.Count)];
 
             return newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);
@@ -98,6 +118,12 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
     public int GetActive()
     {
+        //Debug.Log($"acitve: {countNpcsActive}");
         return countNpcsActive;
+    }
+
+    public void updateMaxActive(int max)
+    {
+        maxActive = max;
     }
 }

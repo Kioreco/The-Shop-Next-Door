@@ -19,6 +19,7 @@ public class Pay : AStateNPC
     public override void Enter()
     {
         //Debug.Log("enter pay state");
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         UIManager.Instance.cajero_Canvas.SetActive(true);
 
         if (contexto.getTiendaManager().ID == 0)
@@ -58,6 +59,10 @@ public class Pay : AStateNPC
 
         if (lastSeek >= secondsToSeek)
         {
+            contexto.GetGameObject().transform.LookAt(contexto.GetGameObject().transform.position + 
+                                    GameManager.Instance.activeCamera.transform.rotation * Vector3.forward, 
+                                    GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
+            contexto.GetAnimator().SetTrigger("pay");
             if (contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().npcPayQueueP1.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
             else if (contexto.getTiendaManager().ID == 1 && contexto.getTiendaManager().npcPayQueueP2.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
 

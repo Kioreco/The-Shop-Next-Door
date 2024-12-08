@@ -23,6 +23,8 @@ public class RubbishClientPrototype : MonoBehaviour
     {
         if (isEnable & isCreated & !isSpawning)
         {
+            maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxManchas), 0, maxManchas);
+
             if (rubbishInstanciatorPool.GetActive() < maxActiveInScene && !allowAddNew)
             {
                 StartCoroutine(ActivateWithDelay());

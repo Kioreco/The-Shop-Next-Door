@@ -323,6 +323,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToPay_Button()
     {
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
     }
 
@@ -355,8 +356,9 @@ public class UIManager : MonoBehaviour
 
         imageToFill.fillAmount = 1f;
 
-        if (isCajero) { imageToFill.fillAmount = 0f; }
+        if (isCajero) {imageToFill.fillAmount = 0f; }
         if (isRubbish) { rubbish.Destruir(); }
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
     }
 
     public IEnumerator VaciarImagen(Image imageToFill, float timeToFill)
@@ -484,10 +486,11 @@ public class UIManager : MonoBehaviour
 
     #region Dudas
 
-    public void CreateDuda_UI(string productoName)
+    public void CreateDuda_UI(string productoName, bool isKaren)
     {
-        print("create duda");
-        dudaController.CreateDuda(productoName);
+        print($"create duda, karen? {isKaren}");
+        if (!isKaren) dudaController.CreateDuda(productoName);
+        else dudaController.CreateComplaintDuda();
 
         duda_text.SetText(dudaController.dudaText);
         yesAnswer_text.SetText(dudaController.dudaAnswerYes);
@@ -519,6 +522,7 @@ public class UIManager : MonoBehaviour
         telephone.MiniTelephone.SetActive(true);
         duda_gameObject.SetActive(false);
 
+        GameManager.Instance._player.enableMovement(false);
         GameManager.Instance._player._playerAnimator.SetBool("playerTalking", false);
         eventoDudaResuelta?.Invoke(this, EventArgs.Empty);
 

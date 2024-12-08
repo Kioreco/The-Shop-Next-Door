@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip[] effectClips;
 
     //Variables Singleton
-    public static new AudioManager Instance { get; private set; }
+    public static AudioManager Instance { get; private set; }
 
     private void Awake()
     {

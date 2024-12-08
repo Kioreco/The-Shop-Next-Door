@@ -403,17 +403,22 @@ public class TiendaManager : MonoBehaviour
     #endregion
 
     #region dudas clientes
-    public void updateDudasClientes(IContext contx, string prodDuda)
+    public void updateDudasClientes(IContext contx, string prodDuda, bool isKaren)
     {
         lock (_lockDuda)
         {
-            if (yaHayDuda) contx.setTieneDuda(false);
+            if (yaHayDuda)
+            {
+                print("ya hay duda");
+                if (!isKaren) contx.setTieneDuda(false);
+                else contx.setCanComplain(false);
+            }
             else
             {
-                print("duda");
-
+                print("no habia dudaduda");
+                //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
                 yaHayDuda = true;
-                productoDuda = prodDuda;
+                if (!isKaren) productoDuda = prodDuda;
             }
         }
     }

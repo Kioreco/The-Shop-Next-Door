@@ -1,3 +1,4 @@
+using Assets.Scripts.MachineStates.Classes;
 using System.Linq;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -11,12 +12,26 @@ public class TakeProduct : AStateNPC
     string nombreProducto;
     int cantidadProductos;
     bool checkpoint = true;
+    float porcentajeDuda = 0.5f;
     #region metodos
     public override void Enter() 
     {
         //contexto.getLista().lista.ToList();
         nombreProducto = contexto.getLista().lista.Keys.First();
-        if (contexto.getTieneDuda() && nombreProducto == contexto.getProductoDuda()) TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), contexto.getProductoDuda());
+
+        if (contexto.getTieneDuda() && nombreProducto == contexto.getProductoDuda()) TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), contexto.getProductoDuda(), false);
+
+        if (contexto.getIsKaren() && contexto.getCanComplain())
+        {
+            //mira si puede quejarse tiene emnos prioridad que los clientes
+            TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), null, true);
+            Debug.Log($"puede quejarse? : {contexto.getCanComplain()}");
+            if (contexto.getCanComplain())
+            {
+                contexto.getPilaState().Push(this);
+                contexto.SetState(new TalkToAWorker(contexto));
+            }
+        }
         if (nombreProducto == contexto.getProductoDuda() && contexto.getTieneDuda())
         {
             //Debug.Log($"tiene duda: {contexto.getProductoDuda()}   tiene: {contexto.getTieneDuda()}");
@@ -44,6 +59,10 @@ public class TakeProduct : AStateNPC
 
         if (lastSeek >= secondsToSeek)
         {
+            contexto.GetGameObject().transform.LookAt(contexto.GetGameObject().transform.position +
+                                    GameManager.Instance.activeCamera.transform.rotation * Vector3.forward,
+                                    GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
+            contexto.GetAnimator().SetTrigger("pickShelve");
             checkpoint = false;
             lastSeek = 0f;
             if (contexto.getIsInColliderShelf())
@@ -55,9 +74,18 @@ public class TakeProduct : AStateNPC
 
             if(cantidadProductos == -1)
             {
+                contexto.activarCanvasEnfado();
                 //Debug.Log($"no hay suficientes productos");
-                if(!contexto.getIsKaren()) contexto.reducirFelicidad(15);
-                else contexto.reducirFelicidad(25);
+                if (!contexto.getIsKaren()) contexto.reducirFelicidad(15);
+                else
+                {
+                    int random = UnityEngine.Random.Range(0, 1);
+                    bool canComplain;
+                    if (random <= porcentajeDuda) canComplain = true;
+                    else canComplain = false;
+                    contexto.reducirFelicidad(25);
+                    contexto.setCanComplain(canComplain);
+                }
             }
 
             if (contexto.getLista().lista.Count > 0) contexto.SetState(new SearchShelf(contexto));

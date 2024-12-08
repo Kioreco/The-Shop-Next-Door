@@ -34,7 +34,6 @@ public class WorkDayCycle : MonoBehaviour
 
     //eventos para los clientes
     public event EventHandler eventTwoHoursLeft;
-    public event EventHandler eventThirtyMinutesLeft;
     public event EventHandler eventTenMinutesLeft;
     bool eventLanzadoTwoHours = false;
     bool eventLanzadoOneHours = false;
@@ -85,6 +84,7 @@ public class WorkDayCycle : MonoBehaviour
         if (gameTime >= 10 && gameTime < 10.05 && currentDay == 0) // Lunes
         {
             UIManager.Instance.ChangeSignShop(true);
+            GameManager.Instance._player.clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
             npcClientGenerico.isEnable = true;
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
@@ -140,7 +140,6 @@ public class WorkDayCycle : MonoBehaviour
             eventLanzadoOneHours = false;
             eventLanzadoTenMinutes = false;
             eventLanzadoInicioDia = false;
-            eventLanzadoThirtyMinutes = false;
 
             realTimePassed = 0f; // Reiniciar el tiempo real para el próximo día
             currentDay++; // Pasar al siguiente día

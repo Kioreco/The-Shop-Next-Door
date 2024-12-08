@@ -12,12 +12,18 @@ public class LeaveAngry : AStateNPC
     public LeaveAngry(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
+        contexto.activarCanvasEnfado();
+        //
         if (!contexto.getIfShopIsClosed())
         {
-            if (contexto.getIsKaren())
+            if (contexto.getIsKaren() && contexto.getCanComplain())
             {
-                contexto.getPilaState().Push(this);
-                contexto.SetState(new TalkToAWorker(contexto));
+                TiendaManager.Instance.updateDudasClientes(contexto.GetContext(), null, true);
+                if (contexto.getCanComplain())
+                {
+                    contexto.getPilaState().Push(this);
+                    contexto.SetState(new TalkToAWorker(contexto));
+                }
             }
         }
 
@@ -59,6 +65,7 @@ public class LeaveAngry : AStateNPC
     {
         if(contexto.GetTransform().position.z - spawnPosition.z < 0.1 & notInstance)
         {
+            contexto.activarCanvasEnfado();
             notInstance = false;
             spawnPosition = new Vector3(contexto.GetTransform().position.x, spawnPosition.y, contexto.GetTransform().position.z);
             //contexto.getTiendaManager().InstanceBag(spawnPosition, contexto.getDineroCompra());

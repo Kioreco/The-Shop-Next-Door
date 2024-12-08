@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         dineroJugador = 500.0f;
         //espacioAlmacen = 0;
         //maxEspacioAlmacen = 100;
-        reputation = 0;
+        reputation = 30;
         playerVigor = 100;
 
         UIManager.Instance.Start_UnityFalse();

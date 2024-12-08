@@ -24,7 +24,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public bool isInPayQueue = false;
 
         //dudas:
-        int porcentajeDuda = 60; //20
+        int porcentajeDuda = 20; //20
         bool tieneDuda = false;
         string productoDuda;
 
@@ -487,24 +487,25 @@ namespace Assets.Scripts.MachineStates.Classes
         private void OnTriggerEnter(Collider other)
         {
             //print("on trigger enter");
-            if (other.CompareTag("Player")) print("player detected");
-            if (other.CompareTag("Player") && tieneDuda)
-            {
-                print("estoy en el player");
-                imInPlayer = true;
-                other.gameObject.GetComponent<PlayerControler>().disableMovement();
-            }
-            if(other.CompareTag("Player") && isKaren && canComplain)//lo que sea
-            {
-
-            }
+            
+            //if (other.CompareTag("Player") && tieneDuda && !isKaren)
+            //{
+            //    //print("estoy en el player");
+            //    imInPlayer = true;
+            //    other.gameObject.GetComponent<PlayerControler>().disableMovement();
+            //}
+            //if(other.CompareTag("Player") && isKaren && canComplain)//lo que sea
+            //{
+            //    imInPlayer = true;
+            //    other.gameObject.GetComponent<PlayerControler>().disableMovement();
+            //}
         }
         private void OnTriggerExit(Collider other)
         {
             //print("on trigger exit");
             if (other.CompareTag("Player"))
             {
-                print("se va player");
+                //print("se va player");
                 imInPlayer = false;
                 //other.gameObject.GetComponent<PlayerControler>().enableMovement(false);
             }
@@ -513,6 +514,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public void eventUpdateDudaResuelta(object s, EventArgs e)
         {
             dudaResuelta = true;
+            clientAnimator.SetBool("tieneDuda", false);
         }
 
         public bool getIfDudaResuelta()
@@ -522,6 +524,19 @@ namespace Assets.Scripts.MachineStates.Classes
         public void setIfDudaResuelta(bool b)
         {
             dudaResuelta = b;
+        }
+
+        public void activarDelayDuda()
+        {
+            StartCoroutine(delayDuda());
+        }
+
+        public IEnumerator delayDuda()
+        {
+            yield return new WaitForSeconds(4f);
+            print("delay después ya pueden preguntar");
+            TiendaManager.Instance.yaHayDuda = false;
+
         }
         #endregion
 
@@ -556,6 +571,26 @@ namespace Assets.Scripts.MachineStates.Classes
             yield return new WaitForSeconds(delay);
             canvas.SetActive(false);
             canvasEmociones.SetActive(false);
+        }
+
+        public GameObject getCanvasDuda()
+        {
+            return emocionDuda;
+        }        
+        public GameObject getCanvasQueja()
+        {
+            return emocionEnfado;
+        }
+        #endregion
+
+        #region animator y gameobject
+        public Animator GetAnimator()
+        {
+            return clientAnimator;
+        }
+        public GameObject GetGameObject()
+        {
+            return gameObject;
         }
         #endregion
     }

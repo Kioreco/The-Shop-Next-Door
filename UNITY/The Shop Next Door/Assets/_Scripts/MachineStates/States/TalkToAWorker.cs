@@ -4,47 +4,20 @@ using UnityEngine;
 public class TalkToAWorker : AStateNPC
 {
     GameObject worker;
-    int distanceMin = 10000;
-    float secondsToSeek = 3f; //tiempo de la animación
-    float lastSeek = 0f;
     bool isInWorker;
     Vector3 currentDestination;
 
     public TalkToAWorker(IContext cntx) : base(cntx) { }
     public override void Enter()
     {
-        //Debug.Log($"ir a preguntar a trabajador  pila: {contexto.getPilaState().Count}");
+        contexto.setIfDudaResuelta(false);
+        //contexto.
+        if(!contexto.getIsKaren()) contexto.activarCanvasDuda();
+        else contexto.activarCanvasEnfado();
 
-
-        //if(contexto.getTiendaManager().ID == 0)
-        //{
-        //    if(contexto.getTiendaManager().workersP1.Count == 0) worker = contexto.getTiendaManager().player.gameObject;
-        //    else
-        //    {
-        //        foreach(GameObject work in contexto.getTiendaManager().workersP1)
-        //        {
-        //            if(contexto.calculateHeuristicDistance(contexto.GetTransform().position, work.transform.position) < distanceMin)
-        //            {
-        //                worker = work;
-        //            }
-        //        }
-        //    }
-        //}
-        //else if(contexto.getTiendaManager().ID == 1)
-        //{
-        //    if (contexto.getTiendaManager().workersP2.Count == 0) worker = contexto.getTiendaManager().player.gameObject;
-        //    else
-        //    {
-        //        foreach (GameObject work in contexto.getTiendaManager().workersP2)
-        //        {
-        //            if (contexto.calculateHeuristicDistance(contexto.GetTransform().position, work.transform.position) < distanceMin)
-        //            {
-        //                worker = work;
-        //            }
-        //        }
-        //    }
-        //}
         Debug.Log($"duda: {contexto.getTieneDuda()}");
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
+
         worker = GameManager.Instance._player.gameObject;
         currentDestination = worker.transform.position;
 
@@ -56,51 +29,62 @@ public class TalkToAWorker : AStateNPC
 
     public override void Update()
     {
-        if (contexto.getIfImInPlayer() && !isInWorker && !contexto.getIsKaren()) 
-        { 
-            isInWorker = true;
-            UIManager.Instance.CreateDuda_UI(contexto.getProductoDuda());
-            Debug.Log("está en worker"); 
-        }
-        if (!contexto.getIfImInPlayer() && Vector3.Distance(contexto.getNavMesh().transform.position, worker.transform.position) > 5f && !contexto.getIsKaren())//ELEFANTE CAMBIAR LO DE KAREN
+        //if (Physics.GetIgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer))
+        //{
+        //    Debug.Log("ignorando layer collision");
+        //    Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
+        //}
+
+        if (!isInWorker && Vector3.Distance(contexto.GetTransform().position, worker.transform.position) <= 5)
         {
+            contexto.setIfImInPlayer(true);
+            isInWorker = true;
+            GameManager.Instance._player.disableMovement();
+            GameManager.Instance._player._playerAnimator.SetBool("playerTalking", true);
+            contexto.GetGameObject().transform.LookAt(contexto.GetGameObject().transform.position +
+                        GameManager.Instance.activeCamera.transform.rotation * Vector3.forward,
+                        GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
+            contexto.GetAnimator().SetTrigger("apareceDuda");
+            contexto.GetAnimator().SetBool("tieneDuda", true);
+
+
+            UIManager.Instance.CreateDuda_UI(contexto.getProductoDuda(), contexto.getIsKaren());
+            Debug.Log($"está en worker cliente? {contexto.getIsKaren()}"); 
+        }
+        if (!contexto.getIfImInPlayer() && Vector3.Distance(contexto.getNavMesh().transform.position, worker.transform.position) > 5f)//ELEFANTE CAMBIAR LO DE KAREN
+        {
+            if(!contexto.getCanvasDuda().activeInHierarchy && !contexto.getIsKaren()) contexto.activarCanvasDuda();
+            if(!contexto.getCanvasQueja().activeInHierarchy && !contexto.getIsKaren()) contexto.activarCanvasEnfado();
             //Debug.Log("se movió");
             currentDestination = worker.transform.position;
             contexto.getNavMesh().SetDestination(currentDestination);
         }
-
-        if (contexto.getIfDudaResuelta() && !contexto.getIsKaren())
+        if (contexto.getIfDudaResuelta())
         {
-            Debug.Log("duda resuelta");
-            TiendaManager.Instance.yaHayDuda = false;
+            Debug.Log("duda resuelta o queja");
+            contexto.activarDelayDuda();
             GameManager.Instance._player.enableMovement(false);
             contexto.setTieneDuda(false);
+            contexto.setCanComplain(false);
+            contexto.setIfDudaResuelta(false);
+            contexto.setIfImInPlayer(false);
+            //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
             contexto.SetState(contexto.getPilaState().Pop());
         }
-
-
-        //if (isInWorker) lastSeek += Time.deltaTime;
+        //if (contexto.getNavMesh().remainingDistance <= 0.6 && !isInWorker && contexto.getIsKaren())
+        //{
+        //    isInWorker = true;
+        //    Debug.Log("esta en worker");
+        //}
+        //if (isInWorker && contexto.getIsKaren()) lastSeek += Time.deltaTime;
 
         //if (lastSeek >= secondsToSeek)
         //{
         //    lastSeek = 0f;
         //    isInWorker = false;
+        //    contexto.setCanComplain(false);
+
         //    contexto.SetState(contexto.getPilaState().Pop());
         //}
-        if (contexto.getNavMesh().remainingDistance <= 0.6 && !isInWorker && contexto.getIsKaren())
-        {
-            isInWorker = true;
-            Debug.Log("esta en worker");
-        }
-        if (isInWorker && contexto.getIsKaren()) lastSeek += Time.deltaTime;
-
-        if (lastSeek >= secondsToSeek)
-        {
-            lastSeek = 0f;
-            isInWorker = false;
-            contexto.setCanComplain(false);
-
-            contexto.SetState(contexto.getPilaState().Pop());
-        }
     }
 }

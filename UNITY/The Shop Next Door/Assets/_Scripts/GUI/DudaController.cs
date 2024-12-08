@@ -226,7 +226,7 @@ public class DudaController : MonoBehaviour
         dudaAnswerNo = GossipNoAnswersTexts[UnityEngine.Random.Range(0, GossipNoAnswersTexts.Length)];
     }
 
-    private void CreateComplaintDuda()
+    public void CreateComplaintDuda()
     {
         dudaImage = complaintImage;
         dudaText = ComplaintTexts[UnityEngine.Random.Range(0, ComplaintTexts.Length)];

@@ -16,11 +16,16 @@ public class ClientPrototype : MonoBehaviour
 
     //instanciar con delay:
     bool isSpawning = false;
-    float delay = 1.5f;
+    float delay = 2f;
 
     private void Start()
     {
-        if (esClienteGenerico) npcBasicObjectPool = new ObjectPoolClient(npcPrefabs, maxNumberNPC, allowAddNew, true);
+        if (esClienteGenerico)
+        {
+            npcBasicObjectPool = new ObjectPoolClient(npcPrefabs, maxNumberNPC, allowAddNew, true);
+            maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 3, maxNumberNPC);
+            npcBasicObjectPool.updateMaxActive(maxActiveInScene);
+        }
         else npcBasicObjectPool = new ObjectPoolClient(npcPrefabs, maxNumberNPC, allowAddNew, false);
     }
 
@@ -28,14 +33,24 @@ public class ClientPrototype : MonoBehaviour
     {
         if (isEnable & isCreated & !isSpawning)
         {
+            if (esClienteGenerico)
+            {
+                //print($"get active IF: {npcBasicObjectPool.GetActive()}  maxactiveInScene: {maxActiveInScene}    count: {npcBasicObjectPool.GetCount()}");
+
+                maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 3, maxNumberNPC);
+                npcBasicObjectPool.updateMaxActive(maxActiveInScene);
+            }
+
             if (npcBasicObjectPool.GetActive() < maxActiveInScene && !allowAddNew)
             {
+                //print($"get active: {npcBasicObjectPool.GetActive()}  maxactiveInScene: {maxActiveInScene}");
                 StartCoroutine(ActivateWithDelay());
             }
             if (allowAddNew)
             {
                 for (int i = npcBasicObjectPool.GetActive(); i < npcBasicObjectPool.GetCount(); i++)
                 {
+                    //Debug.Log("faltan clientes");
                     //if (esClienteGenerico) {  IContext npcBasic = CreateRandomNpc(); }
                     //else { IContext npcBasic = createNpcBasic(); }
                     IContext npcBasic = createNpcBasic();
@@ -44,33 +59,18 @@ public class ClientPrototype : MonoBehaviour
             }
         }
     }
-    //private IContext CreateRandomNpc()
-    //{
-    //    print("create random npoc");
-    //    MonoBehaviour selectedPrefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
 
-    //    npcBasicObjectPool.setPrototype((IContext)selectedPrefab);
-
-    //    IContext npc = (IContext)npcBasicObjectPool.GetPoolableObject();
-    //    npc.isActive = true;
-
-    //    if (npc != null)
-    //    {
-    //        npc.setObjectPool(npcBasicObjectPool);
-    //    }
-
-    //    return npc;
-
-    //}
     private IContext createNpcBasic()
     {
         //print("crear npc basico");
         IContext npcBasic = (IContext)npcBasicObjectPool.GetPoolableObject();
-        npcBasic.isActive = true;
+        
 
         if (npcBasic != null)
         {
             npcBasic.setObjectPool(npcBasicObjectPool);
+            StartCoroutine(delayMethod(npcBasic));
+            //npcBasic.isActive = true;
         }
         return npcBasic;
     }
@@ -84,5 +84,11 @@ public class ClientPrototype : MonoBehaviour
             yield return new WaitForSeconds(delay); // Espera el delay
         }
         isSpawning = false;
+    }
+
+    IEnumerator delayMethod(IContext obj)
+    {
+        yield return new WaitForSeconds(delay);
+        obj.isActive = true;
     }
 }
