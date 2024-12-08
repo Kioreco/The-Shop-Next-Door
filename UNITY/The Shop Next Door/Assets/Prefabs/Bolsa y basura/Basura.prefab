@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4075404343367644831}
   - component: {fileID: 5167996928787794602}
   - component: {fileID: 1802079126400970523}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Progress_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8628918809542926113}
   - component: {fileID: 3747445929191744214}
   - component: {fileID: 3989616128767586406}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CleaningBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1695020855456999392}
   - component: {fileID: 229715057228504250}
   - component: {fileID: 1834973853747629462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CleanSymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6600957442601189574}
   - component: {fileID: 4849946353535608650}
   - component: {fileID: 3410588866393558173}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Canvas_Basura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782866d96f6f6684bbcda54acf8ac997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientEmotions: 0
 --- !u!1001 &8499446041801338813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -448,6 +449,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Basura
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 976a5b6dc41876349bc9f5ce6b621b03,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 976a5b6dc41876349bc9f5ce6b621b03,
+        type: 3}
+      propertyPath: m_TagString
+      value: Rubbish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

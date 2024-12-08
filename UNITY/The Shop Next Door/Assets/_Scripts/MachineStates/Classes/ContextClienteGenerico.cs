@@ -80,6 +80,10 @@ namespace Assets.Scripts.MachineStates.Classes
         bool imInPlayer = false;
         bool dudaResuelta = false;
 
+        //si el trabajador está atendiendo
+        bool workerInPay = false;
+        bool workerFinishPay = false;
+
         #region MetodosGenerales
         private void Start()
         {
@@ -534,7 +538,7 @@ namespace Assets.Scripts.MachineStates.Classes
         public IEnumerator delayDuda()
         {
             yield return new WaitForSeconds(4f);
-            print("delay después ya pueden preguntar");
+            //print("delay después ya pueden preguntar");
             TiendaManager.Instance.yaHayDuda = false;
 
         }
@@ -591,6 +595,25 @@ namespace Assets.Scripts.MachineStates.Classes
         public GameObject GetGameObject()
         {
             return gameObject;
+        }
+        #endregion
+
+        #region worker
+        public bool getWorkerInPay()
+        {
+            return workerInPay;
+        }
+        public void setWorkerInPay(bool b)
+        {
+            workerInPay = b;
+        }
+        public bool isFinishPayWorker()
+        {
+            return workerFinishPay;
+        }
+        public void setFinishPayWorker(bool b)
+        {
+            workerFinishPay = b;
         }
         #endregion
     }

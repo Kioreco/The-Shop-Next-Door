@@ -20,7 +20,8 @@ public class Pay : AStateNPC
     {
         //Debug.Log("enter pay state");
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
-        UIManager.Instance.cajero_Canvas.SetActive(true);
+        if (!contexto.getWorkerInPay()) UIManager.Instance.cajero_Canvas.SetActive(true);
+        if (GameManager.Instance.WorkerHire) UIManager.Instance.cajero_Canvas.SetActive(false);
 
         if (contexto.getTiendaManager().ID == 0)
         {
@@ -36,7 +37,7 @@ public class Pay : AStateNPC
             diferencia = contexto.getDineroCompra() - contexto.getPresupuesto();
             //si la resta es negativa: sobra dinero
             //si la resta es positiva: falta dinero
-            Debug.Log($"dinero: {contexto.getDineroCompra()}   limite presupuesto: {contexto.getPresupuesto()}    sobrante: {propinaTacanio}");
+            //Debug.Log($"dinero: {contexto.getDineroCompra()}   limite presupuesto: {contexto.getPresupuesto()}    sobrante: {propinaTacanio}");
             if (diferencia <= 40) { propinaTacanio = Math.Abs(diferencia); } //da propina
             else if(diferencia > 40 & diferencia <= 80) { propinaTacanio = 0; } //se queja pero paga
             else if(diferencia > 80) { contexto.SetState(new MakeShowInPay(contexto)); } //se va enfadado
@@ -50,6 +51,8 @@ public class Pay : AStateNPC
 
     public override void Update()
     {
+        if (contexto.getWorkerInPay()) UIManager.Instance.cajero_Canvas.SetActive(false);
+
         //if (contexto.getIfShopIsClosed()) contexto.SetState(new LeaveAngry(contexto));
 
         //está ya en la caja
@@ -63,6 +66,8 @@ public class Pay : AStateNPC
                                     GameManager.Instance.activeCamera.transform.rotation * Vector3.forward, 
                                     GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
             contexto.GetAnimator().SetTrigger("pay");
+            if (contexto.getWorkerInPay()) contexto.setFinishPayWorker(true);
+
             if (contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().npcPayQueueP1.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
             else if (contexto.getTiendaManager().ID == 1 && contexto.getTiendaManager().npcPayQueueP2.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);
 
@@ -89,7 +94,9 @@ public class Pay : AStateNPC
 
             contexto.getGameManager().UpdateClientHappiness(contexto.calcularFelicidadCliente());
             contexto.setHayCajeroEnCaja(false);
-            contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement(true);
+            contexto.setWorkerInPay(false);
+
+            if (!contexto.getWorkerInPay()) contexto.getGameManager()._player.GetComponent<PlayerControler>().enableMovement(true);
         }
 
         //se queda

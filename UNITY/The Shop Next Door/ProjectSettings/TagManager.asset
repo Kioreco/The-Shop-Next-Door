@@ -18,6 +18,8 @@ TagManager:
   - ClientRubbish
   - ClientKarenNPC
   - ClienteTacanioNPC
+  - Rubbish
+  - Nene
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Paredes
   - Interactable
   - NPC
-  - 
+  - Rubbish
   - 
   - 
   - 

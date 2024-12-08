@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 7711207571253918971}
   m_Father: {fileID: 3843468298601023896}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -60, z: 0}
 --- !u!33 &794789253573743225
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -361,6 +361,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6680937603421932701}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: af27b2bc77fde9143a6e46d71f953bf8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3187024877230390753}
   m_SourcePrefab: {fileID: 100100000, guid: af27b2bc77fde9143a6e46d71f953bf8, type: 3}
 --- !u!4 &3843468298601023896 stripped
 Transform:
@@ -483,6 +487,31 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3187024877230390753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906873483653263253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81432a404e4ab6340916d651b4a38834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 1
+  interruptOptions: 0
+  shopID: 0
+  currentDestination: {x: 0, y: 0, z: 0}
+  manchaActual: {fileID: 0}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
+  maxDistanceNavMesh: 3
+  sigueContratado: 1
+  clientesEsperandoCaja: 0
+  canCharge: 0
 --- !u!4 &6535495533692450095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af27b2bc77fde9143a6e46d71f953bf8,

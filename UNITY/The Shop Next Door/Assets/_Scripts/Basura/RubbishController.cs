@@ -14,12 +14,13 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public int maxX;
     public int minZ;
     public int maxZ;
-    public float maxDistanceNavMesh = 1.5f;
+    public float maxDistanceNavMesh = 3f;
     [Header("Object Pool")]
     public IObjectPool<RubbishController> objectPool;
     bool isReset;
     bool clicked = false;
     float porcentajeDuda = 0.5f;
+    public bool isNene = false;
 
 
     [SerializeField] private Image progressImage;
@@ -58,7 +59,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
             //print("se va a ir a quejar...");
             int random = UnityEngine.Random.Range(0, 1);
             bool canComplain;
-            if(random <= porcentajeDuda) canComplain = true;
+            if (random <= porcentajeDuda) canComplain = true;
             else canComplain = false;
 
             obj.gameObject.GetComponent<ContextClienteGenerico>().setCanComplain(canComplain);
@@ -126,8 +127,10 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     }
     public void CleanRubbish()
     {
-        Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
+        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
+        print("clicked");
         clicked = true;
+        GameManager.Instance.workerGoToClean(null, true, gameObject);
         GameManager.Instance._player.WalkToPosition(transform.position, false);
     }
     #endregion
@@ -148,6 +151,6 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
 
     public void updateIfPlayerIsInRubbish(object s, EventArgs e)
     {
-        if(clicked) UIManager.Instance.UpdateCleaning_UI(progressImage, this);
+        if (clicked) UIManager.Instance.UpdateCleaning_UI(progressImage, this, isNene);
     }
 }

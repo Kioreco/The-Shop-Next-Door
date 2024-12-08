@@ -2213,7 +2213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &37347052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36867,7 +36867,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 20b1f2ff1e195bb4f87f1b5c4b5e6238,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39100,7 +39100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1102418336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56464,6 +56464,7 @@ MonoBehaviour:
   - {fileID: 1853839384}
   - {fileID: 101833492}
   - {fileID: 1012387683}
+  canChargePlayer: 1
   cajaPlayerPosition: {fileID: 0}
   settingsMainScreen: {fileID: 424558536}
   settingsMusicApp: {fileID: 960827862}
@@ -58468,6 +58469,11 @@ MonoBehaviour:
   cajero_2_Canvas: {fileID: 1831177470}
   cajaPositionP1: {fileID: 1555659237}
   cajaPositionP2: {fileID: 9305921}
+  isAnyWorkerInPayBox: 0
+  rubbishList: []
+  worker: {fileID: 3889345341149154264}
+  WorkerHire: 0
+  nene: {fileID: 8885092183427458128}
 --- !u!4 &1682136469
 Transform:
   m_ObjectHideFlags: 0
@@ -68448,7 +68454,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 065162d11d614934a879b58c64f4046a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -77146,7 +77152,7 @@ PrefabInstance:
     - target: {fileID: 6535495533692450095, guid: 3e46dd4e11e30c846ac42944eea9ec85,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.75827
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 6535495533692450095, guid: 3e46dd4e11e30c846ac42944eea9ec85,
         type: 3}
@@ -77156,7 +77162,7 @@ PrefabInstance:
     - target: {fileID: 6535495533692450095, guid: 3e46dd4e11e30c846ac42944eea9ec85,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5006142
+      value: -30.01
       objectReference: {fileID: 0}
     - target: {fileID: 6535495533692450095, guid: 3e46dd4e11e30c846ac42944eea9ec85,
         type: 3}
@@ -77198,6 +77204,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e46dd4e11e30c846ac42944eea9ec85, type: 3}
+--- !u!1 &3889345341149154264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5906873483653263253, guid: 3e46dd4e11e30c846ac42944eea9ec85,
+    type: 3}
+  m_PrefabInstance: {fileID: 3889345341149154263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4567932752536360952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77630,7 +77642,7 @@ PrefabInstance:
     - target: {fileID: 1060834107913336404, guid: bc7fe78fec4557c48a47454a7a3a60b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5587101
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 1060834107913336404, guid: bc7fe78fec4557c48a47454a7a3a60b7,
         type: 3}

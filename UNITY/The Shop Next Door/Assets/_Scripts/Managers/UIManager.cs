@@ -117,6 +117,10 @@ public class UIManager : MonoBehaviour
     //evento duda resuelta
     public EventHandler eventoDudaResuelta;
 
+    //perceptions:
+    public bool canChargePlayer = true;
+
+
     public static UIManager Instance { get; private set; }
 
     void Awake()
@@ -324,22 +328,24 @@ public class UIManager : MonoBehaviour
     public void GoToPay_Button()
     {
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
-        GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
+        //GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
+        //GameManager.Instance.workerGoToPay(null, true);
+        if (!GameManager.Instance.WorkerHire) GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
     }
 
     public void UpdatePayingBar_UI()
     {
         GameManager.Instance._player._playerAnimator.SetTrigger("playerPaying");
-        StartCoroutine(RellenarImagen(cajero_Bar, 2.8f, true, false, null));
+        StartCoroutine(RellenarImagen(cajero_Bar, 2.8f, true, false, null, false));
     }
 
-    public void UpdateCleaning_UI(Image progressImage, RubbishController rubbish)
+    public void UpdateCleaning_UI(Image progressImage, RubbishController rubbish, bool isNene)
     {
         GameManager.Instance._player._playerAnimator.SetTrigger("playerCleaning");
-        StartCoroutine(RellenarImagen(progressImage, 3f, false, true, rubbish));
+        StartCoroutine(RellenarImagen(progressImage, 3f, false, true, rubbish, isNene));
     }
 
-    public IEnumerator RellenarImagen(Image imageToFill, float timeToFill, bool isCajero, bool isRubbish, RubbishController rubbish)
+    public IEnumerator RellenarImagen(Image imageToFill, float timeToFill, bool isCajero, bool isRubbish, RubbishController rubbish, bool isNene)
     {
         float tiempoTranscurrido = 0f;
         imageToFill.fillAmount = 0;
@@ -356,8 +362,23 @@ public class UIManager : MonoBehaviour
 
         imageToFill.fillAmount = 1f;
 
-        if (isCajero) {imageToFill.fillAmount = 0f; }
-        if (isRubbish) { rubbish.Destruir(); }
+        //if (isCajero) {imageToFill.fillAmount = 0f; }
+        //if (isRubbish) { rubbish.Destruir(); }
+        if (isCajero)
+        {
+            imageToFill.fillAmount = 0f;
+            GameManager.Instance.isAnyWorkerInPayBox = false;
+        }
+        if (isRubbish)
+        {
+            if (!isNene) rubbish.Destruir();
+            else
+            {
+                print("destroying");
+                Destroy(rubbish.gameObject);
+                GameManager.Instance._player.enableMovement(false);
+            }
+        }
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
     }
 

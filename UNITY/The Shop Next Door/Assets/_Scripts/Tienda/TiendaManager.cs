@@ -392,13 +392,12 @@ public class TiendaManager : MonoBehaviour
         GarbageBagController bag = obj.GetComponent<GarbageBagController>();
 
         bag.moneyShop = money;
-        //bag.fillCoroutine = StartCoroutine(UIManager.Instance.VaciarImagen(bag.progressImage, bag.secondsToSeek - 1));
-        //print($"corrutine: {bag.fillCoroutine}");
-        //bag.fillCoroutine = StartCoroutine();
     }
     public void InstanceGarbage(Transform position)
     {
-        Instantiate(basura, position.position, basura.transform.rotation);
+        var basuraObj = Instantiate(basura, position.position, basura.transform.rotation);
+        RubbishController rubContr = basuraObj.GetComponent<RubbishController>();
+        rubContr.isNene = true;
     }
     #endregion
 

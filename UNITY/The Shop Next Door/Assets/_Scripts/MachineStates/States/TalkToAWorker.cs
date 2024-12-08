@@ -15,7 +15,7 @@ public class TalkToAWorker : AStateNPC
         if(!contexto.getIsKaren()) contexto.activarCanvasDuda();
         else contexto.activarCanvasEnfado();
 
-        Debug.Log($"duda: {contexto.getTieneDuda()}");
+        //Debug.Log($"duda: {contexto.getTieneDuda()}");
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
 
         worker = GameManager.Instance._player.gameObject;
@@ -49,7 +49,7 @@ public class TalkToAWorker : AStateNPC
 
 
             UIManager.Instance.CreateDuda_UI(contexto.getProductoDuda(), contexto.getIsKaren());
-            Debug.Log($"está en worker cliente? {contexto.getIsKaren()}"); 
+            //Debug.Log($"está en worker cliente? {contexto.getIsKaren()}"); 
         }
         if (!contexto.getIfImInPlayer() && Vector3.Distance(contexto.getNavMesh().transform.position, worker.transform.position) > 5f)//ELEFANTE CAMBIAR LO DE KAREN
         {
@@ -61,7 +61,7 @@ public class TalkToAWorker : AStateNPC
         }
         if (contexto.getIfDudaResuelta())
         {
-            Debug.Log("duda resuelta o queja");
+            //Debug.Log("duda resuelta o queja");
             contexto.activarDelayDuda();
             GameManager.Instance._player.enableMovement(false);
             contexto.setTieneDuda(false);

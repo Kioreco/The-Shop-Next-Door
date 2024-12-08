@@ -65,5 +65,9 @@ public interface IContext : IPooleableObject, IPrototype<IContext>
     public void activarDelayDuda();
     public Animator GetAnimator();
     public GameObject GetGameObject();
+    public bool getWorkerInPay();
+    public void setWorkerInPay(bool b);
+    public bool isFinishPayWorker();
+    public void setFinishPayWorker(bool b);
 
 }

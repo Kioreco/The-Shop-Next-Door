@@ -124,7 +124,7 @@ public class HireApp : MonoBehaviour
     public void HireWorker()
     {
         if (GameManager.Instance.dineroJugador - workersToHire[currentWorkerToHire].priceToHire <= 0 || hiredWorkers == 1) { return; }
-
+        
         int workersIndex = 0;
 
         if (workersHired[0] == null)
@@ -152,6 +152,7 @@ public class HireApp : MonoBehaviour
             UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chico
+            GameManager.Instance.worker.SetActive(true);
         }
         else
         {
@@ -163,6 +164,7 @@ public class HireApp : MonoBehaviour
             UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chica
+            GameManager.Instance.worker.SetActive(true);
         }
 
         hireButton.interactable = false;
@@ -170,6 +172,11 @@ public class HireApp : MonoBehaviour
         workersToHire[currentWorkerToHire].hired = true;
 
         hiredWorkers++;
+        GameManager.Instance.WorkerHire = true;
+        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().enabled = true;
+        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = true;
+        GameObject nene = GameObject.FindWithTag("Nene");
+        if (nene != null) nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = false;
     }
 
     public void FireWorker(int workerNumber)
@@ -180,6 +187,8 @@ public class HireApp : MonoBehaviour
         employee_female_buttons[workerNumber].SetActive(false);
 
         hiredWorkers--;
+        GameManager.Instance.WorkerHire = false;
+        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = false;
     }
 
     public void ChargeWorkerPrice()

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,7 +50,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Transform cajaPositionP1;
     [SerializeField] public Transform cajaPositionP2;
 
+    [Header("Workers Perception")]
+    private static readonly object _lockPayBox = new object();
+    private static readonly object _lockCleanRubbish = new object();
+    public bool isAnyWorkerInPayBox = false;
+    public List<GameObject> rubbishList = new List<GameObject>();
 
+    [Header("Worker")]
+    public GameObject worker;
+    public bool WorkerHire = false;
+    public GameObject nene;
     public static GameManager Instance { get; private set; }
     void Awake()
     {
@@ -74,13 +84,88 @@ public class GameManager : MonoBehaviour
         dineroJugador = 500.0f;
         //espacioAlmacen = 0;
         //maxEspacioAlmacen = 100;
-        reputation = 30;
+        reputation = 50;
         playerVigor = 100;
 
         UIManager.Instance.Start_UnityFalse();
 
         InstantiatePlayers();
     }
+
+    #region perception workers
+    public void workerGoToPay(GameObject worker, bool isPlayer)
+    {
+        lock (_lockPayBox)
+        {
+            print("dentro del lock workergotopay");
+            if (!isAnyWorkerInPayBox)
+            {
+                print("nadie pagando alguien pagando");
+                isAnyWorkerInPayBox = true;
+                if (!isPlayer) worker.GetComponent<WorkerBehaviour>().canCharge = true;
+                else UIManager.Instance.canChargePlayer = true;
+                //NO HAY NADIE COBRANDO
+                //worker.GetComponent<WorkerSUEditorRunner>().clientesEsperandoCaja = 0;
+            }
+            else
+            {
+                print("alguien cobrando");
+                if (!isPlayer) worker.GetComponent<WorkerBehaviour>().canCharge = false;
+                else UIManager.Instance.canChargePlayer = false;
+            }
+
+        }
+    }
+
+    public float updateRubbishList()
+    {
+        //print("updateao lista rubbis");
+        rubbishList = GameObject.FindGameObjectsWithTag("Rubbish").ToList();
+        return rubbishList.Count;
+    }
+
+    public void workerGoToClean(GameObject worker, bool isPlayer, GameObject mancha)
+    {
+        lock (_lockCleanRubbish)
+        {
+            if (!isPlayer) //es worker
+            {
+                print("worker buscando mancha");
+                worker.GetComponent<WorkerBehaviour>().manchaActual = rubbishList.First().GetComponent<RubbishController>();
+                rubbishList[0].transform.GetChild(0).gameObject.SetActive(false);
+                rubbishList.RemoveAt(0);
+                //print("asignada mancha y quitada");
+            }
+            if (isPlayer)
+            {
+                print("player removiendo mancha de la lista");
+                mancha.tag = "Untagged";
+                //rubbishList.Remove(mancha);
+            }
+        }
+    }
+    public void Fire(GameObject worker)
+    {
+        print("desactivando trabajador");
+        worker.SetActive(false);
+        worker.GetComponent<WorkerBehaviour>().enabled = false;
+    }
+
+    public void ActivateNene()
+    {
+        print("activando nene");
+        nene.GetComponent<NeneBTBehaviour>().enabled = true;
+        nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = true;
+        nene.SetActive(true);
+    }    
+    public void DesactivateNene()
+    {
+        print("desactivando nene");
+        nene.SetActive(false);
+        nene.GetComponent<NeneBTBehaviour>().enabled = false;
+        nene.GetComponent<NeneBTBehaviour>().manchas = 0;
+    }
+    #endregion
 
     private void InstantiatePlayers()
     {
