@@ -7,6 +7,7 @@ public class PlayerVigor : MonoBehaviour
     [Header("Vigor UI")]
     [SerializeField] private Image vigor_bar;
     [SerializeField] private Image vigor_background;
+    [SerializeField] public GameObject vigorLow_Dialogue;
     //[SerializeField] private Material plumbobMaterial;
 
     [Header("Faces - Gemma")]
@@ -118,9 +119,13 @@ public class PlayerVigor : MonoBehaviour
                 GameManager.Instance._player._playerAnimator.SetTrigger("playerVigorLow");
                 stressLevelMAX = true;
                 UIManager.Instance.ChangeVolumeEffects_Vigor(true);
+                vigorLow_Dialogue.SetActive(true);
+                UIManager.Instance.DelayDisableObject(3f, vigorLow_Dialogue);
             }
         }
     }
+
+    
 
     private void ChangeVigorColor(int level)
     {

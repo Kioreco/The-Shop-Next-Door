@@ -23,6 +23,9 @@ public class HireApp : MonoBehaviour
     [SerializeField] private Image employee_TH_image;
     [SerializeField] private Button hireButton;
 
+    [SerializeField] private Sprite employee_Male;
+    [SerializeField] private Sprite employee_Female;
+
     private WorkersInfo[] workersToHire;
 
     [Header("Workers Hired ---------------------")]
@@ -34,12 +37,7 @@ public class HireApp : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] employee_M_salaries;
     [Header("Female Buttons")]
     [SerializeField] private TextMeshProUGUI[] employee_F_salaries;
-    //[Header("Sprites")]
-    //[SerializeField] private Sprite employee_M_normalSprite;
-    //[SerializeField] private Sprite employee_M_hoverSprite;
 
-    //[SerializeField] private Sprite employee_F_normalSprite;
-    //[SerializeField] private Sprite employee_F_hoverSprite;
 
     private int hiredWorkers = 0;
     private WorkersInfo[] workersHired = new WorkersInfo[3];
@@ -91,7 +89,10 @@ public class HireApp : MonoBehaviour
         employee_TH_name.SetText(workersToHire[0].name);
         employee_TH_salary.SetText(workersToHire[0].salary.ToString() + " € / day");
         employee_TH_priceToHire.SetText(workersToHire[0].priceToHire.ToString() + " €");
-        //employee_TH_image.sprite = ;
+
+        if (workersToHire[0].genre == 0) { employee_TH_image.sprite = employee_Male; }
+        else if (workersToHire[0].genre == 1) { employee_TH_image.sprite = employee_Female; }
+
     }
 
     private int currentWorkerToHire = 0;
@@ -108,6 +109,9 @@ public class HireApp : MonoBehaviour
             currentWorkerToHire = 0;
         }
         else { currentWorkerToHire += moveNumber; }
+
+        if (workersToHire[currentWorkerToHire].genre == 0) { employee_TH_image.sprite = employee_Male; }
+        else if (workersToHire[currentWorkerToHire].genre == 1) { employee_TH_image.sprite = employee_Female; }
 
         employee_TH_name.SetText(workersToHire[currentWorkerToHire].name);
         employee_TH_salary.SetText(workersToHire[currentWorkerToHire].salary.ToString() + " € / day");
@@ -176,6 +180,11 @@ public class HireApp : MonoBehaviour
         employee_female_buttons[workerNumber].SetActive(false);
 
         hiredWorkers--;
+    }
+
+    public void ChargeWorkerPrice()
+    {
+        if (workersHired[0] != null) { GameManager.Instance.dineroJugador -= workersHired[0].salary; }
     }
 
 

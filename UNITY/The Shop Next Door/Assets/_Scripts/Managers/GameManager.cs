@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.canvasDayEnd.SetActive(true);
         UIManager.Instance.telephone.calendar.ActivitiesOutcomes();
         UIManager.Instance.telephone.hirer.GenerateNewWorkers();
+        UIManager.Instance.telephone.hirer.ChargeWorkerPrice();
         UIManager.Instance.vigor.enabled = false;
 
         StartCoroutine(nameof(ContinueDay));
@@ -168,9 +169,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         UIManager.Instance.schedule.timeStopped = false;
+        UIManager.Instance.telephone.ResetTelephone();
+
         UIManager.Instance.canvasDayEnd.SetActive(false);
         UIManager.Instance.telephone.calendar.ResetActivities();
 
+        UIManager.Instance.vigor.enabled = true;
         UIManager.Instance.vigor.RestoreVigor();
     }
 

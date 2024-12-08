@@ -243,13 +243,13 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    IEnumerator DelayDisableObject(float delay, GameObject obj)
+    public IEnumerator DelayDisableObject(float delay, GameObject obj)
     {
         yield return new WaitForSeconds(delay);
         obj.SetActive(false);
     }
 
-    #region Mensajes Alerta
+    #region Mensajes Madre
     public void ChangeSignShop(bool shopOpen)
     {
         if (shopOpen) { OpenSign.SetActive(true); StartCoroutine(DelayDisableObject(6f, OpenSign)); }
@@ -488,7 +488,6 @@ public class UIManager : MonoBehaviour
 
     public void CreateDuda_UI(string productoName, bool isKaren)
     {
-        print($"create duda, karen? {isKaren}");
         if (!isKaren) dudaController.CreateDuda(productoName);
         else dudaController.CreateComplaintDuda();
 
@@ -498,8 +497,12 @@ public class UIManager : MonoBehaviour
         duda_Image.sprite = dudaController.dudaImage;
 
         ChangeVolumeEffects_Telephone(true);
+
+        telephone.ResetTelephone();
         telephone.MiniTelephone.SetActive(false);
-        if (telephone.gameObject.activeInHierarchy) { telephone.gameObject.SetActive(false); }
+        if (vigor.vigorLow_Dialogue.activeInHierarchy) { vigor.vigorLow_Dialogue.SetActive(false); }
+        vigor.enabled = false;
+
         duda_gameObject.SetActive(true);
 
         InvokeRepeating(nameof(TimerDuda), 1.66f, 1.66f);
@@ -520,6 +523,7 @@ public class UIManager : MonoBehaviour
 
         ChangeVolumeEffects_Telephone(false);
         telephone.MiniTelephone.SetActive(true);
+        vigor.enabled = true;
         duda_gameObject.SetActive(false);
 
         GameManager.Instance._player.enableMovement(false);

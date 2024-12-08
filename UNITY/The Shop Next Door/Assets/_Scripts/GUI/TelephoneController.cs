@@ -159,4 +159,20 @@ public class TelephoneController : MonoBehaviour
             supply.SetQuantityOwned();
         }
     }
+
+    public void ResetTelephone()
+    {
+        Warehouse.SetActive(false);
+        EmptyCloseButton.SetActive(true);
+
+        MiniTelephone.SetActive(true);
+        gameObject.SetActive(false);
+
+        if (SettingsApp.activeInHierarchy) { SettingsApp.SetActive(false); }
+        if (ShopApp.activeInHierarchy) { ShopApp.SetActive(false); }
+        if (CalendarApp.activeInHierarchy) { CalendarApp.SetActive(false); }
+        if (HireApp.activeInHierarchy) { HireApp.SetActive(false); }
+        if (LifeApp.activeInHierarchy) { LifeApp.SetActive(false); }
+        LockedScreen.SetActive(true);
+    }
 }
