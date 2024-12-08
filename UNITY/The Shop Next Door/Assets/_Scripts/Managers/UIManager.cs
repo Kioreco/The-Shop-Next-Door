@@ -348,19 +348,19 @@ public class UIManager : MonoBehaviour
     public IEnumerator RellenarImagen(Image imageToFill, float timeToFill, bool isCajero, bool isRubbish, RubbishController rubbish, bool isNene)
     {
         float tiempoTranscurrido = 0f;
-        imageToFill.fillAmount = 0;
+        if(imageToFill!=null) imageToFill.fillAmount = 0;
 
         while (tiempoTranscurrido < timeToFill)
         {
             tiempoTranscurrido += Time.deltaTime;
 
             float progreso = tiempoTranscurrido / timeToFill;
-            imageToFill.fillAmount = progreso;
+            if (imageToFill != null)  imageToFill.fillAmount = progreso;
 
             yield return null;
         }
 
-        imageToFill.fillAmount = 1f;
+        if (imageToFill != null) imageToFill.fillAmount = 1f;
 
         //if (isCajero) {imageToFill.fillAmount = 0f; }
         //if (isRubbish) { rubbish.Destruir(); }
@@ -375,7 +375,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 print("destroying");
-                Destroy(rubbish.gameObject);
+                if(rubbish.isActiveAndEnabled) Destroy(rubbish.gameObject);
                 GameManager.Instance._player.enableMovement(false);
             }
         }

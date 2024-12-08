@@ -8,6 +8,7 @@ using BehaviourAPI.StateMachines;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using System.Linq;
+using System.Collections.Generic;
 
 public class WorkerBehaviour : BehaviourRunner
 {
@@ -161,11 +162,12 @@ public class WorkerBehaviour : BehaviourRunner
             print("en la salida");
             GameManager.Instance.Fire(gameObject);
             //Destroy(gameObject);
-            return Status.Success;
+            if(isActiveAndEnabled) return Status.Success;
         } /*? Status.Success : Status.Running;*/
         return Status.Running;
     }
 
+    
 
     private void InicializarExtremos()
     {

@@ -147,23 +147,21 @@ public class GameManager : MonoBehaviour
     public void Fire(GameObject worker)
     {
         print("desactivando trabajador");
-        worker.SetActive(false);
         worker.GetComponent<WorkerBehaviour>().enabled = false;
+        worker.SetActive(false);
     }
 
     public void ActivateNene()
     {
         print("activando nene");
         nene.GetComponent<NeneBTBehaviour>().enabled = true;
-        nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = true;
         nene.SetActive(true);
     }    
     public void DesactivateNene()
     {
         print("desactivando nene");
-        nene.SetActive(false);
         nene.GetComponent<NeneBTBehaviour>().enabled = false;
-        nene.GetComponent<NeneBTBehaviour>().manchas = 0;
+        nene.SetActive(false);
     }
     #endregion
 

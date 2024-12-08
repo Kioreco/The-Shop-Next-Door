@@ -129,7 +129,7 @@ public class NeneBTBehaviour : BehaviourRunner
        
         if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f)
         {
-             print("andar update");
+             //print("andar update");
             return Status.Success;
         }
         else
@@ -161,7 +161,7 @@ public class NeneBTBehaviour : BehaviourRunner
 	
 	private void StartManchar()
 	{
-        print("start manchar");
+        //print("start manchar");
         int random = UnityEngine.Random.Range(0, 100);
         if (random < umbralManchasRandom)
         {
@@ -175,7 +175,7 @@ public class NeneBTBehaviour : BehaviourRunner
 	
 	private Status MancharUpdate()
 	{
-        print("manchas update");
+        //print("manchas update");
         if (puedeMancharEnPosicion && !hayMancha)
         {
             //print("manchando");

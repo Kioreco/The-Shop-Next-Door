@@ -174,21 +174,21 @@ public class HireApp : MonoBehaviour
         hiredWorkers++;
         GameManager.Instance.WorkerHire = true;
         GameManager.Instance.worker.GetComponent<WorkerBehaviour>().enabled = true;
-        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = true;
+        //GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = true;
         GameObject nene = GameObject.FindWithTag("Nene");
         if (nene != null) nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = false;
     }
 
     public void FireWorker(int workerNumber)
     {
-        workersHired[workerNumber] = null;
+        //workersHired[workerNumber] = null;
 
-        employee_male_buttons[workerNumber].SetActive(false);
-        employee_female_buttons[workerNumber].SetActive(false);
+        //employee_male_buttons[workerNumber].SetActive(false);
+        //employee_female_buttons[workerNumber].SetActive(false);
 
-        hiredWorkers--;
-        GameManager.Instance.WorkerHire = false;
-        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = false;
+        //hiredWorkers--;
+        //GameManager.Instance.WorkerHire = false;
+        //GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = false;
     }
 
     public void ChargeWorkerPrice()

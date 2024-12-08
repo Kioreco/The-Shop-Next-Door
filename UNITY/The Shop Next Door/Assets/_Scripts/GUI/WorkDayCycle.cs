@@ -85,6 +85,7 @@ public class WorkDayCycle : MonoBehaviour
         {
             UIManager.Instance.ChangeSignShop(true);
             GameManager.Instance._player.clientRubbish.GetComponent<RubbishClientPrototype>().isEnable = true;
+
             npcClientGenerico.isEnable = true;
             npcClientKaren.isEnable = true;
             npcClientTacanio.isEnable = true;
