@@ -43,6 +43,12 @@ public class TelephoneController : MonoBehaviour
     [Header("Calendar App")]
     [SerializeField] public CalendarController calendar;
 
+    [Header("Settings App")]
+    [SerializeField] public GameObject s_MainScreen;
+    [SerializeField] public GameObject s_Music;
+    [SerializeField] public GameObject s_Camera;
+    [SerializeField] public GameObject s_Tutorial;
+
     [Header("Hire App")]
     [SerializeField] public HireApp hirer;
 
@@ -76,7 +82,7 @@ public class TelephoneController : MonoBehaviour
 
     public void HomeButton()
     {
-        if (LockedScreen.activeSelf)
+        if (LockedScreen.activeInHierarchy)
         {
             LeanTween.moveY(MiniTelephone.GetComponent<RectTransform>(), 40.0f, 0.5f).setEaseInOutBounce();
             LeanTween.moveY(gameObject.GetComponent<RectTransform>(), -1120.0f, 0.5f).setEaseInOutBounce();
@@ -85,13 +91,19 @@ public class TelephoneController : MonoBehaviour
             StartCoroutine(WaitToAnimation(0.5f));
             CheckAlmacenSpaceForBuying();
         }
+        else if (SettingsApp.activeInHierarchy)
+        {
+            if (s_MainScreen.activeInHierarchy) { SettingsApp.SetActive(false); LockedScreen.SetActive(true); }
+            else if (s_Music.activeInHierarchy) { s_Music.SetActive(false); s_MainScreen.SetActive(true); }
+            else if (s_Camera.activeInHierarchy) { s_Camera.SetActive(false); s_MainScreen.SetActive(true); }
+            else if (s_Tutorial.activeInHierarchy) { s_Tutorial.SetActive(false); s_MainScreen.SetActive(true); }
+        }
         else
         {
-            if (SettingsApp.activeSelf) { SettingsApp.SetActive(false); }
-            if (ShopApp.activeSelf) { ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true); }
-            if (CalendarApp.activeSelf) { CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true); }
-            if (HireApp.activeSelf) { HireApp.SetActive(false); }
-            if (LifeApp.activeSelf) { LifeApp.SetActive(false); }
+            if (ShopApp.activeInHierarchy) { ShopApp.SetActive(false); Warehouse.SetActive(false); EmptyCloseButton.SetActive(true); }
+            if (CalendarApp.activeInHierarchy) { CalendarApp.SetActive(false); EmptyCloseButton.SetActive(true); }
+            if (HireApp.activeInHierarchy) { HireApp.SetActive(false); }
+            if (LifeApp.activeInHierarchy) { LifeApp.SetActive(false); }
             LockedScreen.SetActive(true);
         }
     }
@@ -168,7 +180,16 @@ public class TelephoneController : MonoBehaviour
         MiniTelephone.SetActive(true);
         gameObject.SetActive(false);
 
-        if (SettingsApp.activeInHierarchy) { SettingsApp.SetActive(false); }
+        GameManager.Instance._player.enableMovement(false);
+
+        if (SettingsApp.activeInHierarchy) 
+        {
+            s_MainScreen.SetActive(true);
+            s_Music.SetActive(false);
+            s_Camera.SetActive(false);
+            s_Tutorial.SetActive(false);
+            SettingsApp.SetActive(false);
+        }
         if (ShopApp.activeInHierarchy) { ShopApp.SetActive(false); }
         if (CalendarApp.activeInHierarchy) { CalendarApp.SetActive(false); }
         if (HireApp.activeInHierarchy) { HireApp.SetActive(false); }
