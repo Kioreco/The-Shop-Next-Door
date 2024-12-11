@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 27611525}
   - component: {fileID: 27611524}
   m_Layer: 5
-  m_Name: Email
+  m_Name: Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1498,8 +1498,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1509258293}
-        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+      - m_Target: {fileID: 866328098}
+        m_TargetAssemblyTypeName: AWSManager, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
         m_Arguments:
@@ -1925,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00030518, y: -0.000061035}
+  m_AnchoredPosition: {x: 0.00030517578, y: -0.000061035156}
   m_SizeDelta: {x: 338.82, y: 190.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628882749
@@ -2827,6 +2827,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804073624}
   m_CullTransparentMesh: 1
+--- !u!1 &866328097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866328099}
+  - component: {fileID: 866328098}
+  m_Layer: 0
+  m_Name: AWSManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &866328098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866328097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68101bc742ca60f4d86d142c4ef049f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usernameLogin: {fileID: 27611524}
+  _passwordLogin: {fileID: 945997474}
+  _resultReqLogin: {fileID: 1157044309}
+  _usernameRegister: {fileID: 705322866}
+  _emailRegister: {fileID: 1921143942}
+  _passwordRegister: {fileID: 1871698836}
+  _rePasswordRegister: {fileID: 781878479}
+  _resultReqRegister: {fileID: 210647355}
+  userSkins: []
+  idPlayer: 0
+  username: 
+  gemsAmount: 0
+--- !u!4 &866328099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866328097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -124.43247, y: 182.77686, z: -207.8646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945997472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,7 +3883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENTER YOUR EMAIL...
+  m_text: ENTER YOUR USERNAME...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9cb916229ca0ab40a3eb2444d4125bb, type: 2}
   m_sharedMaterial: {fileID: 5385299463779098284, guid: f9cb916229ca0ab40a3eb2444d4125bb,
@@ -4205,6 +4261,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cashRegister_Text: {fileID: 0}
   canvas_menu: {fileID: 0}
+  tutorialLayout: {fileID: 0}
+  tutorialSlides: []
+  tutorial_NextButton: {fileID: 0}
+  tutorial_PrevButton: {fileID: 0}
+  tutorial_PlayButton: {fileID: 0}
+  gemsAmountShop: {fileID: 0}
+  gemsAmountAccount: {fileID: 0}
   joinCode_Text: {fileID: 0}
   joinMatch_Button: {fileID: 0}
   joinCode_Input: {fileID: 0}
@@ -4241,15 +4304,92 @@ MonoBehaviour:
   hour_EndDay_Text: {fileID: 0}
   player1Reputation: {fileID: 0}
   player2Reputation: {fileID: 0}
+  redColor: {r: 0.8, g: 0.02, b: 0.27, a: 1}
+  whiteTextColor: {r: 0.74, g: 0.78, b: 0.78, a: 1}
   player1Result_text: {fileID: 0}
   player2Result_text: {fileID: 0}
   winnerName_text: {fileID: 0}
   inheritance_text: {fileID: 0}
   ButtonDuplicateReward: {fileID: 0}
-  avisoCierreMediaHora: {fileID: 0}
-  avisoSalidaTienda: {fileID: 0}
-  avisoCompraSuministros: {fileID: 0}
+  OpenSign: {fileID: 0}
+  ClosedSign: {fileID: 0}
+  messageTelephone: {fileID: 0}
+  messageTelephone_text: {fileID: 0}
+  dudaController: {fileID: 0}
+  duda_gameObject: {fileID: 0}
+  duda_Image: {fileID: 0}
+  duda_text: {fileID: 0}
+  yesAnswer_text: {fileID: 0}
+  noAnswer_text: {fileID: 0}
+  questionTimer: []
+  canChargePlayer: 1
   cajaPlayerPosition: {fileID: 0}
+  dialogoDinero:
+  - "Well, well, well, let\u2019s talk numbers, shall we? After crunching some very
+    telling figures, it\u2019s clear that {winningSister} has been raking it in.
+    Meanwhile, {losingSister}, I hate to say it, but your wallet seems a bit\u2026
+    lighter..."
+  - "Alright, let\u2019s dive into the juicy stuff: the cash flow. {winningSister},
+    you\u2019ve been making it rain, haven\u2019t you? As for {losingSister}, let\u2019s
+    just say your financial forecast is looking a little cloudy"
+  - "Ladies, the financial standings are in, and the crown goes to\u2026 {winningSister}!
+    As for {losingSister}, it looks like it\u2019s time to cut back on the splurges"
+  - "Money talks, and it\u2019s shouting {winningSister}\u2019s name this week. {losingSister},
+    it seems your profits have taken a little vacation"
+  - "The numbers never lie, and this week they\u2019re singing {winningSister}\u2019s
+    praises. {losingSister}, your bank account, however, might be singing a sadder
+    tune"
+  - "Alright, let\u2019s talk dollars and sense. {winningSister}, you\u2019ve been
+    turning your shop into a money-making machine. And {losingSister}, well\u2026
+    let\u2019s just say we might need to revisit your budgeting strategy"
+  dialogoEntremedias:
+  - "It\u2019s not all about the coins, darlings. I also want to see grace, a well-run
+    shop, and maybe some prospects for a happily-ever-after. Is that too much to
+    ask?"
+  - "Money is just one part of the puzzle, ladies. I\u2019m looking for heart, ambition,
+    and a life filled with joy\u2014and maybe someone to share it with, too"
+  - "You know I don\u2019t only care about the profits. I want a shop that dazzles,
+    a name that shines, and a future full of love and happiness for both of you..."
+  - "Both of you know money isn\u2019t everything to me. I want a thriving business,
+    a glowing reputation, and maybe some wedding bells in the future..."
+  - "You know I want more than just numbers. I\u2019m looking for a beautiful shop,
+    a respected name, and don't you think I would be a marvelous grandma?"
+  dialogoBuenRomance:
+  - Well, it seems one of my daughters has been holding out on me! A little bird
+    told me {sisterName} has a special someone. Care to spill the details later?
+  - "Oh, I\u2019ve heard whispers, {sisterName}. Is it true? Someone has stolen your
+    heart? Do tell me everything later!"
+  - "Don\u2019t think I didn\u2019t notice the glow, {sisterName}. A mother always
+    knows when there\u2019s romance in the air. Who\u2019s the lucky one?"
+  - "Oh, {sisterName}, you\u2019ve been keeping secrets, haven\u2019t you? I heard
+    about your new flame\u2014don\u2019t you think your mother deserves to know everything
+    first?"
+  - "Well, this is unexpected! {sisterName}, I hear you\u2019ve found yourself a
+    partner. Is it true, or is my source trying to get my hopes up for nothing?"
+  - "Oh, {sisterName}, you didn\u2019t think I wouldn\u2019t find out about your
+    new lover, did you? Who is it? Are they charming enough to pass the mother test?"
+  dialogoMalRomance:
+  - Oh, {sisterName}, another week and still no suitor? Should I be worried, or should
+    I talk to my friends' sons and daughters?
+  - Well, I had high hopes, {sisterName}, but it seems romance is not in your stars
+    this week. Do I need to start setting you up myself?
+  - "Oh, {sisterName}, still no one? I\u2019m beginning to think you like making
+    me wait. At this rate, I\u2019ll be knitting scarves instead of baby blankets!"
+  - "I can\u2019t believe I have to say this again, {sisterName}, but the clock is
+    ticking. What\u2019s the excuse this time? No lover at your age is... alarming!"
+  - Still no partner, {sisterName}? What are you doing with your time? I thought
+    I raised you better than this! I want to be a grandma before is to late...
+  dialogoResultado:
+  - 
+  dialogoText: {fileID: 0}
+  settingsMainScreen: {fileID: 0}
+  settingsMusicApp: {fileID: 0}
+  settingsTutorialApp: {fileID: 0}
+  settingsCameraApp: {fileID: 0}
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
+  musicVolumes: []
+  soundVolumes: []
 --- !u!4 &1557370208
 Transform:
   m_ObjectHideFlags: 0
@@ -5997,3 +6137,4 @@ SceneRoots:
   - {fileID: 1557370208}
   - {fileID: 2134026878}
   - {fileID: 1509258294}
+  - {fileID: 866328099}
