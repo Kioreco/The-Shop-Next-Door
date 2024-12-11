@@ -18,7 +18,8 @@ public class AdManager : MonoBehaviour
 
     void Start()
     {
-        //reward = GameManager.Instance.inheritance;
+        reward = 10;
+        reward = GameManager.Instance.inheritance;
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
@@ -30,7 +31,7 @@ public class AdManager : MonoBehaviour
             return;
         }
         
-        //AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
+        AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
         _isReward = false;          
         panelPublicity.SetActive(true); 
 
@@ -54,14 +55,16 @@ public class AdManager : MonoBehaviour
             _isReward = true;  
         }
         panelPublicity.SetActive(false);
-        //AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
+        AWSManager.Instance.gemsAmount += reward;
+        AWSManager.Instance.UpdateGems(AWSManager.Instance.gemsAmount);
+        AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
     }
 
     private void MultiplyReward()
     {
         reward *= 2;
         Debug.Log("Recompensa multiplicada: " + reward);
-        //UIManager.Instance.inheritance_text.SetText(reward.ToString());
-        //UIManager.Instance.ButtonDuplicateReward.SetActive(false);
+        UIManager.Instance.inheritance_text.SetText(reward.ToString());
+        UIManager.Instance.ButtonDuplicateReward.SetActive(false);
     }
 }

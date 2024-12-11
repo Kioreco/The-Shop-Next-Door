@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AWSManager : MonoBehaviour
 {
-    public List<Skin> userSkins = new List<Skin>();
-
     [Space]
     [Header("Login")]
     [SerializeField] private TMP_InputField _usernameLogin;
@@ -22,8 +21,24 @@ public class AWSManager : MonoBehaviour
     [SerializeField] private TMP_InputField _rePasswordRegister;
     [SerializeField] private TextMeshProUGUI _resultReqRegister = null;
 
-    private int idPlayer;
+    public List<Skin> userSkins = new List<Skin>();
+    public int idPlayer;
+    public string username;
+    public int gemsAmount;
 
+    public static AWSManager Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Register()
     {
@@ -39,6 +54,7 @@ public class AWSManager : MonoBehaviour
 
     public void Login()
     {
+        UIManager.Instance.ChangeScene("1 - MenuInicio");
         Application.ExternalCall("loginJs", _usernameLogin.text, _passwordLogin.text);
     }
 
@@ -49,7 +65,7 @@ public class AWSManager : MonoBehaviour
 
     public void GetGems()
     {
-        Application.ExternalCall("getGemsJs", _usernameLogin.text);
+        Application.ExternalCall("getGemsJs", username);
     }
 
     public void SetPlayerGems(string gems)
@@ -57,6 +73,9 @@ public class AWSManager : MonoBehaviour
         if (int.TryParse(gems, out int parsedGems))
         {
             //variable para almacenar las gemas = parsedGems;
+            gemsAmount = parsedGems;
+            UIManager.Instance.gemsAmountAccount.text = gemsAmount.ToString();
+            UIManager.Instance.gemsAmountShop.text = gemsAmount.ToString();
             Debug.Log($"Player gems updated: {parsedGems}");
         }
         else
@@ -82,7 +101,7 @@ public class AWSManager : MonoBehaviour
 
     public void UpdateGems(int gems)
     {
-        Application.ExternalCall("updateGemsJs", _usernameLogin.text, gems.ToString());
+        Application.ExternalCall("updateGemsJs", username, gems.ToString());
     }
 
     public void GetUserSkins(int userId)
@@ -99,26 +118,20 @@ public class AWSManager : MonoBehaviour
     {
         try
         {
-            // Muestra el JSON recibido para depuración
             Debug.Log("Raw JSON received: " + jsonSkins);
 
-            // Deserializa el JSON en el contenedor SkinList
             SkinList skinList = JsonUtility.FromJson<SkinList>(jsonSkins);
 
             if (skinList != null && skinList.skins != null)
             {
-                // Reemplaza la lista local con la lista deserializada
                 userSkins = skinList.skins;
 
-                // Muestra los datos de la skin para verificar que funciona
                 if (userSkins.Count > 0)
                 {
-                    // Verifica el contenido de las skins
                     Debug.Log("Helper: " + userSkins[0]);
                     Debug.Log("Helper name: " + userSkins[0].name);
                     Debug.Log("Helper id: " + userSkins[0].id);
 
-                    // Muestra todas las skins para verificar que esté bien
                     foreach (var skin in userSkins)
                     {
                         Debug.Log($"Skin ID: {skin.id}, Name: {skin.name}");
@@ -153,8 +166,7 @@ public class AWSManager : MonoBehaviour
             Debug.Log("User ID fetched successfully: " + parsedUserId);
             idPlayer = parsedUserId; //sino, se crea id en player o algo y se guarda ahí
 
-            // Usa el ID para obtener las skins del usuario
-            GetUserSkins(parsedUserId);
+            GetUserSkins(idPlayer);
         }
         else
         {
@@ -168,6 +180,7 @@ public class AWSManager : MonoBehaviour
 
         if (response == "Skin purchased successfully.")
         {
+            GetGems();
             Debug.Log("Skin purchase completed successfully.");
             //GetUserSkins(int.Parse(_usernameLogin.text));
         }
@@ -200,9 +213,11 @@ public class AWSManager : MonoBehaviour
         }
         else if (result.StartsWith("Login successful."))
         {
-            _resultReqLogin.text = "Login successful. Welcome again " + _usernameLogin.text + "!";
+            username = _usernameLogin.text;
             GetGems();
             GetUserId();
+            _resultReqLogin.text = "Login successful. Welcome again " + _usernameLogin.text + "!";
+            UIManager.Instance.ChangeScene("1 - MenuInicio");
         }
 
         else if (result.StartsWith("Invalid username or password."))

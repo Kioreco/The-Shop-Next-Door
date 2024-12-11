@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject tutorial_PrevButton;
     [SerializeField] private GameObject tutorial_PlayButton;
 
+    [Header("SHOP")]
+    [SerializeField] public TextMeshProUGUI gemsAmountShop;
+
+    [Header("ACCOUNT")]
+    [SerializeField] public TextMeshProUGUI gemsAmountAccount;
+
 
     [Header("MATCHMAKING SCENE")]
     [SerializeField] public TextMeshProUGUI joinCode_Text;
@@ -170,6 +176,7 @@ public class UIManager : MonoBehaviour
     public void OpenMenu(GameObject menu)
     {
         menu.SetActive(true);
+
     }
 
     public void CloseMenu(GameObject menu)
@@ -181,6 +188,14 @@ public class UIManager : MonoBehaviour
     {
         canvas_menu.SetActive(!canvas_menu.activeSelf);
         canvas.SetActive(!canvas.activeSelf);
+        if (canvas == GameObject.FindWithTag("Shop"))
+        {
+            gemsAmountShop.text = AWSManager.Instance.gemsAmount.ToString();
+        } 
+        else if (canvas == GameObject.FindWithTag("Account"))
+        {
+            gemsAmountAccount.text = AWSManager.Instance.gemsAmount.ToString();
+        }
     }
 
     public void StartHost_Button()
@@ -607,6 +622,11 @@ public class UIManager : MonoBehaviour
     public void FinishGame()
     {
         GameManager.Instance._player.DestroyClient();
+    }
+
+    public void BuyProduct(int idSkin)
+    {
+        AWSManager.Instance.BuySkin(idSkin);
     }
 
     #region Dudas
