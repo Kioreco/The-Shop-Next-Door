@@ -6031,8 +6031,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1509258293}
-        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+      - m_Target: {fileID: 866328098}
+        m_TargetAssemblyTypeName: AWSManager, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
         m_Arguments:
