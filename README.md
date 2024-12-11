@@ -603,7 +603,7 @@ Un boceto de la primera tienda es el siguiente:
 
 ![imagen](https://github.com/user-attachments/assets/a2c354ec-82f7-4bb1-ac0e-ad99d7aaaf95)
 
-### <a name="_toc180924194"></a>**7.3.5. Iconos**
+### <a name="_toc180924194"></a>**7.2.5. Iconos**
 Los iconos se han creado para que el jugador, al elegir que comprar dentro de la tienda, pueda tener una imagen de lo que está comprando. Es decir, son imágenes 2D orientativas. Dentro de la tienda encontramos varias secciones de productos, los iconos para estas secciones son:
 
 Sección de Arte:
@@ -622,6 +622,52 @@ Sección de Ropa:
 
 ![IconosROPA](https://github.com/user-attachments/assets/755990f8-28dd-4b3a-9ed8-36a028667966)
 
+### <a name="_toc180924194"></a>**7.2.6. Iconos de emociones**
+Se han realizado estos iconos diferentes para usarlo para dar feedback a los jugadores de lo que sienten los clientes, ya sea que estan contentos, enfadados o tienen dudas.
+
+Emoción del tacaño cuando la compra es barata:
+
+![Tacaño contento](https://github.com/user-attachments/assets/d33da5ff-78c5-4ab2-9ec3-a9a195548574)
+
+Emoción del tacaño cuando la compra es cara:
+
+![Tacaño contento](https://github.com/user-attachments/assets/0db42cb1-68da-4c86-8821-9272c5c958cb)
+
+Emoción del tacaño cuando la compra es muy cara: 
+
+![Tacaño enfadadisimo](https://github.com/user-attachments/assets/edd6fd30-6983-47a6-b959-acb6d376fe31)
+
+Estas tres emociones se han decidido hacer con bocadillos y con emoticones y símbolos simples para que los jugadores entiendan las emociones del tacaño. 
+
+Emoción del niño cuando mancha:
+
+![Demonio](https://github.com/user-attachments/assets/722ef9c1-7c67-467b-9d29-8d2d279b72bd)
+
+Esta emoción saldrá cuando el niño haga alguna maldad en la tienda (cuando manche) por eso el diseño de demonio picaro
+
+Emoción de queja:
+
+![Queja](https://github.com/user-attachments/assets/884db9ca-696f-4e88-b043-8a2fb823acc2)
+
+Este diseño de queja se ha inspirado en los bocadillos de insultos o quejas de comics españoles. 
+
+Emoción de cansancio:
+
+![Dormido](https://github.com/user-attachments/assets/f9b9c8a0-296c-4305-ae9c-738bc1d0d52d)
+
+Diseño inspirado en la onomatopeya de dormir de comics. 
+
+Emoción de enfado:
+
+![Enfado](https://github.com/user-attachments/assets/f35fcc67-5685-4608-9681-6e801bbd243b)
+
+Emoticono de enfado con estilo cartoon que saldrá cuando algún cliente este muy enfadado. 
+
+Emoción de pregunta:
+
+![Pregunta](https://github.com/user-attachments/assets/6131d5a9-5358-4cf1-886e-3b8a2d62aad5)
+
+Simbolo de pregunta que saldrá cuando algún cliente tenga alguna duda. 
 
 ___
 ## <a name="_toc180924170"></a>**7.3. Modelos 3D**
@@ -641,31 +687,71 @@ Los modelos texturizados de las hermanas son los siguientes:
 
 
 ___
-### <a name="_toc180924172"></a>**7.3.2. Clientes**
-Los clientes deberán ser diferenciables entre sí según los distintos arquetipos que representen. Además, deberá haber varias variaciones de colores y géneros de cada uno.
+### <a name="_toc180924172"></a>**7.3.2. Clientes y Trabajadores**
+Los clientes deberán ser diferenciables entre sí según los distintos arquetipos que representen. Los trabajadores, por su parte, se diferenciarán de los demás personajes ya que tienen un delantal de color verde.
+Modelo de empleado sin texturizar: 
 
 ![imagen](https://github.com/user-attachments/assets/f70b8aad-840d-47c2-b63f-f28ac0a04ee3)
 
+Modelo de empleada sin texturizar: 
+
+![image](https://github.com/user-attachments/assets/9ab89db4-ca69-4c2f-9fa1-d2a5e51dc95a)
+
+Modelo de empleado texturizado:
+
+![Imagen8](https://github.com/user-attachments/assets/7b6e9754-20ea-4dca-9464-43845fcdeaa1)
+
+
+
+Modelo de empleada texturizada:
+
+![Imagen7](https://github.com/user-attachments/assets/fff460e5-a24a-4c1b-b86e-836f22638c4d)
+
+Se ha elegido estos diseños ya que no desentonan mucho fuera del resto de personajes, pero tienen el elemento destacado del delantal, sin ser muy vistoso para no quitar atención de las hermanas. 
 
 Modelo de señora mayor sin texturizar:
 
 ![](./ReadmeImgs/Abuela.png)
 
+Modelo de señora mayor texturizada:
+
+![Imagen2](https://github.com/user-attachments/assets/79890ac7-fa6d-4c0b-be1a-342cd4cebac3)
+
+
 Modelo del camionero sin texturizar:
 
 ![](./ReadmeImgs/Camionero.png)
+
+Modelo del camionero texturizado:
+
+![Imagen1](https://github.com/user-attachments/assets/7e81d661-4145-4050-ad30-ce7b8911fe6b)
 
 Modelo de Karen sin texturizar:
 
 ![](./ReadmeImgs/Karen.png)
 
+Modelo de Karen texturizado: 
+
+![Imagen3](https://github.com/user-attachments/assets/1e9ee905-d1db-438c-a73f-c7acd53a7fc0)
+
+
 Modelo de niño sin texturizar:
 
 ![](./ReadmeImgs/Niño.png)
 
+Modelo de niño texturizado:
+
+![Imagen5](https://github.com/user-attachments/assets/5fef6c57-8dcf-4219-93a7-c8528e07821a)
+
+
 Modelo de tacaño sin texturizar:
 
 ![](./ReadmeImgs/Viejo.png)
+
+Modelo de tacaño texturizado:
+
+![Imagen4](https://github.com/user-attachments/assets/08ab1db0-d7fe-4d2a-bd8b-11f6ce5bfe0f)
+
 
 ### <a name="_toc180924173"></a>**7.3.3. Escenarios**
 El primer modelo de tienda simple que permitirá vender comida y ropa sería:
