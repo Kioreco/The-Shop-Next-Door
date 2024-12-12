@@ -1,234 +1,231 @@
 <!DOCTYPE html>
 <html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | The Shop Next Door</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="manifest" href="manifest.webmanifest">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Unity WebGL Player | The Shop Next Door</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico">
-  <link rel="stylesheet" href="TemplateData/style.css">
-  <link rel="manifest" href="manifest.webmanifest">
-
-  <script type="text/javascript">
-    let unityInstanceGlobal
-    function registerJs(username, email, pass) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/register/' + username + '/' + email + '/' + pass, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        // CUIDADO response.json() para json          
-        .then(data => {
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
-        })
-        .catch(error => console.error('Error:', error));
-    } function loginJs(username, pass) {
-      //https://api.github.com/users/octocat        
-      //http://httpbin.org/get        
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/login/' + username + '/' + pass, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        // CUIDADO response.json() para json          
-        .then(data => unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data))
-        .catch(error => console.error('Error:', error));
-    } function getUserIdJs(username) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserId/' + username, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => {
-          // Si la respuesta incluye "User ID for", extraemos solo el número
-          let userId = data.match(/\d+/); // Busca un número en la respuesta
-          if (userId && userId.length > 0) {
-            unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', userId[0]); // Envía solo el ID numérico
-          } else {
-            console.error('Failed to parse User ID:', data);
-            unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', "Error fetching User ID");
+    <script type="text/javascript">
+      let unityInstanceGlobal
+      function registerJs(username, email, pass) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/register/' + username + '/' + email + '/' + pass, {
+          headers: {
+            'Origin': window.location.href
           }
         })
-        .catch(error => {
-          console.error('Error fetching user ID:', error);
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', "Error fetching User ID");
-        });
-    } function getGemsJs(username) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getGems/' + username, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => {
-          let gems = data.replace("Gems: ", "").trim();
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', 'Player gems: ' + gems);
+          .then(response => response.text())
+          // CUIDADO response.json() para json          
+          .then(data => {
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+          })
+          .catch(error => console.error('Error:', error));
+      } function loginJs(username, pass) {
+        //https://api.github.com/users/octocat        
+        //http://httpbin.org/get        
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/login/' + username + '/' + pass, {
+          headers: {
+            'Origin': window.location.href
+          }
         })
-        .catch(error => console.error('Error:', error));
-    } function updateGemsJs(username, gems) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/updateGems/' + username + '/' + gems, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data))
-        .catch(error => console.error('Error:', error));
-    } function getUserSkinsJs(userId) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserSkins/' + userId, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          let skinsJson = JSON.stringify(data);
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnUserSkinsFetched', skinsJson);
+          .then(response => response.text())
+          // CUIDADO response.json() para json          
+          .then(data => unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data))
+          .catch(error => console.error('Error:', error));
+      } function getUserIdJs(username) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserId/' + username, {
+          headers: {
+            'Origin': window.location.href
+          }
         })
-        .catch(error => console.error('Error fetching user skins:', error));
-    } function buySkinJs(userId, skinId) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/buySkin/' + userId + '/' + skinId, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => {
-          // Envía el resultado de la compra a Unity
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnBuySkinComplete', data.trim());
+          .then(response => response.text())
+          .then(data => {
+            // Si la respuesta incluye "User ID for", extraemos solo el número
+            let userId = data.match(/\d+/); // Busca un número en la respuesta
+            if (userId && userId.length > 0) {
+              unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', userId[0]); // Envía solo el ID numérico
+            } else {
+              console.error('Failed to parse User ID:', data);
+              unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', "Error fetching User ID");
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching user ID:', error);
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnUserIdFetched', "Error fetching User ID");
+          });
+      } function getGemsJs(username) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getGems/' + username, {
+          headers: {
+            'Origin': window.location.href
+          }
         })
-        .catch(error => {
-          console.error('Error buying skin:', error);
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnBuySkinComplete', "Error buying skin.");
-        });
-    } function getUserTutorialJs(username) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserTutorial/' + username, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => {
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+          .then(response => response.text())
+          .then(data => {
+            let gems = data.replace("Gems: ", "").trim();
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', 'Player gems: ' + gems);
+          })
+          .catch(error => console.error('Error:', error));
+      } function updateGemsJs(username, gems) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/updateGems/' + username + '/' + gems, {
+          headers: {
+            'Origin': window.location.href
+          }
         })
-        .catch(error => {
-          console.error('Error fetching tutorial status:', error);
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error fetching tutorial status.");
-        });
-    } function updateTutorialJs(username) {
-      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/updateTutorial/' + username, {
-        headers: {
-          'Origin': window.location.href
-        }
-      })
-        .then(response => response.text())
-        .then(data => {
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+          .then(response => response.text())
+          .then(data => unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data))
+          .catch(error => console.error('Error:', error));
+      } function getUserSkinsJs(userId) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserSkins/' + userId, {
+          headers: {
+            'Origin': window.location.href
+          }
         })
-        .catch(error => {
-          console.error('Error updating tutorial:', error);
-          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error updating tutorial.");
-        });
-    }
-  </script>
-</head>
-
-<body>
-  <div id="unity-container">
-    <canvas id="unity-canvas" width=960 height=540 tabindex="-1"></canvas>
-    <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
-      <div id="unity-progress-bar-empty">
-        <div id="unity-progress-bar-full"></div>
+          .then(response => response.json())
+          .then(data => {
+            let skinsJson = JSON.stringify(data);
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnUserSkinsFetched', skinsJson);
+          })
+          .catch(error => console.error('Error fetching user skins:', error));
+      } function buySkinJs(userId, skinId) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/buySkin/' + userId + '/' + skinId, {
+          headers: {
+            'Origin': window.location.href
+          }
+        })
+          .then(response => response.text())
+          .then(data => {
+            // Envía el resultado de la compra a Unity
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnBuySkinComplete', data.trim());
+          })
+          .catch(error => {
+            console.error('Error buying skin:', error);
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnBuySkinComplete', "Error buying skin.");
+          });
+      } function getUserTutorialJs(username) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserTutorial/' + username, {
+          headers: {
+            'Origin': window.location.href
+          }
+        })
+          .then(response => response.text())
+          .then(data => {
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+          })
+          .catch(error => {
+            console.error('Error fetching tutorial status:', error);
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error fetching tutorial status.");
+          });
+      } function updateTutorialJs(username) {
+        fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/updateTutorial/' + username, {
+          headers: {
+            'Origin': window.location.href
+          }
+        })
+          .then(response => response.text())
+          .then(data => {
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+          })
+          .catch(error => {
+            console.error('Error updating tutorial:', error);
+            unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error updating tutorial.");
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="unity-container">
+      <canvas id="unity-canvas" width=960 height=540 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
       </div>
+      <div id="unity-warning"> </div>
     </div>
-    <div id="unity-warning"> </div>
-  </div>
-  <script>
-    window.addEventListener("load", function () {
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("ServiceWorker.js");
-      }
-    });
-
-    var container = document.querySelector("#unity-container");
-    var canvas = document.querySelector("#unity-canvas");
-    var loadingBar = document.querySelector("#unity-loading-bar");
-    var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var warningBanner = document.querySelector("#unity-warning");
-
-    // Shows a temporary message banner/ribbon for a few seconds, or
-    // a permanent error message on top of the canvas if type=='error'.
-    // If type=='warning', a yellow highlight color is used.
-    // Modify or remove this function to customize the visually presented
-    // way that non-critical warnings and error messages are presented to the
-    // user.
-    function unityShowBanner(msg, type) {
-      function updateBannerVisibility() {
-        warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-      }
-      var div = document.createElement('div');
-      div.innerHTML = msg;
-      warningBanner.appendChild(div);
-      if (type == 'error') div.style = 'background: red; padding: 10px;';
-      else {
-        if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-        setTimeout(function () {
-          warningBanner.removeChild(div);
-          updateBannerVisibility();
-        }, 5000);
-      }
-      updateBannerVisibility();
-    }
-
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/Build - Webgl.loader.js";
-    var config = {
-      dataUrl: buildUrl + "/Build - Webgl.data.br",
-      frameworkUrl: buildUrl + "/Build - Webgl.framework.js.br",
-      codeUrl: buildUrl + "/Build - Webgl.wasm.br",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "Kioreco",
-      productName: "The Shop Next Door",
-      productVersion: "0.8.0",
-      showBanner: unityShowBanner,
-    };
-
-    // By default Unity keeps WebGL canvas render target size matched with
-    // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-    // Set this to false if you want to decouple this synchronization from
-    // happening inside the engine, and you would instead like to size up
-    // the canvas DOM size and WebGL render target sizes yourself.
-    // config.matchWebGLToCanvasSize = false;
-
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Mobile device style: fill the whole browser client area with the game canvas:
-      var meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-      document.getElementsByTagName('head')[0].appendChild(meta);
-    }
-
-    canvas.style.background = "url('" + buildUrl + "/Build - Webgl.jpg') center / cover";
-    loadingBar.style.display = "block";
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        progressBarFull.style.width = 100 * progress + "%";
-      }).then((unityInstance) => {
-        unityInstanceGlobal = unityInstance;
-        loadingBar.style.display = "none";
-      }).catch((message) => {
-        alert(message);
+    <script>
+      window.addEventListener("load", function () {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("ServiceWorker.js");
+        }
       });
-    };
-    document.body.appendChild(script);
-  </script>
-</body>
 
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Build - Webgl.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/Build - Webgl.data.br",
+        frameworkUrl: buildUrl + "/Build - Webgl.framework.js.br",
+        codeUrl: buildUrl + "/Build - Webgl.wasm.br",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Kioreco",
+        productName: "The Shop Next Door",
+        productVersion: "1.0.0",
+        showBanner: unityShowBanner,
+      };
+
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+      }
+
+      canvas.style.background = "url('" + buildUrl + "/Build - Webgl.jpg') center / cover";
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          unityInstanceGlobal = unityInstance;
+          loadingBar.style.display = "none";
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
 </html>
