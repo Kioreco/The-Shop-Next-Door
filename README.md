@@ -763,7 +763,7 @@ La tienda texturizada:
 
 ![](./ReadmeImgs/TiendaTexturizada.png)
 
-Además, se han creado 3 sets jugables para la tienda. 
+Además, se han creado 8 sets jugables para la tienda. 
 
 Set de Música:
 
