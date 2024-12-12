@@ -63,8 +63,9 @@ public class WorkDayCycle : MonoBehaviour
         // SEMANA COMPLETADA
         if (cycleCompleted)
         {
-
             gameObject.SetActive(false);
+            AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
+            AudioManager.Instance.PlayBackgroundMusic("MusicaFinal");
             SceneManager.LoadScene("4 - FinalScene");
             // ACTIVAR FINAL
         }

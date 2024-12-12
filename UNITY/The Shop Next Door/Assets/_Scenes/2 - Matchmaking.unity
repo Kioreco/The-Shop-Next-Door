@@ -217,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 300335085}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &22289010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,6 +631,8 @@ MonoBehaviour:
   tutorial_NextButton: {fileID: 0}
   tutorial_PrevButton: {fileID: 0}
   tutorial_PlayButton: {fileID: 0}
+  gemsAmountShop: {fileID: 0}
+  gemsAmountAccount: {fileID: 0}
   joinCode_Text: {fileID: 1317588519}
   joinMatch_Button: {fileID: 438797642}
   joinCode_Input: {fileID: 65241094}
@@ -655,15 +669,36 @@ MonoBehaviour:
   hour_EndDay_Text: {fileID: 0}
   player1Reputation: {fileID: 0}
   player2Reputation: {fileID: 0}
-  player1Result_text: {fileID: 0}
-  player2Result_text: {fileID: 0}
-  winnerName_text: {fileID: 0}
+  redColor: {r: 0.8, g: 0.02, b: 0.27, a: 1}
+  whiteTextColor: {r: 0.74, g: 0.78, b: 0.78, a: 1}
+  dialogoText: {fileID: 0}
+  dialogoUI: {fileID: 0}
+  inheritance_UI: {fileID: 0}
   inheritance_text: {fileID: 0}
   ButtonDuplicateReward: {fileID: 0}
-  avisoCierreMediaHora: {fileID: 0}
-  avisoSalidaTienda: {fileID: 0}
-  avisoCompraSuministros: {fileID: 0}
+  OpenSign: {fileID: 0}
+  ClosedSign: {fileID: 0}
+  messageTelephone: {fileID: 0}
+  messageTelephone_text: {fileID: 0}
+  dudaController: {fileID: 0}
+  duda_gameObject: {fileID: 0}
+  duda_Image: {fileID: 0}
+  duda_text: {fileID: 0}
+  yesAnswer_text: {fileID: 0}
+  noAnswer_text: {fileID: 0}
+  questionTimer: []
+  canChargePlayer: 1
   cajaPlayerPosition: {fileID: 0}
+  settingsMainScreen: {fileID: 0}
+  settingsMusicApp: {fileID: 0}
+  settingsTutorialApp: {fileID: 0}
+  settingsCameraApp: {fileID: 0}
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
+  musicVolumes: []
+  soundVolumes: []
+  musicMixer: {fileID: 0}
+  soundsMixer: {fileID: 0}
 --- !u!4 &300335086
 Transform:
   m_ObjectHideFlags: 0
@@ -927,6 +962,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 65241092}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 300335085}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2073,6 +2120,18 @@ MonoBehaviour:
       - m_Target: {fileID: 300335085}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartHost_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 300335085}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

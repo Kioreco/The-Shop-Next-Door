@@ -78,6 +78,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     public void Reset()
     {
         print("reseted");
+        AudioManager.Instance.PlaySound("PulsarBotonInGame");
         isReset = true;
         clicked = false;
         progressImage.fillAmount = 0;

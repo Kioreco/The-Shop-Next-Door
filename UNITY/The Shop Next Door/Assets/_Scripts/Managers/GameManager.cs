@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
     public bool WorkerHire = false;
     public bool WorkerIsWoman = false;
     public List<GameObject> nene = new List<GameObject>();
+    public GameObject actualWorker;
+    public GameObject prefabWorkerMen;
+    public GameObject prefabWorkerWoman;
     public static GameManager Instance { get; private set; }
     void Awake()
     {
@@ -102,7 +105,7 @@ public class GameManager : MonoBehaviour
             print("dentro del lock workergotopay");
             if (!isAnyWorkerInPayBox)
             {
-                print("nadie pagando alguien pagando");
+                print("nadie pagando");
                 isAnyWorkerInPayBox = true;
                 if (!isPlayer) worker.GetComponent<WorkerBehaviour>().canCharge = true;
                 else UIManager.Instance.canChargePlayer = true;
@@ -167,16 +170,32 @@ public class GameManager : MonoBehaviour
                 workersWoman.RemoveAt(0);
             }
         }
+        actualWorker = null;
     }
     public void Hire(bool isWomen)
     {
+        print("hire");
         WorkerIsWoman = isWomen;
-        if (!WorkerIsWoman) 
+        if (!WorkerIsWoman)
         {
             if (workersMen.Count > 0)
             {
                 workersMen[0].GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
                 workersMen[0].SetActive(true);
+                actualWorker = workersMen[0];
+            }
+            else
+            {
+                if (TiendaManager.Instance.ID == 0)
+                {
+                    var obj = Instantiate(prefabWorkerMen, TiendaManager.Instance.npcPositionInitialP1);
+                    obj.GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                }
+                else
+                {
+                    var obj = Instantiate(prefabWorkerMen, TiendaManager.Instance.npcPositionInitialP2);
+                    obj.GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                }
             }
         }
         else
@@ -185,6 +204,20 @@ public class GameManager : MonoBehaviour
             {
                 workersWoman[0].GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
                 workersWoman[0].SetActive(true);
+                actualWorker = workersWoman[0];
+            }
+            else
+            {
+                if (TiendaManager.Instance.ID == 0)
+                {
+                    var obj = Instantiate(prefabWorkerWoman, TiendaManager.Instance.npcPositionInitialP1);
+                    obj.GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                }
+                else
+                {
+                    var obj = Instantiate(prefabWorkerWoman, TiendaManager.Instance.npcPositionInitialP2);
+                    obj.GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                }
             }
         }
     }

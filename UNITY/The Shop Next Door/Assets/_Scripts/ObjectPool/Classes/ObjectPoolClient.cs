@@ -18,7 +18,7 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
     public ObjectPoolClient(List<MonoBehaviour> ctx, int countNpcMax, bool ca, bool isGeneric)
     {
-        Debug.Log("creado");
+        //Debug.Log("creado");
         objectsProto = ctx;
         canAdd = ca;
         npcs = new List<IContext>(countNpcMax);
@@ -99,7 +99,7 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
         if (isGenericClient)
         {
-            Debug.Log("creando cliente generico");
+            //Debug.Log("creando cliente generico");
             objectPrototype = (IContext)objectsProto[Random.Range(0, objectsProto.Count)];
 
             return newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);

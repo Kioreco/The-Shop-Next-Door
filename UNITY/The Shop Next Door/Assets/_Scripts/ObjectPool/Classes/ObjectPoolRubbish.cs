@@ -13,7 +13,7 @@ public class ObjectPoolRubish : IObjectPool<RubbishController>
 
     public ObjectPoolRubish(RubbishController ctx, int countNpcMax, bool ca)
     {
-        Debug.Log("creado");
+        //Debug.Log("creado");
         objectPrototype = ctx;
         canAdd = ca;
         RubbishList = new List<RubbishController>(countNpcMax);
@@ -57,6 +57,7 @@ public class ObjectPoolRubish : IObjectPool<RubbishController>
     {
         //Debug.Log($"release obj: {obj}");
         obj.isActive = false;
+        obj.tag = "Rubbish";
         countRubbishActive -= 1;
         obj.Reset();
     }

@@ -146,6 +146,7 @@ public class Estanteria : MonoBehaviour
     {
         if (GameManager.Instance.dineroJugador - upgradeCosts[shelveLevel] > 0)
         {
+            AudioManager.Instance.PlaySound("UpgradeEstanteria");
             UpgradeShelve();
             upgrade_text.SetText(upgradeCosts[shelveLevel] + " €");
             if (shelveLevel + 1 == maxShelveLevels)
