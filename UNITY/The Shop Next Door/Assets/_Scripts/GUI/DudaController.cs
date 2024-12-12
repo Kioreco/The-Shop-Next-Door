@@ -83,7 +83,7 @@ public class DudaController : MonoBehaviour
     {
         "Be honest...\r\nWill <i>this product</i> last longer than Jess after saying <i>I love you</i> to Rory?",
         "On a scale of 1 to Beyoncé,\r\nHow good is <i>this product</i>?",
-        "Quick question...\r\nDoes <i>this product</i> scream 'Mike Faist in Challengers' or just quietly whisper 'Katy Perry after Witness'?",
+        "Quick question...\r\nDoes <i>this product</i> screams 'Mike Faist in Challengers' or just quietly whisper 'Katy Perry after Witness'?",
         "Does <i>this product</i> come pre-approved by moms everywhere,\r\nor just yours? Don't get me wrong I love Mrs. Telma...",
         "Is <i>this product</i> worth my money,\r\nor should I spend it on coffee in The Shop Next Door?",
         "Would you gift <i>this product</i> to someone you like,\r\nor to your mother?",
