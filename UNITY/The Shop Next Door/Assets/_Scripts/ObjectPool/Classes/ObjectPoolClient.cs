@@ -99,7 +99,7 @@ public class ObjectPoolClient : IObjectPool<IContext>
 
         if (isGenericClient)
         {
-            Debug.Log("creando cliente generico");
+            //Debug.Log("creando cliente generico");
             objectPrototype = (IContext)objectsProto[Random.Range(0, objectsProto.Count)];
 
             return newObj = objectPrototype.Clone(instancePos.position, instancePos.rotation);

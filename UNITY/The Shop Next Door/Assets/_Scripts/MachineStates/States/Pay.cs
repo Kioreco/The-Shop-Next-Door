@@ -21,7 +21,7 @@ public class Pay : AStateNPC
         //Debug.Log("enter pay state");
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         if (!contexto.getWorkerInPay()) UIManager.Instance.cajero_Canvas.SetActive(true);
-        if (GameManager.Instance.WorkerHire) UIManager.Instance.cajero_Canvas.SetActive(false);
+        //if (GameManager.Instance.WorkerHire) UIManager.Instance.cajero_Canvas.SetActive(false);
 
         if (contexto.getTiendaManager().ID == 0)
         {

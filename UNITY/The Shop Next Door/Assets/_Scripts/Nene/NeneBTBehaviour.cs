@@ -8,6 +8,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using BehaviourAPI.Core.Perceptions;
 using System.Collections;
+using Unity.Services.Authentication;
 
 public class NeneBTBehaviour : BehaviourRunner
 {
@@ -90,6 +91,7 @@ public class NeneBTBehaviour : BehaviourRunner
 	private void StartAndar()
 	{
         print("start andar");
+
         InicializarExtremos();
         currentDestination = calculateRandomPosition();
         GetComponent<NavMeshAgent>().SetDestination(currentDestination);

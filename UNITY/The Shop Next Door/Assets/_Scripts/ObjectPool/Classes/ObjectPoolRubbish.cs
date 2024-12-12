@@ -56,6 +56,7 @@ public class ObjectPoolRubish : IObjectPool<RubbishController>
     public void Release(RubbishController obj)
     {
         //Debug.Log($"release obj: {obj}");
+        obj.tag = "Rubbish";
         obj.isActive = false;
         countRubbishActive -= 1;
         obj.Reset();

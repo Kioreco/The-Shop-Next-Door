@@ -207,6 +207,10 @@ public class RelayManager : NetworkBehaviour
             //CancelMatch();
             Destroy(GameObject.FindWithTag("GameManager"));
             SceneManager.LoadScene("2 - Matchmaking");
+
+            //AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
+            //AudioManager.Instance.PlayBackgroundMusic("Musica_Menu");
+
             //Debug.Log("Host se ha ido");
             //Debug.Log("Cliente desconectado, jugador " + obj);
 

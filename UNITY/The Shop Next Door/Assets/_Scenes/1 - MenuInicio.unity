@@ -156,6 +156,7 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: 58ad5efda902c0748a2dbeaa6e0246ce, type: 3}
   - {fileID: 8300000, guid: 495e3c9900ae8a247a54549a4b06c6e7, type: 3}
+  - {fileID: 8300000, guid: 80f651264f5fb8b47b24bbb13e34004b, type: 3}
   effectClips:
   - {fileID: 8300000, guid: 8dfe5340eb3834643aa6d77b532f33f5, type: 3}
   - {fileID: 8300000, guid: 30e56d6c0b30005489973d456fa253a1, type: 3}
@@ -165,6 +166,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b331b660417f01a418f194ae28c9846c, type: 3}
   - {fileID: 8300000, guid: bc8489bf5dd4995429d48dacb8998b80, type: 3}
   - {fileID: 8300000, guid: cac58a693ba8b504fa9be3eb044a90e5, type: 3}
+  - {fileID: 8300000, guid: cac58a693ba8b504fa9be3eb044a90e5, type: 3}
+  - {fileID: 8300000, guid: b87e74372e7cd0443a469dccf195c0a5, type: 3}
+  - {fileID: 8300000, guid: ac0731930f9a625479aed0efde281ba0, type: 3}
 --- !u!4 &12351887
 Transform:
   m_ObjectHideFlags: 0
@@ -3584,6 +3588,18 @@ MonoBehaviour:
           m_StringArgument: 2 - Matchmaking
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &386750079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5837,7 +5853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -56.1, y: -129}
+  m_AnchoredPosition: {x: -56.100098, y: -129}
   m_SizeDelta: {x: 15, y: -21.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &769548184
@@ -7524,6 +7540,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &884239362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8257,6 +8285,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1113313944}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: PrevTutorialSlide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

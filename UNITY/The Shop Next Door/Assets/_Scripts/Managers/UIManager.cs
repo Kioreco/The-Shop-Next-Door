@@ -285,7 +285,7 @@ public class UIManager : MonoBehaviour
             OpenSign.SetActive(true);
             LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.8f).setEaseInOutBounce();
             LeanTween.moveY(OpenSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
-            AudioManager.Instance.PlaySound("TiendaAbriendo");
+            AudioManager.Instance.PlaySound("TiendaPorCerrar");
             StartCoroutine(DelayDisableObject(6f, OpenSign));
         }
         else 
@@ -325,6 +325,7 @@ public class UIManager : MonoBehaviour
     #region Money Ingame
     public void UpdatePlayerMoney_UI()
     {
+        AudioManager.Instance.PlaySound("ExpendingMoney");
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
         else { dineroJugador_text.color = whiteTextColor; }
@@ -377,8 +378,9 @@ public class UIManager : MonoBehaviour
     {
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         //GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
-        //GameManager.Instance.workerGoToPay(null, true);
-        if (!GameManager.Instance.WorkerHire) GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
+        GameManager.Instance.workerGoToPay(null, true);
+        AudioManager.Instance.PlaySound("PulsarBotonInGame");
+        if (canChargePlayer) { print("nadie cobrando"); GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true); }
     }
 
     public void UpdatePayingBar_UI()
@@ -416,6 +418,7 @@ public class UIManager : MonoBehaviour
         {
             imageToFill.fillAmount = 0f;
             GameManager.Instance.isAnyWorkerInPayBox = false;
+            canChargePlayer = false;
         }
         if (isRubbish)
         {

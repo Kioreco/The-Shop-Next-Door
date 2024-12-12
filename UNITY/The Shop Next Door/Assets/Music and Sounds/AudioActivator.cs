@@ -3,7 +3,8 @@ using UnityEngine;
 public class AudioActivator : MonoBehaviour
 {
     public bool isMenuInicio;
-    private void Awake()
+    
+    private void OnEnable()
     {
         if (isMenuInicio)
         {
@@ -11,7 +12,11 @@ public class AudioActivator : MonoBehaviour
             {
                 AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
             }
-            if (!AudioManager.Instance.isPlaying("Musica_Menu")) AudioManager.Instance.PlayBackgroundMusic("Musica_Menu");
+            else if(AudioManager.Instance.isPlaying("MusicaFinal"))
+            {
+                AudioManager.Instance.StopBackgroundMusic("MusicaFinal");
+            }
+            if (!AudioManager.Instance.isPlaying("Musica_Menu")) { AudioManager.Instance.PlayBackgroundMusic("Musica_Menu"); print("no está sonando musica menu"); }
         }
         else
         {

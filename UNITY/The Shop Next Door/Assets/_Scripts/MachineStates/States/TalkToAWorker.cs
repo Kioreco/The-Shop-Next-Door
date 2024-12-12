@@ -11,16 +11,21 @@ public class TalkToAWorker : AStateNPC
     public override void Enter()
     {
         contexto.setIfDudaResuelta(false);
-        //contexto.
-        if(!contexto.getIsKaren()) contexto.activarCanvasDuda();
-        else contexto.activarCanvasEnfado();
-
-        //Debug.Log($"duda: {contexto.getTieneDuda()}");
-        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
+        
+        if (contexto.getIsKaren())
+        {
+            contexto.GetAnimator().SetTrigger("tieneQueja");
+            contexto.activarCanvasEnfado();
+        }
+        else
+        {
+            contexto.activarCanvasDuda();
+            contexto.GetAnimator().SetTrigger("apareceDuda");
+            contexto.GetAnimator().SetBool("tieneDuda", true);
+        }
 
         worker = GameManager.Instance._player.gameObject;
         currentDestination = worker.transform.position;
-
         contexto.getNavMesh().SetDestination(currentDestination);
     }
     public override void FixedUpdate()
@@ -35,7 +40,7 @@ public class TalkToAWorker : AStateNPC
         //    Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, false);
         //}
 
-        if (!isInWorker && Vector3.Distance(contexto.GetTransform().position, worker.transform.position) <= 5)
+        if (!isInWorker && Vector3.Distance(contexto.GetTransform().position, worker.transform.position) <= 2)
         {
             contexto.setIfImInPlayer(true);
             isInWorker = true;
@@ -44,17 +49,24 @@ public class TalkToAWorker : AStateNPC
             contexto.GetGameObject().transform.LookAt(contexto.GetGameObject().transform.position +
                         GameManager.Instance.activeCamera.transform.rotation * Vector3.forward,
                         GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
-            contexto.GetAnimator().SetTrigger("apareceDuda");
-            contexto.GetAnimator().SetBool("tieneDuda", true);
-
+            
+            if (contexto.getIsKaren())
+            {
+                contexto.GetAnimator().SetTrigger("tieneQueja");
+            }
+            else
+            {
+                contexto.GetAnimator().SetTrigger("apareceDuda");
+                contexto.GetAnimator().SetBool("tieneDuda", true);
+            }
 
             UIManager.Instance.CreateDuda_UI(contexto.getProductoDuda(), contexto.getIsKaren());
             //Debug.Log($"está en worker cliente? {contexto.getIsKaren()}"); 
         }
-        if (!contexto.getIfImInPlayer() && Vector3.Distance(contexto.getNavMesh().transform.position, worker.transform.position) > 5f)//ELEFANTE CAMBIAR LO DE KAREN
+        if (!contexto.getIfImInPlayer() && Vector3.Distance(contexto.getNavMesh().transform.position, worker.transform.position) > 5f)
         {
             if(!contexto.getCanvasDuda().activeInHierarchy && !contexto.getIsKaren()) contexto.activarCanvasDuda();
-            if(!contexto.getCanvasQueja().activeInHierarchy && !contexto.getIsKaren()) contexto.activarCanvasEnfado();
+            if(!contexto.getCanvasQueja().activeInHierarchy && contexto.getIsKaren()) contexto.activarCanvasEnfado();
             //Debug.Log("se movió");
             currentDestination = worker.transform.position;
             contexto.getNavMesh().SetDestination(currentDestination);

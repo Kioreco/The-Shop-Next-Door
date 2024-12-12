@@ -188,6 +188,9 @@ public class WorkerBehaviour : BehaviourRunner
     public void StartAndar()
     {
         print("start andar");
+        //clienteCaja.setFinishPayWorker(false);
+        GameManager.Instance.isAnyWorkerInPayBox = false;
+        canCharge = false;
         InicializarExtremos();
         AndarMethod();
     }
@@ -240,6 +243,9 @@ public class WorkerBehaviour : BehaviourRunner
     public void StartLimpiar()
     {
         print("start limpiar");
+        //clienteCaja.setFinishPayWorker(false);
+        GameManager.Instance.isAnyWorkerInPayBox = false;
+        canCharge = false;
         GameManager.Instance.workerGoToClean(gameObject, false, null);
         GetComponent<NavMeshAgent>().speed = 5;
         

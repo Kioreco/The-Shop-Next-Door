@@ -129,6 +129,7 @@ public class RubbishController : MonoBehaviour, IPooleableObject, IPrototype<Rub
     {
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         print("clicked");
+        AudioManager.Instance.PlaySound("PulsarBotonInGame");
         clicked = true;
         GameManager.Instance.workerGoToClean(null, true, gameObject);
         GameManager.Instance._player.WalkToPosition(transform.position, false);

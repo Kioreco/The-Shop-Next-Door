@@ -23,7 +23,7 @@ public class ClientPrototype : MonoBehaviour
         if (esClienteGenerico)
         {
             npcBasicObjectPool = new ObjectPoolClient(npcPrefabs, maxNumberNPC, allowAddNew, true);
-            maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 3, maxNumberNPC);
+            maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 2, maxNumberNPC);
             npcBasicObjectPool.updateMaxActive(maxActiveInScene);
         }
         else npcBasicObjectPool = new ObjectPoolClient(npcPrefabs, maxNumberNPC, allowAddNew, false);
@@ -37,7 +37,7 @@ public class ClientPrototype : MonoBehaviour
             {
                 //print($"get active IF: {npcBasicObjectPool.GetActive()}  maxactiveInScene: {maxActiveInScene}    count: {npcBasicObjectPool.GetCount()}");
 
-                maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 3, maxNumberNPC);
+                maxActiveInScene = Mathf.Clamp(Mathf.RoundToInt((GameManager.Instance.reputation / 100f) * maxNumberNPC), 2, maxNumberNPC);
                 npcBasicObjectPool.updateMaxActive(maxActiveInScene);
             }
 
