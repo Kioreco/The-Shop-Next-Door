@@ -794,7 +794,7 @@ El diagrama de flujo entre pantallas y durante una partida quedaría de la sigui
 ___
 ## <a name="_toc180924175"></a>**8.2. Menú de título e inicio de sesión**
 
-Diseños finales para la beta:
+Diseños finales para el menú de inicio:
 
 ![Title_Screen_NoLogo](https://github.com/user-attachments/assets/76324680-c4ae-4136-94d8-fb20b12a884d)
 
@@ -807,9 +807,14 @@ Menú de inicio de sesión:
 ___
 ## <a name="_toc180924176"></a>**8.3. Menú de inicio**
 
-Mejora del dibujado y disposición de elementos para el menú de inicio de la beta: 
+Mejora del dibujado y disposición de elementos para el menú de inicio: 
 
 ![](./ReadmeImgs/PantallaInicio2.jpg)
+
+En este menú, para que el cuadro no quedará vacío, se ha creado una foto en la que se puede ver claramente las personalidades de las hermanas.
+
+![FotoSinCartel](https://github.com/user-attachments/assets/b23e1d81-3de1-44ac-a720-fa2a5575e765)
+
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
 
