@@ -1,4 +1,4 @@
-const cacheName = "Kioreco-The Shop Next Door-0.8.0";
+const cacheName = "Kioreco-The Shop Next Door-1.0.0";
 const contentToCache = [
     "Build/Build - Webgl.loader.js",
     "Build/Build - Webgl.framework.js.br",

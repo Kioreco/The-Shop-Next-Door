@@ -55,8 +55,8 @@ public class AdManager : MonoBehaviour
             _isReward = true;  
         }
         panelPublicity.SetActive(false);
+        AWSManager.Instance.UpdateGems(AWSManager.Instance.gemsAmount + reward);
         AWSManager.Instance.gemsAmount += reward;
-        AWSManager.Instance.UpdateGems(AWSManager.Instance.gemsAmount);
         AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
     }
 

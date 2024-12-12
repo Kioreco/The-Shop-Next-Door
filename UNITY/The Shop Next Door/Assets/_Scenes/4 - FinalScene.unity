@@ -4176,6 +4176,8 @@ MonoBehaviour:
   soundSlider: {fileID: 0}
   musicVolumes: []
   soundVolumes: []
+  musicMixer: {fileID: 0}
+  soundsMixer: {fileID: 0}
 --- !u!4 &990069618
 Transform:
   m_ObjectHideFlags: 0
