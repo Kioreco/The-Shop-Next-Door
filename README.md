@@ -781,6 +781,30 @@ Set de Ropa:
 
 ![](./ReadmeImgs/Ropa.png)
 
+Set de Pinturas:
+
+![](./ReadmeImgs/SetPinturas.png)
+
+Set de Peliculas:
+
+![](./ReadmeImgs/SetPeliculas.png)
+
+Set de Videojuegos:
+
+![](./ReadmeImgs/SetVideojuegos.png)
+
+Set de Libros:
+
+![](./ReadmeImgs/SetLibreria.png)
+
+Adicionalmente, se crearon dos tipos de cajeros, el primero es donde el jugador tendrá que cobrar a los clientes, y otro cajero de autoservicio a modo de balance en caso de que el jugador no pueda cobrar a todos los clientes.
+
+![](./ReadmeImgs/Cajeros.png)
+
+Por último, se crearon asstes para el entorno exterior de la tienda.
+
+![](./ReadmeImgs/AssetsExteriores.png)
+
 ___
 # **8. Interfaces**
 
