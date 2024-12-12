@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -11,14 +9,15 @@ public class AdManager : MonoBehaviour
 {
     public GameObject panelPublicity;     
     public VideoPlayer videoPlayer;        
-    public List<string> trailerVideoUrls;       
+    public List<string> trailerVideoUrls;
+    public string tutorialUrl;
     private bool _isReward;
     public int reward;
     private int _random;
+    private bool isTutorial;
 
     void Start()
     {
-        //reward = 10;
         reward = GameManager.Instance.inheritance;
         videoPlayer.loopPointReached += OnVideoEnd;
     }
@@ -37,7 +36,17 @@ public class AdManager : MonoBehaviour
 
         _random = Random.Range(0, trailerVideoUrls.Count);
         videoPlayer.url = trailerVideoUrls[_random];
+        isTutorial = false;
 
+        videoPlayer.Prepare();
+        videoPlayer.prepareCompleted += OnVideoPrepared;
+    }
+
+    public void ShowTutorial()
+    {
+        isTutorial = true;
+        panelPublicity.SetActive(true);
+        videoPlayer.url = tutorialUrl;
         videoPlayer.Prepare();
         videoPlayer.prepareCompleted += OnVideoPrepared;
     }
@@ -55,9 +64,13 @@ public class AdManager : MonoBehaviour
             _isReward = true;  
         }
         panelPublicity.SetActive(false);
-        AWSManager.Instance.UpdateGems(AWSManager.Instance.gemsAmount + reward);
-        AWSManager.Instance.gemsAmount += reward;
-        AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
+        if (!isTutorial)
+        {
+            AWSManager.Instance.UpdateGems(AWSManager.Instance.gemsAmount + reward);
+            AWSManager.Instance.gemsAmount += reward;
+            AudioManager.Instance.PlayBackgroundMusic("Musica_InGame");
+            UIManager.Instance.ButtonDuplicateReward.SetActive(false);
+        }
     }
 
     private void MultiplyReward()

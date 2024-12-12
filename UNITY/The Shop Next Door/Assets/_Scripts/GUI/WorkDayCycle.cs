@@ -9,7 +9,7 @@ public class WorkDayCycle : MonoBehaviour
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
-    private float realTimePerDay = 60f;    // TIEMPO POR DÍA -----> 240  ---- 180
+    private float realTimePerDay = 180f;    // TIEMPO POR DÍA -----> 240  ---- 180
     private float realTimePerNight = 15f;    // TIEMPO POR NOCHE -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
@@ -49,7 +49,6 @@ public class WorkDayCycle : MonoBehaviour
         if (!eventLanzadoInicioDia)
         {
             dayFinish?.Invoke(this, EventArgs.Empty);
-            //print("alerta inciial");
             eventLanzadoInicioDia = true;
             UIManager.Instance.MessageAlert(0);
         }
@@ -67,7 +66,6 @@ public class WorkDayCycle : MonoBehaviour
             AudioManager.Instance.StopBackgroundMusic("Musica_InGame");
             AudioManager.Instance.PlayBackgroundMusic("MusicaFinal");
             SceneManager.LoadScene("4 - FinalScene");
-            // ACTIVAR FINAL
         }
 
         DayTimer();
