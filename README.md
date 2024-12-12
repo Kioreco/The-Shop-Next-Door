@@ -608,7 +608,7 @@ Los iconos se han creado para que el jugador, al elegir que comprar dentro de la
 
 Sección de Arte:
 
-![IconosARTE](https://github.com/user-attachments/assets/4fb0aec6-0ceb-402a-945f-fc8d7c5c2df0)
+![IconosArte](https://github.com/user-attachments/assets/5b62de8b-d95c-48b7-be15-daf86079c7d7)
 
 Sección de Comida:
 
@@ -820,24 +820,24 @@ ___
 
 Diseños finales para el menú de inicio:
 
-![Title_Screen_NoLogo](https://github.com/user-attachments/assets/76324680-c4ae-4136-94d8-fb20b12a884d)
+![Title_Screen_NoLogo_FINAL](https://github.com/user-attachments/assets/d5e1cedf-f128-4c7f-94ab-2e9f81bdd96b)
 
 Menú de inicio de sesión:
 
-![Title_Screen](https://github.com/user-attachments/assets/b27aaff8-4000-4ede-8064-3ea54203a33a)
-
-
+![Title_Screen_FINAL](https://github.com/user-attachments/assets/7f916a50-5ee2-4c78-a2ca-15e3c56d59c3)
 
 ___
 ## <a name="_toc180924176"></a>**8.3. Menú de inicio**
 
 Mejora del dibujado y disposición de elementos para el menú de inicio: 
 
-![](./ReadmeImgs/PantallaInicio2.jpg)
+![intro](https://github.com/user-attachments/assets/63d008fe-c90a-409a-9eac-aef834385b64)
+
 
 En este menú, para que el cuadro no quedará vacío, se ha creado una foto en la que se puede ver claramente las personalidades de las hermanas.
 
-![FotoSinCartel](https://github.com/user-attachments/assets/b23e1d81-3de1-44ac-a720-fa2a5575e765)
+![FotoSinCarteel](https://github.com/user-attachments/assets/fc480be0-cf37-4d5e-ac02-6ec8f1aef250)
+
 
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
@@ -1128,6 +1128,5 @@ Por otro lado, hay algunas percepciones que comparte con el NPC general, pero la
 |Limpiar |Anda hacia la posición de la mancha y salta la animación|Disminuye el % de suciedad de la tienda|
 |Escuchar cliente|Espera quieto al lado del cliente a que acabe la interacción||
 
-2
 
 
