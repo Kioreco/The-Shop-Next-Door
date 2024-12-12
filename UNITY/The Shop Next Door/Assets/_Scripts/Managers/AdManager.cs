@@ -63,7 +63,6 @@ public class AdManager : MonoBehaviour
     private void MultiplyReward()
     {
         reward *= 2;
-        Debug.Log("Recompensa multiplicada: " + reward);
         UIManager.Instance.inheritance_text.SetText(reward.ToString());
         UIManager.Instance.ButtonDuplicateReward.SetActive(false);
     }

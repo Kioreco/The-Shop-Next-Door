@@ -48,7 +48,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBackgroundMusic(String backgroundMusic)
     {
-        print("inicio background music");
 
         AudioClip _audioClip = Array.Find(musicClips, clip => clip.name == backgroundMusic);
 
@@ -66,7 +65,6 @@ public class AudioManager : MonoBehaviour
 
     public void StopBackgroundMusic(String backgroundMusic)
     {
-        print("stop background music");
         AudioClip _audioClip = Array.Find(musicClips, clip => clip.name == backgroundMusic);
 
         if (_audioClip == null)

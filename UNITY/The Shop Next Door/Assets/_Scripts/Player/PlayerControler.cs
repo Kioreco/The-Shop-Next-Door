@@ -315,13 +315,11 @@ public class PlayerControler : NetworkBehaviour
         if (ID == 0)
         {
             HostReady = true;
-            //print($"cambios host ready: {HostReady}");
             UpdateHostFinalResultServerRpc(GameManager.Instance.playerResult);
         }
         if (ID == 1)
         {
             clientReady = true;
-            //print($"cambios client ready: {clientReady}");
             UpdateClientFinalResultServerRpc(GameManager.Instance.playerResult);
         }
     }
@@ -329,30 +327,27 @@ public class PlayerControler : NetworkBehaviour
     [ServerRpc]
     public void UpdateHostFinalResultServerRpc(double newV)
     {
-        //print("host server rpc");
         UpdateHostResultFinalForClientRpc(newV);
     }
 
     [ServerRpc]
     public void UpdateClientFinalResultServerRpc(double newV)
     {
-        //print("client server rpc");
         UpdateClientResultFinalClientRpc(newV);
     }
+
     [ClientRpc]
     public void UpdateHostResultFinalForClientRpc(double newV)
     {
         if (IsClient & !IsServer)
         {
-            //print($"update resultado host: {newV}");
             HostReady = true;
-            //print($"cambios host ready client rpc: {HostReady}");
 
             GameManager.Instance.playerResultRival = newV;
-            UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
-            UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
-            print($"client actualizate: {ID}");
-            UIManager.Instance.UpdateFinalWeekTexts(0);
+            //UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            //UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
+            //UIManager.Instance.UpdateFinalWeekTexts(0);
+            UIManager.Instance.CreateDialogosEnd(0);
 
             //canContinue();
         }
@@ -362,14 +357,13 @@ public class PlayerControler : NetworkBehaviour
     {
         if (IsServer)
         {
-            //print($"update resultado cliente: {newV}");
             clientReady = true;
-            //print($"cambios client ready client rpc: {clientReady}");
 
             GameManager.Instance.playerResultRival = newV;
-            UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
-            UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
-            UIManager.Instance.UpdateFinalWeekTexts(1);
+            //UIManager.Instance.player1Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResult + " points");
+            //UIManager.Instance.player2Result_text.GetComponent<TextMeshProUGUI>().SetText((int)GameManager.Instance.playerResultRival + " points");
+            //UIManager.Instance.UpdateFinalWeekTexts(1);
+            UIManager.Instance.CreateDialogosEnd(1);
 
             //canContinue();
         }
@@ -378,14 +372,12 @@ public class PlayerControler : NetworkBehaviour
 
     public void DestroyClient()
     {
-        print("destroy client");
         DestroyClientServerRpc(OwnerClientId);
     }
 
     [ServerRpc]
     public void DestroyClientServerRpc(ulong clientId)
     {
-        //Debug.Log($"Intentando desconectar cliente con ID: {clientId}");
         if (clientId == 0)
         {
             NetworkManager.Singleton.Shutdown();
@@ -394,8 +386,6 @@ public class PlayerControler : NetworkBehaviour
         {
             NetworkManager.Singleton.DisconnectClient(clientId);
         }
-        // Desconectar al cliente
-        //Debug.Log($"Cliente {clientId} desconectado.");
     }
 
 

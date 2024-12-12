@@ -99,11 +99,14 @@ public class UIManager : MonoBehaviour
     public Color whiteTextColor = new Color(0.74f, 0.78f, 0.78f);
 
     [Header("THE END")]
-    [SerializeField] public GameObject player1Result_text;
-    [SerializeField] public GameObject player2Result_text;
-    [SerializeField] private TextMeshProUGUI winnerName_text;
+    [SerializeField] private TextMeshProUGUI dialogoText;
+    [SerializeField] private GameObject dialogoUI;
+    [SerializeField] private GameObject inheritance_UI;
     [SerializeField] public TextMeshProUGUI inheritance_text;
+    private DialoguePlayer dialogueManager;
     public GameObject ButtonDuplicateReward;
+    private int currentDialogue;
+    private string[] dialogos;
 
     [Header("AVISOS")]
     [SerializeField] private GameObject OpenSign;
@@ -228,6 +231,12 @@ public class UIManager : MonoBehaviour
         numeros[2] = numeros[3];
         numeros[3] = numero;
         cashRegister_Text.SetText(numeros[0].ToString() + " " + numeros[1].ToString() + " " + numeros[2].ToString() + " " + numeros[3].ToString());
+        AudioManager.Instance.PlaySound("CajaRegistradora");
+    }
+
+    public void ButtonSound()
+    {
+        AudioManager.Instance.PlaySound("CajaRegistradora");
     }
 
     public void OpenURL(string url)
@@ -271,8 +280,21 @@ public class UIManager : MonoBehaviour
     #region Mensajes Madre
     public void ChangeSignShop(bool shopOpen)
     {
-        if (shopOpen) { OpenSign.SetActive(true); StartCoroutine(DelayDisableObject(6f, OpenSign)); }
-        else { ClosedSign.SetActive(true); StartCoroutine(DelayDisableObject(10f, ClosedSign)); }
+        if (shopOpen)
+        { 
+            OpenSign.SetActive(true);
+            LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.8f).setEaseInOutBounce();
+            LeanTween.moveY(OpenSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
+            AudioManager.Instance.PlaySound("TiendaAbriendo");
+            StartCoroutine(DelayDisableObject(6f, OpenSign));
+        }
+        else 
+        {
+            ClosedSign.SetActive(true);
+            LeanTween.scale(ClosedSign.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.8f).setEaseInOutBounce();
+            LeanTween.moveY(ClosedSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
+            StartCoroutine(DelayDisableObject(10f, ClosedSign));
+        }
     }
 
 
@@ -286,6 +308,7 @@ public class UIManager : MonoBehaviour
         else if (messageNumber == 1)
         {
             messageTelephone_text.SetText("The clock is ticking, closing time is half an hour away!");
+            AudioManager.Instance.PlaySound("TiendaPorCerrar");
         }
         else if (messageNumber == 2)
         {
@@ -309,8 +332,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdateNewMoney_UI(float money, bool increase)
     {
-        if (increase) { newMoney_text.color = greenColor; newMoney_text.SetText("+" + money.ToString("F2")); }
-        else { newMoney_text.color = redColor; newMoney_text.SetText("-" + money.ToString("F2")); }
+        if (increase) 
+        {
+            newMoney_text.color = greenColor;
+            newMoney_text.SetText("+" + money.ToString("F2"));
+            AudioManager.Instance.PlaySound("ClientsPaying");
+        }
+        else 
+        { 
+            newMoney_text.color = redColor;
+            newMoney_text.SetText("-" + money.ToString("F2"));
+            AudioManager.Instance.PlaySound("ExpendingMoney");
+        }
 
         StartCoroutine(WaitSecondsToHide());
     }
@@ -488,136 +521,142 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    private string[] clientsName = new string[] { "Karen", "Antonia", "Roberto", "Pepito", "Agustina", "Manolito", "Elvirita", "Luke", "Lorelai", "Rory", "Emily", "Flora", "Edward"};
 
-    private string[] dialogosBienvenida = new string[]
-    {
-    "Well, I hope dinner was as delicious as I know it was... But we all know you are not here for food and fun, so let me begin. This week I've been looking into your shops with the help of {clientsName} and they told me all kinds of things...",
-    "Ah, I trust you all enjoyed the appetizers—I mean, they were spectacular, right? But let’s not kid ourselves, let’s dive in. This week, with a little help from {clientsName}, I’ve been keeping a very close eye on your shops, and oh, the stories I’ve heard…",
-    "Alright, I hope you’ve savored every bite of tonight’s spread because it’s time for the real feast: the results! I’ve had my little birds—er, I mean {clientsName}—keeping tabs on your shops, and let me tell you, the tea is piping hot!",
-    "Now that your plates are clean and your glasses are full, let’s move on to what you’ve all been waiting for. With the help of my trusted partner-in-crime, {clientsName}, I’ve been checking in on your shops. And, oh my, do I have things to share",
-    "The wine was fine, the dessert divine, but let’s not pretend you came just for the ambiance. This week, {clientsName} has been my eyes and ears in your shops, and what is a family dinner without some critiques...",
-    "Let’s put the forks down, shall we? It’s time for the main event. {clientsName} has been my undercover agent this week, reporting back on everything happening in your shops. Let’s see who’s been shining and who’s, well… not"
-    };
-    public string[] dialogoDinero = new string[] 
-    {
-    "Well, well, well, let’s talk numbers, shall we? After crunching some very telling figures, it’s clear that {winningSister} has been raking it in. Meanwhile, {losingSister}, I hate to say it, but your wallet seems a bit… lighter...",
-    "Alright, let’s dive into the juicy stuff: the cash flow. {winningSister}, you’ve been making it rain, haven’t you? As for {losingSister}, let’s just say your financial forecast is looking a little cloudy",
-    "Ladies, the financial standings are in, and the crown goes to… {winningSister}! As for {losingSister}, it looks like it’s time to cut back on the splurges",
-    "Money talks, and it’s shouting {winningSister}’s name this week. {losingSister}, it seems your profits have taken a little vacation",
-    "The numbers never lie, and this week they’re singing {winningSister}’s praises. {losingSister}, your bank account, however, might be singing a sadder tune",
-    "Alright, let’s talk dollars and sense. {winningSister}, you’ve been turning your shop into a money-making machine. And {losingSister}, well… let’s just say we might need to revisit your budgeting strategy"
-    };
-    public string[] dialogoEntremedias = new string[] 
-    {
-    "It’s not all about the coins, darlings. I also want to see grace, a well-run shop, and maybe some prospects for a happily-ever-after. Is that too much to ask?",
-    "Money is just one part of the puzzle, ladies. I’m looking for heart, ambition, and a life filled with joy—and maybe someone to share it with, too",
-    "You know I don’t only care about the profits. I want a shop that dazzles, a name that shines, and a future full of love and happiness for both of you...",
-    "Both of you know money isn’t everything to me. I want a thriving business, a glowing reputation, and maybe some wedding bells in the future...",
-    "You know I want more than just numbers. I’m looking for a beautiful shop, a respected name, and don't you think I would be a marvelous grandma?"
-    };
-    public string[] dialogoBuenRomance = new string[]
-    {
-    "Well, it seems one of my daughters has been holding out on me! A little bird told me {sisterName} has a special someone. Care to spill the details later?",
-    "Oh, I’ve heard whispers, {sisterName}. Is it true? Someone has stolen your heart? Do tell me everything later!",
-    "Don’t think I didn’t notice the glow, {sisterName}. A mother always knows when there’s romance in the air. Who’s the lucky one?",
-    "Oh, {sisterName}, you’ve been keeping secrets, haven’t you? I heard about your new flame—don’t you think your mother deserves to know everything first?",
-    "Well, this is unexpected! {sisterName}, I hear you’ve found yourself a partner. Is it true, or is my source trying to get my hopes up for nothing?",
-    "Oh, {sisterName}, you didn’t think I wouldn’t find out about your new lover, did you? Who is it? Are they charming enough to pass the mother test?"
-    };
-    public string[] dialogoMalRomance = new string[]
-    {
-    "Oh, {sisterName}, another week and still no suitor? Should I be worried, or should I talk to my friends' sons and daughters?",
-    "Well, I had high hopes, {sisterName}, but it seems romance is not in your stars this week. Do I need to start setting you up myself?",
-    "Oh, {sisterName}, still no one? I’m beginning to think you like making me wait. At this rate, I’ll be knitting scarves instead of baby blankets!",
-    "I can’t believe I have to say this again, {sisterName}, but the clock is ticking. What’s the excuse this time? No lover at your age is... alarming!",
-    "Still no partner, {sisterName}? What are you doing with your time? I thought I raised you better than this! I want to be a grandma before is to late...",
-    };
-    public string[] dialogoResultado = new string[] 
-    { 
-    "",
-    };
+    #region Dialogos Final
 
-    [SerializeField] private TextMeshProUGUI dialogoText;
-
-    private void CreateDialogosEnd()
+    public void CreateDialogosEnd(int playerID)
     {
-        string[] dialogos = new string[3];
-        string randomClient = clientsName[UnityEngine.Random.Range(0, clientsName.Length)];
+        dialogueManager = new DialoguePlayer();
+
+        dialogos = new string[5];
+
+        string randomClient = dialogueManager.clientsName[UnityEngine.Random.Range(0, dialogueManager.clientsName.Length)];
         string nombreHermanaJugador;
         string nombreHermanaRival;
-        if (GameManager.Instance.playerID == 0) { nombreHermanaJugador = "Gemma"; nombreHermanaRival = "Emma"; }
+        if (playerID == 0) { nombreHermanaJugador = "Gemma"; nombreHermanaRival = "Emma"; }
         else { nombreHermanaJugador = "Emma"; nombreHermanaRival = "Gemma"; }
 
-        dialogos[0] = dialogosBienvenida[UnityEngine.Random.Range(0, dialogosBienvenida.Length)].Replace("{clientsName}", randomClient);
+        dialogos[0] = dialogueManager.dialogosBienvenida[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{clientsName}", randomClient);
         if (GameManager.Instance.dineroJugador > GameManager.Instance.dineroRival)
         {
-            if (GameManager.Instance.playerID == 0)
+            if (playerID == 0)
             {
-                dialogos[1] = dialogoDinero[UnityEngine.Random.Range(0, dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
                 dialogos[1].Replace("{losingSister}", "Emma");
             }
             else
             {
-                dialogos[1] = dialogoDinero[UnityEngine.Random.Range(0, dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
                 dialogos[1].Replace("{losingSister}", "Gemma");
             }
         }
         else
         {
-            if (GameManager.Instance.playerID == 0)
+            if (playerID == 0)
             {
-                dialogos[1] = dialogoDinero[UnityEngine.Random.Range(0, dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
                 dialogos[1].Replace("{losingSister}", "Gemma");
             }
             else
             {
-                dialogos[1] = dialogoDinero[UnityEngine.Random.Range(0, dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
                 dialogos[1].Replace("{losingSister}", "Emma");
             }
         }
 
-        dialogos[2] = dialogoEntremedias[UnityEngine.Random.Range(0, dialogoEntremedias.Length)];
+        dialogos[2] = dialogueManager.dialogoEntremedias[UnityEngine.Random.Range(0, dialogueManager.dialogoEntremedias.Length)];
 
         if (VidaPersonalManager.Instance.hasPartner)
         {
-            dialogos[3] = dialogoBuenRomance[UnityEngine.Random.Range(0, dialogoBuenRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
+            dialogos[3] = dialogueManager.dialogoBuenRomance[UnityEngine.Random.Range(0, dialogueManager.dialogoBuenRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
         }
         else
         {
-            dialogos[3] = dialogoMalRomance[UnityEngine.Random.Range(0, dialogoBuenRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
+            dialogos[3] = dialogueManager.dialogoMalRomance[UnityEngine.Random.Range(0, dialogueManager.dialogoBuenRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
         }
 
-        dialogos[4] = dialogoResultado[UnityEngine.Random.Range(0, dialogoResultado.Length)];
-
-    }
-
-    public void UpdateFinalWeekTexts(int playerID)
-    {
-        if (playerID == 0)
-        {
-            print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
-            if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
-            else winnerName_text.SetText("GEMMA!");
-        }
-        else
-        {
-            print($"menor? {GameManager.Instance.playerResult < GameManager.Instance.playerResultRival}");
-            if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
-            else winnerName_text.SetText("GEMMA!");
-        }
 
         if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
         {
+            if (playerID == 0)
+            {
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "GEMMA");
+            }
+            else
+            {
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "EMMA");
+            }
+
             GameManager.Instance.inheritance = 10;
+            inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
+        }
+        else if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival)
+        {
+            if (playerID == 0)
+            {
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "EMMA");
+            }
+            else
+            {
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "GEMMA");
+            }
+            GameManager.Instance.inheritance = 2;
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
         else
         {
-            GameManager.Instance.inheritance = 2;
+            dialogos[4] = dialogueManager.dialogoResultadoEmpate[UnityEngine.Random.Range(0, dialogueManager.dialogoResultadoEmpate.Length)];
+            
+            GameManager.Instance.inheritance = 4;
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
+
+        currentDialogue = 0;
+        WriteDialogue_UI();
     }
+
+    public void WriteDialogue_UI()
+    {
+        if (currentDialogue <= 4)
+        {
+            dialogoText.SetText(dialogos[currentDialogue]);
+            currentDialogue++;
+        }
+        else
+        {
+            dialogoUI.SetActive(false);
+            inheritance_UI.SetActive(true);
+        }
+    }
+
+    #endregion
+
+    //public void UpdateFinalWeekTexts(int playerID)
+    //{
+    //    if (playerID == 0)
+    //    {
+    //        print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
+    //        if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
+    //        else winnerName_text.SetText("GEMMA!");
+    //    }
+    //    else
+    //    {
+    //        print($"menor? {GameManager.Instance.playerResult < GameManager.Instance.playerResultRival}");
+    //        if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
+    //        else winnerName_text.SetText("GEMMA!");
+    //    }
+
+    //    if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
+    //    {
+    //        GameManager.Instance.inheritance = 10;
+    //        inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
+    //    }
+    //    else
+    //    {
+    //        GameManager.Instance.inheritance = 2;
+    //        inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
+    //    }
+    //}
 
     public void FinishGame()
     {

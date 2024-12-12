@@ -108,6 +108,7 @@ public class Estanteria : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.PlaySound("ButtonFailed");
             canvasAlert.SetActive(false);
             product_UI.emptyProduct = false;
             UIManager.Instance.alertTelephone.SetActive(false);

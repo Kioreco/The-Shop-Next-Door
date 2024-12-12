@@ -193,7 +193,7 @@ public class HireApp : MonoBehaviour
 
     public void ChargeWorkerPrice()
     {
-        if (workersHired[0] != null) { GameManager.Instance.dineroJugador -= workersHired[0].salary; }
+        if (workersHired[0] != null) { GameManager.Instance.dineroJugador -= workersHired[0].salary; UIManager.Instance.UpdatePlayerMoney_UI(); }
     }
 
 

@@ -82,6 +82,7 @@ public class TelephoneController : MonoBehaviour
 
     public void HomeButton()
     {
+        AudioManager.Instance.PlaySound("CloseApp");
         if (LockedScreen.activeInHierarchy)
         {
             LeanTween.moveY(MiniTelephone.GetComponent<RectTransform>(), 40.0f, 0.5f).setEaseInOutBounce();
@@ -134,6 +135,7 @@ public class TelephoneController : MonoBehaviour
 
     public void OpenApp(GameObject app)
     {
+        AudioManager.Instance.PlaySound("OpenApp");
         app.SetActive(true);
         if (LockedScreen.activeInHierarchy) { LockedScreen.SetActive(false); }
         if (CalendarApp.activeInHierarchy) { EmptyCloseButton.SetActive(false); }
@@ -176,6 +178,9 @@ public class TelephoneController : MonoBehaviour
     {
         Warehouse.SetActive(false);
         EmptyCloseButton.SetActive(true);
+
+        LeanTween.moveY(MiniTelephone.GetComponent<RectTransform>(), 40.0f, 0.5f).setEaseInOutBounce();
+        LeanTween.moveY(gameObject.GetComponent<RectTransform>(), -1120.0f, 0.5f).setEaseInOutBounce();
 
         MiniTelephone.SetActive(true);
         gameObject.SetActive(false);

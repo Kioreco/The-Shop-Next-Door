@@ -156,7 +156,15 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: 58ad5efda902c0748a2dbeaa6e0246ce, type: 3}
   - {fileID: 8300000, guid: 495e3c9900ae8a247a54549a4b06c6e7, type: 3}
-  effectClips: []
+  effectClips:
+  - {fileID: 8300000, guid: 8dfe5340eb3834643aa6d77b532f33f5, type: 3}
+  - {fileID: 8300000, guid: 30e56d6c0b30005489973d456fa253a1, type: 3}
+  - {fileID: 8300000, guid: 6884ee263be014e46a6ea55dbaa1180c, type: 3}
+  - {fileID: 8300000, guid: 5e90019fe00e3a844a87861c0c455f0c, type: 3}
+  - {fileID: 8300000, guid: 318673b3974d76e4eba8bb3df5672f67, type: 3}
+  - {fileID: 8300000, guid: b331b660417f01a418f194ae28c9846c, type: 3}
+  - {fileID: 8300000, guid: bc8489bf5dd4995429d48dacb8998b80, type: 3}
+  - {fileID: 8300000, guid: cac58a693ba8b504fa9be3eb044a90e5, type: 3}
 --- !u!4 &12351887
 Transform:
   m_ObjectHideFlags: 0
@@ -3054,10 +3062,10 @@ AudioSource:
   m_GameObject: {fileID: 330112549}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 197c0ca7dd400284a8ecc3e4a0f98740,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2adce36f1e015ca47a00098eaf52e025,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6022,6 +6030,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &773101389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8901,6 +8921,18 @@ MonoBehaviour:
           m_StringArgument: 1 - MenuInicio
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1075309384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9401,9 +9433,9 @@ MonoBehaviour:
   player2Reputation: {fileID: 0}
   redColor: {r: 0.8, g: 0.02, b: 0.27, a: 1}
   whiteTextColor: {r: 0.74, g: 0.78, b: 0.78, a: 1}
-  player1Result_text: {fileID: 0}
-  player2Result_text: {fileID: 0}
-  winnerName_text: {fileID: 0}
+  dialogoText: {fileID: 0}
+  dialogoUI: {fileID: 0}
+  inheritance_UI: {fileID: 0}
   inheritance_text: {fileID: 0}
   ButtonDuplicateReward: {fileID: 0}
   OpenSign: {fileID: 0}
@@ -9419,64 +9451,6 @@ MonoBehaviour:
   questionTimer: []
   canChargePlayer: 1
   cajaPlayerPosition: {fileID: 0}
-  dialogoDinero:
-  - "Well, well, well, let\u2019s talk numbers, shall we? After crunching some very
-    telling figures, it\u2019s clear that {winningSister} has been raking it in.
-    Meanwhile, {losingSister}, I hate to say it, but your wallet seems a bit\u2026
-    lighter..."
-  - "Alright, let\u2019s dive into the juicy stuff: the cash flow. {winningSister},
-    you\u2019ve been making it rain, haven\u2019t you? As for {losingSister}, let\u2019s
-    just say your financial forecast is looking a little cloudy"
-  - "Ladies, the financial standings are in, and the crown goes to\u2026 {winningSister}!
-    As for {losingSister}, it looks like it\u2019s time to cut back on the splurges"
-  - "Money talks, and it\u2019s shouting {winningSister}\u2019s name this week. {losingSister},
-    it seems your profits have taken a little vacation"
-  - "The numbers never lie, and this week they\u2019re singing {winningSister}\u2019s
-    praises. {losingSister}, your bank account, however, might be singing a sadder
-    tune"
-  - "Alright, let\u2019s talk dollars and sense. {winningSister}, you\u2019ve been
-    turning your shop into a money-making machine. And {losingSister}, well\u2026
-    let\u2019s just say we might need to revisit your budgeting strategy"
-  dialogoEntremedias:
-  - "It\u2019s not all about the coins, darlings. I also want to see grace, a well-run
-    shop, and maybe some prospects for a happily-ever-after. Is that too much to
-    ask?"
-  - "Money is just one part of the puzzle, ladies. I\u2019m looking for heart, ambition,
-    and a life filled with joy\u2014and maybe someone to share it with, too"
-  - "You know I don\u2019t only care about the profits. I want a shop that dazzles,
-    a name that shines, and a future full of love and happiness for both of you..."
-  - "Both of you know money isn\u2019t everything to me. I want a thriving business,
-    a glowing reputation, and maybe some wedding bells in the future..."
-  - "You know I want more than just numbers. I\u2019m looking for a beautiful shop,
-    a respected name, and don't you think I would be a marvelous grandma?"
-  dialogoBuenRomance:
-  - Well, it seems one of my daughters has been holding out on me! A little bird
-    told me {sisterName} has a special someone. Care to spill the details later?
-  - "Oh, I\u2019ve heard whispers, {sisterName}. Is it true? Someone has stolen your
-    heart? Do tell me everything later!"
-  - "Don\u2019t think I didn\u2019t notice the glow, {sisterName}. A mother always
-    knows when there\u2019s romance in the air. Who\u2019s the lucky one?"
-  - "Oh, {sisterName}, you\u2019ve been keeping secrets, haven\u2019t you? I heard
-    about your new flame\u2014don\u2019t you think your mother deserves to know everything
-    first?"
-  - "Well, this is unexpected! {sisterName}, I hear you\u2019ve found yourself a
-    partner. Is it true, or is my source trying to get my hopes up for nothing?"
-  - "Oh, {sisterName}, you didn\u2019t think I wouldn\u2019t find out about your
-    new lover, did you? Who is it? Are they charming enough to pass the mother test?"
-  dialogoMalRomance:
-  - Oh, {sisterName}, another week and still no suitor? Should I be worried, or should
-    I talk to my friends' sons and daughters?
-  - Well, I had high hopes, {sisterName}, but it seems romance is not in your stars
-    this week. Do I need to start setting you up myself?
-  - "Oh, {sisterName}, still no one? I\u2019m beginning to think you like making
-    me wait. At this rate, I\u2019ll be knitting scarves instead of baby blankets!"
-  - "I can\u2019t believe I have to say this again, {sisterName}, but the clock is
-    ticking. What\u2019s the excuse this time? No lover at your age is... alarming!"
-  - Still no partner, {sisterName}? What are you doing with your time? I thought
-    I raised you better than this! I want to be a grandma before is to late...
-  dialogoResultado:
-  - 
-  dialogoText: {fileID: 0}
   settingsMainScreen: {fileID: 990476205}
   settingsMusicApp: {fileID: 1611516096}
   settingsTutorialApp: {fileID: 1512458186}
@@ -10199,6 +10173,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1152412723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10447,6 +10433,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1020423845}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11977,6 +11975,18 @@ MonoBehaviour:
           m_StringArgument: 2 - Matchmaking
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1306682555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12404,6 +12414,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1113313944}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15060,6 +15082,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 3 - Shop
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1113313944}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1684916031
