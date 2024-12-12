@@ -631,7 +631,8 @@ Emoción del tacaño cuando la compra es barata:
 
 Emoción del tacaño cuando la compra es cara:
 
-![Tacaño contento](https://github.com/user-attachments/assets/0db42cb1-68da-4c86-8821-9272c5c958cb)
+![Tacaño no contento](https://github.com/user-attachments/assets/73f53670-24d0-4cdd-aee5-67a6513324b9)
+
 
 Emoción del tacaño cuando la compra es muy cara: 
 
@@ -762,7 +763,7 @@ La tienda texturizada:
 
 ![](./ReadmeImgs/TiendaTexturizada.png)
 
-Además, se han creado 3 sets jugables para la tienda. 
+Además, se han creado 8 sets jugables para la tienda. 
 
 Set de Música:
 
@@ -780,6 +781,30 @@ Set de Ropa:
 
 ![](./ReadmeImgs/Ropa.png)
 
+Set de Pinturas:
+
+![](./ReadmeImgs/SetPinturas.png)
+
+Set de Peliculas:
+
+![](./ReadmeImgs/SetPeliculas.png)
+
+Set de Videojuegos:
+
+![](./ReadmeImgs/SetVideojuegos.png)
+
+Set de Libros:
+
+![](./ReadmeImgs/SetLibreria.png)
+
+Adicionalmente, se crearon dos tipos de cajeros, el primero es donde el jugador tendrá que cobrar a los clientes, y otro cajero de autoservicio a modo de balance en caso de que el jugador no pueda cobrar a todos los clientes.
+
+![](./ReadmeImgs/Cajeros.png)
+
+Por último, se crearon asstes para el entorno exterior de la tienda.
+
+![](./ReadmeImgs/AssetsExteriores.png)
+
 ___
 # **8. Interfaces**
 
@@ -793,7 +818,7 @@ El diagrama de flujo entre pantallas y durante una partida quedaría de la sigui
 ___
 ## <a name="_toc180924175"></a>**8.2. Menú de título e inicio de sesión**
 
-Diseños finales para la beta:
+Diseños finales para el menú de inicio:
 
 ![Title_Screen_NoLogo](https://github.com/user-attachments/assets/76324680-c4ae-4136-94d8-fb20b12a884d)
 
@@ -806,9 +831,14 @@ Menú de inicio de sesión:
 ___
 ## <a name="_toc180924176"></a>**8.3. Menú de inicio**
 
-Mejora del dibujado y disposición de elementos para el menú de inicio de la beta: 
+Mejora del dibujado y disposición de elementos para el menú de inicio: 
 
 ![](./ReadmeImgs/PantallaInicio2.jpg)
+
+En este menú, para que el cuadro no quedará vacío, se ha creado una foto en la que se puede ver claramente las personalidades de las hermanas.
+
+![FotoSinCartel](https://github.com/user-attachments/assets/b23e1d81-3de1-44ac-a720-fa2a5575e765)
+
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
 

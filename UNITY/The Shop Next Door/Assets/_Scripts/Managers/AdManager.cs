@@ -18,7 +18,7 @@ public class AdManager : MonoBehaviour
 
     void Start()
     {
-        reward = 10;
+        //reward = 10;
         reward = GameManager.Instance.inheritance;
         videoPlayer.loopPointReached += OnVideoEnd;
     }
