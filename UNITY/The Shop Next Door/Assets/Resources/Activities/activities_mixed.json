@@ -9,17 +9,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
+        0.2,
+        0.7,
         1.0,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.3,
+        0.85,
+        0.0,
+        0.7
       ],
       "romanticProbability": 0.4,
       "friendshipProbability": 0.1,
@@ -38,18 +38,18 @@
         "I became intimate with the modern moms and they gifted me a pricey necklace!"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.8,
+        0.3,
+        0.5,
+        0.85,
+        0.75
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.25,
+        0.8,
+        0.3,
+        0.9,
+        0.78
       ],
       "romanticProbability": 0.1,
       "friendshipProbability": 0.45,
@@ -68,18 +68,18 @@
         "I lifted more weight than the noisy gymbro and make him cry!!!!!!!"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.8,
+        0.4,
+        0.6,
+        0.7,
+        0.7
       ],
       "PersonalStateLuck": [
+        0.79,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.65,
+        0.1,
+        0.45
       ],
       "romanticProbability": 0.18,
       "friendshipProbability": 0.25,
@@ -99,17 +99,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.8,
+        0.86,
+        0.88,
+        0.9
       ],
       "PersonalStateLuck": [
+        0.6,
+        0.4,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.1,
+        0.7
       ],
       "romanticProbability": 0.13,
       "friendshipProbability": 0.9,
@@ -135,9 +135,9 @@
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
+        0.2,
+        0.9,
+        0.3,
         1.0,
         1.0
       ],
@@ -159,17 +159,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
+        0.75,
+        0.43,
         1.0,
         1.0
       ],
       "PersonalStateLuck": [
+        0.8,
+        0.2,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.55,
+        0.9
       ],
       "romanticProbability": 0.55,
       "friendshipProbability": 0.23,
@@ -188,17 +188,17 @@
         "My cute and silly neighbour smelt my cookies and I invited them to stay the night..."
       ],
       "ClimateStateLuck": [
+        0.8,
         1.0,
         1.0,
-        1.0,
-        1.0,
+        0.8,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.05,
+        0.2,
+        0.45,
         1.0
       ],
       "romanticProbability": 0.43,
@@ -218,18 +218,18 @@
         "I got everyone to burn down the dance floor to the beat of Sophie!! I was born to do this!"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.65,
+        0.2,
+        0.4,
+        0.7,
+        0.6
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.4,
+        0.2,
+        0.34,
+        0.3,
+        0.78
       ],
       "romanticProbability": 0.6,
       "friendshipProbability": 0.4,
@@ -248,16 +248,16 @@
         "I feel life is worth living again, everything is in order and so is my life!"
       ],
       "ClimateStateLuck": [
+        0.9,
         1.0,
         1.0,
-        1.0,
-        1.0,
+        0.9,
         1.0
       ],
       "PersonalStateLuck": [
+        0.4,
         1.0,
-        1.0,
-        1.0,
+        0.4,
         1.0,
         1.0
       ],
@@ -278,18 +278,18 @@
         "I realised I have grown old just as my mother, and although she is guilty of part of my pain, I understand her..."
       ],
       "ClimateStateLuck": [
+        0.7,
         1.0,
-        1.0,
-        1.0,
+        0.8,
         1.0,
         1.0
       ],
       "PersonalStateLuck": [
+        0.1,
+        0.05,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.55,
+        0.98
       ],
       "romanticProbability": 0.0,
       "friendshipProbability": 0.7,
@@ -308,15 +308,15 @@
         "'The Lovely Adventures of Paquita and Fernandito' became an internet sensation and they offered me a publishing contract!!"
       ],
       "ClimateStateLuck": [
+        0.78,
         1.0,
-        1.0,
-        1.0,
+        0.68,
         1.0,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
+        0.86,
         1.0,
         1.0,
         1.0
@@ -339,16 +339,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.1,
+        0.4,
+        0.9,
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.5,
+        0.2,
+        0.7,
+        0.25,
         1.0
       ],
       "romanticProbability": 0.57,
@@ -368,18 +368,18 @@
         "I tweeted how much I liked a certain sad singer song, and they replied and asked me on a date! Feeling like Paul Mescal rn..."
       ],
       "ClimateStateLuck": [
+        0.2,
         1.0,
         1.0,
-        1.0,
-        1.0,
+        0.3,
         1.0
       ],
       "PersonalStateLuck": [
+        0.3,
+        0.75,
+        0.1,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.67
       ],
       "romanticProbability": 0.3,
       "friendshipProbability": 0.2,
@@ -398,18 +398,18 @@
         "We all bonded talking and dreaming about Edward Cullen (Edward, if you ever read this, call me up!!)"
       ],
       "ClimateStateLuck": [
+        0.64,
         1.0,
         1.0,
-        1.0,
-        1.0,
+        0.45,
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.45,
+        0.2,
+        0.8,
+        0.55,
+        0.8
       ],
       "romanticProbability": 0.61,
       "friendshipProbability": 0.98,
@@ -429,17 +429,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.75,
+        0.9,
+        0.88,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
+        0.85,
         1.0,
-        1.0,
-        1.0,
-        1.0
+        0.1,
+        0.45
       ],
       "romanticProbability": 0.99,
       "friendshipProbability": 0.59,
@@ -459,16 +459,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.75,
+        0.85,
+        0.95,
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.85,
+        0.35,
+        0.3,
+        0.4,
         1.0
       ],
       "romanticProbability": 0.87,
@@ -489,16 +489,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
+        0.1,
+        0.5,
         1.0,
-        1.0,
-        1.0,
-        1.0
+        0.85
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.55,
+        0.2,
+        0.9,
+        0.1,
         1.0
       ],
       "romanticProbability": 0.1,
@@ -518,7 +518,7 @@
         "I started singing 'I Will Always Love You' and a hot looking person climbed to the stage to sing with me. We even shared microphone... and numbers!"
       ],
       "ClimateStateLuck": [
-        1.0,
+        0.85,
         1.0,
         1.0,
         1.0,
@@ -526,9 +526,9 @@
       ],
       "PersonalStateLuck": [
         1.0,
+        0.75,
         1.0,
-        1.0,
-        1.0,
+        0.15,
         1.0
       ],
       "romanticProbability": 0.98,
@@ -548,17 +548,17 @@
         "They sat me next to the composer and they asked me to be their secret lover for the night... That's not all, because later they asked for my number and promised to call!"
       ],
       "ClimateStateLuck": [
+        0.75,
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.9,
+        0.68,
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.75,
+        0.45,
+        0.78,
+        0.1,
         1.0
       ],
       "romanticProbability": 0.75,
@@ -578,17 +578,17 @@
         "The manager caught me, but when they grabbed my hand I started dancing to distract them... They fell in love with my forbidden steps!"
       ],
       "ClimateStateLuck": [
+        0.8,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.85,
+        0.45,
+        0.9
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.85,
+        0.75,
+        0.65,
+        0.1,
         1.0
       ],
       "romanticProbability": 0.13,
@@ -609,16 +609,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
+        0.05,
+        0.4,
         1.0,
-        1.0,
-        1.0,
-        1.0
+        0.6
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.9,
+        0.1,
+        0.75,
+        0.05,
         1.0
       ],
       "romanticProbability": 0.22,
@@ -645,11 +645,11 @@
         1.0
       ],
       "PersonalStateLuck": [
+        0.8,
+        0.1,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.45,
+        0.85
       ],
       "romanticProbability": 0.21,
       "friendshipProbability": 1.0,
@@ -669,16 +669,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.88,
+        0.85,
+        0.9,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.05,
+        0.45,
+        0.3,
         1.0
       ],
       "romanticProbability": 0.75,
@@ -698,18 +698,18 @@
         "I GOT IN! But that's not all, because they sat me next to the lead actor and at the end of the movie he asked me to be his secret partner! Living the Hollywood Life"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.75,
+        0.85,
+        0.7,
+        0.5,
+        0.65
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.55,
+        0.7,
+        0.85,
+        0.05,
+        0.65
       ],
       "romanticProbability": 0.86,
       "friendshipProbability": 0.44,
@@ -729,16 +729,16 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.9,
+        0.95,
+        0.97,
         1.0
       ],
       "PersonalStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.55,
+        0.1,
+        0.5,
+        0.35,
         1.0
       ],
       "romanticProbability": 0.26,
@@ -758,17 +758,17 @@
         "I watched the Before Sunrise trilogy in one sitting... Best movie ever! Love is walking a city and forgetting planes and trains exist"
       ],
       "ClimateStateLuck": [
+        0.85,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.9,
+        0.95,
+        0.87
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.75,
+        0.65,
+        0.6,
         1.0
       ],
       "romanticProbability": 0.89,
@@ -788,17 +788,17 @@
         "Maybe it was the drink, but I felt shameless enough to send it to a magazine... AND THEY WANTED TO PUBLISH IT!! New York here I come!"
       ],
       "ClimateStateLuck": [
+        0.8,
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.9,
+        0.75,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
         1.0,
         1.0,
-        1.0,
+        0.85,
         1.0
       ],
       "romanticProbability": 0.42,

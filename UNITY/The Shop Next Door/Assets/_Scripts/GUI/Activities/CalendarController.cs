@@ -17,7 +17,6 @@ public class CalendarController : NetworkBehaviour
     [Header("Activities Objects")]
     [SerializeField] private GameObject[] activities_daily = new GameObject[6];
     [SerializeField] public Activity[] activities_selected = new Activity[3];
-    //[SerializeField] public Activity[] activities_selected_BLANK = new Activity[3];
     [SerializeField] private TextMeshProUGUI[] activities_text;
 
     [HideInInspector] public ActivityInfo[] activities_mixed;

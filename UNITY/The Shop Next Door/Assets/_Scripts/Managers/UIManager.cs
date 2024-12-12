@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.IO;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -129,6 +131,8 @@ public class UIManager : MonoBehaviour
     //perceptions:
     public bool canChargePlayer = true;
 
+    
+
 
     public static UIManager Instance { get; private set; }
 
@@ -148,6 +152,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateReputationIngame_UI();
         UpdateAlmacenSpace_UI();
+        UpdateShopName_UI();
 
         gameVolume.profile.TryGet(out colorAdjustments);
         gameVolume.profile.TryGet(out vignette);
@@ -224,6 +229,17 @@ public class UIManager : MonoBehaviour
         RelayManager.Instance.CancelMatch();
     }
 
+    private bool tutorialPlayed = false;
+
+    public void PlayButton()
+    {
+        if (!tutorialPlayed) { OpenCloseModal(tutorialLayout); }
+        else
+        {
+            ChangeScene("2 - Matchmaking");
+        }
+    }
+
     public void WriteCashRegister(int numero)
     {
         numeros[0] = numeros[1];
@@ -247,6 +263,7 @@ public class UIManager : MonoBehaviour
     public void OpenCloseModal(GameObject modal)
     {
         modal.SetActive(!modal.activeSelf);
+        if (modal.name == "Tutorial") { tutorialPlayed = true; }
     }
 
     int currentSlide = 0;
@@ -285,7 +302,7 @@ public class UIManager : MonoBehaviour
             OpenSign.SetActive(true);
             LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.8f).setEaseInOutBounce();
             LeanTween.moveY(OpenSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
-            AudioManager.Instance.PlaySound("TiendaPorCerrar");
+            AudioManager.Instance.PlaySound("TiendaAbriendo");
             StartCoroutine(DelayDisableObject(6f, OpenSign));
         }
         else 
@@ -325,7 +342,6 @@ public class UIManager : MonoBehaviour
     #region Money Ingame
     public void UpdatePlayerMoney_UI()
     {
-        AudioManager.Instance.PlaySound("ExpendingMoney");
         dineroJugador_text.SetText(GameManager.Instance.dineroJugador.ToString("F2"));
         if (GameManager.Instance.dineroJugador < 0) { dineroJugador_text.color = redColor; }
         else { dineroJugador_text.color = whiteTextColor; }
@@ -367,6 +383,11 @@ public class UIManager : MonoBehaviour
         else { inventory_text.color = whiteTextColor; }
     }
 
+    private void UpdateShopName_UI()
+    {
+        nombreTienda_text.SetText(AWSManager.Instance.username);
+    }
+
     public void UpdateReputationIngame_UI()
     {
         reputation_Bar.fillAmount = Mathf.InverseLerp(0, 100, GameManager.Instance.reputation);
@@ -378,9 +399,8 @@ public class UIManager : MonoBehaviour
     {
         //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
         //GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
-        GameManager.Instance.workerGoToPay(null, true);
-        AudioManager.Instance.PlaySound("PulsarBotonInGame");
-        if (canChargePlayer) { print("nadie cobrando"); GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true); }
+        //GameManager.Instance.workerGoToPay(null, true);
+        if (!GameManager.Instance.WorkerHire) GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
     }
 
     public void UpdatePayingBar_UI()
@@ -418,7 +438,6 @@ public class UIManager : MonoBehaviour
         {
             imageToFill.fillAmount = 0f;
             GameManager.Instance.isAnyWorkerInPayBox = false;
-            canChargePlayer = false;
         }
         if (isRubbish)
         {
@@ -524,7 +543,6 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-
     #region Dialogos Final
 
     public void CreateDialogosEnd(int playerID)
@@ -544,12 +562,12 @@ public class UIManager : MonoBehaviour
         {
             if (playerID == 0)
             {
-                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogoDinero.Length)].Replace("{winningSister}", "Gemma");
                 dialogos[1].Replace("{losingSister}", "Emma");
             }
             else
             {
-                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogoDinero.Length)].Replace("{winningSister}", "Emma");
                 dialogos[1].Replace("{losingSister}", "Gemma");
             }
         }
@@ -557,12 +575,12 @@ public class UIManager : MonoBehaviour
         {
             if (playerID == 0)
             {
-                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Emma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogoDinero.Length)].Replace("{winningSister}", "Emma");
                 dialogos[1].Replace("{losingSister}", "Gemma");
             }
             else
             {
-                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogosBienvenida.Length)].Replace("{winningSister}", "Gemma");
+                dialogos[1] = dialogueManager.dialogoDinero[UnityEngine.Random.Range(0, dialogueManager.dialogoDinero.Length)].Replace("{winningSister}", "Gemma");
                 dialogos[1].Replace("{losingSister}", "Emma");
             }
         }
@@ -575,7 +593,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            dialogos[3] = dialogueManager.dialogoMalRomance[UnityEngine.Random.Range(0, dialogueManager.dialogoBuenRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
+            dialogos[3] = dialogueManager.dialogoMalRomance[UnityEngine.Random.Range(0, dialogueManager.dialogoMalRomance.Length)].Replace("{sisterName}", nombreHermanaJugador);
         }
 
 
@@ -583,11 +601,11 @@ public class UIManager : MonoBehaviour
         {
             if (playerID == 0)
             {
-                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "GEMMA");
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "<b>GEMMA</b>");
             }
             else
             {
-                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "EMMA");
+                dialogos[4] = dialogueManager.dialogoResultado[UnityEngine.Random.Range(0, dialogueManager.dialogoResultado.Length)].Replace("{winningSister}", "<b>EMMA</b>");
             }
 
             GameManager.Instance.inheritance = 10;
@@ -634,32 +652,6 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    //public void UpdateFinalWeekTexts(int playerID)
-    //{
-    //    if (playerID == 0)
-    //    {
-    //        print($"mayor? {GameManager.Instance.playerResult > GameManager.Instance.playerResultRival}");
-    //        if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
-    //        else winnerName_text.SetText("GEMMA!");
-    //    }
-    //    else
-    //    {
-    //        print($"menor? {GameManager.Instance.playerResult < GameManager.Instance.playerResultRival}");
-    //        if (GameManager.Instance.playerResult < GameManager.Instance.playerResultRival) winnerName_text.SetText("EMMA!");
-    //        else winnerName_text.SetText("GEMMA!");
-    //    }
-
-    //    if (GameManager.Instance.playerResult > GameManager.Instance.playerResultRival)
-    //    {
-    //        GameManager.Instance.inheritance = 10;
-    //        inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
-    //    }
-    //    else
-    //    {
-    //        GameManager.Instance.inheritance = 2;
-    //        inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
-    //    }
-    //}
 
     public void FinishGame()
     {
@@ -752,6 +744,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] musicVolumes;
     [SerializeField] private GameObject[] soundVolumes;
 
+    [SerializeField] private AudioMixer musicMixer;
+    [SerializeField] private AudioMixer soundsMixer;
+
 
     public void OpenSettingsApp(GameObject app)
     {
@@ -767,9 +762,11 @@ public class UIManager : MonoBehaviour
         if (settingsCameraApp.activeInHierarchy) { settingsCameraApp.SetActive(false); }
     }
 
-    public void ChangeMusicVolume()
+    public void ChangeMusicVolume(float sliderValue)
     {
-        if (musicSlider.value == 0)
+        musicMixer.SetFloat("VolumeMusic", Mathf.Log10(sliderValue) * 20);
+
+        if (musicSlider.value == 0.0001)
         {
             if (!musicVolumes[0].activeInHierarchy) { musicVolumes[0].SetActive(true); }
             if (musicVolumes[1].activeInHierarchy) { musicVolumes[1].SetActive(false); }
@@ -787,9 +784,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ChangeSoundVolume()
+    public void ChangeSoundVolume(float sliderValue)
     {
-        if (soundSlider.value == 0)
+        soundsMixer.SetFloat("VolumeEffects", Mathf.Log10(sliderValue) * 20);
+
+        if (soundSlider.value == 0.0001)
         {
             if (!soundVolumes[0].activeInHierarchy) { soundVolumes[0].SetActive(true); }
             if (soundVolumes[1].activeInHierarchy) { soundVolumes[1].SetActive(false); }
@@ -805,6 +804,11 @@ public class UIManager : MonoBehaviour
             if (soundVolumes[1].activeInHierarchy) { soundVolumes[1].SetActive(false); }
             if (!soundVolumes[2].activeInHierarchy) { soundVolumes[2].SetActive(true); }
         }
+    }
+
+    public void ChangeCameraSensibility(float sliderValue)
+    {
+        sliderValue = Mathf.Clamp01(sliderValue);
     }
 
     #endregion

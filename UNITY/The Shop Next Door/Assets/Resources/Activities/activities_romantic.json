@@ -8,18 +8,18 @@
         "A very cute person stayed all night by my side and we went to talk to a more intimate place about life and the stars... Life sometimes is like a movie!"
       ],
       "ClimateStateLuck": [
+        0.65,
+        0.8,
+        0.6,
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.7
       ],
       "PersonalStateLuck": [
         1.0,
+        0.1,
         1.0,
-        1.0,
-        1.0,
-        1.0
+        0.05,
+        0.7
       ],
       "romanticProbability": 0.75,
       "friendshipProbability": 0.85,
@@ -39,17 +39,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.7,
+        0.8,
+        0.9,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.3,
+        0.7,
+        0.05,
+        0.8
       ],
       "romanticProbability": 0.58,
       "friendshipProbability": 0.48,
@@ -68,18 +68,18 @@
         "I was about to slip with my coffee but a very handsome person caught me in the air and they made me company!"
       ],
       "ClimateStateLuck": [
+        0.87,
         1.0,
-        1.0,
-        1.0,
-        1.0,
+        0.8,
+        0.7,
         1.0
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.45,
+        0.78,
+        0.3,
+        0.8
       ],
       "romanticProbability": 0.92,
       "friendshipProbability": 0.53,
@@ -99,17 +99,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.64,
+        0.7,
+        0.8,
+        0.9
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.3,
+        0.87,
+        0.3,
+        0.7
       ],
       "romanticProbability": 0.97,
       "friendshipProbability": 0.66,
@@ -128,18 +128,18 @@
         "I almost burnt the kitchen down! But I was fast and called the firefighters and a handsome and strong one came to help extinguish it and asked me on a date!!"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.6,
+        0.9,
+        0.78,
+        0.67,
+        0.9
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.4,
+        0.65,
+        0.5,
+        0.8
       ],
       "romanticProbability": 0.66,
       "friendshipProbability": 0.52,
@@ -158,18 +158,18 @@
         "I crashed into my high school sweetheart and they confessed they had a crush on me back then!! They are still the most beautiful person I have ever seen!"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.8,
+        0.76,
+        0.6,
+        0.7,
+        0.8
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.6,
+        0.9,
+        0.1,
+        0.78
       ],
       "romanticProbability": 0.37,
       "friendshipProbability": 0.68,
@@ -189,17 +189,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.7,
+        0.4,
+        0.76,
+        0.8
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.34,
+        0.74,
+        0.05,
+        0.89
       ],
       "romanticProbability": 0.76,
       "friendshipProbability": 0.59,
@@ -219,17 +219,17 @@
       ],
       "ClimateStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.3,
+        0.23,
+        0.7,
+        0.87
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.5,
+        0.45,
+        0.1,
+        0.8
       ],
       "romanticProbability": 0.88,
       "friendshipProbability": 0.44,
@@ -248,18 +248,18 @@
         "I was out of breath when my assigned partner looked sculpted by the angels! I assure you that the rest of the afternoon was pure FUEGO"
       ],
       "ClimateStateLuck": [
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.8,
+        0.76,
+        0.4,
+        0.6,
+        0.84
       ],
       "PersonalStateLuck": [
         1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0
+        0.7,
+        0.6,
+        0.05,
+        0.78
       ],
       "romanticProbability": 0.82,
       "friendshipProbability": 0.71,
