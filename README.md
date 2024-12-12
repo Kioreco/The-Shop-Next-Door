@@ -381,11 +381,11 @@ ___
 
 **Cliente básico:**
 
-Entra a la tienda una vez haya hecho la lista de la compra y busca la primera estantería a la que ir. Se acerca a la estantería, coge el elemento y siempre que tenga más elementos que comprar, busca la siguiente estantería a la que ir. Cuando no le queden más productos que comprar se acercará a la caja donde, si hay gente en la caja esperará su turno, si no hay gente, pasará a pagar y se irá de la tienda. Si es su turno en la caja y no tiene quien le atienda, esperará a que alguien venga. Si no tuviera hueco en la cola, independientemente de su estado emocional, se irá de la tienda disminuyendo su felicidad.
+Entra a la tienda con su lista de la compra hecha, busca la primera estantería a la que tiene que ir. Se acerca a la estantería, coge el elemento y siempre que tenga más elementos que comprar, busca la siguiente estantería a la que ir. Cuando no le queden más productos que comprar se acercará a la caja donde, si hay gente en la caja esperará su turno, si no hay gente, esperará a que alguien le atienda y se irá de la tienda. Si es su turno en la caja y no tiene quien le atienda, esperará a que alguien venga. Si no tuviera hueco en la cola, independientemente de su estado emocional, se irá de la tienda disminuyendo su felicidad. 
 
-Si mientras está cogiendo algún elemento de la estantería tiene alguna duda con alguno de los elementos irá a preguntar a alguien. Una vez acabe, seguirá haciendo la tarea por donde la dejó.
+Mientras esté comprando le puede surgir duda de alguno de los productos que va a comprar, cuando esto suceda irá a preguntar al jugador acerca de ese producto. Cuando acabe continuará con la última tarea que estuviera haciendo.
 
-Este cliente tiene un estado emocional compuesto de 2 estados: feliz y enfadado. 
+Otro factor importante es el estado emocional de los clientes: feliz y enfadado.
 
 - **Feliz:** al pagar dejará una propina a los trabajadores. Es su estado inicial.
 - **Enfadado:** una vez llegue a este estado dejará de hacer lo que esté haciendo y se irá por la puerta.
@@ -394,12 +394,13 @@ Sobre la felicidad y el enfado, se dispone de una variable perteneciente al inte
 
 La transición entre ambos viene dada por los siguientes eventos:
 
-- Cuando no hay todas las cantidades que quiere de un producto.
-- La tienda está muy sucia o es ralentizado por las manchas del suelo más de 3 veces.
-- Tiene que esperar mucho en la cola a que venga alguien para atender. En caso de no haber hueco en la cola se irá de la tienda enfadado.
-- Si pasa más que el tiempo de los clientes que tiene delante, se irá enfadando gradualmente, si este llegase a enfadarse, se irá. Si avanza en la cola, esperará un tiempo antes de volver a empezar a enfadarse.
+Sobre estos dos estados se tiene un intervalo de 0-100, empieza con una felicidad de 100, y según se vaya topando con elementos que le enfaden, irá bajando hasta llegar a 0, donde se irá de la tienda independientemente de donde estuviera.
+La transición entre ambos viene dada por los siguientes eventos:
+-	Cuando no hay todas las cantidades que quiere de un producto (-15 felicidad).
+-	La tienda está muy sucia o es ralentizado por las manchas del suelo más de 3 veces (- 3 felicidad).
 
-Se ha elaborado una FSM y, para algunas transiciones se ha hecho una SFSM para favorecer la escalabilidad en un futuro, si se requiriera, del comportamiento básico de un NPC
+
+Se ha elaborado una FSM, para algunas transiciones se ha hecho una SFSM para favorecer la escalabilidad en un futuro. También se usa para las variaciones de este cliente, y así no modificar el código en dichos casos. El estado final pagar, una vez acaba la animación se iría de la tienda.
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.007.png)
 
@@ -407,34 +408,32 @@ ___
 
 **Karen:**
 
-Es la variación 1 del cliente genérico. Tiene el mismo comportamiento básico a excepción de que es mucho más irascible e impulsiva que el resto de los clientes, por lo que tiene menos tolerancia a los sucesos que alteran sus emociones. Además, cuando esto suceda se irá a quejar al trabajador que tenga más cerca en la tienda (nunca al que está cobrando), o al propio jugador, a excepción de cuando esté en la cola y ya haya pagado.
+Es la variación 1 del cliente genérico. Tiene el mismo comportamiento básico a excepción de que es mucho más irascible e impulsiva que el resto de los clientes, por lo que tiene menos tolerancia a los sucesos que alteran sus emociones. Además, cuando esto suceda se irá a quejar al jugador.
 
-Si no hubiera trabajadores contratados y el jugador está cobrando, este se acercará a quejarse igualmente al cajero, aunque no interrumpirá su tarea.
+Si llegase a enfadarse por completo, se acercará a cualquier empleado, se quejará una última vez y saldrá de la tienda sin comprar. A excepción de cuando sea la hora de cierre.
 
-Si llegase a enfadarse por completo, se acercará a cualquier empleado, se quejará una última vez y saldrá de la tienda sin comprar.
+Sobre la felicidad y el enfado, funciona igual que en el anterior, a diferencia de la cantidad de enfado: si se topa con una mancha se resta 10, si no tiene todos los productos que tiene 25.
 
-Sobre la felicidad y el enfado, se dispone de una variable perteneciente al intervalo [0, 1], donde 0 es estar feliz y 1 estar enfadado e irse. Irá aumentando 0.10 cada vez, dado que se enfada más rápido que el cliente genérico. 
 
-Estos datos se modificarán atendiendo al comportamiento que esté teniendo el npc, por ejemplo, que tenga demasiada poca tolerancia y no acabe de comprar ningún cliente por esta razón.
-
-Se ha realizado de forma similar al anterior: una SFMS.
+Se ha realizado una SFMS. Al igual que en el anterior, el estado final pagar, una vez acaba la animación se iría de la tienda.
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.008.png)
 
 ___
 **Tacaño:**
 
-Es la variación 2 del cliente genérico. Este entra a la tienda, va a estanterías aleatorias cogiendo elementos, también aleatorios y cuando se canse, pagará y se irá de la tienda. Se enfadará únicamente con el dinero en la caja, el resto de los eventos (tienda sucia, esperar en la cola…) no le enfadan, a excepción de si no tiene hueco en la cola.
+Es la variación 2 del cliente genérico. Este entra a la tienda, va las estanterías de los productos a coger elementos, pero con un número aleatorio, cuando acabe, pagará y se irá de la tienda. Se enfadará únicamente con el dinero en la caja, el resto de los eventos (tienda sucia, esperar en la cola…) no le enfadan, a excepción de si no tiene hueco en la cola.
 
 Tiene un presupuesto establecido, y su reacción en la caja dependerá de cuánto se pase de ese presupuesto:
+
 
 - **Se pasa hasta 40€ o cuesta menos de su presupuesto establecido:** se va feliz de la tienda. Si cuesta menos de su presupuesto establecido, dará de propina el sobrante.
 - **Se pasa de 41€ a 80€:** se queja de que las cosas están muy caras, pero paga.
 - **Se pasa más de 81€:** se pone a gritar, se niega a pagar y se va.
 
-En lo que respecta al comportamiento visual se va a comportar muy parecido al cliente normal, ya que la única diferencia es su reacción en la caja. Debido al tipo de demostración elegida al jugador de algunas reacciones o emociones de los clientes, más allá de su apariencia física y que no va a ser tan habitual como el cliente genérico se acompañará de sonido espacializado (de gritos) cuando suceda este comportamiento.
+En lo que respecta al comportamiento visual se va a comportar muy parecido al cliente normal, ya que la única diferencia es su reacción en la caja. 
 
-Se ha implementado un FSM.
+Se ha implementado un FSM. Al igual que en el anterior, el estado final pagar, una vez acaba la animación se iría de la tienda.
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.009.png)
 
@@ -442,49 +441,42 @@ ___
 
 **El niño:**
 
-Entra, se mueve muy rápido, irá moviéndose a pasillos aleatorios manchando todo hasta que el jugador le eche de la tienda. 
+Entra en la tienda siempre que no haya un trabajador contratado, se irá moviendo a posiciones aleatorias y ensuciando la tienda a medida que se va moviendo.
 
-Si pasa cierto tiempo sin que el jugador le eche de la tienda, este irá aumentando la frecuencia de manchas en la tienda y su velocidad hasta que llegue a su límite (minuto y medio) y se vaya. 
+Este se irá de la tienda si un trabajador es contratado o si ya se ha cansado de manchar (ha manchado todo lo que podía manchar). 
 
-La frecuencia de manchas irá aumentando cada 30 segundos que pase en la tienda, pasando de 1 mancha en cada posición, a 1 en la posición y otra de camino, a 1 en la posición y dos en el camino.
+La lógica de manchar se explicará más tarde, pero nunca manchará donde ya haya una mancha.
+
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.010.png)
 
 ___
 **Trabajador:**
 
-El trabajador tiene 3 labores que desarrollar: reponer estanterías, cobrar a los clientes en la caja y limpiar el suelo cuando esté sucio. Cualquiera de sus acciones puede verse interrumpida en cualquier momento por algún cliente, cuando la interrupción termine volverá con la tarea que estaba realizando.
+Desempeñará 3 acciones: limpiar la tienda y atender en la caja, y, si no tiene que realizar ninguna de esas acciones, solo andará por la tienda. La acción más prioritaria es atender la caja.
 
-La acción prioritaria siempre será atender en la caja, donde, si no tiene que hacer ninguna actividad (tienda limpia, nadie en la caja y todo repuesto), se irá a la caja a esperar a que vengan clientes
+Aunque luego se mostrará el diagrama descriptivo, se va a detallar aquí como se ha implementado a este. Se ha realizado un BT, US, FSM para definir su comportamiento, como el BT y la FSM se entienden fácilmente solo viéndolo no se va a profundizar mucho en ellos.
 
-Su comportamiento se basa en una SFSM y HFSM
+Siempre que siga contratado, realizará ese comportamiento, si no, se irá de la tienda.
+Para seleccionar las acciones a desarrollar, se ha implementado el US, este tiene las siguientes variables y como afectan a las acciones.
 
-FSM primer nivel:
+- **Limpiar**: la relación entre ambas variables se decide con una fusión de valor mínimo, de esta manera, como la felicidad nunca será cero, realizar la acción depende del número de manchas, por lo que, si es 0, no se va a contemplar siquiera.
+   - **Manchas totales**: relación directa y creciente. Cuántas más manchas más necesidad de limpiar.
+   - **Felicidad media**: curva lineal, decreciente e inversa. Cuánta más felicidad media haya, menos necesidad de limpiar, y menos prioritario, por ende.
+- **Atender en la caja**: la relación entre las variables se hace de la misma forma del anterior.
+   -	**Número de clientes en la caja**:  relación directa y creciente, a más clientes más necesidad de atender la caja.
+   -	**Felicidad media**: curva línea, creciente y directa. Cuánta más felicidad media más necesidad de atender en la caja.
+-	**Andar**: la variable es una constante que siempre vale 0.1, por lo que cuando no hay ni manchas ni clientes en la cola (la salida de la fusión de estas será 0), realizará esta acción, si no, realizará la acción elegida según los factores de decisión y las variables.
+
+
+Cómo se ha mencionado, se compone de un BT, US y FSM:
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.011.png)
 
-FSM segundo nivel:
-
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.012.png)
 
-La imagen representa la condición obligatoria para poder cambiar a ese estado, pero a la elección del estado, o la permanencia en el mismo, al que se cambie se hará de la siguiente forma:
 
-**En atender caja**: 
-
-- **Si solo se puede hacer la transición a un estado:** y siempre que se cumpla la condición de transición a ese estado, la proporción será de 70% estado actual y 30% el siguiente. De esta manera, se generará un random entre 0 y 1 y la acción será elegida según el número: atender caja [0, 0.7], otra acción [0.8, 1].
-- **Si se puede hacer la transición a ambos estados:** siempre que la transición se pueda hacer, el random será de 0 a 1 con estos intervalos: atender caja [0, 0.6], limpiar [0.7, 0.8], reponer [0.9, 1].
-
-**En el caso de limpiar y reponer:** siguiendo con la norma establecida de que se cumpla la condición para que la transición suceda, tenemos las mismas situaciones:
-
-- **Si solo se puede hacer la transición a un estado:** en el caso de que sea reponer, será una proporción 50 / 50; pero en el caso de la caja será 70 / 30, teniendo mayor prioridad atender la caja.
-- **Si se puede hacer la transición a ambos estados:** la proporción será 10 / 10 / 80, siendo la última atender la caja.
-
-Los valores elegidos podrán ser modificados si una vez implementado se observa un gran balance de las decisiones, como puede ser que esté mucho tiempo cobrando y el resto de las acciones no las haga, o se quede en un estado, aunque no tenga que hacer nada más en ese estado. 
-
-De esta manera, cabría la posibilidad de que desde un estado pudiera cambiar a otro o permanecer en el estado.
-
-La representación visual al jugador de estados de los clientes tales como enfado, felicidad, duda, queja… se mostrará encima de los clientes, como sucede en los sims:
-
+La representación del estado de los clientes (enfado, felicidad, indiferencia, duda, queja, gritos…) se representará encima de los mismos, como sucede en los sims, también se ve completado con los plumbob:
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.013.jpeg)
 
