@@ -836,8 +836,7 @@ Mejora del dibujado y disposición de elementos para el menú de inicio:
 
 En este menú, para que el cuadro no quedará vacío, se ha creado una foto en la que se puede ver claramente las personalidades de las hermanas.
 
-![FotoSinCarteel](https://github.com/user-attachments/assets/fc480be0-cf37-4d5e-ac02-6ec8f1aef250)
-
+![FotoConCartel](https://github.com/user-attachments/assets/65708b0b-34e3-4f3d-8ff0-8d740aee8be8)
 
 ___
 ## <a name="_toc180924177"></a>**8.4. Menú de créditos**
