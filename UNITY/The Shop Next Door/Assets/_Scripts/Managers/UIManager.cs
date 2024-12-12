@@ -152,7 +152,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateReputationIngame_UI();
         UpdateAlmacenSpace_UI();
-        UpdateShopName_UI();
+        //UpdateShopName_UI();
 
         gameVolume.profile.TryGet(out colorAdjustments);
         gameVolume.profile.TryGet(out vignette);
@@ -233,7 +233,18 @@ public class UIManager : MonoBehaviour
 
     public void PlayButton()
     {
-        if (!tutorialPlayed) { OpenCloseModal(tutorialLayout); }
+        //if (!tutorialPlayed) { OpenCloseModal(tutorialLayout); }
+        //else
+        //{
+        //    ChangeScene("2 - Matchmaking");
+        //}
+
+        if (!AWSManager.Instance.tutorialCompleted)
+        {
+            OpenCloseModal(tutorialLayout);
+            AWSManager.Instance.UpdateTutorial();
+            AWSManager.Instance.tutorialCompleted = true;
+        }
         else
         {
             ChangeScene("2 - Matchmaking");
@@ -384,8 +395,16 @@ public class UIManager : MonoBehaviour
         else { inventory_text.color = whiteTextColor; }
     }
 
-    private void UpdateShopName_UI()
+    public void UpdateShopName_UI()
     {
+        if (AWSManager.Instance.username == "" && GameManager.Instance.playerID == 0)
+        {
+            AWSManager.Instance.username = "Gemma";
+        }
+        else if (AWSManager.Instance.username == "" && GameManager.Instance.playerID == 1)
+        {
+            AWSManager.Instance.username = "Emma";
+        }
         nombreTienda_text.SetText(AWSManager.Instance.username);
     }
 

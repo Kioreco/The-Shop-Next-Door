@@ -25,6 +25,7 @@ public class AWSManager : MonoBehaviour
     public int idPlayer;
     public string username;
     public int gemsAmount;
+    public bool tutorialCompleted;
 
     public static AWSManager Instance { get; private set; }
     void Awake()
@@ -54,7 +55,7 @@ public class AWSManager : MonoBehaviour
 
     public void Login()
     {
-        UIManager.Instance.ChangeScene("1 - MenuInicio");
+        //UIManager.Instance.ChangeScene("1 - MenuInicio");
         Application.ExternalCall("loginJs", _usernameLogin.text, _passwordLogin.text);
     }
 
@@ -152,6 +153,15 @@ public class AWSManager : MonoBehaviour
             Debug.LogError($"Failed to parse skins JSON: {e.Message}");
         }
     }
+    public void GetUserTutorial()
+    {
+        Application.ExternalCall("getUserTutorialJs", username);
+    }
+
+    public void UpdateTutorial()
+    {
+        Application.ExternalCall("updateTutorialJs", username);
+    }
 
     public void OnUserSkinsFetched(string skinsJson)
     {
@@ -216,6 +226,7 @@ public class AWSManager : MonoBehaviour
             username = _usernameLogin.text;
             GetGems();
             GetUserId();
+            GetUserTutorial();
             _resultReqLogin.text = "Login successful. Welcome again " + _usernameLogin.text + "!";
             UIManager.Instance.ChangeScene("1 - MenuInicio");
         }
@@ -233,6 +244,16 @@ public class AWSManager : MonoBehaviour
         {
             string gemsString = result.Substring("Player gems:".Length).Trim();
             SetPlayerGems(gemsString);
+        }
+        else if (result.StartsWith("Tutorial status:"))
+        {
+            string tutorialValue = result.Substring("Tutorial status:".Length).Trim();
+            tutorialCompleted = tutorialValue == "1"; 
+            Debug.Log("Tutorial completed: " + tutorialCompleted);
+        }
+        else if (result == "Tutorial updated successfully.")
+        {
+            Debug.Log("Tutorial status updated successfully.");
         }
     }
 

@@ -106,6 +106,8 @@ public class CountdownManager : NetworkBehaviour
     {
         ulong id = NetworkManager.Singleton.LocalClientId;
 
+        UIManager.Instance.UpdateShopName_UI();
+
         readyButton.gameObject.SetActive(false);
 
         if (contReady == 0)

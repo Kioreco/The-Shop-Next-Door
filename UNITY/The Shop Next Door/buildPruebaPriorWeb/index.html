@@ -104,9 +104,36 @@
           console.error('Error buying skin:', error);
           unityInstanceGlobal.SendMessage('AWSManager', 'OnBuySkinComplete', "Error buying skin.");
         });
+    } function getUserTutorialJs(username) {
+      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/getUserTutorial/' + username, {
+        headers: {
+          'Origin': window.location.href
+        }
+      })
+        .then(response => response.text())
+        .then(data => {
+          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+        })
+        .catch(error => {
+          console.error('Error fetching tutorial status:', error);
+          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error fetching tutorial status.");
+        });
+    } function updateTutorialJs(username) {
+      fetch('https://corsproxy.io/?url=http://theshopnextdoor-v9-env.eba-28cekgru.eu-west-3.elasticbeanstalk.com/updateTutorial/' + username, {
+        headers: {
+          'Origin': window.location.href
+        }
+      })
+        .then(response => response.text())
+        .then(data => {
+          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', data.trim());
+        })
+        .catch(error => {
+          console.error('Error updating tutorial:', error);
+          unityInstanceGlobal.SendMessage('AWSManager', 'OnJsHttpFuncComplete', "Error updating tutorial.");
+        });
     }
   </script>
-
 </head>
 
 <body>
@@ -166,7 +193,7 @@
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Kioreco",
       productName: "The Shop Next Door",
-      productVersion: "0.8.0",
+      productVersion: "1.0.0",
       showBanner: unityShowBanner,
     };
 
