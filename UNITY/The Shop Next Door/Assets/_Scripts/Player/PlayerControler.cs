@@ -17,7 +17,7 @@ public class PlayerControler : NetworkBehaviour
     public bool isInitialized = false;
 
     [Header("Camera Movement")]
-    float moveSpeed = 4f;
+    public float moveSpeed = 2f;
     Vector3 lastPosition;
     bool isDrag = false;
     Vector3 moveDir;

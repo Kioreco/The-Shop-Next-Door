@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
     //perceptions:
     public bool canChargePlayer = true;
 
-    
+
 
 
     public static UIManager Instance { get; private set; }
@@ -199,7 +199,7 @@ public class UIManager : MonoBehaviour
         if (canvas == GameObject.FindWithTag("Shop"))
         {
             gemsAmountShop.text = AWSManager.Instance.gemsAmount.ToString();
-        } 
+        }
         else if (canvas == GameObject.FindWithTag("Account"))
         {
             gemsAmountAccount.text = AWSManager.Instance.gemsAmount.ToString();
@@ -309,14 +309,14 @@ public class UIManager : MonoBehaviour
     public void ChangeSignShop(bool shopOpen)
     {
         if (shopOpen)
-        { 
+        {
             OpenSign.SetActive(true);
-            LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.8f).setEaseInOutBounce();
+            LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.8f).setEaseInOutBounce();
             LeanTween.moveY(OpenSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
             AudioManager.Instance.PlaySound("TiendaPorCerrar");
             StartCoroutine(DelayDisableObject(6f, OpenSign));
         }
-        else 
+        else
         {
             ClosedSign.SetActive(true);
             LeanTween.scale(ClosedSign.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.8f).setEaseInOutBounce();
@@ -361,14 +361,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdateNewMoney_UI(float money, bool increase)
     {
-        if (increase) 
+        if (increase)
         {
             newMoney_text.color = greenColor;
             newMoney_text.SetText("+" + money.ToString("F2"));
             AudioManager.Instance.PlaySound("ClientsPaying");
         }
-        else 
-        { 
+        else
+        {
             newMoney_text.color = redColor;
             newMoney_text.SetText("-" + money.ToString("F2"));
             AudioManager.Instance.PlaySound("ExpendingMoney");
@@ -441,14 +441,14 @@ public class UIManager : MonoBehaviour
     public IEnumerator RellenarImagen(Image imageToFill, float timeToFill, bool isCajero, bool isRubbish, RubbishController rubbish, bool isNene)
     {
         float tiempoTranscurrido = 0f;
-        if(imageToFill!=null) imageToFill.fillAmount = 0;
+        if (imageToFill != null) imageToFill.fillAmount = 0;
 
         while (tiempoTranscurrido < timeToFill)
         {
             tiempoTranscurrido += Time.deltaTime;
 
             float progreso = tiempoTranscurrido / timeToFill;
-            if (imageToFill != null)  imageToFill.fillAmount = progreso;
+            if (imageToFill != null) imageToFill.fillAmount = progreso;
 
             yield return null;
         }
@@ -469,7 +469,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 print("destroying");
-                if(rubbish.isActiveAndEnabled) Destroy(rubbish.gameObject);
+                if (rubbish.isActiveAndEnabled) Destroy(rubbish.gameObject);
                 GameManager.Instance._player.enableMovement(false);
             }
         }
@@ -651,7 +651,7 @@ public class UIManager : MonoBehaviour
         else
         {
             dialogos[4] = dialogueManager.dialogoResultadoEmpate[UnityEngine.Random.Range(0, dialogueManager.dialogoResultadoEmpate.Length)];
-            
+
             GameManager.Instance.inheritance = 4;
             inheritance_text.SetText(GameManager.Instance.inheritance.ToString());
         }
@@ -832,7 +832,23 @@ public class UIManager : MonoBehaviour
 
     public void ChangeCameraSensibility(float sliderValue)
     {
+        //print($" vakir: {sliderValue}");
         sliderValue = Mathf.Clamp01(sliderValue);
+        if (sliderValue < 0.5f)
+        {
+            //print("2");
+            GameManager.Instance._player.moveSpeed = 2;
+        }
+        else if (sliderValue >= 0.5f && sliderValue <= 0.8f)
+        {
+            //print("4");
+            GameManager.Instance._player.moveSpeed = 4;
+        }
+        else
+        {
+            //print("6");
+            GameManager.Instance._player.moveSpeed = 6;
+        }
     }
 
     #endregion
