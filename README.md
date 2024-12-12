@@ -402,7 +402,7 @@ La transición entre ambos viene dada por los siguientes eventos:
 
 Se ha elaborado una FSM, para algunas transiciones se ha hecho una SFSM para favorecer la escalabilidad en un futuro. También se usa para las variaciones de este cliente, y así no modificar el código en dichos casos. El estado final pagar, una vez acaba la animación se iría de la tienda.
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.007.png)
+![](./ReadmeImgs/diagramaClienteGenerico.png)
 
 ___
 
@@ -417,7 +417,7 @@ Sobre la felicidad y el enfado, funciona igual que en el anterior, a diferencia 
 
 Se ha realizado una SFMS. Al igual que en el anterior, el estado final pagar, una vez acaba la animación se iría de la tienda.
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.008.png)
+![](./ReadmeImgs/diagrama karen.png)
 
 ___
 **Tacaño:**
@@ -435,7 +435,7 @@ En lo que respecta al comportamiento visual se va a comportar muy parecido al cl
 
 Se ha implementado un FSM. Al igual que en el anterior, el estado final pagar, una vez acaba la animación se iría de la tienda.
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.009.png)
+![](./ReadmeImgs/diagrama tacanio.png)
 
 ___
 
@@ -448,8 +448,7 @@ Este se irá de la tienda si un trabajador es contratado o si ya se ha cansado d
 La lógica de manchar se explicará más tarde, pero nunca manchará donde ya haya una mancha.
 
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.010.png)
-
+![](./ReadmeImgs/diagrama nene.png)
 ___
 **Trabajador:**
 
@@ -471,10 +470,10 @@ Para seleccionar las acciones a desarrollar, se ha implementado el US, este tien
 
 Cómo se ha mencionado, se compone de un BT, US y FSM:
 
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.011.png)
-
-![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.012.png)
-
+![](./ReadmeImgs/diagrama trabajador 1.png)
+![](./ReadmeImgs/diagrama trabajador 2.png)
+![](./ReadmeImgs/diagrama trabajador 3.png)
+![](./ReadmeImgs/diagrama trabajador 4.png)
 
 La representación del estado de los clientes (enfado, felicidad, indiferencia, duda, queja, gritos…) se representará encima de los mismos, como sucede en los sims, también se ve completado con los plumbob:
 
