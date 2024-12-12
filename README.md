@@ -631,7 +631,8 @@ Emoción del tacaño cuando la compra es barata:
 
 Emoción del tacaño cuando la compra es cara:
 
-![Tacaño contento](https://github.com/user-attachments/assets/0db42cb1-68da-4c86-8821-9272c5c958cb)
+![Tacaño no contento](https://github.com/user-attachments/assets/73f53670-24d0-4cdd-aee5-67a6513324b9)
+
 
 Emoción del tacaño cuando la compra es muy cara: 
 
