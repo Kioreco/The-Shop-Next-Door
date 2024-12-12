@@ -152,7 +152,8 @@ public class HireApp : MonoBehaviour
             UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chico
-            GameManager.Instance.worker.SetActive(true);
+            GameManager.Instance.Hire(false);
+            //GameManager.Instance.worker.SetActive(true);
         }
         else
         {
@@ -164,7 +165,8 @@ public class HireApp : MonoBehaviour
             UIManager.Instance.UpdatePlayerMoney_UI();
 
             //Instanciar trabajador chica
-            GameManager.Instance.worker.SetActive(true);
+            //GameManager.Instance.worker.SetActive(true);
+            GameManager.Instance.Hire(true);
         }
 
         hireButton.interactable = false;
@@ -173,8 +175,11 @@ public class HireApp : MonoBehaviour
 
         hiredWorkers++;
         GameManager.Instance.WorkerHire = true;
-        GameManager.Instance.worker.GetComponent<WorkerBehaviour>().enabled = true;
+        
+        //GameManager.Instance.worker.GetComponent<WorkerBehaviour>().enabled = true;
         //GameManager.Instance.worker.GetComponent<WorkerBehaviour>().sigueContratado = true;
+
+        //notificar al niño que se ha contratado a alguien
         GameObject nene = GameObject.FindWithTag("Nene");
         if (nene != null) nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = false;
     }

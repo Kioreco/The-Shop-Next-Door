@@ -94,7 +94,7 @@ public class WorkerBehaviour : BehaviourRunner
 
         FunctionalAction BuscarMancha_action = new FunctionalAction();
         BuscarMancha_action.onStarted = StartLimpiar;
-        BuscarMancha_action.onUpdated = UpdateMoving;
+        BuscarMancha_action.onUpdated = UpdateMovingLimpiar;
         State BuscarMancha = FSM_Limpiar.CreateState(BuscarMancha_action);
 
         FunctionalAction Limpiar_1_action = new FunctionalAction();
@@ -156,18 +156,15 @@ public class WorkerBehaviour : BehaviourRunner
     private Status IrseUpdate()
     {
         //print("yendome");
-        if (GetComponent<NavMeshAgent>().remainingDistance == 0)
-        //if (Vector3.Distance(gameObject.transform.position, currentDestination) < 0.5f)
+        if (Vector3.Distance(gameObject.transform.position, currentDestination) < 0.5f)
         {
             print("en la salida");
-            GameManager.Instance.Fire(gameObject);
+            GameManager.Instance.Fire();
             //Destroy(gameObject);
-            if(isActiveAndEnabled) return Status.Success;
-        } /*? Status.Success : Status.Running;*/
+            return Status.Success;
+        }
         return Status.Running;
     }
-
-    
 
     private void InicializarExtremos()
     {
@@ -200,7 +197,6 @@ public class WorkerBehaviour : BehaviourRunner
         currentDestination = calculateRandomPosition();
         GetComponent<NavMeshAgent>().SetDestination(currentDestination);
     }
-
     public Vector3 calculateRandomPosition()
     {
         //print("calculando posicion");
@@ -214,7 +210,6 @@ public class WorkerBehaviour : BehaviourRunner
         }
         return position;
     }
-
     public Status AndarUpdate()
     {
         if (Vector3.Distance(gameObject.transform.position, currentDestination) < 0.6f)
@@ -227,13 +222,19 @@ public class WorkerBehaviour : BehaviourRunner
             return Status.Running;
         }
     }
-
     public Status LimpiarUpdate()
     {
         print("limpiar update");
+        GetComponent<Animator>().SetTrigger("isCleaning");
         //StartCoroutine(delayMancha(1f));
-        if (!manchaActual.isNene) manchaActual.Destruir();
-        else Destroy(manchaActual.gameObject);
+        if (!manchaActual.isNene)
+        {
+            manchaActual.Destruir();
+        }
+        else
+        {
+            Destroy(manchaActual.gameObject);
+        }
         return Status.Success;
     }
     public void StartLimpiar()
@@ -248,10 +249,15 @@ public class WorkerBehaviour : BehaviourRunner
     }
     private Status UpdateMoving()
     {
-        return Vector3.Distance(gameObject.transform.position, currentDestination) < 0.5f ? Status.Success : Status.Running;
+        return Vector3.Distance(gameObject.transform.position, currentDestination) <= 0.7f ? Status.Success : Status.Running;
         //return GetComponent<NavMeshAgent>().remainingDistance < 0.5f ? Status.Success : Status.Running;
     }
-
+    private Status UpdateMovingLimpiar()
+    {
+        //print($"remaining distance? {Vector3.Distance(gameObject.transform.position, currentDestination)}");
+        return Vector3.Distance(gameObject.transform.position, currentDestination) <= 2f ? Status.Success : Status.Running;
+        //return GetComponent<NavMeshAgent>().remainingDistance < 0.5f ? Status.Success : Status.Running;
+    }
     public Status CobrarUpdate()
     {
         //print("cobrar update");
@@ -266,7 +272,6 @@ public class WorkerBehaviour : BehaviourRunner
         }
         return Status.Running;
     }
-
     public void StartCobrar()
     {
         print($"cobrar: puede cobrar? :{canCharge}");
@@ -276,7 +281,6 @@ public class WorkerBehaviour : BehaviourRunner
             clienteCaja.setWorkerInPay(true);
         }
     }
-
     public void StartAtender()
     {
         print("start atender");
@@ -295,7 +299,7 @@ public class WorkerBehaviour : BehaviourRunner
             currentDestination = GameManager.Instance.cajaPositionP2.position;
             clienteCaja = TiendaManager.Instance.npcPayQueueP2.First();
         }
-        print($"peude cobrar: {canCharge}");
+        print($"puede cobrar: {canCharge}");
         
         if (canCharge)
         {

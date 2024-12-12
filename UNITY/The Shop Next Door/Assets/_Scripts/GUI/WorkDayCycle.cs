@@ -9,7 +9,7 @@ public class WorkDayCycle : MonoBehaviour
     private int totalDays = 4;
     public string[] dayNames = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
 
-    private float realTimePerDay = 90f;    // TIEMPO POR DÍA -----> 240  ---- 180
+    private float realTimePerDay = 60f;    // TIEMPO POR DÍA -----> 240  ---- 180
     private float realTimePerNight = 15f;    // TIEMPO POR NOCHE -----> 15 segundos
 
     private float gameStartTime = 9f;       // HORA DE ENTRAR A LA TIENDA
@@ -124,7 +124,7 @@ public class WorkDayCycle : MonoBehaviour
         if (gameTime >= 14.75f && !eventLanzadoTenMinutes)
         {
             //print("quedan 10 minutos");
-            GameManager.Instance.nene.GetComponent<NeneBTBehaviour>().sigueEnLaTienda = false;
+            GameManager.Instance.nene[0].GetComponent<NeneBTBehaviour>().sigueEnLaTienda = false;
             UIManager.Instance.MessageAlert(2);
             UIManager.Instance.ChangeSignShop(false);
             eventLanzadoTenMinutes = true;

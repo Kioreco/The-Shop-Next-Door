@@ -62,10 +62,20 @@ public class Pay : AStateNPC
 
         if (lastSeek >= secondsToSeek)
         {
+
             contexto.GetGameObject().transform.LookAt(contexto.GetGameObject().transform.position + 
                                     GameManager.Instance.activeCamera.transform.rotation * Vector3.forward, 
                                     GameManager.Instance.activeCamera.transform.rotation * Vector3.up);
             contexto.GetAnimator().SetTrigger("pay");
+            if (!GameManager.Instance.WorkerIsWoman & GameManager.Instance.WorkerHire)
+            {
+                GameManager.Instance.workersMen[0].GetComponent<Animator>().SetTrigger("isPaying");
+            }
+            else if (GameManager.Instance.WorkerIsWoman & GameManager.Instance.WorkerHire)
+            {
+                GameManager.Instance.workersWoman[0].GetComponent<Animator>().SetTrigger("isPaying");
+            }
+
             if (contexto.getWorkerInPay()) contexto.setFinishPayWorker(true);
 
             if (contexto.getTiendaManager().ID == 0 && contexto.getTiendaManager().npcPayQueueP1.Count == 0) UIManager.Instance.cajero_Canvas.SetActive(false);

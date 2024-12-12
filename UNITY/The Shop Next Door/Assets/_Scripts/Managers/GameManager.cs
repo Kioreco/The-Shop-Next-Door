@@ -57,9 +57,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> rubbishList = new List<GameObject>();
 
     [Header("Worker")]
-    public GameObject worker;
+    public List<GameObject> workersMen = new List<GameObject>();
+    public List<GameObject> workersWoman = new List<GameObject>();
     public bool WorkerHire = false;
-    public GameObject nene;
+    public bool WorkerIsWoman = false;
+    public List<GameObject> nene = new List<GameObject>();
     public static GameManager Instance { get; private set; }
     void Awake()
     {
@@ -144,24 +146,72 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void Fire(GameObject worker)
+    public void Fire()
     {
         print("desactivando trabajador");
-        worker.GetComponent<WorkerBehaviour>().enabled = false;
-        worker.SetActive(false);
+        //worker.GetComponent<WorkerBehaviour>().enabled = false;
+        //worker.SetActive(false);
+        if (!WorkerIsWoman)
+        {
+            if (workersMen.Count > 0)
+            {
+                workersMen[0].SetActive(false);
+                workersMen.RemoveAt(0);
+            }
+        }
+        else
+        {
+            if (workersWoman.Count > 0)
+            {
+                workersWoman[0].SetActive(false);
+                workersWoman.RemoveAt(0);
+            }
+        }
+    }
+    public void Hire(bool isWomen)
+    {
+        WorkerIsWoman = isWomen;
+        if (!WorkerIsWoman) 
+        {
+            if (workersMen.Count > 0)
+            {
+                workersMen[0].GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                workersMen[0].SetActive(true);
+            }
+        }
+        else
+        {
+            if (workersWoman.Count > 0)
+            {
+                workersWoman[0].GetComponent<WorkerBehaviour>().shopID = TiendaManager.Instance.ID;
+                workersWoman[0].SetActive(true);
+            }
+        }
     }
 
     public void ActivateNene()
     {
         print("activando nene");
-        nene.GetComponent<NeneBTBehaviour>().enabled = true;
-        nene.SetActive(true);
+        if (WorkerHire) return; //alguien contratado
+        else
+        {
+            if(nene.Count > 0)
+            {
+                nene[0].GetComponent<NeneBTBehaviour>().shopID = TiendaManager.Instance.ID;
+                nene[0].SetActive(true);
+            }
+        }
     }    
     public void DesactivateNene()
     {
-        print("desactivando nene");
-        nene.GetComponent<NeneBTBehaviour>().enabled = false;
-        nene.SetActive(false);
+        //print("desactivando nene");
+        if (nene.Count > 0)
+        {
+            nene[0].GetComponent<NeneBTBehaviour>().shopID = TiendaManager.Instance.ID;
+            nene[0].SetActive(false);
+            nene.RemoveAt(0);
+            print("desactivado y removeado");
+        }
     }
     #endregion
 
