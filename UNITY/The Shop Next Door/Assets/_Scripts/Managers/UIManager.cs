@@ -233,13 +233,7 @@ public class UIManager : MonoBehaviour
 
     public void PlayButton()
     {
-        //if (!tutorialPlayed) { OpenCloseModal(tutorialLayout); }
-        //else
-        //{
-        //    ChangeScene("2 - Matchmaking");
-        //}
-
-        if (!AWSManager.Instance.tutorialCompleted)
+        if (!AWSManager.Instance.tutorialCompleted || PlayerPrefs.GetInt("tutorialPlayed") != 1)
         {
             OpenCloseModal(tutorialLayout);
             AWSManager.Instance.UpdateTutorial();
@@ -274,7 +268,12 @@ public class UIManager : MonoBehaviour
     public void OpenCloseModal(GameObject modal)
     {
         modal.SetActive(!modal.activeSelf);
-        if (modal.name == "Tutorial") { tutorialPlayed = true; }
+        if (modal.name == "Tutorial") 
+        { 
+            tutorialPlayed = true;
+            PlayerPrefs.SetInt("tutorialPlayed", 1);
+        }
+        
     }
 
     int currentSlide = 0;
@@ -313,7 +312,7 @@ public class UIManager : MonoBehaviour
             OpenSign.SetActive(true);
             LeanTween.scale(OpenSign.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.8f).setEaseInOutBounce();
             LeanTween.moveY(OpenSign.GetComponent<RectTransform>(), 250f, 0.5f).setEaseInOutBounce();
-            AudioManager.Instance.PlaySound("TiendaPorCerrar");
+            AudioManager.Instance.PlaySound("TiendaAbriendo");
             StartCoroutine(DelayDisableObject(6f, OpenSign));
         }
         else
@@ -336,7 +335,7 @@ public class UIManager : MonoBehaviour
         else if (messageNumber == 1)
         {
             messageTelephone_text.SetText("The clock is ticking, closing time is half an hour away!");
-            AudioManager.Instance.PlaySound("TiendaPorCerrar");
+            AudioManager.Instance.PlaySound("TiendaAbriendo");
         }
         else if (messageNumber == 2)
         {
