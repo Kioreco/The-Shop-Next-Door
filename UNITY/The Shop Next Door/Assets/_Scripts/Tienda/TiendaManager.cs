@@ -109,12 +109,12 @@ public class TiendaManager : MonoBehaviour
     }
     void InicializarPapeleria()
     {
-        PapeleriaYArte.Add("libro fantasia", new Producto( 19.99f, 0, 0, 'p', false));
-        PapeleriaYArte.Add("libro romance", new Producto(24.99f, 0, 0, 'p', false));
-        PapeleriaYArte.Add("libro historia", new Producto(29.99f, 0, 0, 'p', false));
-        PapeleriaYArte.Add("pinturas", new Producto(14.99f, 0, 0, 'p', false));
-        PapeleriaYArte.Add("rotuladores", new Producto(20.99f, 0, 0, 'p', false));
-        PapeleriaYArte.Add("lienzos", new Producto(12.50f, 0, 0, 'p', false));
+        PapeleriaYArte.Add("libro fantasia", new Producto( 19.99f, 1, UnityEngine.Random.Range(0, 5), 'p', true));
+        PapeleriaYArte.Add("libro romance", new Producto(24.99f, 0, UnityEngine.Random.Range(0, 5), 'p', true));
+        PapeleriaYArte.Add("libro historia", new Producto(29.99f, 0, UnityEngine.Random.Range(0, 5), 'p', false));
+        PapeleriaYArte.Add("pinturas", new Producto(14.99f, 2, UnityEngine.Random.Range(0, 5), 'p', true));
+        PapeleriaYArte.Add("rotuladores", new Producto(20.99f, 0, UnityEngine.Random.Range(0, 5), 'p', false));
+        PapeleriaYArte.Add("lienzos", new Producto(12.50f, 0, UnityEngine.Random.Range(0, 5), 'p', true));
     }
     void InicializarComida()
     {
@@ -129,15 +129,14 @@ public class TiendaManager : MonoBehaviour
     }
     void InicializarOcio()
     {
-        JuegosPeliculasMusica.Add("Hasta que la noche nos separe", new Producto(7.60f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Decor Dilemma", new Producto(5.60f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Virtual Velocity", new Producto(5.60f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 1", new Producto(4.75f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 2", new Producto(4.75f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("Shrek 3", new Producto(4.75f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("CD-TaylorSwift", new Producto(12.00f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("CD-DAMN", new Producto(12.00f, 0, 0, 'o', false));
-        JuegosPeliculasMusica.Add("CD-NombreDireccion", new Producto(12.00f, 0, 0, 'o', false));
+        JuegosPeliculasMusica.Add("Hasta que la noche nos separe", new Producto(7.60f, 5, UnityEngine.Random.Range(0, 5), 'o', true));
+        JuegosPeliculasMusica.Add("Decor Dilemma", new Producto(5.60f, 1, UnityEngine.Random.Range(0, 5), 'o', true));
+        JuegosPeliculasMusica.Add("PeliAccion", new Producto(4.75f, 0, UnityEngine.Random.Range(0, 5), 'o', true));
+        JuegosPeliculasMusica.Add("PeliFantasia", new Producto(4.75f, 3, UnityEngine.Random.Range(0, 5), 'o', true));
+        JuegosPeliculasMusica.Add("PeliRomance", new Producto(4.75f, 0, UnityEngine.Random.Range(0, 5), 'o', false));
+        JuegosPeliculasMusica.Add("CD-TaylorSwift", new Producto(12.00f, 0, UnityEngine.Random.Range(0, 5), 'o', true));
+        JuegosPeliculasMusica.Add("CD-JIJI", new Producto(12.00f, 0, UnityEngine.Random.Range(0, 5), 'o', false));
+        JuegosPeliculasMusica.Add("CD-PeppaPig", new Producto(12.00f, 4, UnityEngine.Random.Range(0, 5), 'o', true));
     }
 
     public Dictionary<string,Producto> getDictionaryAccType(char tipo)

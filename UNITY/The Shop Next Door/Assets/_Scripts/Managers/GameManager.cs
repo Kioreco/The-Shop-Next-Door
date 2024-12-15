@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
     [Header("Individual Player References")]
     [HideInInspector] public float dineroJugador;
     [HideInInspector] public int inheritance;
-    //[HideInInspector] public float espacioAlmacen;
-    //[HideInInspector] public float maxEspacioAlmacen;
     [HideInInspector] public float reputation;
     [HideInInspector] public float playerVigor;
 

@@ -93,8 +93,6 @@ public class PlayerControler : NetworkBehaviour
             if ((int)OwnerClientId == 0) ID = (int)OwnerClientId;
             else ID = 1;
 
-            print(ID);
-
             if (ID == 0)
             {
                 TiendaManager.Instance.ID = 0;

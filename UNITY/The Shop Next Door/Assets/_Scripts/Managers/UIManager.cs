@@ -152,7 +152,6 @@ public class UIManager : MonoBehaviour
     {
         UpdateReputationIngame_UI();
         UpdateAlmacenSpace_UI();
-        //UpdateShopName_UI();
 
         gameVolume.profile.TryGet(out colorAdjustments);
         gameVolume.profile.TryGet(out vignette);
@@ -416,13 +415,9 @@ public class UIManager : MonoBehaviour
 
     public void GoToPay_Button()
     {
-        //Physics.IgnoreLayerCollision(GameManager.Instance._player.playerLayer, GameManager.Instance._player.npcLayer, true);
-        //GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true);
-        //GameManager.Instance.workerGoToPay(null, true);
-
         GameManager.Instance.workerGoToPay(null, true);
         AudioManager.Instance.PlaySound("PulsarBotonInGame");
-        if (canChargePlayer) { print("nadie cobrando"); GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true); }
+        if (canChargePlayer) { GameManager.Instance._player.WalkToPosition(cajaPlayerPosition.position, true); }
     }
 
     public void UpdatePayingBar_UI()
@@ -467,7 +462,6 @@ public class UIManager : MonoBehaviour
             if (!isNene) rubbish.Destruir();
             else
             {
-                print("destroying");
                 if (rubbish.isActiveAndEnabled) Destroy(rubbish.gameObject);
                 GameManager.Instance._player.enableMovement(false);
             }
@@ -831,21 +825,17 @@ public class UIManager : MonoBehaviour
 
     public void ChangeCameraSensibility(float sliderValue)
     {
-        //print($" vakir: {sliderValue}");
         sliderValue = Mathf.Clamp01(sliderValue);
         if (sliderValue < 0.5f)
         {
-            //print("2");
             GameManager.Instance._player.moveSpeed = 2;
         }
         else if (sliderValue >= 0.5f && sliderValue <= 0.8f)
         {
-            //print("4");
             GameManager.Instance._player.moveSpeed = 4;
         }
         else
         {
-            //print("6");
             GameManager.Instance._player.moveSpeed = 6;
         }
     }
