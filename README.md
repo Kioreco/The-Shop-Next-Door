@@ -38,109 +38,117 @@ ___
 
    [**3.7.**	**Tablas de productos y precios**](#_toc180924142)
 
-[**4.**	**Planificación y Costes**](#_toc180924143)
+[**4.**	**Marketing**](#_toc180924195)
 
-[**4.1.**	**El equipo humano**](#_toc180924144)
+[**4.1.**	**Durante el Desarrollo**](#_toc180924196)
 
-[**4.2.**	**Estimación temporal del desarrollo**](#_toc180924145)
+[**4.2.**	**Mantenimiento Post Lanzamiento (2 años vista)**](#_toc180924197)
 
-[**4.3.**	**Costes asociados**](#_toc180924146)
+[**5.**	**Planificación y Costes**](#_toc180924143)
 
-[**5.**	**Mecánicas de Juego y Elementos de Juego**](#_toc180924147)
+[**5.1.**	**El equipo humano**](#_toc180924144)
 
-[**5.1.**	**Descripción detallada del concepto de juego**](#_toc180924148)
+[**5.2.**	**Estimación temporal del desarrollo**](#_toc180924145)
 
-[**5.2.**	**Descripción detallada de las mecánicas de juego**](#_toc180924149)
+[**5.3.**	**Costes asociados**](#_toc180924146)
 
-[**5.2.1.**	**Vida en la tienda**](#_toc180924150)
+[**6.**	**Mecánicas de Juego y Elementos de Juego**](#_toc180924147)
 
-[**5.2.2.**	**Vida personal**](#_toc180924151)
+[**6.1.**	**Descripción detallada del concepto de juego**](#_toc180924148)
 
-[**5.2.3.**	**Resolución de la semana**	16](#_toc180924152)
+[**6.2.**	**Descripción detallada de las mecánicas de juego**](#_toc180924149)
 
-[**5.3.**	**Controles**	16](#_toc180924153)
+[**6.2.1.**	**Vida en la tienda**](#_toc180924150)
 
-[**5.4.**	**Clientes y productos**](#_toc180924154)
+[**6.2.2.**	**Vida personal**](#_toc180924151)
 
-[**5.5.**	**Comportamiento de personajes**](#_toc180924155)
+[**6.2.3.**	**Resolución de la semana**	16](#_toc180924152)
 
-[**6.**	**Trasfondo**	25](#_toc180924156)
+[**6.3.**	**Controles**	16](#_toc180924153)
 
-[**6.1.**	**Descripción detallada de la historia y la trama**](#_toc180924157)
+[**6.4.**	**Clientes y productos**](#_toc180924154)
 
-[**6.2.**	**Personajes**](#_toc180924158)
+[**6.5.**	**Comportamiento de personajes**](#_toc180924155)
 
-[**6.2.1.**	**Telma**](#_toc180924159)
+[**7.**	**Trasfondo**	25](#_toc180924156)
 
-[**6.2.2.**	**Gemma**](#_toc180924160)
+[**7.1.**	**Descripción detallada de la historia y la trama**](#_toc180924157)
 
-[**6.2.3.**	**Emma**](#_toc180924161)
+[**7.2.**	**Personajes**](#_toc180924158)
 
-[**6.3.**	**Entornos y lugares**](#_toc180924162)
+[**7.2.1.**	**Telma**](#_toc180924159)
 
-[**7.**	**Arte**](#_toc180924163)
+[**7.2.2.**	**Gemma**](#_toc180924160)
 
-[**7.1.**	**Estética general del juego**](#_toc180924164)
+[**7.2.3.**	**Emma**](#_toc180924161)
 
-[**7.2.**	**Concept Art**](#_toc180924165)
+[**7.3.**	**Entornos y lugares**](#_toc180924162)
 
-[**7.2.1.**	**Hermanas**](#_toc180924166)
+[**8.**	**Arte**](#_toc180924163)
 
-[**7.2.2.**	**Madre**](#_toc180924167)
+[**8.1.**	**Estética general del juego**](#_toc180924164)
 
-[**7.2.3.**	**Clientes**](#_toc180924168)
+[**8.2.**	**Concept Art**](#_toc180924165)
 
-[**7.2.4.**	**Escenarios**](#_toc180924169)
+[**8.2.1.**	**Hermanas**](#_toc180924166)
 
-[**7.2.5.**	**Iconos**](#_toc180924194)
+[**8.2.2.**	**Madre**](#_toc180924167)
 
-[**7.3.**	**Modelos 3D**](#_toc180924170)
+[**8.2.3.**	**Clientes**](#_toc180924168)
 
-[**7.3.1.**	**Hermanas**](#_toc180924171)
+[**8.2.4.**	**Escenarios**](#_toc180924169)
 
-[**7.3.2.**	**Clientes**](#_toc180924172)
+[**8.2.5.**	**Iconos**](#_toc180924194)
 
-[**7.3.3.**	**Escenarios**](#_toc180924173)
+[**8.3.**	**Modelos 3D**](#_toc180924170)
 
-[**8.1.**	**Diagrama de flujo**](#_toc180924174)
+[**8.3.1.**	**Hermanas**](#_toc180924171)
 
-[**8.2.**	**Menú de título e inicio de sesión**](#_toc180924175)
+[**8.3.2.**	**Clientes**](#_toc180924172)
 
-[**8.3.**	**Menú de inicio**](#_toc180924176)
+[**8.3.3.**	**Escenarios**](#_toc180924173)
 
-[**8.4.**	**Menú de créditos**](#_toc180924177)
+[**9.**	**Interfaces**](#_toc180924198)
 
-[**8.5.**	**MatchMaking**](#_toc180924178)
+[**9.1.**	**Diagrama de flujo**](#_toc180924174)
 
-[**8.6.**	**InGame**](#_toc180924179)
+[**9.2.**	**Menú de título e inicio de sesión**](#_toc180924175)
 
-[**8.7.**	**GameOver**](#_toc180924180)
+[**9.3.**	**Menú de inicio**](#_toc180924176)
 
-[**8.8.**	**Menú de Pausa**](#_toc180924181)
+[**9.4.**	**Menú de créditos**](#_toc180924177)
 
-[**8.9.**	**Menú de Personalización**](#_toc180924182)
+[**9.5.**	**MatchMaking**](#_toc180924178)
 
-[**8.10.**	**Tienda**](#_toc180924183)
+[**9.6.**	**InGame**](#_toc180924179)
 
-[**9.**	**Sonido**](#_toc180924184)
+[**9.7.**	**GameOver**](#_toc180924180)
 
-[**9.1.**	**Sonido ambiente y música**](#_toc180924185)
+[**9.8.**	**Menú de Pausa**](#_toc180924181)
 
-[**9.2.**	**Efectos de sonido**](#_toc180924186)
+[**9.9.**	**Menú de Personalización**](#_toc180924182)
 
-[**9.3.**	**Lista de sonidos**](#_toc180924187)
+[**9.10.**	**Tienda**](#_toc180924183)
 
-[**10.**	**Hoja de ruta del desarrollo**](#_toc180924188)
+[**10.**	**Sonido**](#_toc180924184)
 
-[**10.1.**	**Hito 1: Prototipo**](#_toc180924189)
+[**10.1.**	**Sonido ambiente y música**](#_toc180924185)
 
-[**10.2.**	**Hito 2: Beta**](#_toc180924190)
+[**10.2.**	**Efectos de sonido**](#_toc180924186)
 
-[**10.3.**	**Hito 3: Gold Master**](#_toc180924191)
+[**10.3.**	**Lista de sonidos**](#_toc180924187)
 
-[**10.4.**	**Hito 4: Lanzamiento**](#_toc180924192)
+[**11.**	**Hoja de ruta del desarrollo**](#_toc180924188)
 
-[**11.**	**ANEXO:**](#_toc180924193)
+[**11.1.**	**Hito 1: Prototipo**](#_toc180924189)
+
+[**11.2.**	**Hito 2: Beta**](#_toc180924190)
+
+[**11.3.**	**Hito 3: Gold Master**](#_toc180924191)
+
+[**11.4.**	**Hito 4: Lanzamiento**](#_toc180924192)
+
+[**12.**	**ANEXO:**](#_toc180924193)
 
 
 ___
@@ -270,9 +278,48 @@ ___
 |Cosmético de diseño de pared|125 |
 |Cosmético de skin para los personajes|325 |
 ___
-# <a name="_toc180924143"></a>**4. Planificación y Costes**
+# <a name="_toc180924195"></a>**4. Marketing**
 ___
-##   <a name="_toc180924144"></a>**4.1. El equipo humano**
+##   <a name="_toc180924196"></a>**4.1. Durante el Desarrollo**
+
+Mediante nuestra decisión de **ir desvelando fragmentos del desarrollo del juego en las redes** de Kioreco, hemos ido incluyendo referencias a otros ámbitos que guardan relación con nuestro juego, para atraer a potenciales jugadores. 
+The Shop Next Door bebe de la **cultura pop**, guardando muchas referencias a **Gilmore Girls**, entre otras. Por ello, algunos de los post se han hecho relacionados a estas referencias, atrayendo así a jugadores afines a dicha cultura.
+
+ ![](./ReadmeImgs/tw_6.png) ![](./ReadmeImgs/tw_3.png)
+ ![](./ReadmeImgs/tw_2.png) ![](./ReadmeImgs/tw_1.png)
+
+
+En dichos post, se optó por mantener el tono humorístico del juego para guardar relación al mismo:
+ ![](./ReadmeImgs/tw_4.png)  ![](./ReadmeImgs/tw_5.png) 
+
+Algunos de los post realizados en las diferentes RRSS (tiktok, twitter, instagram, youtube):
+ ![](./ReadmeImgs/ig_1.png)  ![](./ReadmeImgs/ig_2.png) 
+ ![](./ReadmeImgs/ig_3.png)  ![](./ReadmeImgs/tiktok.png) 
+![](./ReadmeImgs/yt_1.png)
+
+Concluimos que esta era una buena estrategia que seguir para el modelo de negocio con el que planteamos The Shop Next Door: un juego gratuito con posibilidades de micropagos para conseguir cosméticos exclusivos; y un sistema de donaciones que abrirían la puerta a un servidor de Discord exclusivo con contacto directo con los desarrolladores (Kioreco), y para que los jugadores puedan relacionarse entre sí. 
+
+Las donaciones se van a gestionar con **ko-fi**, una plataforma dedicada únicamente a donativos. La elección de esta se ha hecho porque es popular entre el género cozy y puesto que se cree que es la mejor opción para nuestro público objetivo.
+
+Se optó por utilizar **Discord** porque, como equipo apasionado por los videojuegos, a menudo surgen dudas sobre ciertas implementaciones de mecánicas, animaciones y diseños visuales. Es por ello por lo que queremos ofrecer esa misma oportunidad a nuestros jugadores más fieles, permitiéndoles **resolver dudas**, participar en **pruebas de nuevas mecánicas** y acceder a **información exclusiva** (como eventos, actualizaciones o futuros proyectos) antes que nadie.
+___
+##   <a name="_toc180924197"></a>**4.2. Mantenimiento Post Lanzamiento (2 años vista)**
+The Shop Next Door en un principio era una idea muy ambiciosa que tuvimos que recortar y ajustar para adaptarnos al poco tiempo de desarrollo que teníamos. Se ha gestionado todo lo relevante al proyecto, aprendiendo un flujo de desarrollo profesional y a manejar los diferentes obstáculos que se nos planteaban en el camino. 
+
+Es por ello por lo que hay gran potencial en The Shop Next Door y en su evolución, incluyendo los siguientes detalles:
+- **Actualizaciones y mejoras de bugs continuas**.
+- **Inclusión de una máquina de café** : cuándo el jugador tenga baja estamina, se podrá tomar una taza de café para que deje de estar cansada.
+- **Mejoras e inclusión de más clientes** (como por ejemplo clientes que entren a mirar, mayor interactividad entre estos).
+- **Inclusión de OpenAI para mejorar la rejugabilidad** (para la creación de más actividades y su output, el diálogo final donde se dice quién ha ganado, etc).
+- **Creación del diario**: donde se almacenarán todas las actividades que hayas descubierto con sus resultados.
+- **Eventos especiales con actividades relacionadas**: "christmas season", "spring season"...
+![](./ReadmeImgs/Skins_hermanas_navidad.png)
+- **Aumentar las mecánicas de la vida personal**.
+
+___
+# <a name="_toc180924143"></a>**5. Planificación y Costes**
+___
+##   <a name="_toc180924144"></a>**5.1. El equipo humano**
 El equipo principal se compone de 6 miembros cada uno con una especialización diferente, pero con habilidades en distintas aptitudes. Las competencias quedarían resumidas en la siguiente tabla.
 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.004.png)
@@ -288,7 +335,7 @@ En resumen, los roles que cada uno de los miembros del equipo desempeñaría en 
 - **Pablo Prior**: Programador back-end, de network y programador asistente en mecánicas.
 - **Raúl Somavilla**: Concept artist de personajes, artista 2D y modelador 3D.
 ___
-## <a name="_toc180924145"></a>**4.2. Estimación temporal del desarrollo**
+## <a name="_toc180924145"></a>**5.2. Estimación temporal del desarrollo**
 
 El control del progreso se realizará mediante los proyectos de GitHub, encargándose cada uno de los miembros de sus tareas asociadas y de crear nuevos *issues* cuando se necesiten. El proyecto contaría con los siguientes hitos:
 - Versión Prototipo (27 de octubre de 2024): para este hito debe tenerse el juego planteado y bien definidas las mecánicas cores del juego. Pueden existir errores, pero debe ser estable y estar bien concretado en el GDD. Además, se debe empezar con el marketing con la creación de redes sociales y tener preparada una página web que sirva como porfolio.
@@ -301,7 +348,7 @@ El control del progreso se realizará mediante los proyectos de GitHub, encargá
 ![imagen](https://github.com/user-attachments/assets/2f505f5b-6fc5-4be3-9c47-b8c73b73aff9)
 
 ___
-## <a name="_toc180924146"></a>**4.3. Costes asociados**
+## <a name="_toc180924146"></a>**5.3. Costes asociados**
 
 Se ha realizado un estudio de los costos estimados asociados al desarrollo de los cuatro meses del videojuego, desglosándolos entre costos directos e indirectos. 
 
@@ -309,9 +356,9 @@ Se ha realizado un estudio de los costos estimados asociados al desarrollo de lo
 ![imagen](https://github.com/user-attachments/assets/c2a306cd-a351-4f93-94a7-b1962043f233)
 
 ___
-# <a name="_toc180924147"></a>**5. Mecánicas de Juego y Elementos de Juego**
+# <a name="_toc180924147"></a>**6. Mecánicas de Juego y Elementos de Juego**
 ___
-## <a name="_toc180924148"></a>**5.1. Descripción detallada del concepto de juego**
+## <a name="_toc180924148"></a>**6.1. Descripción detallada del concepto de juego**
 
 ***The Shop Next Door*** es un juego de simulación y estrategia de carácter competitivo orientado a dos jugadores. Cada uno tomará el rol de una de las hijas de Telma, una madre con un negocio próspero que, debido a su edad y el tiempo que lleva regentándolo, ha decidido no trabajar más. Telma toma la decisión de dividir su tienda en dos partes iguales para poner a competir a sus hijas (Emma y Gemma), para ver quien es la más capaz de gestionar su propia tienda. Al final de la semana, junto con la gestión de sus vidas privadas, se determinará quien recibe la herencia de la madre.
 
@@ -319,11 +366,11 @@ El **objetivo principal** del videojuego es equilibrar las responsabilidades lab
 
 El juego se desarrolla en el transcurso de una semana laboral, que termina con una valoración final por parte de su madre Telma, la que decidirá quién de sus dos hijas merece esa ansiada herencia, haciendo un cómputo global de los dos aspectos en la vida de cada hija. Cada partida se estima en un tiempo de 15/20 minutos la cual es ofrecida a base de una experiencia rápida, competitiva, divertida y con situaciones un tanto cómicas a lo largo de esa apasionante semana.
 ___
-## <a name="_toc180924149"></a>**5.2. Descripción detallada de las mecánicas de juego**
+## <a name="_toc180924149"></a>**6.2. Descripción detallada de las mecánicas de juego**
 
 Las mecánicas de The Shop Next Door se dividen en dos grandes bloques: vida en la tienda y vida personal.
 ___
-### <a name="_toc180924150"></a>*5.2.1 *Vida en la tienda**
+### <a name="_toc180924150"></a>*6.2.1 *Vida en la tienda**
 Cada jugador deberá realizar diferentes tareas diarias para mantener la tienda y poder darle una gestión adecuada:
 
 - **Atender a clientes:** Proveer productos de manera eficiente se considera esencial para la satisfacción del cliente y asegurar ventas abundantes, haciendo volver a esos clientes. El jugador deberá acercarse a la caja de la tienda para iniciar la tarea de atender a cada cliente esperando a pagar su compra.
@@ -332,7 +379,7 @@ Cada jugador deberá realizar diferentes tareas diarias para mantener la tienda 
 - **Contratación**: Para tener un negocio competitivo y funcional, es necesaria la ayuda de empleados que mantengan todo en orden y ayuden a la explotación de la tienda. Para ello, el jugador deberá contratar a empleados a través de una función en el móvil, gastando parte del presupuesto en un sueldo diario. 
 - **Gestión de tiempo:** Como es normal, ¡el cliente siempre tiene la razón!, es por eso por lo que algunas tareas requerirán una atención personal a cada cliente, esto hace que si no son atendidos se irán impacientando y su visión y valoración de la tienda variará al salir por la puerta del establecimiento. Más vale tenerles contentos…
 ___
-### <a name="_toc180924151"></a>**5.2.2. Vida personal**
+### <a name="_toc180924151"></a>**6.2.2. Vida personal**
 Al mismo tiempo que los jugadores deben tener bajo control la tienda, deben organizarse la tarde para suplir sus necesidades personales. 
 
 - **Pilares de la persona:** Cada jugador contará con 5 pilares fundamentales que representarán el crecimiento personal que ha realizado durante a la semana. Dichos pilares son agrupados de la siguiente forma: romanticismo, amistades, diversión, descanso y desarrollo personal. Podrá consultar los valores en una aplicación en el móvil y serán evaluados de forma cuantitativa por la madre al final de la semana.
@@ -341,10 +388,10 @@ Al mismo tiempo que los jugadores deben tener bajo control la tienda, deben orga
 - **Calendario:** Cada día, de las 10 actividades aleatorias a las que el jugador puede acceder, podrá elegir un máximo de 3 para realizar durante la tarde. Los resultados de su plan se verán al acabar la jornada laboral junto con el resumen de su tienda y la de la hermana.
 
 ___
-### <a name="_toc180924152"></a>**5.2.3. Resolución de la semana**
+### <a name="_toc180924152"></a>**6.2.3. Resolución de la semana**
 Tras el transcurso de 5 días y 5 tardes, el juego se terminaría con una charla entre ambas hermanas con la madre. Ella decidirá teniendo en cuenta todo el cómputo de vida personal (pareja, amigos, tiempo libre...) y vida laboral (felicidad de los clientes, dinero, éxito de la tienda...) a quien dejará la herencia del negocio de su vida. Dicha herencia se corresponderá a la moneda de juego que luego se podrá utilizar para comprar en la tienda real.
 ___
-## <a name="_toc180924153"></a>**5.3. Controles**
+## <a name="_toc180924153"></a>**6.3. Controles**
 
 The Shop Next Door es un point and click ligado al jugador, su cámara y su vida personal. Todos sus controles van ligados al ratón por lo que va a ser fácilmente jugado en móviles mediante un paso de controles a touchpad con el nuevo InputManager de Unity.
 **Ratón:**
@@ -359,7 +406,7 @@ The Shop Next Door es un point and click ligado al jugador, su cámara y su vida
 - **Por determinar:** hacer zoom.
 
 ___
-## <a name="_gjdgxs"></a><a name="_toc180924154"></a>**5.4. Clientes y productos**
+## <a name="_gjdgxs"></a><a name="_toc180924154"></a>**6.4. Clientes y productos**
 
 Se disponen de diferentes perfiles de **clientes**, se explica de forma superficial el tipo de clientes puesto que se desarrollan por completo en el apartado de comportamiento de personajes:
 
@@ -377,7 +424,7 @@ Se disponen de varios productos por categoría:
 - **Entretenimiento:** Juego Hasta que la noche nos separe, Juego Decor Dilemma, Juego 3, Película 1, Película 2, Película 3, CD Taylor Swift, CD 2 y CD 3
 
 ___
-## <a name="_toc180924155"></a>**5.5. Comportamiento de personajes**
+## <a name="_toc180924155"></a>**6.5. Comportamiento de personajes**
 
 **Cliente básico:**
 
@@ -480,9 +527,9 @@ La representación del estado de los clientes (enfado, felicidad, indiferencia, 
 ![](./ReadmeImgs/Aspose.Words.b4be3d5f-1268-4a1f-9d36-658054206beb.013.jpeg)
 
 ___
-# <a name="_toc180924156"></a>**6. Trasfondo**
+# <a name="_toc180924156"></a>**7. Trasfondo**
 ___
-## <a name="_toc180924157"></a>**6.1. Descripción detallada de la historia y la trama**
+## <a name="_toc180924157"></a>**7.1. Descripción detallada de la historia y la trama**
 
 Telma es una señora de bien. Tiene dos hijas y un marido sepultado. A su edad está empezando a dolerle en la espalda, las piernas, las manos y en ocasiones en las cejas, pues el ceño fruncido y sus respectivas arrugas cuestan llevarlas todos los días. 
 
@@ -492,34 +539,34 @@ Claro está que no quería que su negocio acabase enterrado bajo el polvo, así 
 
 Entonces construyó un muro y duplicó las llaves. Cada una de sus hijas regentaría una tienda, y la que consiguiese volver a florecer su negocio se llevaría con él la herencia que tanto ansiaban. 
 ___
-## <a name="_toc180924158"></a>**6.2. Personajes**
+## <a name="_toc180924158"></a>**7.2. Personajes**
 ___
-### <a name="_toc180924159"></a>**6.2.1. Telma**
+### <a name="_toc180924159"></a>**7.2.1. Telma**
 
 Telma es una mujer mayor cuyo marido murió hace años. Es una persona seria y recatada, educada en una familia de dinero y con sus costumbres bien arraigadas. Siempre ha sido independiente y capaz de regentar su negocio con éxito, pero los efectos de la edad le han limitado sus capacidades motrices, teniendo que jubilarse. Tiene personalidad y apariencia similar al personaje de Emily Gilmore, no manteniendo una relación afectuosa con sus hijas, sino más supervisora y controladora.
 ___
-### <a name="_toc180924160"></a>**6.2.2. Gemma**
+### <a name="_toc180924160"></a>**7.2.2. Gemma**
 
 Gemma es una de las hermanas que el jugador podrá controlar. Tiene una personalidad seria y cansada, siempre consumida por todos los aspectos de su vida por querer tenerlo todo bajo control. Tiene el pelo corto por los hombros, oscuro con reflejos morados y un estilo simple y clásico, alisado casi a diario. Es la hermana mayor y por tanto tiene una necesidad superior de agradar y complacer a su madre. Tiene una relación complicada con su hermana, con quien se lleva pocos años y, por tanto, se compara con ella continuamente.
 ___
-### <a name="_toc180924161"></a>**6.2.3. Emma**
+### <a name="_toc180924161"></a>**7.2.3. Emma**
 
 Emma es la hermana pequeña que el jugador podrá controlar. Tiene una personalidad mucho más desenfadada y aparentemente despreocupada, pero en realidad siente una desilusión e inquietud por no saber cómo llevar la vida. Siente que ha fracasado y que no ha conseguido cumplir los estándares que debería con su edad, sin embargo, se siente tan abrumada por estos pensamientos que no es capaz de ponerse a trabajar en dichos aspectos. Intenta mantener una apariencia y posición en la vida desinteresada como medida protectora para que su mundo no se le eche encima. Siente interés por su hermana y desearía llevarse mejor, pero la siente inaccesible y tampoco sabe cómo relacionarse con ella pues siempre la nota enfadada. Tiene una apariencia alegre, con el pelo ondulado teñido pelirrojo con las raíces oscuras asomando, y suele llevar ropa colorida en cierta medida.
 ___
-## <a name="_toc180924162"></a>**6.3. Entornos y lugares**
+## <a name="_toc180924162"></a>**7.3. Entornos y lugares**
 
 La tienda que ambas hermanas regentará debe ser grande y simétrica, dividida por un muro. Las paredes exteriores serán cada una de los colores representativos de cada hermana (rosa y amarillo), y las interiores azules. En las vecindades se verán tiendas que hagan referencias a juegos realizados con anterioridad por el equipo de desarrollo. 
 
 Habrá mínimo cinco modelos de tienda diferentes que se elegirán aleatoriamente al principio de cada partida. Cada uno de estos tendrán zonas asignadas donde se podrán vender productos de distintos tipos: ropa, comida, entretenimiento y libros y papelería.
 ___
-# <a name="_toc180924163"></a>**7. Arte**
-## <a name="_toc180924164"></a>**7.1. Estética general del juego**
+# <a name="_toc180924163"></a>**8. Arte**
+## <a name="_toc180924164"></a>**8.1. Estética general del juego**
 
 La estética general del juego sería cartoon, simple y acogedora. Tanto el escenario como los personajes mantienen una estética lowpoly destacada por su diseño sencillo y adorable. Este estilo se utiliza en contraste con la historia de familia desestructurada y la agresividad que suelen tener los juegos competitivos. Aparte de ser visualmente más interesante para el público objetivo, ofrece la posibilidad de simplificar los escenarios y personajes para evitar bajadas de rendimiento al lanzarlo en navegadores web.
 ___
-## <a name="_toc180924165"></a>**7.2. Concept Art**
+## <a name="_toc180924165"></a>**8.2. Concept Art**
 ___
-### <a name="_toc180924166"></a>**7.2.1. Hermanas**
+### <a name="_toc180924166"></a>**8.2.1. Hermanas**
 Las hermanas Emma y Gemma, presentan una apariencia opuesta definida por sus respectivas personalidades.
 
 Gemma siendo la más seria y responsable de las dos, muestra físicamente más formalidad que su hermana. Siempre viste casual, con una camiseta sencilla y unos vaqueros, pero con la dignidad propia de su madre. Tiene el pelo corto, liso y negro desde nacimiento y así se lo ha dejado. Es una persona algo irritable y que suele evitar los cambios bruscos.
@@ -555,7 +602,7 @@ Concepts de los modelos ingame de las hermanas:
 ![imagen](https://github.com/user-attachments/assets/2f7effbd-1883-4912-9f08-61d238d82d2c)
 
 ___
-### <a name="_toc180924167"></a>**7.2.2. Madre**
+### <a name="_toc180924167"></a>**8.2.2. Madre**
 La madre, Telma, es una señora regia. Tiene el ceño constantemente fruncido y el pelo corto platino. Se caracteriza por tener un rizo rebelde en el centro de la cara y pendientes dorados. Su forma debe ser triangular para representar la estabilidad y presencia que tiene al presentarse en una sala, y debe demostrar el dinero y el estilo adinerado que la representa. Una clara referencia para su diseño y personalidad es Emily Gilmore de Gilmore Girls.
 
 ![imagen](https://github.com/user-attachments/assets/63cab490-ace7-4358-b490-a96d6782a9a4)
@@ -576,7 +623,7 @@ Concept Modelo Telma:
 ![TELMAConceptS](https://github.com/user-attachments/assets/883b80d1-8a23-4859-a631-0d7ea7368eec)
 
 ___
-### <a name="_toc180924168"></a>**7.2.3. Clientes**
+### <a name="_toc180924168"></a>**8.2.3. Clientes**
 Para los clientes se ha decidido crear unos modelos generales para agilizar el proceso y añadir algún tipo de característica distintiva en alguno de ellos que cuentan con una mecánica única. 
 
 ![imagen](https://github.com/user-attachments/assets/4cb6a525-06d6-4c44-8c2e-470a069d61aa)
@@ -587,14 +634,14 @@ Turn around del modelo genérico
 ![imagen](https://github.com/user-attachments/assets/e2f6fdd0-d189-4aff-bd01-e3efc1c0082a)
 
 ___
-### <a name="_toc180924169"></a>**7.2.4. Escenarios**
+### <a name="_toc180924169"></a>**8.2.4. Escenarios**
 El escenario en el que se jugará deberá ser amplio y representar una tienda. Ambas tiendas deben estar conectadas pared con pared, pero sin poder pasar de una a otra. Tendrán estanterías y muebles para poder exponer los productos, y una caja registradora donde cobrar los clientes. Habrá mínimo 5 variaciones de tiendas con secciones diferentes, las paredes interiores serán azules y las exteriores rosas (para el host) y amarillas (para el cliente).
 
 Un boceto de la primera tienda es el siguiente:
 
 ![imagen](https://github.com/user-attachments/assets/a2c354ec-82f7-4bb1-ac0e-ad99d7aaaf95)
 
-### <a name="_toc180924194"></a>**7.2.5. Iconos**
+### <a name="_toc180924194"></a>**8.2.5. Iconos**
 Los iconos se han creado para que el jugador, al elegir que comprar dentro de la tienda, pueda tener una imagen de lo que está comprando. Es decir, son imágenes 2D orientativas. Dentro de la tienda encontramos varias secciones de productos, los iconos para estas secciones son:
 
 Sección de Arte:
@@ -613,7 +660,7 @@ Sección de Ropa:
 
 ![IconosROPA](https://github.com/user-attachments/assets/755990f8-28dd-4b3a-9ed8-36a028667966)
 
-### <a name="_toc180924194"></a>**7.2.6. Iconos de emociones**
+### <a name="_toc180924194"></a>**8.2.6. Iconos de emociones**
 Se han realizado estos iconos diferentes para usarlo para dar feedback a los jugadores de lo que sienten los clientes, ya sea que estan contentos, enfadados o tienen dudas.
 
 Emoción del tacaño cuando la compra es barata:
@@ -662,7 +709,7 @@ Emoción de pregunta:
 Simbolo de pregunta que saldrá cuando algún cliente tenga alguna duda. 
 
 ___
-## <a name="_toc180924170"></a>**7.3. Modelos 3D**
+## <a name="_toc180924170"></a>**8.3. Modelos 3D**
 
 Los modelos deberán simple para no añadir sobrecarga de geometría y apoyar el estilo simple y adorable que se necesita.
 ### <a name="_toc180924171"></a>**7.3.1. Hermanas**
@@ -679,7 +726,7 @@ Los modelos texturizados de las hermanas son los siguientes:
 
 
 ___
-### <a name="_toc180924172"></a>**7.3.2. Clientes y Trabajadores**
+### <a name="_toc180924172"></a>**8.3.2. Clientes y Trabajadores**
 Los clientes deberán ser diferenciables entre sí según los distintos arquetipos que representen. Los trabajadores, por su parte, se diferenciarán de los demás personajes ya que tienen un delantal de color verde.
 Modelo de empleado sin texturizar: 
 
@@ -745,7 +792,7 @@ Modelo de tacaño texturizado:
 ![Imagen4](https://github.com/user-attachments/assets/08ab1db0-d7fe-4d2a-bd8b-11f6ce5bfe0f)
 
 
-### <a name="_toc180924173"></a>**7.3.3. Escenarios**
+### <a name="_toc180924173"></a>**8.3.3. Escenarios**
 El primer modelo de tienda simple que permitirá vender comida y ropa sería:
 
 ![imagen](https://github.com/user-attachments/assets/3eec3748-cb44-49fb-bf06-3e7ab5ac8f7b)
@@ -797,17 +844,17 @@ Por último, se crearon asstes para el entorno exterior de la tienda.
 ![](./ReadmeImgs/AssetsExteriores.png)
 
 ___
-# **8. Interfaces**
+# <a name="_toc180924198"> **9. Interfaces**
 
 ___
-## <a name="_toc180924174"></a>**8.1. Diagrama de flujo**
+## <a name="_toc180924174"></a>**9.1. Diagrama de flujo**
 
 El diagrama de flujo entre pantallas y durante una partida quedaría de la siguiente manera:
 
 ![imagen](https://github.com/user-attachments/assets/ede2960d-d801-4ce1-9d79-4358e25c8563)
 
 ___
-## <a name="_toc180924175"></a>**8.2. Menú de título e inicio de sesión**
+## <a name="_toc180924175"></a>**9.2. Menú de título e inicio de sesión**
 
 Diseños finales para el menú de inicio:
 
@@ -818,7 +865,7 @@ Menú de inicio de sesión:
 ![Title_Screen_FINAL](https://github.com/user-attachments/assets/7f916a50-5ee2-4c78-a2ca-15e3c56d59c3)
 
 ___
-## <a name="_toc180924176"></a>**8.3. Menú de inicio**
+## <a name="_toc180924176"></a>**9.3. Menú de inicio**
 
 Mejora del dibujado y disposición de elementos para el menú de inicio: 
 
@@ -830,12 +877,12 @@ En este menú, para que el cuadro no quedará vacío, se ha creado una foto en l
 ![FotoConCartel](https://github.com/user-attachments/assets/65708b0b-34e3-4f3d-8ff0-8d740aee8be8)
 
 ___
-## <a name="_toc180924177"></a>**8.4. Menú de créditos**
+## <a name="_toc180924177"></a>**9.4. Menú de créditos**
 
 ![imagen](https://github.com/user-attachments/assets/56116768-3ffc-445e-960f-3f3130996b25)
 
 ___
-## <a name="_toc180924178"></a>**8.5. MatchMaking**
+## <a name="_toc180924178"></a>**9.5. MatchMaking**
 
 Diseño para la beta de la escena de matchmaking sería el siguiente
 
@@ -845,7 +892,7 @@ Diseño para la beta de la escena de matchmaking sería el siguiente
 
 Disposición de varias opciones tanto para crear partida como para unirse a una. Inclusión de copiar el código de la partida y cancelar el emparejamiento.
 ___
-## <a name="_toc180924179"></a>**8.6. InGame**
+## <a name="_toc180924179"></a>**9.6. InGame**
 
 El diseño final para la beta de la escena de juego con la interfaz ingame sería:
 
@@ -870,44 +917,44 @@ Interfaz por defecto al comienzo de la partida con el cómputo de dinero acumula
 
 Distintas interfaces del móvil según la sección que se vaya consultando: actividades, compras, contrataciones y vida personal.
 ___
-## <a name="_toc180924180"></a>**8.7. DayOver**
+## <a name="_toc180924180"></a>**9.7. DayOver**
 
 Interfaz para la finalización de un día laborable:
 
 ![](./ReadmeImgs/DayOver.jpg)
 ___
-## <a name="_toc180924181"></a>**8.8. Menú de Pausa**
+## <a name="_toc180924181"></a>**9.8. Menú de Pausa**
 
 Concepto por realizar.
 ___
-## <a name="_toc180924182"></a>**8.9. Menú de Personalización**
+## <a name="_toc180924182"></a>**9.9. Menú de Personalización**
 Interfaz para el prototipo del menú de elección de cosméticos disponibles.
 
 ![](./ReadmeImgs/Personalizacion.jpg)
 ___
-## <a name="_toc180924183"></a>**8.10. Tienda**
+## <a name="_toc180924183"></a>**9.10. Tienda**
 
 Interfaz de tienda para la beta
 
 ![](./ReadmeImgs/Tienda.jpg)
 
 ___
-# <a name="_toc180924184"></a>**9. Sonido**
+# <a name="_toc180924184"></a>**10. Sonido**
 ___
-## <a name="_toc180924185"></a>**9.1. Sonido ambiente y música**
+## <a name="_toc180924185"></a>**10.1. Sonido ambiente y música**
 
 Hay dos temas diferenciados, uno para la parte de menú y otra ingame. El primero se caracteriza por ser una música tranquila que incite a jugar, el segundo es un poco más animado para no perder el objetivo del juego: una competición.
 Música por concretar: sin derechos de distribución ni uso.
 
 ___
-## <a name="_toc180924186"></a>**9.2. Efectos de sonido**
+## <a name="_toc180924186"></a>**10.2. Efectos de sonido**
 
 Los efectos de sonidos servirían como feedback auditivo para el jugador, sobre todo en ocasiones importantes, como puede ser: Que un cliente entra en la tienda, que los clientes empiezan a molestarse y a murmurar que se van a ir de la tienda, comprar un empleado nuevo.
 
 Sin concretar: sin derechos de distribución ni uso.
 
 ___
-## <a name="_toc180924187"></a>**9.3. Lista de sonidos**
+## <a name="_toc180924187"></a>**10.3. Lista de sonidos**
 
 -	Música de juego
 -	Música de menús
@@ -929,38 +976,38 @@ ___
 -	Sonido de alerta de estanterías
 -	Sonido de mejorar las estanterías
 ___
-# <a name="_toc180924188"></a>**10. Hoja de ruta del desarrollo**
+# <a name="_toc180924188"></a>**11. Hoja de ruta del desarrollo**
 
 ___
-## <a name="_toc180924189"></a>**10.1. Hito 1: Prototipo**
+## <a name="_toc180924189"></a>**11.1. Hito 1: Prototipo**
 
 Para este hito debe tenerse el juego planteado y bien definidas las mecánicas cores del juego. Pueden existir errores, pero debe ser estable y estar bien concretado en el GDD. Además, se debe empezar con el marketing con la creación de redes sociales y tener preparada una página web que sirva como porfolio.
 
 - **Fecha de entrega**: 27 de octubre de 2024
 
 ___
-## <a name="_toc180924190"></a>**10.2. Hito 2: Beta**
+## <a name="_toc180924190"></a>**11.2. Hito 2: Beta**
 
 Para este hito se deben tener la mayoría de los assets definitivos y los bugs importantes corregidos. También se tiene que ver una evolución clara con respecto a la versión anterior en cuanto a mecánicas y estética.
 
 - **Fecha de entrega**: 24 de noviembre de 2024
 
 ___
-## <a name="_toc180924191"></a>**10.3. Hito 3: Gold Master**
+## <a name="_toc180924191"></a>**11.3. Hito 3: Gold Master**
 
 El juego debe estar preparado para su lanzamiento, tanto por el equipo de producción como el de marketing. No debe existir ningún error crítico y tiene que haber una mejora considerable de jugabilidad /rejugabilidad, siendo un producto atractivo y listo para ser comercializado.
 
 - **Fecha de entrega**: 8 de diciembre de 2024
 
 ___
-## <a name="_toc180924192"></a>**10.4. Hito 4: Lanzamiento**
+## <a name="_toc180924192"></a>**11.4. Hito 4: Lanzamiento**
 
 Para el lanzamiento se deberá organizar una última campaña de lanzamiento que involucre la publicación del juego. Esta se compondrá de varios anuncios en redes sociales y promociones que ayuden a dar a conocer al juego.
 
 - **Fecha de lanzamiento**: 15 de diciembre de 2024
 
 ___
-# <a name="_toc180924193"></a>**11. ANEXO:**
+# <a name="_toc180924193"></a>**12. ANEXO:**
 **Tabla de percepciones cliente básico:**
 
 |**Nombre**|**Implementación**|**Acceso**|
