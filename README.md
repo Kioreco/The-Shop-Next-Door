@@ -284,16 +284,17 @@ ___
 
 Mediante nuestra decisión de **ir desvelando fragmentos del desarrollo del juego en las redes** de Kioreco, hemos ido incluyendo referencias a otros ámbitos que guardan relación con nuestro juego, para atraer a potenciales jugadores. 
 The Shop Next Door bebe de la **cultura pop**, guardando muchas referencias a **Gilmore Girls**, entre otras. Por ello, algunos de los post se han hecho relacionados a estas referencias, atrayendo así a jugadores afines a dicha cultura.
-| ![](./ReadmeImgs/tw_6.png) | ![](./ReadmeImgs/tw_3.png) |
-| ![](./ReadmeImgs/tw_2.png) | ![](./ReadmeImgs/tw_1.png) |
+
+ ![](./ReadmeImgs/tw_6.png) ![](./ReadmeImgs/tw_3.png)
+ ![](./ReadmeImgs/tw_2.png) ![](./ReadmeImgs/tw_1.png)
 
 
 En dichos post, se optó por mantener el tono humorístico del juego para guardar relación al mismo:
-| ![](./ReadmeImgs/tw_4.png) | ![](./ReadmeImgs/tw_5.png) |
+ ![](./ReadmeImgs/tw_4.png)  ![](./ReadmeImgs/tw_5.png) 
 
 Algunos de los post realizados en las diferentes RRSS (tiktok, twitter, instagram, youtube):
-| ![](./ReadmeImgs/ig_1.png) | ![](./ReadmeImgs/ig_2.png) |
-| ![](./ReadmeImgs/ig_3.png) | ![](./ReadmeImgs/tiktok.png) |
+ ![](./ReadmeImgs/ig_1.png)  ![](./ReadmeImgs/ig_2.png) 
+ ![](./ReadmeImgs/ig_3.png)  ![](./ReadmeImgs/tiktok.png) 
 ![](./ReadmeImgs/yt_1.png)
 
 Concluimos que esta era una buena estrategia que seguir para el modelo de negocio con el que planteamos The Shop Next Door: un juego gratuito con posibilidades de micropagos para conseguir cosméticos exclusivos; y un sistema de donaciones que abrirían la puerta a un servidor de Discord exclusivo con contacto directo con los desarrolladores (Kioreco), y para que los jugadores puedan relacionarse entre sí. 
