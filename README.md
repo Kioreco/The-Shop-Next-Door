@@ -281,10 +281,45 @@ ___
 # <a name="_toc180924195"></a>**4. Marketing**
 ___
 ##   <a name="_toc180924196"></a>**4.1. Durante el Desarrollo**
-aaaaaaaaaaaaaaaaaaaaaa
+
+Mediante nuestra decisión de **ir desvelando fragmentos del desarrollo del juego en las redes** de Kioreco, hemos ido incluyendo referencias a otros ámbitos que guardan relación con nuestro juego, para atraer a potenciales jugadores. 
+The Shop Next Door bebe de la **cultura pop**, guardando muchas referencias a **Gilmore Girls**, entre otras. Por ello, algunos de los post se han hecho relacionados a estas referencias, atrayendo así a jugadores afines a dicha cultura.
+
+![](./ReadmeImgs/tw_6.png)
+![](./ReadmeImgs/tw_3.png)
+![](./ReadmeImgs/tw_2.png)
+![](./ReadmeImgs/tw_1.png)
+
+En dichos post, se optó por mantener el tono humorístico del juego para guardar relación al mismo:
+![](./ReadmeImgs/tw_4.png)
+![](./ReadmeImgs/tw_5.png)
+
+Algunos de los post realizados en las diferentes RRSS (tiktok, twitter, instagram, youtube):
+![](./ReadmeImgs/ig_1.png)
+![](./ReadmeImgs/ig_2.png)
+![](./ReadmeImgs/ig_3.png)
+![](./ReadmeImgs/tiktok.png)
+![](./ReadmeImgs/yt_1.png)
+
+Concluimos que esta era una buena estrategia que seguir para el modelo de negocio con el que planteamos The Shop Next Door: un juego gratuito con posibilidades de micropagos para conseguir cosméticos exclusivos; y un sistema de donaciones que abrirían la puerta a un servidor de Discord exclusivo con contacto directo con los desarrolladores (Kioreco), y para que los jugadores puedan relacionarse entre sí. 
+
+Las donaciones se van a gestionar con **ko-fi**, una plataforma dedicada únicamente a donativos. La elección de esta se ha hecho porque es popular entre el género cozy y puesto que se cree que es la mejor opción para nuestro público objetivo.
+
+Se optó por utilizar **Discord** porque, como equipo apasionado por los videojuegos, a menudo surgen dudas sobre ciertas implementaciones de mecánicas, animaciones y diseños visuales. Es por ello por lo que queremos ofrecer esa misma oportunidad a nuestros jugadores más fieles, permitiéndoles **resolver dudas**, participar en **pruebas de nuevas mecánicas** y acceder a **información exclusiva** (como eventos, actualizaciones o futuros proyectos) antes que nadie.
 ___
 ##   <a name="_toc180924197"></a>**4.2. Mantenimiento Post Lanzamiento (2 años vista)**
-aaaaaaaaaaaaaaaa
+The Shop Next Door en un principio era una idea muy ambiciosa que tuvimos que recortar y ajustar para adaptarnos al poco tiempo de desarrollo que teníamos. Se ha gestionado todo lo relevante al proyecto, aprendiendo un flujo de desarrollo profesional y a manejar los diferentes obstáculos que se nos planteaban en el camino. 
+
+Es por ello por lo que hay gran potencial en The Shop Next Door y en su evolución, incluyendo los siguientes detalles:
+- **Actualizaciones y mejoras de bugs continuas**.
+- **Inclusión de una máquina de café** : cuándo el jugador tenga baja estamina, se podrá tomar una taza de café para que deje de estar cansada.
+- **Mejoras e inclusión de más clientes** (como por ejemplo clientes que entren a mirar, mayor interactividad entre estos).
+- **Inclusión de OpenAI para mejorar la rejugabilidad** (para la creación de más actividades y su output, el diálogo final donde se dice quién ha ganado, etc).
+- **Creación del diario**: donde se almacenarán todas las actividades que hayas descubierto con sus resultados.
+- **Eventos especiales con actividades relacionadas**: "christmas season", "spring season"...
+![](./ReadmeImgs/Skins_hermanas_navidad.png)
+- **Aumentar las mecánicas de la vida personal**.
+
 ___
 # <a name="_toc180924143"></a>**5. Planificación y Costes**
 ___
